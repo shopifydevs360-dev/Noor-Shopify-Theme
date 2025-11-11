@@ -2,6 +2,8 @@
   Logo Snippet: Single image with responsive width settings
 {% endcomment %}
 
+{% assign logo_alt = settings.site_name | default: shop.name %}
+
 {% if settings.logo != blank %}
   <a href="{{ routes.root_url }}" class="m-header__logo">
     {{ settings.logo 
@@ -10,39 +12,33 @@
           class: 'm-logo__image', 
           widths: '100,150,200,250,300,400,500', 
           sizes: '(max-width: 480px) 100px, (max-width: 768px) 150px, 300px', 
-          alt: shop.name 
+          alt: logo_alt,
+          loading: 'lazy'
     }}
   </a>
 {% else %}
   <a href="{{ routes.root_url }}" class="m-header__logo">
-    {% if settings.site_name %}
-      <strong>{{ settings.site_name }}</strong>
-    {% endif %}
-    {% unless settings.site_name %}
-      <strong>{{ shop.name }}</strong>
-    {% endunless %}
-    
+    <strong>{{ settings.site_name | default: shop.name }}</strong>
   </a>
 {% endif %}
 
-
-
-
 <style>
-  .logo-img {
-    width: {{ settings.logo_width_desktop }}px;
+  .m-logo__image {
+    width: 100%;
+    max-width: {{ settings.logo_width_desktop }}px;
     height: auto;
+    display: block;
   }
 
   @media (max-width: 768px) {
-    .logo-img {
-      width: {{ settings.logo_width_tablet }}px;
+    .m-logo__image {
+      max-width: {{ settings.logo_width_tablet }}px;
     }
   }
 
   @media (max-width: 480px) {
-    .logo-img {
-      width: {{ settings.logo_width_mobile }}px;
+    .m-logo__image {
+      max-width: {{ settings.logo_width_mobile }}px;
     }
   }
 </style>
