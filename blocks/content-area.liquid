@@ -1,4 +1,9 @@
-{% comment %} content-area.liquid {% endcomment %}
+{% doc %}
+  A content wrapper that constrains width and applies consistent padding.
+  @example
+  {% content_for 'block', type: 'content-area', id: 'content-area' %}
+{% enddoc %}
+
 <div
   class="content-area"
   style="
@@ -55,6 +60,11 @@
       ]
     }
   ],
-  "presets": [{ "name": "Content area" }]
+  "presets": [
+    {
+      "name": "Content Area",
+      "category": "Layout"
+    }
+  ]
 }
 {% endschema %}
