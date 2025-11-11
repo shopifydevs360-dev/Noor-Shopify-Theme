@@ -160,15 +160,39 @@
           },
           {
             "type": "color",
-            "id": "button_hover",
-            "label": "Background & border",
+            "id": "primary_hover",
+            "label": "Primary Background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "primary_hover_label",
+            "label": "Primary label",
             "default": "#222222"
           },
           {
             "type": "color",
-            "id": "button_text_hover",
-            "label": "Text",
-            "default": "#ffffff"
+            "id": "primary_hover_outline",
+            "label": "Primary outline",
+            "default": "#222222"
+          },
+          {
+            "type": "color",
+            "id": "secondary_hover",
+            "label": "Secondary Background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "secondary_hover_label",
+            "label": "Secondary label",
+            "default": "#222222"
+          },
+          {
+            "type": "color",
+            "id": "secondary_hover_outline",
+            "label": "Secondary outline",
+            "default": "#222222"
           },
           {
             "type": "header",
