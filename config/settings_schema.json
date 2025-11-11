@@ -24,11 +24,221 @@
         "content": "t:general.fonts"
       },
       {
+        "type": "header",
+        "content": "BODY TEXT"
+      },
+      {
         "type": "font_picker",
-        "id": "type_primary_font",
-        "default": "work_sans_n4",
-        "label": "t:general.primary"
-      }
+        "id": "type_base_font",
+        "label": "Font",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_custom_font_body",
+        "label": "Use custom font",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Custom font for Body text"
+      },
+      {
+        "id": "custom_body_font",
+        "type": "textarea",
+        "label": "Font URL",
+        "placeholder": "https://cdn.shopify.com/s/files/1/0075/1288/3285/files/roboto.woff2@400",
+        "info": "Format: Link_to_font@font_weight"
+      },
+      {
+        "id": "custom_body_weight",
+        "type": "select",
+        "label": "Default font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "100",
+            "label": "Thin 100"
+          },
+          {
+            "value": "200",
+            "label": "Extra-light 200"
+          },
+          {
+            "value": "300",
+            "label": "Light 300"
+          },
+          {
+            "value": "400",
+            "label": "Regular 400"
+          },
+          {
+            "value": "500",
+            "label": "Medium 500"
+          },
+          {
+            "value": "600",
+            "label": "Semi-bold 600"
+          },
+          {
+            "value": "700",
+            "label": "Bold 700"
+          },
+          {
+            "value": "800",
+            "label": "Extra-bold 800"
+          },
+          {
+            "value": "900",
+            "label": "Black 900"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "type_base_size",
+        "label": "Base size",
+        "default": 16,
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_base_line_height",
+        "label": "Line height",
+        "default": 28,
+        "min": 14,
+        "max": 100,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "HEADINGS"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Font",
+        "default": "helvetica_n7"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_custom_font_heading",
+        "label": "Use custom font",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Custom font for Headings"
+      },
+      {
+        "type": "paragraph",
+        "content": "Allow multiple links, each link in a new line. Please upload to [Shopify files](/admin/settings/files) and paste link here. These formats TTF, OTF, WOFF & WOFF2 are supported."
+      },
+      {
+        "id": "custom_heading_font",
+        "type": "textarea",
+        "label": "Font file URLS",
+        "placeholder": "https://cdn.shopify.com/s/files/1/0075/1288/3285/files/roboto.woff2@400",
+        "info": "Format: Link_to_font@font_weight"
+      },
+      {
+        "id": "custom_heading_weight",
+        "type": "select",
+        "label": "Default font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "100",
+            "label": "Thin 100"
+          },
+          {
+            "value": "200",
+            "label": "Extra-light 200"
+          },
+          {
+            "value": "300",
+            "label": "Light 300"
+          },
+          {
+            "value": "400",
+            "label": "Regular 400"
+          },
+          {
+            "value": "500",
+            "label": "Medium 500"
+          },
+          {
+            "value": "600",
+            "label": "Semi-bold 600"
+          },
+          {
+            "value": "700",
+            "label": "Bold 700"
+          },
+          {
+            "value": "800",
+            "label": "Extra-bold 800"
+          },
+          {
+            "value": "900",
+            "label": "Black 900"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "h1_font_size",
+        "label": "H1 font size",
+        "default": 60,
+        "min": 20,
+        "max": 120,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "h2_font_size",
+        "label": "H2 font size",
+        "default": 42,
+        "min": 20,
+        "max": 100,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_header_base_size",
+        "label": "H3 font size",
+        "default": 36,
+        "min": 14,
+        "max": 80,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "h4_font_size",
+        "label": "H4 font size",
+        "default": 24,
+        "min": 14,
+        "max": 60,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_header_spacing",
+        "label": "Letter spacing",
+        "default": 0,
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px"
+      },
     ]
   },
   {
