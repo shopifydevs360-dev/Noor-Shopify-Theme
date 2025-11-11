@@ -25,7 +25,7 @@
           "name": "t:general.text",
           "settings": {
             "text": "Text",
-            "text_style": "text--title",
+            "text_style": "h1",
             "alignment": "left"
           },
           "blocks": {}
