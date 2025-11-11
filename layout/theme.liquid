@@ -12,10 +12,7 @@
     endif
   endif
 
-  assign body_classes = 'template-' | append: template.name | append: ' ' | append: template.suffix | append: ' m-gradient m-color-' | append: settings.default_color_scheme
-  if settings.page_transition
-    assign body_classes = body_classes | append: ' m:overflow-hidden'
-  endif
+  assign body_classes = 'template-' | append: template.name | append: ' ' | append: template.suffix 
 %}
 
 <!doctype html>
