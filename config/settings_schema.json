@@ -322,4 +322,15 @@
       }
     ]
   },
+  {
+		"name": "Animations",
+		"settings": [
+			{
+        "type": "checkbox",
+        "id": "page_transition",
+        "default": true,
+        "label": "Enable page transition"
+      },
+    ]
+  }
 ]
