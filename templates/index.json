@@ -24,7 +24,7 @@
           "type": "grid",
           "name": "Grid Layout",
           "settings": {
-            "columns": 3,
+            "columns": 4,
             "gap": 20,
             "padding": 0
           },
