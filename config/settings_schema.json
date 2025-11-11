@@ -268,7 +268,6 @@
           "on_secondary_button": "secondary_button_label",
           "secondary_button_border": "secondary_button_outline"
         }
-
       },
       {
         "type": "color",
