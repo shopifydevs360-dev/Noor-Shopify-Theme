@@ -7,14 +7,35 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "404",
       "settings": {}
+    },
+    "custom_section_c8Pjxk": {
+      "type": "custom-section",
+      "blocks": {
+        "text_7ryAkb": {
+          "type": "text",
+          "name": "t:general.text",
+          "settings": {
+            "text": "Text",
+            "text_style": "text--title",
+            "alignment": "left"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_7ryAkb"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_section_c8Pjxk"
   ]
 }
