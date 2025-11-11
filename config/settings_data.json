@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/381420017835.jpg",
     "type_base_font": "amiri_n4",
     "use_custom_font_body": false,
     "type_base_size": 16,
