@@ -120,37 +120,37 @@
 {
   "type": "color",
   "id": "primary_button",
-  "label": "Primary button background",
+  "label": "Primary background",
   "default": "#222222"
 },
 {
   "type": "color",
   "id": "primary_button_label",
-  "label": "Primary button label",
+  "label": "Primary label",
   "default": "#FFFFFF"
 },
 {
   "type": "color",
   "id": "primary_button_outline",
-  "label": "Primary button outline",
+  "label": "Primary outline",
   "default": "#222222"
 },
 {
   "type": "color",
   "id": "secondary_button",
-  "label": "Secondary button background",
+  "label": "Secondary background",
   "default": "#FFFFFF"
 },
 {
   "type": "color",
   "id": "secondary_button_label",
-  "label": "Secondary button label",
+  "label": "Secondary label",
   "default": "#222222"
 },
 {
   "type": "color",
   "id": "secondary_button_outline",
-  "label": "Secondary button outline",
+  "label": "Secondary outline",
   "default": "#222222"
 },
 
@@ -229,21 +229,21 @@
             "default": "#EEEEEE"
           }
         ],
-"role": {
-  "text": "text",
-  "background": {
-    "solid": "background",
-    "gradient": "background_gradient"
-  },
-  "links": "primary_button_label",
-  "icons": "text",
-  "primary_button": "primary_button",
-  "on_primary_button": "primary_button_label",
-  "primary_button_border": "primary_button_outline",
-  "secondary_button": "secondary_button",
-  "on_secondary_button": "secondary_button_label",
-  "secondary_button_border": "secondary_button_outline"
-}
+        "role": {
+          "text": "text",
+          "background": {
+            "solid": "background",
+            "gradient": "background_gradient"
+          },
+          "links": "primary_button_label",
+          "icons": "text",
+          "primary_button": "primary_button",
+          "on_primary_button": "primary_button_label",
+          "primary_button_border": "primary_button_outline",
+          "secondary_button": "secondary_button",
+          "on_secondary_button": "secondary_button_label",
+          "secondary_button_border": "secondary_button_outline"
+        }
 
       },
       {
