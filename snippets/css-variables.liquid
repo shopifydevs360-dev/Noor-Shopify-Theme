@@ -19,7 +19,7 @@
 
 
 
-     {% for scheme in settings.color_schemes -%}
+{% for scheme in settings.color_schemes -%}
   	{% assign scheme_classes = scheme_classes | append: '.m-color-' | append: scheme.id | append: ', ' %}
   	{%- if forloop.index == 1 -%}
   		:root,
