@@ -1,0 +1,30 @@
+{% comment %}
+  Logo Snippet: Single image with responsive width settings
+{% endcomment %}
+
+<a href="{{ shop.url }}" class="site-logo">
+  {% if settings.logo != blank %}
+    <img src="{{ settings.logo | img_url: '300x' }}" alt="{{ settings.site_name }}" class="logo-img">
+  {% else %}
+    <span class="site-name">{{ settings.site_name }}</span>
+  {% endif %}
+</a>
+
+<style>
+  .logo-img {
+    width: {{ settings.logo_width_desktop }}px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .logo-img {
+      width: {{ settings.logo_width_tablet }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo-img {
+      width: {{ settings.logo_width_mobile }}px;
+    }
+  }
+</style>
