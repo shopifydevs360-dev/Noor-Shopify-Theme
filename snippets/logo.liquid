@@ -2,9 +2,9 @@
   Logo Snippet: Single image with responsive width settings
 {% endcomment %}
 
-{% if section.settings.logo != blank %}
+{% if settings.logo != blank %}
   <a href="{{ routes.root_url }}" class="m-header__logo">
-    {{ section.settings.logo | image_url | image_tag: 
+    {{ settings.logo | image_url | image_tag: 
       class: 'm-logo__image', 
       widths: '100,150,200,250,300,400,500', 
       sizes: '(max-width: 480px) 100px, (max-width: 768px) 150px, 200px', 
