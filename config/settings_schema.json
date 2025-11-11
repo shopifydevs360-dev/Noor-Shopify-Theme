@@ -341,5 +341,50 @@
         "content": "Product card"
       }
     ]
-  }
+  },
+  {
+    "name": "Collections card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Collections card"
+      }
+    ]
+  },
+  {
+    "name": "Article card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Article card"
+      }
+    ]
+  },
+  {
+    "name": "Article card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Article card"
+      }
+    ]
+  },
+  {
+    "name": "Article card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Article card"
+      }
+    ]
+  },
+  {
+    "name": "Article card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Article card"
+      }
+    ]
+  },
 ]
