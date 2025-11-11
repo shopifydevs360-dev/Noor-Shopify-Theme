@@ -45,7 +45,11 @@
     {{ content_for_header }}
   </head>
 
-  <body>
+  <body id="theme-noor"
+    class="{{ body_classes }}"
+    {% if template.name == 'product' %}
+      data-product-id="{{ product.id }}"
+    {% endif %}>
     {% sections 'header-group' %}
 
     {{ content_for_layout }}
