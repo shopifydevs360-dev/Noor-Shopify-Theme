@@ -8,6 +8,17 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "collections_4rMxrT": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    }
+  },
+  "order": [
+    "collections_4rMxrT"
+  ]
 }
