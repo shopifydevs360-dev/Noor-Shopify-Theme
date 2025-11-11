@@ -16,9 +16,30 @@
         "grid_item_width": "collections--full",
         "grid_gap": 10
       }
+    },
+    "custom_section_CWt6yq": {
+      "type": "custom-section",
+      "blocks": {
+        "text_rxXiDN": {
+          "type": "text",
+          "name": "t:general.text",
+          "settings": {
+            "text": "Text",
+            "text_style": "text--title",
+            "alignment": "left"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_rxXiDN"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
     }
   },
   "order": [
-    "collections_4rMxrT"
+    "collections_4rMxrT",
+    "custom_section_CWt6yq"
   ]
 }
