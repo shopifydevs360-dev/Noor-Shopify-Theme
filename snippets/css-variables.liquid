@@ -1,20 +1,92 @@
 {% style %}
-  {% # Loads all font variantions with display: swap %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+{%- comment -%}
+  Load Shopify fonts (if not using custom)
+{%- endcomment -%}
+{% unless settings.use_custom_font_body %}
+  {{ settings.type_base_font | font_face: font_display: 'swap' }}
+  {{ settings.type_base_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+  {{ settings.type_base_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+{% endunless %}
 
-  :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
-    --page-width: {{ settings.max_page_width }};
-    --page-margin: {{ settings.min_page_margin }}px;
-    --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.foreground_color }};
-    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
-  }
+{% unless settings.use_custom_font_heading %}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ settings.type_header_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+  {{ settings.type_header_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+{% endunless %}
+
+
+{%- comment -%}
+  Load custom fonts via @font-face if enabled
+{%- endcomment -%}
+{% if settings.use_custom_font_body and settings.custom_body_font != blank %}
+  <style>
+    {% assign body_fonts = settings.custom_body_font | split: '\n' %}
+    {% for font_item in body_fonts %}
+      {% assign font_url = font_item | split: '@' | first %}
+      {% assign font_weight = font_item | split: '@' | last | default: settings.custom_body_weight %}
+      @font-face {
+        font-family: 'CustomBodyFont';
+        src: url('{{ font_url | strip }}') format('woff2');
+        font-weight: {{ font_weight }};
+        font-style: normal;
+        font-display: swap;
+      }
+    {% endfor %}
+  </style>
+{% endif %}
+
+{% if settings.use_custom_font_heading and settings.custom_heading_font != blank %}
+  <style>
+    {% assign heading_fonts = settings.custom_heading_font | split: '\n' %}
+    {% for font_item in heading_fonts %}
+      {% assign font_url = font_item | split: '@' | first %}
+      {% assign font_weight = font_item | split: '@' | last | default: settings.custom_heading_weight %}
+      @font-face {
+        font-family: 'CustomHeadingFont';
+        src: url('{{ font_url | strip }}') format('woff2');
+        font-weight: {{ font_weight }};
+        font-style: normal;
+        font-display: swap;
+      }
+    {% endfor %}
+  </style>
+{% endif %}
+
+
+{%- comment -%}
+  Root variables
+{%- endcomment -%}
+:root {
+  /* Body text font */
+  {% if settings.use_custom_font_body %}
+    --font-body-family: 'CustomBodyFont', sans-serif;
+    --font-body-weight: {{ settings.custom_body_weight }};
+  {% else %}
+    --font-body-family: {{ settings.type_base_font.family }}, {{ settings.type_base_font.fallback_families }};
+    --font-body-weight: {{ settings.type_base_font.weight }};
+  {% endif %}
+  --font-body-size: {{ settings.type_base_size }}px;
+  --font-body-line-height: {{ settings.type_base_line_height }}px;
+
+  /* Headings font */
+  {% if settings.use_custom_font_heading %}
+    --font-heading-family: 'CustomHeadingFont', sans-serif;
+    --font-heading-weight: {{ settings.custom_heading_weight }};
+  {% else %}
+    --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    --font-heading-weight: {{ settings.type_header_font.weight }};
+  {% endif %}
+  --font-heading-spacing: {{ settings.type_header_spacing }}px;
+  --font-h1-size: {{ settings.h1_font_size }}px;
+  --font-h2-size: {{ settings.h2_font_size }}px;
+  --font-h3-size: {{ settings.type_header_base_size }}px;
+  --font-h4-size: {{ settings.h4_font_size }}px;
+
+  /* Other existing root variables */
+  --page-width: {{ settings.max_page_width }};
+  --page-margin: {{ settings.min_page_margin }}px;
+  --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+}
 
 
 
