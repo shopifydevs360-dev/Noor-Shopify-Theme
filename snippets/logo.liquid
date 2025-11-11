@@ -2,13 +2,21 @@
   Logo Snippet: Single image with responsive width settings
 {% endcomment %}
 
-<a href="{{ shop.url }}" class="site-logo">
-  {% if settings.logo != blank %}
-    <img src="{{ settings.logo | img_url: '300x' }}" alt="{{ settings.site_name }}" class="logo-img">
-  {% else %}
-    <span class="site-name">{{ settings.site_name }}</span>
-  {% endif %}
-</a>
+{% if settings.logo != blank %}
+  <a href="{{ routes.root_url }}" class="m-header__logo">
+    {{ settings.logo | image_tag: 
+      class: 'm-logo__image', 
+      widths: '100,150,200,250,300,400,500', 
+      sizes: '(max-width: 480px) 100px, (max-width: 768px) 150px, 200px', 
+      alt: shop.name 
+    }}
+  </a>
+{% else %}
+  <a href="{{ routes.root_url }}" class="m-header__logo">
+    <strong>{{ shop.name }}</strong>
+  </a>
+{% endif %}
+
 
 <style>
   .logo-img {
