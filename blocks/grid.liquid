@@ -1,4 +1,9 @@
-{% comment %} grid.liquid {% endcomment %}
+{% doc %}
+  Renders a responsive grid layout.
+  @example
+  {% content_for 'block', type: 'grid', id: 'grid' %}
+{% enddoc %}
+
 <div
   class="layout-grid"
   style="
@@ -20,7 +25,7 @@
 
 {% schema %}
 {
-  "name": "Grid",
+  "name": "Grid Layout",
   "blocks": [{ "type": "@theme" }],
   "settings": [
     {
@@ -53,6 +58,11 @@
       "unit": "px"
     }
   ],
-  "presets": [{ "name": "Grid layout" }]
+  "presets": [
+    {
+      "name": "Grid Layout",
+      "category": "Layout"
+    }
+  ]
 }
 {% endschema %}
