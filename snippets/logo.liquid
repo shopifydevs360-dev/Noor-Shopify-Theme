@@ -1,30 +1,79 @@
-{% comment %}
-  Logo Snippet: Single image with responsive width settings
-{% endcomment %}
+{% liquid
+  assign class = 'm-header__logo m-logo'
 
-<a href="{{ shop.url }}" class="site-logo">
-  {% if settings.logo != blank %}
-    <img src="{{ settings.logo | img_url: '300x' }}" alt="{{ settings.site_name }}" class="logo-img">
+  if header_settings.logo
+    assign class = class | append: ' m-logo--has-image'
+  endif
+
+  assign logo_alt = section.settings.logo.alt | default: shop.name
+  assign transparent_on_top = header_settings.transparent_on_top
+
+  assign default_logo = header_settings.logo
+  assign logo_svg = header_settings.logo_svg
+  assign logo_transparent_svg = header_settings.logo_transparent_svg
+  assign logo_transparent = header_settings.logo_transparent
+
+  if logo_svg != blank
+    assign default_logo = logo_svg
+  endif
+%}
+
+{% if request.page_type == 'index' and is_in_search != true %}
+<h1 class="{{ class | strip_newlines }}">
+{% else %}
+<div class="{{ class | strip_newlines }}">
+{% endif %}
+
+  {% if default_logo != blank or logo_svg != blank or logo_transparent_svg != blank or logo_transparent != blank %}
+    <a href="{{ routes.root_url }}" class="m-logo__image m:block" title="{{ shop.name }}">
+
+      {% comment %} Default / Desktop logo {% endcomment %}
+      <div class="m-logo__image-default m-image">
+        {% if default_logo != blank %}
+          {{ default_logo | image_tag:
+            class: 'm:inline-block',
+            widths: section.settings.logo_width_mobile | append: ',' | append: section.settings.logo_width_tablet | append: ',' | append: section.settings.logo_width_desktop,
+            sizes: "(max-width: 480px) {{ section.settings.logo_width_mobile }}px, (max-width: 768px) {{ section.settings.logo_width_tablet }}px, {{ section.settings.logo_width_desktop }}px",
+            alt: logo_alt
+          }}
+        {% else %}
+          <strong>{{ header_settings.logo_text | default: shop.name }}</strong>
+        {% endif %}
+      </div>
+
+      {% comment %} Transparent logo on scroll / hero {% endcomment %}
+      {% if transparent_on_top %}
+        {% liquid
+          if logo_transparent == blank
+            assign logo_transparent = default_logo
+            if logo_svg != blank and logo_transparent_svg == blank
+              assign logo_transparent_svg = logo_svg
+            endif
+          endif
+        %}
+        <div class="m-logo__image-transparent m-image">
+          {% if logo_transparent_svg != blank %}
+            <img src="{{ logo_transparent_svg }}" alt="{{ logo_alt }}" width="auto" height="auto" loading="lazy">
+          {% else %}
+            {{ logo_transparent | image_tag:
+              class: 'inline-block',
+              widths: section.settings.logo_width_mobile | append: ',' | append: section.settings.logo_width_tablet | append: ',' | append: section.settings.logo_width_desktop,
+              sizes: "(max-width: 480px) {{ section.settings.logo_width_mobile }}px, (max-width: 768px) {{ section.settings.logo_width_tablet }}px, {{ section.settings.logo_width_desktop }}px",
+              alt: logo_alt
+            }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+    </a>
   {% else %}
-    <span class="site-name">{{ settings.site_name }}</span>
+    <a href="{{ routes.root_url }}" class="m:block">
+      <strong>{{ header_settings.logo_text | default: shop.name }}</strong>
+    </a>
   {% endif %}
-</a>
 
-<style>
-  .logo-img {
-    width: {{ settings.logo_width_desktop }}px;
-    height: auto;
-  }
-
-  @media (max-width: 768px) {
-    .logo-img {
-      width: {{ settings.logo_width_tablet }}px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .logo-img {
-      width: {{ settings.logo_width_mobile }}px;
-    }
-  }
-</style>
+{% if request.page_type == 'index' and is_in_search != true %}
+</h1>
+{% else %}
+</div>
+{% endif %}
