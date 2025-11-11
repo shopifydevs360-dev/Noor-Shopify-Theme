@@ -14,7 +14,8 @@
     "header": {
       "type": "header",
       "settings": {
-        "menu": "main-menu"
+        "menu": "main-menu",
+        "header_height": 200
       }
     }
   },
