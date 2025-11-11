@@ -20,33 +20,58 @@
 
 
 {% for scheme in settings.color_schemes -%}
-  	{% assign scheme_classes = scheme_classes | append: '.m-color-' | append: scheme.id | append: ', ' %}
-  	{%- if forloop.index == 1 -%}
-  		:root,
-  	{%- endif -%}
-  	.m-color-{{ scheme.id }} {
-      --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-      --color-background-secondary: {{ scheme.settings.background_secondary.red }},{{ scheme.settings.background_secondary.green }},{{ scheme.settings.background_secondary.blue }};
-  		{% if scheme.settings.background_gradient != empty %}
-  	  --gradient-background: {{ scheme.settings.background_gradient }};
-  		{% else %}
-  	  --gradient-background: {{ scheme.settings.background }};
-  		{% endif %}
-  		--color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-  		--color-foreground-secondary: {{ scheme.settings.subtext.red }},{{ scheme.settings.subtext.green }},{{ scheme.settings.subtext.blue }};
-      --color-heading: {{ scheme.settings.heading_text.red }},{{ scheme.settings.heading_text.green }},{{ scheme.settings.heading_text.blue }};
-  		--color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
-  		--color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
-  		--color-outline-button: {{ scheme.settings.outline_button_label.red }},{{ scheme.settings.outline_button_label.green }},{{ scheme.settings.outline_button_label.blue }};
-      --color-button-hover: {{ scheme.settings.button_hover.red }}, {{ scheme.settings.button_hover.green }}, {{ scheme.settings.button_hover.blue }};
-      --color-button-text-hover: {{ scheme.settings.button_text_hover.red }}, {{ scheme.settings.button_text_hover.green }}, {{ scheme.settings.button_text_hover.blue }};
-  		--color-border: {{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }};
-  		--color-price-sale: {{ scheme.settings.price_sale.red }},{{ scheme.settings.price_sale.green }},{{ scheme.settings.price_sale.blue }};
-  		--color-price-regular: {{ scheme.settings.price_regular.red }},{{ scheme.settings.price_regular.green }},{{ scheme.settings.price_regular.blue }};
-  		--color-form-field: {{ scheme.settings.form_field.red }},{{ scheme.settings.form_field.green }},{{ scheme.settings.form_field.blue }};
-  		--color-form-field-text: {{ scheme.settings.form_field_label.red }},{{ scheme.settings.form_field_label.green }},{{ scheme.settings.form_field_label.blue }};
-  		--color-tooltip: {{ scheme.settings.tooltip.red }},{{ scheme.settings.tooltip.green }},{{ scheme.settings.tooltip.blue }};
-  		--color-tooltip-text: {{ scheme.settings.tooltip_label.red }},{{ scheme.settings.tooltip_label.green }},{{ scheme.settings.tooltip_label.blue }};
-  	}
-  {% endfor %}
+  {% assign scheme_classes = scheme_classes | append: '.m-color-' | append: scheme.id | append: ', ' %}
+  {%- if forloop.index == 1 -%}
+    :root,
+  {%- endif -%}
+  .m-color-{{ scheme.id }} {
+    /* Background */
+    --color-background: {{ scheme.settings.background.red }}, {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }};
+    --color-background-secondary: {{ scheme.settings.background_secondary.red }}, {{ scheme.settings.background_secondary.green }}, {{ scheme.settings.background_secondary.blue }};
+    {% if scheme.settings.background_gradient != empty %}
+      --gradient-background: {{ scheme.settings.background_gradient }};
+    {% else %}
+      --gradient-background: {{ scheme.settings.background }};
+    {% endif %}
+
+    /* Text */
+    --color-foreground: {{ scheme.settings.text.red }}, {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }};
+    --color-foreground-secondary: {{ scheme.settings.subtext.red }}, {{ scheme.settings.subtext.green }}, {{ scheme.settings.subtext.blue }};
+    --color-heading: {{ scheme.settings.heading_text.red }}, {{ scheme.settings.heading_text.green }}, {{ scheme.settings.heading_text.blue }};
+
+    /* Buttons */
+    --color-primary-button: {{ scheme.settings.primary_button.red }}, {{ scheme.settings.primary_button.green }}, {{ scheme.settings.primary_button.blue }};
+    --color-primary-button-label: {{ scheme.settings.primary_button_label.red }}, {{ scheme.settings.primary_button_label.green }}, {{ scheme.settings.primary_button_label.blue }};
+    --color-primary-button-outline: {{ scheme.settings.primary_button_outline.red }}, {{ scheme.settings.primary_button_outline.green }}, {{ scheme.settings.primary_button_outline.blue }};
+
+    --color-secondary-button: {{ scheme.settings.secondary_button.red }}, {{ scheme.settings.secondary_button.green }}, {{ scheme.settings.secondary_button.blue }};
+    --color-secondary-button-label: {{ scheme.settings.secondary_button_label.red }}, {{ scheme.settings.secondary_button_label.green }}, {{ scheme.settings.secondary_button_label.blue }};
+    --color-secondary-button-outline: {{ scheme.settings.secondary_button_outline.red }}, {{ scheme.settings.secondary_button_outline.green }}, {{ scheme.settings.secondary_button_outline.blue }};
+
+    /* Hover states */
+    --color-primary-hover: {{ scheme.settings.primary_hover.red }}, {{ scheme.settings.primary_hover.green }}, {{ scheme.settings.primary_hover.blue }};
+    --color-primary-hover-label: {{ scheme.settings.primary_hover_label.red }}, {{ scheme.settings.primary_hover_label.green }}, {{ scheme.settings.primary_hover_label.blue }};
+    --color-primary-hover-outline: {{ scheme.settings.primary_hover_outline.red }}, {{ scheme.settings.primary_hover_outline.green }}, {{ scheme.settings.primary_hover_outline.blue }};
+
+    --color-secondary-hover: {{ scheme.settings.secondary_hover.red }}, {{ scheme.settings.secondary_hover.green }}, {{ scheme.settings.secondary_hover.blue }};
+    --color-secondary-hover-label: {{ scheme.settings.secondary_hover_label.red }}, {{ scheme.settings.secondary_hover_label.green }}, {{ scheme.settings.secondary_hover_label.blue }};
+    --color-secondary-hover-outline: {{ scheme.settings.secondary_hover_outline.red }}, {{ scheme.settings.secondary_hover_outline.green }}, {{ scheme.settings.secondary_hover_outline.blue }};
+
+    /* Price */
+    --color-price-sale: {{ scheme.settings.price_sale.red }}, {{ scheme.settings.price_sale.green }}, {{ scheme.settings.price_sale.blue }};
+    --color-price-regular: {{ scheme.settings.price_regular.red }}, {{ scheme.settings.price_regular.green }}, {{ scheme.settings.price_regular.blue }};
+
+    /* Form fields */
+    --color-form-field: {{ scheme.settings.form_field.red }}, {{ scheme.settings.form_field.green }}, {{ scheme.settings.form_field.blue }};
+    --color-form-field-text: {{ scheme.settings.form_field_label.red }}, {{ scheme.settings.form_field_label.green }}, {{ scheme.settings.form_field_label.blue }};
+
+    /* Tooltip */
+    --color-tooltip: {{ scheme.settings.tooltip.red }}, {{ scheme.settings.tooltip.green }}, {{ scheme.settings.tooltip.blue }};
+    --color-tooltip-text: {{ scheme.settings.tooltip_label.red }}, {{ scheme.settings.tooltip_label.green }}, {{ scheme.settings.tooltip_label.blue }};
+
+    /* Misc */
+    --color-border: {{ scheme.settings.border.red }}, {{ scheme.settings.border.green }}, {{ scheme.settings.border.blue }};
+  }
+{% endfor %}
+
 {% endstyle %}
