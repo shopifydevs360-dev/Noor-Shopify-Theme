@@ -1,1 +1,13 @@
-{"sections":{"main":{"type":"hello-world","settings":{}},"custom_section_PJmPcc":{"type":"custom-section","blocks":{"text_K6UhVT":{"type":"text","name":"t:general.text","settings":{"text":"Text","text_style":"text--title","alignment":"left"},"blocks":{}}},"block_order":["text_K6UhVT"],"name":"t:general.custom_section","settings":{}},"custom_section_eCrFNN":{"type":"custom-section","blocks":{"group_nWpJbP":{"type":"group","name":"t:general.column","settings":{"layout_direction":"group--vertical","alignment":"flex-start","padding":0},"blocks":{"group_b6x4fd":{"type":"group","name":"t:general.row","settings":{"layout_direction":"group--horizontal","alignment":"flex-start","padding":0},"blocks":{}},"text_PHPtKQ":{"type":"text","name":"t:general.text","settings":{"text":"Text","text_style":"text--title","alignment":"left"},"blocks":{}}},"block_order":["group_b6x4fd","text_PHPtKQ"]}},"block_order":["group_nWpJbP"],"name":"t:general.custom_section","settings":{}}},"order":["main","custom_section_PJmPcc","custom_section_eCrFNN"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {},
+  "order": []
+}
