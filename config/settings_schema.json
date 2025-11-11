@@ -361,29 +361,119 @@
     ]
   },
   {
-    "name": "Article card",
+    "name": "Product options design",
     "settings": [
       {
         "type": "header",
-        "content": "Article card"
+        "content": "Product options design"
       }
     ]
   },
   {
-    "name": "Article card",
+    "name": "Product options swatches",
     "settings": [
       {
         "type": "header",
-        "content": "Article card"
+        "content": "Product options swatches"
       }
     ]
   },
   {
-    "name": "Article card",
+    "name": "Product inventory",
     "settings": [
       {
         "type": "header",
-        "content": "Article card"
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Drawer & popup",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Badges",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Social sharing",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Store Contact",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Additional pages",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "GDPR",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Currency format",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
+      }
+    ]
+  },
+  {
+    "name": "Advance CSS & JS",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product inventory"
       }
     ]
   },
