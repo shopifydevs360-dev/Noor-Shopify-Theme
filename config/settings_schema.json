@@ -52,8 +52,7 @@
       {
         "type": "text",
         "id": "site_name",
-        "label": "Site Name",
-        "default": "{{ shop.name }}"
+        "label": "Site Name"
       },
       {
         "type": "image_picker",
