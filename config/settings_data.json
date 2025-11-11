@@ -9,8 +9,29 @@
  */
 {
   "current": {
-    "max_page_width": "110rem",
-    "background_color": "#1d1c1c",
-    "content_for_index": []
+    "color_schemes": {
+      "default": {
+        "settings": {
+          "background": "#FFFFFF",
+          "background_secondary": "#F5F5F5",
+          "background_gradient": "",
+          "text": "#222222",
+          "subtext": "#666666",
+          "heading_text": "#222222",
+          "button": "#222222",
+          "button_label": "#FFFFFF",
+          "outline_button_label": "#222222",
+          "button_hover": "#222222",
+          "button_text_hover": "#FFFFFF",
+          "price_sale": "#E02B2B",
+          "price_regular": "#666666",
+          "form_field": "#FFFFFF",
+          "form_field_label": "#222222",
+          "tooltip": "#222222",
+          "tooltip_label": "#FFFFFF",
+          "border": "#EEEEEE"
+        }
+      }
+    }
   }
 }
