@@ -1,6 +1,13 @@
 {{ 'header.css' | asset_url | stylesheet_tag: preload: true }}
 
-<header class="m-header">
+<header class="main-header">
+  <div class="desktop-header">
+    
+  </div>
+  <div class="mobile-header">
+
+  </div>
+
   <!-- Logo -->
   {% render 'logo' %}
 
@@ -60,7 +67,7 @@
   align-items: center;
 }
 {% endstylesheet %}
-
+ <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
 {% schema %}
 {
   "name": "t:general.header",
