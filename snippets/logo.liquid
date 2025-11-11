@@ -16,10 +16,12 @@
 {% else %}
   <a href="{{ routes.root_url }}" class="m-header__logo">
     {% if settings.site_name %}
-    <strong>{{ settings.site_name }}</strong>
-    {% else %}
-    <strong>{{ shop.name }}</strong>
+      <strong>{{ settings.site_name }}</strong>
     {% endif %}
+    {% unless settings.site_name %}
+      <strong>{{ shop.name }}</strong>
+    {% endunless %}
+    
   </a>
 {% endif %}
 
