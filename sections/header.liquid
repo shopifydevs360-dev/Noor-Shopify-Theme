@@ -31,7 +31,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--header-height, 5rem); /* configurable in theme settings if needed */
   padding: 0 var(--page-margin);
 }
 
@@ -68,16 +67,6 @@
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu"
-    },
-    {
-      "type": "range",
-      "id": "header_height",
-      "label": "Header height",
-      "default": 80,
-      "min": 50,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
     }
   ]
 }
