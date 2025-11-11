@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
-    {%- if settings.use_favicon == true and settings.favicon != blank -%}
+    {%- if settings.favicon != blank -%}
       <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
     {% # Inlined CSS Variables %}
