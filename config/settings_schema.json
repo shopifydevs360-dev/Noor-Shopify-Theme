@@ -66,6 +66,167 @@
     "name": "t:general.colors",
     "settings": [
       {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "header",
+            "content": "Background"
+          },
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "background_secondary",
+            "label": "Background secondary",
+            "default": "#F5F5F5"
+          },
+          {
+            "type": "color_background",
+            "id": "background_gradient",
+            "label": "Background gradient",
+            "info": "Background gradient replaces background where possible."
+          },
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Text",
+            "default": "#222222"
+          },
+          {
+            "type": "color",
+            "id": "subtext",
+            "label": "Subtext",
+            "default": "#666666"
+          },
+          {
+            "type": "color",
+            "id": "heading_text",
+            "label": "Heading text",
+            "default": "#222222"
+          },
+          {
+            "type": "header",
+            "content": "Button"
+          },
+          {
+            "type": "color",
+            "id": "button",
+            "label": "Solid button background",
+            "default": "#222222"
+          },
+          {
+            "type": "color",
+            "id": "button_label",
+            "label": "Solid button label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "outline_button_label",
+            "label": "Outline button",
+            "default": "#222222"
+          },
+          {
+            "type": "header",
+            "content": "Button hover"
+          },
+          {
+            "type": "color",
+            "id": "button_hover",
+            "label": "Background & border",
+            "default": "#222222"
+          },
+          {
+            "type": "color",
+            "id": "button_text_hover",
+            "label": "Text",
+            "default": "#ffffff"
+          },
+          {
+            "type": "header",
+            "content": "Price"
+          },
+          {
+            "type": "color",
+            "id": "price_sale",
+            "label": "Price sale",
+            "default": "#E02B2B"
+          },
+          {
+            "type": "color",
+            "id": "price_regular",
+            "label": "Price regular",
+            "default": "#666666"
+          },
+          {
+            "type": "header",
+            "content": "Form field"
+          },
+          {
+            "type": "color",
+            "id": "form_field",
+            "label": "Form field background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "form_field_label",
+            "label": "Form field text",
+            "default": "#222222"
+          },
+          {
+            "type": "header",
+            "content": "Tooltip"
+          },
+          {
+            "type": "color",
+            "id": "tooltip",
+            "label": "Tooltip background",
+            "default": "#222222"
+          },
+          {
+            "type": "color",
+            "id": "tooltip_label",
+            "label": "Tooltip text",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "header",
+            "content": "Other"
+          },
+          {
+            "type": "color",
+            "id": "border",
+            "label": "Border",
+            "default": "#EEEEEE"
+          }
+        ],
+        "role": {
+          "text": "text",
+          "background": {
+            "solid": "background",
+            "gradient": "background_gradient"
+          },
+          "links": "outline_button_label",
+          "icons": "text",
+          "primary_button": "button",
+          "on_primary_button": "button_label",
+          "primary_button_border": "button",
+          "secondary_button": "background",
+          "on_secondary_button": "outline_button_label",
+          "secondary_button_border": "outline_button_label"
+        }
+      },
+      {
         "type": "color",
         "id": "background_color",
         "default": "#FFFFFF",
