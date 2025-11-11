@@ -35,7 +35,9 @@
         "text_rxXiDN"
       ],
       "name": "t:general.custom_section",
-      "settings": {}
+      "settings": {
+        "background_image": "shopify://shop_images/858173167938.jpg"
+      }
     }
   },
   "order": [
