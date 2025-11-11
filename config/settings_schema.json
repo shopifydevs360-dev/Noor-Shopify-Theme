@@ -113,28 +113,47 @@
             "label": "Heading text",
             "default": "#222222"
           },
-          {
-            "type": "header",
-            "content": "Button"
-          },
-          {
-            "type": "color",
-            "id": "button",
-            "label": "Solid button background",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "button_label",
-            "label": "Solid button label",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "outline_button_label",
-            "label": "Outline button",
-            "default": "#222222"
-          },
+{
+  "type": "header",
+  "content": "Buttons"
+},
+{
+  "type": "color",
+  "id": "primary_button",
+  "label": "Primary button background",
+  "default": "#222222"
+},
+{
+  "type": "color",
+  "id": "primary_button_label",
+  "label": "Primary button label",
+  "default": "#FFFFFF"
+},
+{
+  "type": "color",
+  "id": "primary_button_outline",
+  "label": "Primary button outline",
+  "default": "#222222"
+},
+{
+  "type": "color",
+  "id": "secondary_button",
+  "label": "Secondary button background",
+  "default": "#FFFFFF"
+},
+{
+  "type": "color",
+  "id": "secondary_button_label",
+  "label": "Secondary button label",
+  "default": "#222222"
+},
+{
+  "type": "color",
+  "id": "secondary_button_outline",
+  "label": "Secondary button outline",
+  "default": "#222222"
+},
+
           {
             "type": "header",
             "content": "Button hover"
@@ -210,21 +229,22 @@
             "default": "#EEEEEE"
           }
         ],
-        "role": {
-          "text": "text",
-          "background": {
-            "solid": "background",
-            "gradient": "background_gradient"
-          },
-          "links": "outline_button_label",
-          "icons": "text",
-          "primary_button": "button",
-          "on_primary_button": "button_label",
-          "primary_button_border": "button",
-          "secondary_button": "background",
-          "on_secondary_button": "outline_button_label",
-          "secondary_button_border": "outline_button_label"
-        }
+"role": {
+  "text": "text",
+  "background": {
+    "solid": "background",
+    "gradient": "background_gradient"
+  },
+  "links": "primary_button_label",
+  "icons": "text",
+  "primary_button": "primary_button",
+  "on_primary_button": "primary_button_label",
+  "primary_button_border": "primary_button_outline",
+  "secondary_button": "secondary_button",
+  "on_secondary_button": "secondary_button_label",
+  "secondary_button_border": "secondary_button_outline"
+}
+
       },
       {
         "type": "color",
