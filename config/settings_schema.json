@@ -332,5 +332,14 @@
         "label": "Enable page transition"
       },
     ]
+  },
+  {
+    "name": "Product card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product card"
+      }
+    ]
   }
 ]
