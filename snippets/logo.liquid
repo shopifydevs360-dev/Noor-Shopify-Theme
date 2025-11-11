@@ -2,9 +2,9 @@
   Logo Snippet: Single image with responsive width settings
 {% endcomment %}
 
-{% if settings.logo != blank %}
+{% if section.settings.logo != blank %}
   <a href="{{ routes.root_url }}" class="m-header__logo">
-    {{ settings.logo | image_tag: 
+    {{ section.settings.logo | image_url | image_tag: 
       class: 'm-logo__image', 
       widths: '100,150,200,250,300,400,500', 
       sizes: '(max-width: 480px) 100px, (max-width: 768px) 150px, 200px', 
@@ -16,6 +16,7 @@
     <strong>{{ shop.name }}</strong>
   </a>
 {% endif %}
+
 
 
 <style>
