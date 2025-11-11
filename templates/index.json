@@ -64,7 +64,7 @@
               "name": "t:general.text",
               "settings": {
                 "text": "Text",
-                "text_style": "p",
+                "text_style": "h1",
                 "alignment": "left"
               },
               "blocks": {}
