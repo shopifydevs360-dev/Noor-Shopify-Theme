@@ -1,4 +1,9 @@
-{% comment %} row.liquid {% endcomment %}
+{% doc %}
+  Renders a horizontal row of blocks.
+  @example
+  {% content_for 'block', type: 'row', id: 'row' %}
+{% enddoc %}
+
 <div
   class="layout-row"
   style="
@@ -16,14 +21,14 @@
   .layout-row {
     display: flex;
     flex-direction: row;
-    width: 100%;
     flex-wrap: wrap;
+    width: 100%;
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Row",
+  "name": "Row Layout",
   "blocks": [{ "type": "@theme" }],
   "settings": [
     {
@@ -72,6 +77,11 @@
       "unit": "px"
     }
   ],
-  "presets": [{ "name": "Row layout" }]
+  "presets": [
+    {
+      "name": "Row Layout",
+      "category": "Layout"
+    }
+  ]
 }
 {% endschema %}
