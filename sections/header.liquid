@@ -64,6 +64,39 @@
   "name": "t:general.header",
   "settings": [
     {
+      "type": "select",
+      "id": "header_design",
+      "label": "Header design",
+      "options": [
+        {
+          "group": "Logo and menu in 1 line",
+          "value": "logo-center-menu-left",
+          "label": "Logo center 1"
+        },
+        {
+          "group": "Logo and menu in 1 line",
+          "value": "both-center",
+          "label": "Logo center 2 (with 2nd menu)"
+        },
+        {
+          "group": "Logo and menu in 1 line",
+          "value": "logo-left-menu-center",
+          "label": "Logo left"
+        },
+        {
+          "group": "Logo and menu in 2 lines",
+          "value": "logo-center__2l",
+          "label": "Logo center"
+        },
+        {
+          "group": "Logo and menu in 2 lines",
+          "value": "logo-left__2l",
+          "label": "Logo left"
+        }
+      ],
+      "default": "logo-center-menu-left"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu"
