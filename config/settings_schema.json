@@ -8,6 +8,15 @@
     "theme_support_url": "https://shopify.codecraftmehedi.com/"
   },
   {
+    "name": "General",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      }
+    ]
+  },
+  {
     "name": "t:general.typography",
     "settings": [
       {
