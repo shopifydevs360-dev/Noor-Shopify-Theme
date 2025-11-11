@@ -20,6 +20,59 @@
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
+        "column_VBRWyM": {
+          "type": "column",
+          "name": "Column layout",
+          "settings": {
+            "align_items": "flex-start",
+            "justify_content": "flex-start",
+            "gap": 20,
+            "padding": 0
+          },
+          "blocks": {
+            "content_area_RbjRHe": {
+              "type": "content-area",
+              "name": "Content area",
+              "settings": {
+                "max_width": 1200,
+                "padding": 40,
+                "text_align": "left"
+              },
+              "blocks": {
+                "newsletter_7jeNHE": {
+                  "type": "newsletter",
+                  "name": "Newsletter",
+                  "settings": {},
+                  "blocks": {}
+                },
+                "promo_xmwDKY": {
+                  "type": "promo",
+                  "name": "Promo",
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "newsletter_7jeNHE",
+                "promo_xmwDKY"
+              ]
+            }
+          },
+          "block_order": [
+            "content_area_RbjRHe"
+          ]
+        },
+        "column_Jafm8A": {
+          "type": "column",
+          "name": "Column layout",
+          "settings": {
+            "align_items": "flex-start",
+            "justify_content": "flex-start",
+            "gap": 20,
+            "padding": 0
+          },
+          "blocks": {}
+        },
         "text_rxXiDN": {
           "type": "text",
           "name": "t:general.text",
@@ -32,6 +85,8 @@
         }
       },
       "block_order": [
+        "column_VBRWyM",
+        "column_Jafm8A",
         "text_rxXiDN"
       ],
       "name": "t:general.custom_section",
