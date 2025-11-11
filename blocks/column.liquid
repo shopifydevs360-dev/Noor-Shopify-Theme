@@ -1,4 +1,9 @@
-{% comment %} column.liquid {% endcomment %}
+{% doc %}
+  Renders a vertical stack of blocks (column layout).
+  @example
+  {% content_for 'block', type: 'column', id: 'column' %}
+{% enddoc %}
+
 <div
   class="layout-column"
   style="
@@ -22,7 +27,7 @@
 
 {% schema %}
 {
-  "name": "Column",
+  "name": "Column Layout",
   "blocks": [{ "type": "@theme" }],
   "settings": [
     {
@@ -70,6 +75,11 @@
       "unit": "px"
     }
   ],
-  "presets": [{ "name": "Column layout" }]
+  "presets": [
+    {
+      "name": "Column Layout",
+      "category": "Layout"
+    }
+  ]
 }
 {% endschema %}
