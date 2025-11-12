@@ -9,62 +9,6 @@
  */
 {
   "sections": {
-    "collections_4rMxrT": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
-    "collections_kftGga": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
-    "collections_mcbEag": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
-    "collections_KdVrXb": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
-    "collections_w94EUJ": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
-    "collections_KpNTwt": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
-    "collections_tikFdV": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
-      }
-    },
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
@@ -131,8 +75,8 @@
       ],
       "name": "t:general.custom_section",
       "settings": {
-        "container_width": "container-fluid",
-        "height_type": "content",
+        "container_width": "full-width",
+        "height_type": "custom",
         "height_desktop": 600,
         "height_tablet": 720,
         "height_mobile": 340,
@@ -141,11 +85,67 @@
         "overlay_enable": true,
         "overlay_color": "#e02b2b",
         "overlay_opacity": 25,
-        "border_radius_top": 50,
-        "border_radius_bottom": 66,
-        "padding_y": 60,
+        "border_radius_top": 0,
+        "border_radius_bottom": 0,
+        "padding_y": 40,
         "padding_x": 30,
         "justify_content": "center"
+      }
+    },
+    "collections_4rMxrT": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "collections_kftGga": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "collections_mcbEag": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "collections_KdVrXb": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "collections_w94EUJ": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "collections_KpNTwt": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
+    },
+    "collections_tikFdV": {
+      "type": "collections",
+      "name": "t:general.collections_grid",
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
       }
     },
     "custom_section_wqE3Yp": {
@@ -211,6 +211,7 @@
     }
   },
   "order": [
+    "custom_section_CWt6yq",
     "collections_4rMxrT",
     "collections_kftGga",
     "collections_mcbEag",
@@ -218,7 +219,6 @@
     "collections_w94EUJ",
     "collections_KpNTwt",
     "collections_tikFdV",
-    "custom_section_CWt6yq",
     "custom_section_wqE3Yp"
   ]
 }
