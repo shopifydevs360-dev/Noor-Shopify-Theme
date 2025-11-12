@@ -84,3 +84,28 @@
 .main-header.is-transparent .header__logo img {
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
 }
+
+
+/* Transparent header - color and logo behavior */
+.main-header.is-transparent {
+  color: var(--header-transparent-text, #ffffff);
+}
+
+.main-header.is-transparent a,
+.main-header.is-transparent .header__icon svg,
+.main-header.is-transparent .menu-icon span {
+  color: var(--header-transparent-text, #ffffff);
+  stroke: var(--header-transparent-text, #ffffff);
+}
+
+.m-logo__image--transparent {
+  display: block;
+}
+
+.main-header.is-transparent .m-logo__image:not(.m-logo__image--transparent) {
+  display: none;
+}
+
+.main-header:not(.is-transparent) .m-logo__image--transparent {
+  display: none;
+}
