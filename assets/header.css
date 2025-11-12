@@ -101,7 +101,7 @@
 .main-header.is-transparent .menu-icon span {
   background-color: var(--header-transparent-text, #ffffff);
 }
-{% if transparent_logo != blank %}
+{% if section.setting.transparent_logo != blank %}
 .m-logo__image--transparent {
   display: block;
 }
