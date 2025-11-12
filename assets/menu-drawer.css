@@ -16,10 +16,6 @@
     transition: all 0.3s ease;
   }
 
-  .header__menu-trigger:hover {
-    background-color: rgba(var(--color-text), 0.1);
-  }
-
   .menu-icon {
     width: 24px;
     height: 20px;
