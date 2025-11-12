@@ -1,8 +1,15 @@
-<div class="custom-section full-width">
+<div id="section-{{ section.id }}" class="custom-section {{ section.settings.container_width }}">
   {% if section.settings.background_image %}
     <div class="custom-section__background">
-      {{ section.settings.background_image | image_url: width: 2000 | image_tag }}
+      {{ section.settings.background_image | image_url: width: 2000 | image_tag: class: 'desktop-bg' }}
+      {% if section.settings.background_image_mobile %}
+        {{ section.settings.background_image_mobile | image_url: width: 1000 | image_tag: class: 'mobile-bg' }}
+      {% endif %}
     </div>
+  {% endif %}
+
+  {% if section.settings.overlay_enable %}
+    <div class="custom-section__overlay"></div>
   {% endif %}
 
   <div class="custom-section__content">
@@ -11,49 +18,207 @@
 </div>
 
 {% stylesheet %}
-  .custom-section {
+  #section-{{ section.id }} {
     position: relative;
     overflow: hidden;
-    width: 100%;
+    background-color: {{ section.settings.background_color }};
+    border-top-left-radius: {{ section.settings.border_radius_top }}px;
+    border-top-right-radius: {{ section.settings.border_radius_top }}px;
+    border-bottom-left-radius: {{ section.settings.border_radius_bottom }}px;
+    border-bottom-right-radius: {{ section.settings.border_radius_bottom }}px;
+    height: 
+      {% case section.settings.height_type %}
+        {% when 'auto' %} auto;
+        {% when 'full' %} 100vh;
+        {% when 'normal' %} 600px;
+        {% when 'custom' %} {{ section.settings.height_desktop }}px;
+      {% endcase %};
   }
-  .custom-section__background {
+
+  @media (max-width: 768px) {
+    #section-{{ section.id }} {
+      {% if section.settings.height_type == 'custom' %}
+        height: {{ section.settings.height_tablet }}px;
+      {% endif %}
+    }
+  }
+
+  @media (max-width: 480px) {
+    #section-{{ section.id }} {
+      {% if section.settings.height_type == 'custom' %}
+        height: {{ section.settings.height_mobile }}px;
+      {% endif %}
+    }
+  }
+
+  #section-{{ section.id }} .custom-section__background {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  #section-{{ section.id }} .custom-section__background img {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    overflow: hidden;
+    object-fit: cover;
   }
-  .custom-section__background img {
+
+  #section-{{ section.id }} .custom-section__background .mobile-bg {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    #section-{{ section.id }} .custom-section__background .desktop-bg {
+      display: none;
+    }
+    #section-{{ section.id }} .custom-section__background .mobile-bg {
+      display: block;
+    }
+  }
+
+  #section-{{ section.id }} .custom-section__overlay {
     position: absolute;
-    width: 100%;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    inset: 0;
+    background-color: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: -1;
   }
-  .custom-section__content {
+
+  #section-{{ section.id }} .custom-section__content {
+    position: relative;
     display: grid;
     grid-template-columns: var(--content-grid);
+    z-index: 2;
   }
-  .custom-section__content > * {
+
+  #section-{{ section.id }} .custom-section__content > * {
     grid-column: 2;
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "t:general.custom_section",
+  "name": "Custom section",
   "blocks": [{ "type": "@theme" }],
   "settings": [
     {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Container (default)" },
+        { "value": "container-fluid", "label": "Container fluid" },
+        { "value": "container-narrow", "label": "Container narrow" },
+        { "value": "container-extra-narrow", "label": "Container extra narrow" },
+        { "value": "full-width", "label": "Full width (edge to edge)" }
+      ],
+      "default": "container"
+    },
+    {
+      "type": "select",
+      "id": "height_type",
+      "label": "Section height",
+      "options": [
+        { "value": "auto", "label": "Adapt to content" },
+        { "value": "normal", "label": "Normal (600px)" },
+        { "value": "full", "label": "Full screen" },
+        { "value": "custom", "label": "Custom height" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Custom height (desktop)",
+      "min": 200,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "height_tablet",
+      "label": "Custom height (tablet)",
+      "min": 200,
+      "max": 1500,
+      "step": 20,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Custom height (mobile)",
+      "min": 200,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
       "type": "image_picker",
       "id": "background_image",
-      "label": "t:labels.background"
+      "label": "Background image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image (mobile)"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_enable",
+      "label": "Enable overlay",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius_top",
+      "label": "Top border radius",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_radius_bottom",
+      "label": "Bottom border radius",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
     }
   ],
   "presets": [
     {
-      "name": "t:general.custom_section"
+      "name": "Custom Section"
     }
   ]
 }
