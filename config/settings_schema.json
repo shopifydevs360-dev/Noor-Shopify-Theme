@@ -450,26 +450,32 @@
         }
       },
       {
-        "type": "color",
-        "id": "background_color",
-        "default": "#FFFFFF",
-        "label": "t:labels.background"
+        "type": "header",
+        "content": "Body Colors"
       },
       {
         "type": "color",
-        "id": "foreground_color",
-        "default": "#333333",
-        "label": "t:labels.foreground"
+        "id": "body_background",
+        "label": "Body background color",
+        "default": "#FFFFFF"
       },
       {
-        "type": "range",
-        "id": "input_corner_radius",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "unit": "px",
-        "label": "t:labels.input_corner_radius",
-        "default": 4
+        "type": "color",
+        "id": "body_text",
+        "label": "Body text color",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "body_link",
+        "label": "Link color",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "body_link_hover",
+        "label": "Link hover color",
+        "default": "#666666"
       }
     ]
   },
