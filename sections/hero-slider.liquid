@@ -1,6 +1,6 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'hero-slider.js' | asset_url | script_tag: defer: true }}
 
+<script src="{{ 'hero-slider.js' | asset_url }}" defer="defer"></script>
 <div class="hero-slider m-color-{{ section.settings.color_scheme }}{% if section.settings.show_navigation %} hero-slider--has-nav{% endif %}" data-section-id="{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
   
   <div class="hero-slider__inner">
