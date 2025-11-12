@@ -43,13 +43,13 @@ select {
 
 /* Basic select style */
 select {
-  background-color: var(--color-background);
+  background-color: var(--color-body-background);
   color: currentcolor;
 }
 
 dialog {
-  background-color: rgb(var(--color-background));
-  color: rgb(var(--color-text));
+  background-color: var(--color-body-background);
+  color: var(--color-body-text);
 }
 
 /* ------------------------------
@@ -60,8 +60,8 @@ body {
   font-weight: var(--font-body-weight, 400);
   font-size: var(--font-body-size, 16px);
   line-height: var(--font-body-line-height, 1.6);
-  background-color: rgb(var(--color-background));
-  color: rgb(var(--color-text));
+  background-color: var(--color-body-background);
+  color: var(--color-body-text);
 }
 
 p {
@@ -95,7 +95,7 @@ h6 { font-size: var(--font-h6-size, 16px); }
    LINKS
 ------------------------------- */
 a {
-  color: rgb(var(--color-link));
+  color: var(--color-body-link);
   text-decoration: none;
   transition: color 0.2s ease;
 }
