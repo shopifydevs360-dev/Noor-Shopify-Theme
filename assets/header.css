@@ -101,16 +101,4 @@
 .main-header.is-transparent .menu-icon span {
   background-color: var(--header-transparent-text, #ffffff);
 }
-{% if section.setting.transparent_logo != blank %}
-.m-logo__image--transparent {
-  display: block;
-}
 
-.main-header.is-transparent .m-logo__image:not(.m-logo__image--transparent) {
-  display: none;
-}
-
-.main-header:not(.is-transparent) .m-logo__image--transparent {
-  display: none;
-}
-{% endif %}
