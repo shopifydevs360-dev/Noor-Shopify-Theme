@@ -42,12 +42,4 @@
     height: 20px;
   }
 
-  /* Mobile adjustments */
-  @media (max-width: 767px) {
-    .header__logo {
-      flex-grow: 0;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
+ 
