@@ -1,4 +1,4 @@
-<div id="section-{{ section.id }}" class="custom-section {{ section.settings.container_width }}">
+<div class="custom-section section-{{ section.id }}-id {{ section.settings.container_width }}">
   {% if section.settings.background_image %}
     <div class="custom-section__background">
       {{ section.settings.background_image | image_url: width: 2000 | image_tag: class: 'desktop-bg' }}
@@ -18,7 +18,7 @@
 </div>
 
 {% stylesheet %}
-  #section-{{ section.id }} {
+  .section-{{ section.id }}-id {
     position: relative;
     overflow: hidden;
     background-color: {{ section.settings.background_color }};
@@ -36,7 +36,7 @@
   }
 
   @media (max-width: 768px) {
-    #section-{{ section.id }} {
+    .section-{{ section.id }}-id {
       {% if section.settings.height_type == 'custom' %}
         height: {{ section.settings.height_tablet }}px;
       {% endif %}
@@ -44,40 +44,40 @@
   }
 
   @media (max-width: 480px) {
-    #section-{{ section.id }} {
+    .section-{{ section.id }}-id {
       {% if section.settings.height_type == 'custom' %}
         height: {{ section.settings.height_mobile }}px;
       {% endif %}
     }
   }
 
-  #section-{{ section.id }} .custom-section__background {
+  .section-{{ section.id }}-id .custom-section__background {
     position: absolute;
     inset: 0;
     z-index: -2;
   }
 
-  #section-{{ section.id }} .custom-section__background img {
+  .section-{{ section.id }}-id .custom-section__background img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  #section-{{ section.id }} .custom-section__background .mobile-bg {
+  .section-{{ section.id }}-id .custom-section__background .mobile-bg {
     display: none;
   }
 
   @media (max-width: 768px) {
-    #section-{{ section.id }} .custom-section__background .desktop-bg {
+    .section-{{ section.id }}-id .custom-section__background .desktop-bg {
       display: none;
     }
-    #section-{{ section.id }} .custom-section__background .mobile-bg {
+    .section-{{ section.id }}-id} .custom-section__background .mobile-bg {
       display: block;
     }
   }
 
-  #section-{{ section.id }} .custom-section__overlay {
+  .section-{{ section.id }}-id .custom-section__overlay {
     position: absolute;
     inset: 0;
     background-color: {{ section.settings.overlay_color }};
@@ -85,7 +85,7 @@
     z-index: -1;
   }
 
-  #section-{{ section.id }} .custom-section__content {
+  .section-{{ section.id }}-id .custom-section__content {
     position: relative;
     display: grid;
     grid-template-columns: var(--content-grid);
