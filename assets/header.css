@@ -88,17 +88,7 @@
     top: 19px;
   }
 
-  /* Logo */
-  .header__logo {
-    flex-grow: 1;
-    text-align: center;
-  }
-
-  .header__logo a {
-    display: inline-block;
-    text-decoration: none;
-    color: rgb(var(--color-text));
-  }
+ 
 
   /* Icons */
   .header__icons {
