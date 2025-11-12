@@ -12,6 +12,77 @@
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
+        "content_area_w4xwjR": {
+          "type": "content-area",
+          "name": "Content Area",
+          "settings": {
+            "max_width": 1200,
+            "padding": 40,
+            "text_align": "left"
+          },
+          "blocks": {
+            "grid_hr8RnA": {
+              "type": "grid",
+              "name": "Grid Layout",
+              "settings": {
+                "columns": 4,
+                "gap": 20,
+                "padding": 0
+              },
+              "blocks": {
+                "text_wYDwfg": {
+                  "type": "text",
+                  "name": "t:general.text",
+                  "settings": {
+                    "text": "Text",
+                    "text_style": "p",
+                    "alignment": "center"
+                  },
+                  "blocks": {}
+                },
+                "text_dCetXq": {
+                  "type": "text",
+                  "name": "t:general.text",
+                  "settings": {
+                    "text": "Text",
+                    "text_style": "p",
+                    "alignment": "center"
+                  },
+                  "blocks": {}
+                },
+                "text_jr3RAb": {
+                  "type": "text",
+                  "name": "t:general.text",
+                  "settings": {
+                    "text": "Text",
+                    "text_style": "p",
+                    "alignment": "center"
+                  },
+                  "blocks": {}
+                },
+                "text_CrUntj": {
+                  "type": "text",
+                  "name": "t:general.text",
+                  "settings": {
+                    "text": "Text",
+                    "text_style": "p",
+                    "alignment": "center"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_wYDwfg",
+                "text_dCetXq",
+                "text_jr3RAb",
+                "text_CrUntj"
+              ]
+            }
+          },
+          "block_order": [
+            "grid_hr8RnA"
+          ]
+        },
         "grid_cY3mPJ": {
           "type": "grid",
           "name": "Grid Layout",
@@ -71,6 +142,7 @@
         }
       },
       "block_order": [
+        "content_area_w4xwjR",
         "grid_cY3mPJ"
       ],
       "name": "t:general.custom_section",
