@@ -132,7 +132,7 @@
       "name": "t:general.custom_section",
       "settings": {
         "container_width": "container-fluid",
-        "height_type": "custom",
+        "height_type": "normal",
         "height_desktop": 540,
         "height_tablet": 520,
         "height_mobile": 440,
@@ -143,7 +143,11 @@
         "overlay_color": "#000000",
         "overlay_opacity": 25,
         "border_radius_top": 0,
-        "border_radius_bottom": 0
+        "border_radius_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_left": 30,
+        "padding_right": 30
       }
     },
     "custom_section_wqE3Yp": {
@@ -201,7 +205,11 @@
         "overlay_color": "#000000",
         "overlay_opacity": 40,
         "border_radius_top": 0,
-        "border_radius_bottom": 0
+        "border_radius_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_left": 30,
+        "padding_right": 30
       }
     }
   },
