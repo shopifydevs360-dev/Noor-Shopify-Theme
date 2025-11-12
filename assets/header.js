@@ -1,5 +1,3 @@
-// theme.js
-
 document.addEventListener('DOMContentLoaded', () => {
   // Check if header has scroll-up sticky behavior
   const header = document.querySelector('.main-header');
