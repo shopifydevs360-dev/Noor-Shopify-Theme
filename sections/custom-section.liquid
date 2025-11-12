@@ -42,11 +42,20 @@
     }
   }
 
-  /* Background images */
+  /* Background images (inside container area) */
+  .section-{{ section.id }}-id .custom-section__inner {
+    position: relative;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: {{ section.settings.padding_left }}px;
+    padding-right: {{ section.settings.padding_right }}px;
+  }
+
   .section-{{ section.id }}-id .custom-section__background {
     position: absolute;
     inset: 0;
     z-index: -2;
+    border-radius: inherit;
   }
 
   .section-{{ section.id }}-id .custom-section__background img {
@@ -56,6 +65,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: inherit;
   }
 
   {% if section.settings.background_image_mobile %}
@@ -76,6 +86,7 @@
       opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
       z-index: -1;
       pointer-events: none;
+      border-radius: inherit;
     }
   {% endif %}
 </style>
@@ -84,30 +95,31 @@
   class="custom-section section-{{ section.id }}-id {{ container_width }}"
   data-height="{{ height_type }}"
 >
-  {% if has_bg_image %}
-    <div class="custom-section__background">
-      {% if section.settings.background_image %}
-        {{ section.settings.background_image
-          | image_url: width: 2000
-          | image_tag: class: 'desktop-bg', loading: 'lazy' }}
-      {% endif %}
-      {% if section.settings.background_image_mobile %}
-        {{ section.settings.background_image_mobile
-          | image_url: width: 1000
-          | image_tag: class: 'mobile-bg', loading: 'lazy' }}
-      {% endif %}
+  <div class="custom-section__inner">
+    {% if has_bg_image %}
+      <div class="custom-section__background">
+        {% if section.settings.background_image %}
+          {{ section.settings.background_image
+            | image_url: width: 2000
+            | image_tag: class: 'desktop-bg', loading: 'lazy' }}
+        {% endif %}
+        {% if section.settings.background_image_mobile %}
+          {{ section.settings.background_image_mobile
+            | image_url: width: 1000
+            | image_tag: class: 'mobile-bg', loading: 'lazy' }}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.overlay_enable %}
+      <div class="custom-section__overlay" aria-hidden="true"></div>
+    {% endif %}
+
+    <div class="custom-section__content">
+      {% content_for 'blocks' %}
     </div>
-  {% endif %}
-
-  {% if section.settings.overlay_enable %}
-    <div class="custom-section__overlay" aria-hidden="true"></div>
-  {% endif %}
-
-  <div class="custom-section__content">
-    {% content_for 'blocks' %}
   </div>
 </div>
-
 
 {% schema %}
 {
@@ -226,6 +238,50 @@
       "step": 2,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Inner padding controls"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 30
     }
   ],
   "presets": [
