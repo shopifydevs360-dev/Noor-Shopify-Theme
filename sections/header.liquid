@@ -59,6 +59,56 @@
   </div>
 </header>
 
+<!-- Menu Drawer -->
+<div class="drawer drawer--menu" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="drawer__inner">
+    <div class="drawer__main">
+      <div class="drawer__header">
+        <button class="drawer__close" aria-label="Close" data-drawer-close>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="drawer__content">
+        <nav class="drawer__menu">
+          <ul class="menu__list menu__list--level-1">
+            {% for link in section.settings.menu.links %}
+              <li class="menu__item {% if link.links != blank %}menu__item--has-children{% endif %}">
+                <a href="{{ link.url }}" class="menu__link {% if link.active %}menu__link--active{% endif %}">
+                  {{ link.title }}
+                  {% if link.links != blank %}
+                    <span class="menu__arrow">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  {% endif %}
+                </a>
+                
+                {% if link.links != blank %}
+                  <div class="menu__submenu">
+                    <ul class="menu__list menu__list--level-2">
+                      {% for childlink in link.links %}
+                        <li class="menu__item">
+                          <a href="{{ childlink.url }}" class="menu__link {% if childlink.active %}menu__link--active{% endif %}">
+                            {{ childlink.title }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   .main-header {
     position: relative;
@@ -76,7 +126,7 @@
     padding: 1rem var(--page-margin);
   }
 
-  /* Menu Trigger */
+  /* Menu Trigger - Modern Style */
   .header__menu-trigger {
     background: none;
     border: none;
@@ -85,6 +135,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .header__menu-trigger:hover {
+    background-color: rgba(var(--color-foreground), 0.1);
   }
 
   .menu-icon {
@@ -92,6 +151,8 @@
     height: 20px;
     position: relative;
     display: inline-block;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
   }
 
   .menu-icon span {
@@ -99,39 +160,44 @@
     position: absolute;
     height: 2px;
     width: 100%;
-    background: red;
+    background: var(--color-foreground);
     border-radius: 2px;
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: 0.25s ease-in-out;
   }
 
   .menu-icon span:nth-child(1) {
     top: 0px;
+    transform-origin: left center;
   }
 
   .menu-icon span:nth-child(2) {
     top: 8px;
+    transform-origin: left center;
   }
 
   .menu-icon span:nth-child(3) {
     top: 16px;
+    transform-origin: left center;
   }
 
   .header__menu-trigger:hover .menu-icon span:nth-child(1) {
-    top: 8px;
-    transform: rotate(135deg);
+    transform: rotate(45deg);
+    left: 5px;
+    top: -3px;
   }
 
   .header__menu-trigger:hover .menu-icon span:nth-child(2) {
+    width: 0%;
     opacity: 0;
-    left: -60px;
   }
 
   .header__menu-trigger:hover .menu-icon span:nth-child(3) {
-    top: 8px;
-    transform: rotate(-135deg);
+    transform: rotate(-45deg);
+    left: 5px;
+    top: 19px;
   }
 
   /* Logo */
@@ -168,8 +234,7 @@
   }
 
   .header__icon:hover {
-    background-color: var(--color-button-background);
-    color: var(--color-button-text);
+    background-color: rgba(var(--color-foreground), 0.1);
   }
 
   .header__icon svg {
@@ -195,6 +260,154 @@
     padding: 0 4px;
   }
 
+  /* Drawer Styles */
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+  }
+
+  .drawer--menu {
+    background-color: transparent;
+  }
+
+  .drawer.open {
+    visibility: visible;
+  }
+
+  .drawer__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .drawer__main {
+    width: 300px;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .drawer.open .drawer__main {
+    transform: translateX(0);
+  }
+
+  .drawer__main.expanded {
+    width: 500px;
+  }
+
+  .drawer__header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .drawer__close {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+
+  .drawer__close:hover {
+    background-color: rgba(var(--color-foreground), 0.1);
+  }
+
+  .drawer__content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem 0;
+  }
+
+  /* Menu Styles */
+  .menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu__item {
+    position: relative;
+  }
+
+  .menu__item--has-children {
+    position: relative;
+  }
+
+  .menu__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .menu__link:hover {
+    background-color: rgba(var(--color-foreground), 0.05);
+  }
+
+  .menu__link--active {
+    font-weight: 600;
+    color: var(--color-link);
+  }
+
+  .menu__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .menu__submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 200px;
+    height: 100%;
+    background-color: var(--color-background);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
+    transform: translateX(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .menu__item--has-children:hover .menu__submenu {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menu__item--has-children:hover ~ .drawer__main {
+    width: 500px;
+  }
+
+  .menu__list--level-2 .menu__link {
+    padding: 0.75rem 1.5rem;
+  }
+
   /* Mobile adjustments */
   @media (max-width: 767px) {
     .header__logo {
@@ -202,6 +415,31 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+    }
+    
+    .drawer__main {
+      width: 80%;
+      max-width: 300px;
+    }
+    
+    .menu__submenu {
+      position: static;
+      width: 100%;
+      height: auto;
+      box-shadow: none;
+      transform: none;
+      opacity: 1;
+      visibility: visible;
+      display: none;
+      background-color: rgba(var(--color-foreground), 0.05);
+    }
+    
+    .menu__item--has-children:hover .menu__submenu {
+      display: block;
+    }
+    
+    .menu__item--has-children:hover ~ .drawer__main {
+      width: auto;
     }
   }
 </style>
@@ -217,6 +455,16 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "inverse"
+    },
+    {
+      "type": "header",
+      "content": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
     },
     {
       "type": "header",
