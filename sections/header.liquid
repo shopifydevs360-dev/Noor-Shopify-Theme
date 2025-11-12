@@ -8,8 +8,7 @@
   endif
 %}
 
-<header class="main-header 
-  m-color-{{ section.settings.color_scheme }}{% if transparent_header %} is-transparent{% endif %}{% if section.settings.sticky_behavior != 'none' %} is-sticky{% endif %} sticky--{{ section.settings.sticky_behavior }}" 
+<header class="main-header m-color-{{ section.settings.color_scheme }}{% if transparent_header %} is-transparent{% endif %}{% if section.settings.sticky_behavior != 'none' %} is-sticky{% endif %} sticky--{{ section.settings.sticky_behavior }}" 
   data-color-scheme="{{ section.settings.color_scheme }}"   
   {% if transparent_header and section.settings.transparent_text_color %}
     style="--header-transparent-text: {{ section.settings.transparent_text_color }};"
@@ -110,6 +109,21 @@
       "id": "transparent_text_color",
       "label": "Transparent header text color",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Sticky Header"
+    },
+    {
+      "type": "select",
+      "id": "sticky_behavior",
+      "label": "Sticky header behavior",
+      "options": [
+        { "value": "none", "label": "No sticky" },
+        { "value": "always", "label": "Always sticky" },
+        { "value": "scroll-up", "label": "Sticky on scroll-up" }
+      ],
+      "default": "scroll-up"
     },
     {
       "type": "header",
