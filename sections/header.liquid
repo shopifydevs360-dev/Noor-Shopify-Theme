@@ -1,7 +1,12 @@
 {{ 'header.css' | asset_url | stylesheet_tag: preload: true }}
 
+
+
+{% liquid
+  assign container_width = section.settings.container_width
+%}
 <header class="main-header m-color-{{ section.settings.color_scheme }}" data-color-scheme="{{ section.settings.color_scheme }}">
-  <div class="header-container">
+  <div class="header-container {{ container_width }}">
     <!-- Off-canvas trigger -->
     <button class="header__menu-trigger" aria-label="Menu" data-drawer-toggle="menu-drawer">
       <span class="menu-icon">
