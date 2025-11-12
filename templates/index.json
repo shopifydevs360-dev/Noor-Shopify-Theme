@@ -132,8 +132,8 @@
       "name": "t:general.custom_section",
       "settings": {
         "container_width": "container-fluid",
-        "height_type": "normal",
-        "height_desktop": 540,
+        "height_type": "custom",
+        "height_desktop": 340,
         "height_tablet": 520,
         "height_mobile": 440,
         "background_color": "rgba(0,0,0,0)",
