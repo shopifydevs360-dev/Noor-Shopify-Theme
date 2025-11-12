@@ -137,13 +137,13 @@ h6 { font-size: var(--font-h6-size); }
 
 /* Section spacing helpers */
 .shopify-section {
-  padding-top: var(--section-spacing-desktop);
-  padding-bottom: var(--section-spacing-desktop);
+  margin-top: var(--section-spacing-desktop);
+  margin-bottom: var(--section-spacing-desktop);
 }
 
 @media (max-width: 768px) {
   .shopify-section {
-    padding-top: var(--section-spacing-mobile);
-    padding-bottom: var(--section-spacing-mobile);
+    margin-top: var(--section-spacing-mobile);
+    margin-bottom: var(--section-spacing-mobile);
   }
 }
