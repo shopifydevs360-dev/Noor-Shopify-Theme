@@ -99,6 +99,10 @@ h5 { font-size: var(--font-h5-size); }
 h6 { font-size: var(--font-h6-size); }
 
 /* Container helpers */
+.full-width{
+  width: 100%;
+  margin: 0 auto; 
+}
 .container {
   max-width: var(--container-max-width);
   margin: 0 auto;
