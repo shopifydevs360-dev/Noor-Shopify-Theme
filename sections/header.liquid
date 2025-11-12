@@ -1,6 +1,6 @@
 {{ 'header.css' | asset_url | stylesheet_tag: preload: true }}
 
-<header class="main-header" data-color-scheme="{{ section.settings.color_scheme }}">
+<header class="main-header m-color-{{ section.settings.color_scheme }}" data-color-scheme="{{ section.settings.color_scheme }}">
   <div class="header-container">
     <!-- Off-canvas trigger -->
     <button class="header__menu-trigger" aria-label="Menu" data-drawer-toggle="menu-drawer">
@@ -60,7 +60,7 @@
 </header>
 
 <!-- Menu Drawer -->
-<div class="drawer drawer--menu" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+<div class="drawer drawer--menu m-color-{{ section.settings.color_scheme }}" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="drawer__inner">
     <div class="drawer__main">
       <div class="drawer__header">
@@ -113,10 +113,10 @@
   .main-header {
     position: relative;
     z-index: 100;
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-text));
     padding: 0;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid rgb(var(--color-border));
   }
 
   .header-container {
@@ -143,7 +143,7 @@
   }
 
   .header__menu-trigger:hover {
-    background-color: rgba(var(--color-foreground), 0.1);
+    background-color: rgba(var(--color-text), 0.1);
   }
 
   .menu-icon {
@@ -160,7 +160,7 @@
     position: absolute;
     height: 2px;
     width: 100%;
-    background: var(--color-foreground);
+    background: rgb(var(--color-text));
     border-radius: 2px;
     opacity: 1;
     left: 0;
@@ -209,7 +209,7 @@
   .header__logo a {
     display: inline-block;
     text-decoration: none;
-    color: var(--color-foreground);
+    color: rgb(var(--color-text));
   }
 
   /* Icons */
@@ -228,13 +228,13 @@
     height: 40px;
     border-radius: 50%;
     background-color: transparent;
-    color: var(--color-foreground);
+    color: rgb(var(--color-text));
     text-decoration: none;
     transition: all 0.2s ease;
   }
 
   .header__icon:hover {
-    background-color: rgba(var(--color-foreground), 0.1);
+    background-color: rgba(var(--color-text), 0.1);
   }
 
   .header__icon svg {
@@ -246,8 +246,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    background-color: var(--color-badge-background);
-    color: var(--color-badge-foreground);
+    background-color: rgb(var(--color-price-sale));
+    color: rgb(var(--color-background));
     border-radius: 50%;
     min-width: 18px;
     height: 18px;
@@ -290,8 +290,8 @@
 
   .drawer__main {
     width: 300px;
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-text));
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     transform: translateX(-100%);
     transition: transform 0.3s ease, width 0.3s ease;
@@ -312,7 +312,7 @@
     display: flex;
     justify-content: flex-end;
     padding: 1rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid rgb(var(--color-border));
   }
 
   .drawer__close {
@@ -328,7 +328,7 @@
   }
 
   .drawer__close:hover {
-    background-color: rgba(var(--color-foreground), 0.1);
+    background-color: rgba(var(--color-text), 0.1);
   }
 
   .drawer__content {
@@ -357,18 +357,18 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1.5rem;
-    color: var(--color-foreground);
+    color: rgb(var(--color-text));
     text-decoration: none;
     transition: background-color 0.2s ease;
   }
 
   .menu__link:hover {
-    background-color: rgba(var(--color-foreground), 0.05);
+    background-color: rgba(var(--color-text), 0.05);
   }
 
   .menu__link--active {
     font-weight: 600;
-    color: var(--color-link);
+    color: rgb(var(--color-link));
   }
 
   .menu__arrow {
@@ -385,7 +385,7 @@
     left: 100%;
     width: 200px;
     height: 100%;
-    background-color: var(--color-background);
+    background-color: rgb(var(--color-background));
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
     transform: translateX(-20px);
     opacity: 0;
@@ -431,7 +431,7 @@
       opacity: 1;
       visibility: visible;
       display: none;
-      background-color: rgba(var(--color-foreground), 0.05);
+      background-color: rgba(var(--color-text), 0.05);
     }
     
     .menu__item--has-children:hover .menu__submenu {
