@@ -1,11 +1,11 @@
 // theme.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if header has scroll-up sticky behavior
   const header = document.querySelector('.main-header');
   if (!header) return;
   
   const isScrollUpSticky = header.classList.contains('sticky--scroll-up');
+  const isTransparent = header.classList.contains('is-transparent');
   
   if (!isScrollUpSticky) return; // Only apply scroll behavior for scroll-up sticky
   
