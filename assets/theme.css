@@ -265,3 +265,19 @@ button:disabled,
     display: none !important;
   }
 }
+
+/* Main content shift when drawer opens */
+main {
+  transition: transform 0.5s;
+}
+
+main.open {
+  transform: translateX(-250px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  main.open {
+    transform: translateX(-80%);
+  }
+}
