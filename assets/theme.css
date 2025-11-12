@@ -147,3 +147,25 @@ h6 { font-size: var(--font-h6-size); }
     margin-bottom: var(--section-spacing-mobile);
   }
 }
+
+.hide {
+  display: none !important;
+}
+
+@media (min-width: 991px) {
+  .desktop-hide {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .tablet-hide {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
