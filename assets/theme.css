@@ -136,31 +136,14 @@ h6 { font-size: var(--font-h6-size); }
 }
 
 /* Section spacing helpers */
-.section {
+.shopify-section {
   padding-top: var(--section-spacing-desktop);
   padding-bottom: var(--section-spacing-desktop);
 }
 
 @media (max-width: 768px) {
-  .section {
+  .shopify-section {
     padding-top: var(--section-spacing-mobile);
     padding-bottom: var(--section-spacing-mobile);
   }
-}
-/** --------------------------
-  SHOPIFY SECTION GRID SYSTEM
------------------------------ */
-.shopify-section {
-  --content-width: min(
-    calc(var(--page-width) - var(--page-margin) * 2),
-    calc(100% - var(--page-margin) * 2)
-  );
-  --content-margin: minmax(var(--page-margin), 1fr);
-  --content-grid: var(--content-margin) var(--content-width) var(--content-margin);
-
-  /* Required to make <img> elements work as background images */
-  position: relative;
-  grid-template-columns: var(--content-grid);
-  display: grid;
-  width: 100%;
 }
