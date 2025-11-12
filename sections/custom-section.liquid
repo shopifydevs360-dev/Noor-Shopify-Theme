@@ -27,9 +27,18 @@
     border-bottom-right-radius: {{ section.settings.border_radius_bottom }}px;
   }
 
-  /* Height modes */
+  /* Inner wrapper with padding */
+  .section-{{ section.id }}-id .custom-section__inner {
+    position: relative;
+    z-index: 1;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    display: flex;
+    flex-direction: column;
+    justify-content: {{ justify_content }};
+  }
+
+  /* Height modes for section */
   .section-{{ section.id }}-id[data-height="content"] { height: auto; }
-  .section-{{ section.id }}-id[data-height="image"] { height: auto; } /* height based on image */
   .section-{{ section.id }}-id[data-height="custom"] { height: {{ section.settings.height_desktop }}px; }
 
   @media (max-width: 1024px) {
@@ -39,27 +48,15 @@
     .section-{{ section.id }}-id[data-height="custom"] { height: {{ section.settings.height_mobile }}px; }
   }
 
-  /* Inner wrapper with padding */
-  .section-{{ section.id }}-id .custom-section__inner {
-    position: relative;
-    z-index: 1;
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-    padding-left: {{ section.settings.padding_left }}px;
-    padding-right: {{ section.settings.padding_right }}px;
-    display: flex;
-    flex-direction: column;
-    justify-content: {{ justify_content }};
-  }
-
-  /* Background image */
+  /* Background wrapper (fills section height including padding) */
   .section-{{ section.id }}-id .custom-section__background {
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100%;
     height: 100%;
     z-index: -2;
     border-radius: inherit;
+    overflow: hidden;
   }
 
   .section-{{ section.id }}-id .custom-section__background img {
@@ -67,7 +64,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: inherit;
   }
 
   {% if section.settings.background_image_mobile %}
@@ -121,6 +117,7 @@
 
   </div>
 </div>
+
 
 {% schema %}
 {
