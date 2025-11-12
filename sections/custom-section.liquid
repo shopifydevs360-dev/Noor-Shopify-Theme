@@ -1,29 +1,3 @@
-<div class="custom-section section-{{ section.id }}-id {{ section.settings.container_width }}" data-height="{{ section.settings.height_type }}">
-  {% comment %} Background images (desktop + optional mobile) {% endcomment %}
-  {% if section.settings.background_image or section.settings.background_image_mobile %}
-    <div class="custom-section__background">
-      {% if section.settings.background_image %}
-        {{ section.settings.background_image
-          | image_url: width: 2000
-          | image_tag: class: 'desktop-bg', loading: 'lazy' }}
-      {% endif %}
-
-      {% if section.settings.background_image_mobile %}
-        {{ section.settings.background_image_mobile
-          | image_url: width: 1000
-          | image_tag: class: 'mobile-bg', loading: 'lazy' }}
-      {% endif %}
-    </div>
-  {% endif %}
-
-  {% if section.settings.overlay_enable %}
-    <div class="custom-section__overlay" aria-hidden="true"></div>
-  {% endif %}
-
-  <div class="custom-section__content">
-    {% content_for 'blocks' %}
-  </div>
-</div>
 
 <style>
   /* Scoped to this section only */
@@ -100,6 +74,35 @@
     }
   {% endif %}
 </style>
+
+
+
+<div class="custom-section section-{{ section.id }}-id {{ section.settings.container_width }}" data-height="{{ section.settings.height_type }}">
+  {% comment %} Background images (desktop + optional mobile) {% endcomment %}
+  {% if section.settings.background_image or section.settings.background_image_mobile %}
+    <div class="custom-section__background">
+      {% if section.settings.background_image %}
+        {{ section.settings.background_image
+          | image_url: width: 2000
+          | image_tag: class: 'desktop-bg', loading: 'lazy' }}
+      {% endif %}
+
+      {% if section.settings.background_image_mobile %}
+        {{ section.settings.background_image_mobile
+          | image_url: width: 1000
+          | image_tag: class: 'mobile-bg', loading: 'lazy' }}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if section.settings.overlay_enable %}
+    <div class="custom-section__overlay" aria-hidden="true"></div>
+  {% endif %}
+
+  <div class="custom-section__content">
+    {% content_for 'blocks' %}
+  </div>
+</div>
 
 {% schema %}
 {
