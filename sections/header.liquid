@@ -26,13 +26,13 @@
 
       {% if section.settings.enable_account and shop.customer_accounts_enabled %}
         <a href="{{ routes.account_url }}" class="header__icon header__account" aria-label="Account">
-          <span class="icon icon-search" aria-hidden="true">{%- render 'theme-icon', account: 'search' -%}</span>
+          <span class="icon icon-account" aria-hidden="true">{%- render 'theme-icon', icon: 'account' -%}</span>
         </a>
       {% endif %}
 
       {% if section.settings.enable_wishlist %}
         <a href="/pages/wishlist" class="header__icon header__wishlist" aria-label="Wishlist">
-          <span class="icon icon-search" aria-hidden="true">{%- render 'theme-icon', icon: 'search' -%}</span>
+          <span class="icon icon-wishlist" aria-hidden="true">{%- render 'theme-icon', icon: 'wishlist' -%}</span>
         </a>
       {% endif %}
 
