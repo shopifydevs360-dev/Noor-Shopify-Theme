@@ -131,7 +131,7 @@
       ],
       "name": "t:general.custom_section",
       "settings": {
-        "container_width": "full-width",
+        "container_width": "container-narrow",
         "height_type": "auto",
         "height_desktop": 540,
         "height_tablet": 520,
