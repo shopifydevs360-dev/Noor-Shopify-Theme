@@ -17,6 +17,7 @@
         "container_width": "container-fluid",
         "color_scheme": "default",
         "menu": "main-menu",
+        "enable_transparent_header": false,
         "enable_search": true,
         "enable_account": true,
         "enable_wishlist": true,
