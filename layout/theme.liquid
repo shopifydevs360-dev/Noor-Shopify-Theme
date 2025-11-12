@@ -34,11 +34,11 @@
       <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {% endif %}
 
-    {# Inlined CSS Variables and Critical CSS #}
+
     {% render 'css-variables' %}
     {% render 'critical-css' %}
 
-    {# Load main theme CSS #}
+
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
 
     {# Meta tags #}
