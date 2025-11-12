@@ -150,3 +150,33 @@ body.scroll-down .main-header.sticky--scroll-up.is-fixed {
 body.scroll-up .main-header.sticky--scroll-up.is-fixed {
   transform: translateY(0);
 }
+
+
+/* --- Logo Toggle Logic --- */
+
+/* By default, hide the transparent logo */
+.m-logo__image--transparent {
+  display: none;
+}
+
+/* 
+ * When the header is in its initial transparent state (at the top of the page),
+ * show the transparent logo and hide the default one.
+ */
+.main-header.is-transparent:not(.is-fixed) .m-logo__image--transparent {
+  display: block;
+}
+.main-header.is-transparent:not(.is-fixed) .m-logo__image--default {
+  display: none;
+}
+
+/* 
+ * When the header becomes sticky (fixed position), always show the default logo.
+ * This rule overrides the transparent state above.
+ */
+.main-header.is-sticky.is-fixed .m-logo__image--default {
+  display: block;
+}
+.main-header.is-sticky.is-fixed .m-logo__image--transparent {
+  display: none;
+}
