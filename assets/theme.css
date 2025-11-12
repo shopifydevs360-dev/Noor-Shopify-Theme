@@ -105,6 +105,7 @@ h6 { font-size: var(--font-h6-size); }
 }
 .container {
   max-width: var(--container-max-width);
+  width: 100%;
   margin: 0 auto;
   padding-left: var(--page-margin, 20px);
   padding-right: var(--page-margin, 20px);
@@ -112,6 +113,7 @@ h6 { font-size: var(--font-h6-size); }
 
 .container-fluid {
   max-width: var(--container-fluid-width);
+  width: 100%;
   margin: 0 auto;
   padding-left: var(--page-margin, 20px);
   padding-right: var(--page-margin, 20px);
@@ -119,6 +121,7 @@ h6 { font-size: var(--font-h6-size); }
 
 .container-narrow {
   max-width: var(--container-narrow-width);
+  width: 100%;
   margin: 0 auto;
   padding-left: var(--page-margin, 20px);
   padding-right: var(--page-margin, 20px);
@@ -126,6 +129,7 @@ h6 { font-size: var(--font-h6-size); }
 
 .container-extra-narrow {
   max-width: var(--container-extra-narrow-width);
+  width: 100%;
   margin: 0 auto;
   padding-left: var(--page-margin, 20px);
   padding-right: var(--page-margin, 20px);
