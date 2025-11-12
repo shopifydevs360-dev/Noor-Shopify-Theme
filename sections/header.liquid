@@ -1,47 +1,47 @@
 {{ 'header.css' | asset_url | stylesheet_tag: preload: true }}
 
-
-
 {% liquid
   assign container_width = section.settings.container_width
 %}
+
 <header class="main-header m-color-{{ section.settings.color_scheme }}" data-color-scheme="{{ section.settings.color_scheme }}">
   <div class="header-container {{ container_width }}">
-    <!-- Off-canvas trigger -->
-    <button class="header__menu-trigger" aria-label="Menu" data-drawer-toggle="menu-drawer">
-      <span class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </button>
-
-    <!-- Logo -->
-    <div class="header__logo">
-      {% render 'logo' %}
+    
+    <!-- Left: Menu Trigger -->
+    <div class="header__left">
+      <button class="header__menu-trigger" aria-label="Menu" data-drawer-toggle="menu-drawer">
+        <span class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </div>
 
-    <!-- Icons -->
-    <div class="header__icons">
+    <!-- Center: Logo -->
+    <div class="header__center">
+      <div class="header__logo">
+        {% render 'logo' %}
+      </div>
+    </div>
+
+    <!-- Right: Icons -->
+    <div class="header__right header__icons">
       {% if section.settings.enable_search %}
         {%- render 'header-search' -%}
       {% endif %}
-
       {% if section.settings.enable_account and shop.customer_accounts_enabled %}
         {% render 'header-account' %}
       {% endif %}
-
       {% if section.settings.enable_wishlist %}
         {%- render 'header-wishlist' -%}
       {% endif %}
-
       {% if section.settings.enable_cart %}
         {%- render 'header-cart' -%}
       {% endif %}
     </div>
   </div>
 </header>
-
 
 {%- render 'menu-drawer' -%}
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
