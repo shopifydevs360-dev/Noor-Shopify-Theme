@@ -640,6 +640,11 @@
     "name": "Social sharing",
     "settings": [
       {
+        "type": "image_picker",
+        "id": "default_social_image",
+        "label": "Default social share image"
+      },
+      {
         "type": "header",
         "content": "Product inventory"
       }
