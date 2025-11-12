@@ -19,15 +19,11 @@
     <!-- Icons -->
     <div class="header__icons">
       {% if section.settings.enable_search %}
-        <a href="{{ search }}" class="header__icon header__search" aria-label="Search" data-drawer-toggle="search-drawer">
-         <span class="icon icon-search" aria-hidden="true">{%- render 'theme-icon', icon: 'search' -%}</span>
-        </a>
+        {%- render 'header-search' -%}
       {% endif %}
 
       {% if section.settings.enable_account and shop.customer_accounts_enabled %}
-        <a href="{{ routes.account_url }}" class="header__icon header__account" aria-label="Account">
-          <span class="icon icon-account" aria-hidden="true">{%- render 'theme-icon', icon: 'account' -%}</span>
-        </a>
+        {% render 'header-account' %}
       {% endif %}
 
       {% if section.settings.enable_wishlist %}
