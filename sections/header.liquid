@@ -37,55 +37,7 @@
   </div>
 </header>
 
-<!-- Menu Drawer -->
-<div class="drawer drawer--menu m-color-{{ section.settings.color_scheme }}" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="drawer__inner">
-    <div class="drawer__main">
-      <div class="drawer__header">
-        <button class="drawer__close" aria-label="Close" data-drawer-close>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-      
-      <div class="drawer__content">
-        <nav class="drawer__menu">
-          <ul class="menu__list menu__list--level-1">
-            {% for link in section.settings.menu.links %}
-              <li class="menu__item {% if link.links != blank %}menu__item--has-children{% endif %}">
-                <a href="{{ link.url }}" class="menu__link {% if link.active %}menu__link--active{% endif %}">
-                  {{ link.title }}
-                  {% if link.links != blank %}
-                    <span class="menu__arrow">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </span>
-                  {% endif %}
-                </a>
-                
-                {% if link.links != blank %}
-                  <div class="menu__submenu">
-                    <ul class="menu__list menu__list--level-2">
-                      {% for childlink in link.links %}
-                        <li class="menu__item">
-                          <a href="{{ childlink.url }}" class="menu__link {% if childlink.active %}menu__link--active{% endif %}">
-                            {{ childlink.title }}
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
 
