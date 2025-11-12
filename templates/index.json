@@ -132,18 +132,17 @@
       "name": "t:general.custom_section",
       "settings": {
         "container_width": "full-width",
-        "height_type": "custom",
-        "height_desktop": 200,
-        "height_tablet": 200,
-        "height_mobile": 200,
-        "background_color": "#ffffff",
+        "height_type": "auto",
+        "height_desktop": 540,
+        "height_tablet": 520,
+        "height_mobile": 440,
+        "background_color": "#e02b2b",
         "background_image": "shopify://shop_images/858173167938.jpg",
-        "background_image_mobile": "shopify://shop_images/c8f303b2-5d88-4406-9da1-8d15df97e71c.jpg",
-        "overlay_enable": false,
+        "overlay_enable": true,
         "overlay_color": "#000000",
-        "overlay_opacity": 40,
-        "border_radius_top": 0,
-        "border_radius_bottom": 0
+        "overlay_opacity": 10,
+        "border_radius_top": 66,
+        "border_radius_bottom": 50
       }
     },
     "custom_section_wqE3Yp": {
