@@ -136,7 +136,7 @@
         "height_desktop": 540,
         "height_tablet": 520,
         "height_mobile": 440,
-        "background_color": "#f5f5f5",
+        "background_color": "rgba(0,0,0,0)",
         "background_image": "shopify://shop_images/858173167938.jpg",
         "background_image_mobile": "shopify://shop_images/339886283403.jpg",
         "overlay_enable": true,
