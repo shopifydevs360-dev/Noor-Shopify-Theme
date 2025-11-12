@@ -1,15 +1,23 @@
-<div class="custom-section section-{{ section.id }}-id {{ section.settings.container_width }}">
-  {% if section.settings.background_image %}
+<div class="custom-section section-{{ section.id }}-id {{ section.settings.container_width }}" data-height="{{ section.settings.height_type }}">
+  {% comment %} Background images (desktop + optional mobile) {% endcomment %}
+  {% if section.settings.background_image or section.settings.background_image_mobile %}
     <div class="custom-section__background">
-      {{ section.settings.background_image | image_url: width: 2000 | image_tag: class: 'desktop-bg' }}
+      {% if section.settings.background_image %}
+        {{ section.settings.background_image
+          | image_url: width: 2000
+          | image_tag: class: 'desktop-bg', loading: 'lazy' }}
+      {% endif %}
+
       {% if section.settings.background_image_mobile %}
-        {{ section.settings.background_image_mobile | image_url: width: 1000 | image_tag: class: 'mobile-bg' }}
+        {{ section.settings.background_image_mobile
+          | image_url: width: 1000
+          | image_tag: class: 'mobile-bg', loading: 'lazy' }}
       {% endif %}
     </div>
   {% endif %}
 
   {% if section.settings.overlay_enable %}
-    <div class="custom-section__overlay"></div>
+    <div class="custom-section__overlay" aria-hidden="true"></div>
   {% endif %}
 
   <div class="custom-section__content">
@@ -18,6 +26,7 @@
 </div>
 
 <style>
+  /* Scoped to this section only */
   .section-{{ section.id }}-id {
     position: relative;
     overflow: hidden;
@@ -26,31 +35,35 @@
     border-top-right-radius: {{ section.settings.border_radius_top }}px;
     border-bottom-left-radius: {{ section.settings.border_radius_bottom }}px;
     border-bottom-right-radius: {{ section.settings.border_radius_bottom }}px;
-    height: 
-      {% case section.settings.height_type %}
-        {% when 'auto' %} auto;
-        {% when 'full' %} 100vh;
-        {% when 'normal' %} 600px;
-        {% when 'custom' %} {{ section.settings.height_desktop }}px;
-      {% endcase %};
+  }
+
+  /* Height modes */
+  .section-{{ section.id }}-id[data-height="auto"] {
+    height: auto;
+  }
+  .section-{{ section.id }}-id[data-height="normal"] {
+    min-height: 600px;
+  }
+  .section-{{ section.id }}-id[data-height="full"] {
+    min-height: 100vh;
+  }
+  .section-{{ section.id }}-id[data-height="custom"] {
+    height: {{ section.settings.height_desktop }}px;
+  }
+
+  @media (max-width: 1024px) {
+    .section-{{ section.id }}-id[data-height="custom"] {
+      height: {{ section.settings.height_tablet }}px;
+    }
   }
 
   @media (max-width: 768px) {
-    .section-{{ section.id }}-id {
-      {% if section.settings.height_type == 'custom' %}
-        height: {{ section.settings.height_tablet }}px;
-      {% endif %}
+    .section-{{ section.id }}-id[data-height="custom"] {
+      height: {{ section.settings.height_mobile }}px;
     }
   }
 
-  @media (max-width: 480px) {
-    .section-{{ section.id }}-id {
-      {% if section.settings.height_type == 'custom' %}
-        height: {{ section.settings.height_mobile }}px;
-      {% endif %}
-    }
-  }
-
+  /* Background images */
   .section-{{ section.id }}-id .custom-section__background {
     position: absolute;
     inset: 0;
@@ -59,40 +72,40 @@
 
   .section-{{ section.id }}-id .custom-section__background img {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
-  .section-{{ section.id }}-id .custom-section__background .mobile-bg {
-    display: none;
-  }
-
+  /* mobile/bg swap */
+  .section-{{ section.id }}-id .custom-section__background .mobile-bg { display: none; }
   @media (max-width: 768px) {
-    .section-{{ section.id }}-id .custom-section__background .desktop-bg {
-      display: none;
-    }
-    .section-{{ section.id }}-id} .custom-section__background .mobile-bg {
-      display: block;
-    }
+    .section-{{ section.id }}-id .custom-section__background .desktop-bg { display: none; }
+    .section-{{ section.id }}-id .custom-section__background .mobile-bg  { display: block; }
   }
 
-  .section-{{ section.id }}-id .custom-section__overlay {
-    position: absolute;
-    inset: 0;
-    background-color: {{ section.settings.overlay_color }};
-    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-    z-index: -1;
-  }
+  /* Overlay */
+  {% if section.settings.overlay_enable %}
+    .section-{{ section.id }}-id .custom-section__overlay {
+      position: absolute;
+      inset: 0;
+      background-color: {{ section.settings.overlay_color }};
+      opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+      z-index: -1;
+      pointer-events: none;
+    }
+  {% endif %}
 
+  /* Content (uses your existing container classes) */
   .section-{{ section.id }}-id .custom-section__content {
     position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: var(--content-grid);
-    z-index: 2;
   }
-
-  #section-{{ section.id }} .custom-section__content > * {
+  .section-{{ section.id }}-id .custom-section__content > * {
     grid-column: 2;
   }
 </style>
@@ -107,11 +120,11 @@
       "id": "container_width",
       "label": "Container width",
       "options": [
-        { "value": "container", "label": "Container" },
+        { "value": "container", "label": "Container (default)" },
         { "value": "container-fluid", "label": "Container fluid" },
         { "value": "container-narrow", "label": "Container narrow" },
         { "value": "container-extra-narrow", "label": "Container extra narrow" },
-        { "value": "full-width", "label": "Full width" }
+        { "value": "full-width", "label": "Full width (edge to edge)" }
       ],
       "default": "container"
     },
@@ -217,9 +230,7 @@
     }
   ],
   "presets": [
-    {
-      "name": "Custom Section"
-    }
+    { "name": "Custom Section" }
   ]
 }
 {% endschema %}
