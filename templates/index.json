@@ -83,7 +83,7 @@
               "settings": {
                 "text": "Text",
                 "text_style": "p",
-                "alignment": "left"
+                "alignment": "right"
               },
               "blocks": {}
             },
@@ -93,7 +93,7 @@
               "settings": {
                 "text": "Text",
                 "text_style": "p",
-                "alignment": "left"
+                "alignment": "right"
               },
               "blocks": {}
             },
@@ -103,7 +103,7 @@
               "settings": {
                 "text": "Text",
                 "text_style": "p",
-                "alignment": "left"
+                "alignment": "right"
               },
               "blocks": {}
             },
@@ -113,7 +113,7 @@
               "settings": {
                 "text": "Text",
                 "text_style": "h1",
-                "alignment": "left"
+                "alignment": "right"
               },
               "blocks": {}
             }
