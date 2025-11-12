@@ -19,7 +19,7 @@
     <!-- Icons -->
     <div class="header__icons">
       {% if section.settings.enable_search %}
-        <a href="{{ template.search }}" class="header__icon header__search" aria-label="Search" data-drawer-toggle="search-drawer">
+        <a href="{{ search }}" class="header__icon header__search" aria-label="Search" data-drawer-toggle="search-drawer">
          <span class="icon icon-search" aria-hidden="true">{%- render 'theme-icon', icon: 'search' -%}</span>
         </a>
       {% endif %}
