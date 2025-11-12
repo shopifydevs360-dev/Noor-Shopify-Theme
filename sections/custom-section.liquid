@@ -8,6 +8,14 @@
   assign container_width = section.settings.container_width
   assign height_type = section.settings.height_type
   assign justify_content = section.settings.justify_content
+  
+  if section.settings.background_image != blank and height_type == "image"
+    assign aspect_ratio = section.settings.background_image.aspect_ratio
+  endif
+  
+  if section.settings.background_image_mobile != blank and height_type == "image"
+    assign aspect_ratio_mobile = section.settings.background_image_mobile.aspect_ratio
+  endif
 %}
 
 <style>
@@ -40,6 +48,43 @@
 /* Apply height modes to the inner wrapper */
 .section-{{ section.id }}-id .custom-section__inner[data-height="content"] { height: auto; }
 .section-{{ section.id }}-id .custom-section__inner[data-height="custom"] { height: {{ section.settings.height_desktop }}px; }
+
+{% if height_type == "image" and aspect_ratio %}
+  .section-{{ section.id }}-id .custom-section__inner[data-height="image"] { 
+    height: auto;
+    position: relative;
+  }
+  .section-{{ section.id }}-id .custom-section__inner[data-height="image"]::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: calc(100% / {{ aspect_ratio }});
+  }
+  .section-{{ section.id }}-id .custom-section__inner[data-height="image"] > .custom-section__background,
+  .section-{{ section.id }}-id .custom-section__inner[data-height="image"] .custom-section__overlay,
+  .section-{{ section.id }}-id .custom-section__inner[data-height="image"] .custom-section__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .section-{{ section.id }}-id .custom-section__inner[data-height="image"] .custom-section__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: {{ justify_content }};
+    z-index: 1;
+    padding: {{ section.settings.padding_y }}px {{ section.settings.padding_x }}px;
+  }
+  
+  {% if aspect_ratio_mobile %}
+    @media (max-width: 768px) {
+      .section-{{ section.id }}-id .custom-section__inner[data-height="image"]::before {
+        padding-top: calc(100% / {{ aspect_ratio_mobile }});
+      }
+    }
+  {% endif %}
+{% endif %}
 
 @media (max-width: 1024px) {
   .section-{{ section.id }}-id .custom-section__inner[data-height="custom"] {
