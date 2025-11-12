@@ -98,6 +98,10 @@
   stroke: var(--header-transparent-text, #ffffff);
 }
 
+.main-header.is-transparent .menu-icon span {
+  background-color: var(--header-transparent-text, #ffffff);
+}
+
 .m-logo__image--transparent {
   display: block;
 }
