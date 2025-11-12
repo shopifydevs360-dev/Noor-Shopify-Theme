@@ -1,3 +1,5 @@
+// theme.js
+
 document.addEventListener('DOMContentLoaded', () => {
   // Check if header has scroll-up sticky behavior
   const header = document.querySelector('.main-header');
@@ -10,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScroll = 0;
   const body = document.body;
 
-  // Initial state
+  // Initial state: if page is loaded not at the top, hide header
   if (window.pageYOffset > 0) {
     body.classList.add('scroll-down');
   }
