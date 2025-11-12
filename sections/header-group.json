@@ -19,7 +19,7 @@
         "menu": "main-menu",
         "enable_transparent_header": false,
         "transparent_text_color": "#f5f5f5",
-        "sticky_behavior": "none",
+        "sticky_behavior": "scroll-up",
         "enable_search": true,
         "enable_account": true,
         "enable_wishlist": true,
