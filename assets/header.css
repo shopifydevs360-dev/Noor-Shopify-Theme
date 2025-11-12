@@ -4,7 +4,7 @@
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text));
   border-bottom: 1px solid rgb(var(--color-border));
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .header-container {
@@ -64,7 +64,7 @@
   height: 20px;
 }
 
-/* Transparent header mode */
+/* Transparent header mode (at the top of the page) */
 .main-header.is-transparent {
   background: transparent;
   border-bottom: none;
@@ -84,7 +84,6 @@
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
 }
 
-/* Transparent header - color and logo behavior */
 .main-header.is-transparent a,
 .main-header.is-transparent .header__icon svg,
 .main-header.is-transparent .menu-icon span {
@@ -106,19 +105,11 @@
 
 /* Always sticky - header stays at the top */
 .main-header.sticky--always {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   z-index: 100;
 }
 
 /* Scroll-up sticky behavior */
 .main-header.sticky--scroll-up {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   z-index: 100;
   transform: translateY(0);
 }
@@ -134,40 +125,34 @@ body.scroll-up .main-header.sticky--scroll-up {
 }
 
 /*
- * When the page is scrolled (either up or down), ensure a transparent header
- * takes on the appearance of the selected color scheme.
- * This makes it solid and properly colored when it reappears on scroll-up.
+ * KEY CHANGE:
+ * This single rule ensures that when a transparent header becomes sticky (on scroll-up),
+ * it ignores the transparent styles and uses the solid color scheme instead.
+ * This makes it identical to the "always sticky" header.
  */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up {
+.main-header.is-transparent.is-sticky {
   background-color: rgb(var(--color-background));
   border-bottom: 1px solid rgb(var(--color-border));
   color: rgb(var(--color-text));
 }
 
-/* Reset the colors of child elements for both scroll states */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up a,
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__icon svg,
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .menu-icon span,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up a,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__icon svg,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .menu-icon span {
+/* We also need to reset the colors of all child elements inside the sticky header */
+.main-header.is-transparent.is-sticky a,
+.main-header.is-transparent.is-sticky .header__icon svg,
+.main-header.is-transparent.is-sticky .menu-icon span {
   color: rgb(var(--color-text));
   stroke: rgb(var(--color-text));
 }
 
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .menu-icon span,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .menu-icon span {
+.main-header.is-transparent.is-sticky .menu-icon span {
   background-color: rgb(var(--color-text));
 }
 
-/* Reset hover state for scrolled transparent header */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__icon:hover,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__icon:hover {
+/* Reset hover state and logo filter for the sticky state */
+.main-header.is-transparent.is-sticky .header__icon:hover {
   background-color: rgba(var(--color-text), 0.1);
 }
 
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__logo img,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__logo img {
+.main-header.is-transparent.is-sticky .header__logo img {
   filter: none;
 }
