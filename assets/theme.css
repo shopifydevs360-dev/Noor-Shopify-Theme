@@ -101,7 +101,7 @@ a {
 }
 
 a:hover {
-  color: rgb(var(--color-link-hover));
+  color: var(--color-body-link-hover);
 }
 
 /* ------------------------------
