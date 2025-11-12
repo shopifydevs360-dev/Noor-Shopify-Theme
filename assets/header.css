@@ -65,3 +65,22 @@
   height: 20px;
 }
 
+/* Transparent header mode */
+.main-header.is-transparent {
+  background: transparent;
+  border-bottom: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: rgb(var(--color-text));
+  z-index: 200;
+}
+
+.main-header.is-transparent .header__icon:hover {
+  background-color: rgba(var(--color-text), 0.1);
+}
+
+.main-header.is-transparent .header__logo img {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+}
