@@ -56,24 +56,12 @@
     top: 16px;
     transform-origin: left center;
   }
-
-  .header__menu-trigger:hover .menu-icon span:nth-child(1) {
-    transform: rotate(45deg);
-    left: 5px;
-    top: -3px;
-  }
-
   .header__menu-trigger:hover .menu-icon span:nth-child(2) {
     width: 0%;
     opacity: 0;
     width: 70%;
   }
 
-  .header__menu-trigger:hover .menu-icon span:nth-child(3) {
-    transform: rotate(-45deg);
-    left: 5px;
-    top: 19px;
-  }
 
 
 
