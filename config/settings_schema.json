@@ -310,30 +310,79 @@
     "name": "t:general.layout",
     "settings": [
       {
-        "type": "select",
-        "id": "max_page_width",
-        "label": "t:labels.page_width",
-        "options": [
-          {
-            "value": "90rem",
-            "label": "t:options.page_width.narrow"
-          },
-          {
-            "value": "110rem",
-            "label": "t:options.page_width.wide"
-          }
-        ],
-        "default": "90rem"
+        "type": "header",
+        "content": "Containers",
+        "info": "Control the maximum width for different container types used throughout the theme."
       },
       {
         "type": "range",
-        "id": "min_page_margin",
-        "min": 10,
-        "max": 100,
-        "step": 1,
+        "id": "container_max_width",
+        "label": "Standard Container (container)",
+        "default": 1620,
+        "min": 1280,
+        "max": 2560,
+        "step": 20,
         "unit": "px",
-        "label": "t:labels.page_margin",
-        "default": 20
+        "info": "Used for most sections like content blocks, grids, and product listings."
+      },
+      {
+        "type": "range",
+        "id": "container_fluid_width",
+        "label": "Wide Container (container-fluid)",
+        "default": 1920,
+        "min": 1440,
+        "max": 3000,
+        "step": 20,
+        "unit": "px",
+        "info": "Used for full-width sections like banners, hero sliders, and wide imagery."
+      },
+      {
+        "type": "range",
+        "id": "container_narrow_width",
+        "label": "Narrow Container (container-narrow)",
+        "default": 1200,
+        "min": 800,
+        "max": 1600,
+        "step": 10,
+        "unit": "px",
+        "info": "Used for focused content like blog posts, FAQs, or text-heavy sections."
+      },
+      {
+        "type": "range",
+        "id": "container_extra_narrow_width",
+        "label": "Extra Narrow Container (container-extra-narrow)",
+        "default": 900,
+        "min": 600,
+        "max": 1200,
+        "step": 10,
+        "unit": "px",
+        "info": "Used for small text containers, newsletter forms, or centered content."
+      },
+
+      {
+        "type": "header",
+        "content": "Section Spacing",
+        "info": "Adjust the vertical spacing between sections globally."
+      },
+      {
+        "type": "range",
+        "id": "section_spacing_desktop",
+        "label": "Desktop Section Spacing",
+        "default": 100,
+        "min": 20,
+        "max": 200,
+        "step": 5,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "section_spacing_mobile",
+        "label": "Mobile Section Spacing",
+        "default": 60,
+        "min": 10,
+        "max": 120,
+        "step": 5,
+        "unit": "px"
       }
     ]
   },
