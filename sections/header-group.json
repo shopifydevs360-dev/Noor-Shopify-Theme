@@ -18,7 +18,7 @@
         "color_scheme": "default",
         "menu": "main-menu",
         "enable_transparent_header": true,
-        "transparent_text_color": "#e02b2b",
+        "transparent_text_color": "#f5f5f5",
         "enable_search": true,
         "enable_account": true,
         "enable_wishlist": true,
