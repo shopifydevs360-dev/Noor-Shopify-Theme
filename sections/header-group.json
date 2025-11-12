@@ -14,10 +14,12 @@
     "header": {
       "type": "header",
       "settings": {
-        "header_design": "logo-center-menu-left",
+        "color_scheme": "default",
         "menu": "main-menu",
-        "color_scheme": "",
-        "color_scheme_menu": ""
+        "enable_search": true,
+        "enable_account": true,
+        "enable_wishlist": true,
+        "enable_cart": true
       }
     }
   },
