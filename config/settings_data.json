@@ -29,6 +29,7 @@
     "container_extra_narrow_width": 670,
     "section_spacing_desktop": 0,
     "section_spacing_mobile": 0,
+    "min_page_margin": 64,
     "foreground_color": "#FFFFFF",
     "spacing_sections": 0,
     "spacing_sections_mobile": 0,
