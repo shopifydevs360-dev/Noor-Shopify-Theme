@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const isScrollUpSticky = header.classList.contains('sticky--scroll-up');
   const isAlwaysSticky = header.classList.contains('sticky--always');
-  const isTransparent = header.classList.contains('is-transparent');
   
   // Only apply scroll behavior if sticky is enabled
   if (!isScrollUpSticky && !isAlwaysSticky) return;
@@ -22,17 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentScroll <= 0) {
       body.classList.remove('scroll-up');
       body.classList.remove('scroll-down');
-      // If transparent header is enabled, show it at the top
-      if (isTransparent) {
-        header.classList.remove('is-sticky');
-      }
+      // Remove fixed position at the top
+      header.classList.remove('is-fixed');
       return;
     }
     
-    // When scrolled down from the top, activate sticky state
-    if (currentScroll > 0) {
-      header.classList.add('is-sticky');
-    }
+    // When scrolled down from the top, make header fixed
+    header.classList.add('is-fixed');
     
     // For scroll-up behavior, handle show/hide based on scroll direction
     if (isScrollUpSticky) {
@@ -56,4 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Update header state on scroll
   window.addEventListener('scroll', updateHeaderState);
+  
+  // For always sticky, make it fixed immediately
+  if (isAlwaysSticky) {
+    header.classList.add('is-fixed');
+  }
 });
