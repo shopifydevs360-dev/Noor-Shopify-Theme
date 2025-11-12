@@ -202,3 +202,6 @@ body.scroll-down .sticky--scroll-up {
 .header__menu-trigger:hover .menu-icon span:nth-child(3) {
   transform: translateX(-3px);
 }
+.main-header:not(.sticky--always):not(.sticky--scroll-up) {
+  position: relative;
+}
