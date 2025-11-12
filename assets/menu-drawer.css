@@ -1,4 +1,55 @@
+/* RTL Mode Styles */
+.rtl .drawer__main {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+}
 
+.rtl .drawer.open .drawer__main {
+  transform: translateX(0);
+}
+
+.rtl .menu__arrow {
+  margin-left: 0;
+  margin-right: 0.5rem;
+  transform: rotate(180deg);
+}
+
+.rtl .menu__submenu {
+  left: auto;
+  right: 100%;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
+  transform: translateX(20px);
+}
+
+.rtl .menu__item--has-children:hover .menu__submenu {
+  transform: translateX(0);
+}
+
+.rtl .drawer__header {
+  justify-content: flex-start;
+}
+
+.rtl .menu__link {
+  text-align: right;
+}
+
+.rtl .menu__list--level-2 .menu__link {
+  text-align: right;
+}
+
+/* RTL Mobile adjustments */
+@media (max-width: 767px) {
+  .rtl .drawer__main {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+  
+  .rtl .drawer.open .drawer__main {
+    transform: translateX(0);
+  }
+}
 
   /* Menu Trigger - Modern Style */
   .header__menu-trigger {
