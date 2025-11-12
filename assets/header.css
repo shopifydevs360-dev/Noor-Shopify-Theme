@@ -4,7 +4,7 @@
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text));
   border-bottom: 1px solid rgb(var(--color-border));
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .header-container {
@@ -72,12 +72,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  color: rgb(var(--color-text));
+  color: var(--header-transparent-text, #ffffff);
   z-index: 200;
 }
 
 .main-header.is-transparent .header__icon:hover {
-  background-color: rgba(var(--color-text), 0.1);
+  background-color: rgba(var(--header-transparent-text, #ffffff), 0.1);
 }
 
 .main-header.is-transparent .header__logo img {
@@ -85,10 +85,6 @@
 }
 
 /* Transparent header - color and logo behavior */
-.main-header.is-transparent {
-  color: var(--header-transparent-text, #ffffff);
-}
-
 .main-header.is-transparent a,
 .main-header.is-transparent .header__icon svg,
 .main-header.is-transparent .menu-icon span {
@@ -137,13 +133,41 @@ body.scroll-up .main-header.sticky--scroll-up {
   transform: translateY(0);
 }
 
-/* Handle transparent header with scroll-up behavior */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up {
+/*
+ * When the page is scrolled (either up or down), ensure a transparent header
+ * takes on the appearance of the selected color scheme.
+ * This makes it solid and properly colored when it reappears on scroll-up.
+ */
+body.scroll-down .main-header.is-transparent.sticky--scroll-up,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up {
   background-color: rgb(var(--color-background));
   border-bottom: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-text));
 }
 
-body.scroll-up .main-header.is-transparent.sticky--scroll-up {
-  background-color: transparent;
-  border-bottom: none;
+/* Reset the colors of child elements for both scroll states */
+body.scroll-down .main-header.is-transparent.sticky--scroll-up a,
+body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__icon svg,
+body.scroll-down .main-header.is-transparent.sticky--scroll-up .menu-icon span,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up a,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__icon svg,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up .menu-icon span {
+  color: rgb(var(--color-text));
+  stroke: rgb(var(--color-text));
+}
+
+body.scroll-down .main-header.is-transparent.sticky--scroll-up .menu-icon span,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up .menu-icon span {
+  background-color: rgb(var(--color-text));
+}
+
+/* Reset hover state for scrolled transparent header */
+body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__icon:hover,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__icon:hover {
+  background-color: rgba(var(--color-text), 0.1);
+}
+
+body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__logo img,
+body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__logo img {
+  filter: none;
 }
