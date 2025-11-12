@@ -1,18 +1,4 @@
-  .main-header {
-    position: relative;
-    z-index: 100;
-    background-color: rgb(var(--color-background));
-    color: rgb(var(--color-text));
-    padding: 0;
-    border-bottom: 1px solid rgb(var(--color-border));
-  }
 
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem var(--page-margin);
-  }
 
   /* Menu Trigger - Modern Style */
   .header__menu-trigger {
@@ -88,65 +74,8 @@
     top: 19px;
   }
 
-  /* Logo */
-  .header__logo {
-    flex-grow: 1;
-    text-align: center;
-  }
 
-  .header__logo a {
-    display: inline-block;
-    text-decoration: none;
-    color: rgb(var(--color-text));
-  }
 
-  /* Icons */
-  .header__icons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .header__icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: transparent;
-    color: rgb(var(--color-text));
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .header__icon:hover {
-    background-color: rgba(var(--color-text), 0.1);
-  }
-
-  .header__icon svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .cart-count {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgb(var(--color-price-sale));
-    color: rgb(var(--color-background));
-    border-radius: 50%;
-    min-width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 1;
-    padding: 0 4px;
-  }
 
   /* Drawer Styles */
   .drawer {
