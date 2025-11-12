@@ -141,7 +141,7 @@
         "background_image_mobile": "shopify://shop_images/339886283403.jpg",
         "overlay_enable": true,
         "overlay_color": "#000000",
-        "overlay_opacity": 65,
+        "overlay_opacity": 25,
         "border_radius_top": 0,
         "border_radius_bottom": 0
       }
