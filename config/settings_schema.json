@@ -407,134 +407,41 @@
         "type": "color_scheme_group",
         "id": "color_schemes",
         "definition": [
-          {
-            "type": "header",
-            "content": "Background"
-          },
-          {
-            "type": "color",
-            "id": "background",
-            "label": "Background",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "background_secondary",
-            "label": "Background secondary",
-            "default": "#F5F5F5"
-          },
-          {
-            "type": "color_background",
-            "id": "background_gradient",
-            "label": "Background gradient",
-            "info": "Background gradient replaces background where possible."
-          },
-          {
-            "type": "header",
-            "content": "Text"
-          },
-          {
-            "type": "color",
-            "id": "text",
-            "label": "Text",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "subtext",
-            "label": "Subtext",
-            "default": "#666666"
-          },
-          {
-            "type": "color",
-            "id": "heading_text",
-            "label": "Heading text",
-            "default": "#222222"
-          },
-          {
-            "type": "header",
-            "content": "Buttons"
-          },
-          {
-            "type": "color",
-            "id": "link_color",
-            "label": "Link color",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "link_hover_color",
-            "label": "Link hover color",
-            "default": "#000000"
-          },
-          {
-            "type": "header",
-            "content": "Price"
-          },
-          {
-            "type": "color",
-            "id": "price_sale",
-            "label": "Price sale",
-            "default": "#E02B2B"
-          },
-          {
-            "type": "color",
-            "id": "price_regular",
-            "label": "Price regular",
-            "default": "#666666"
-          },
-          {
-            "type": "header",
-            "content": "Form field"
-          },
-          {
-            "type": "color",
-            "id": "form_field",
-            "label": "Form field background",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "form_field_label",
-            "label": "Form field text",
-            "default": "#222222"
-          },
-          {
-            "type": "header",
-            "content": "Tooltip"
-          },
-          {
-            "type": "color",
-            "id": "tooltip",
-            "label": "Tooltip background",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "tooltip_label",
-            "label": "Tooltip text",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "header",
-            "content": "Other"
-          },
-          {
-            "type": "color",
-            "id": "border",
-            "label": "Border",
-            "default": "#EEEEEE"
-          }
+          { "type": "header", "content": "Background" },
+          { "type": "color", "id": "background", "label": "Background", "default": "#FFFFFF" },
+          { "type": "color", "id": "background_secondary", "label": "Background secondary", "default": "#F5F5F5" },
+          { "type": "color_background", "id": "background_gradient", "label": "Background gradient", "info": "Background gradient replaces background where possible." },
+
+          { "type": "header", "content": "Text" },
+          { "type": "color", "id": "text", "label": "Text", "default": "#222222" },
+          { "type": "color", "id": "subtext", "label": "Subtext", "default": "#666666" },
+          { "type": "color", "id": "heading_text", "label": "Heading text", "default": "#222222" },
+
+          { "type": "header", "content": "Links" },
+          { "type": "color", "id": "link_color", "label": "Link color", "default": "#222222" },
+          { "type": "color", "id": "link_hover_color", "label": "Link hover color", "default": "#000000" },
+
+          { "type": "header", "content": "Price" },
+          { "type": "color", "id": "price_sale", "label": "Price sale", "default": "#E02B2B" },
+          { "type": "color", "id": "price_regular", "label": "Price regular", "default": "#666666" },
+
+          { "type": "header", "content": "Form field" },
+          { "type": "color", "id": "form_field", "label": "Form field background", "default": "#FFFFFF" },
+          { "type": "color", "id": "form_field_label", "label": "Form field text", "default": "#222222" },
+
+          { "type": "header", "content": "Tooltip" },
+          { "type": "color", "id": "tooltip", "label": "Tooltip background", "default": "#222222" },
+          { "type": "color", "id": "tooltip_label", "label": "Tooltip text", "default": "#FFFFFF" },
+
+          { "type": "header", "content": "Other" },
+          { "type": "color", "id": "border", "label": "Border", "default": "#EEEEEE" }
         ],
         "role": {
           "text": "text",
-          "background": {
-            "solid": "background",
-            "gradient": "background_gradient"
-          },
+          "background": { "solid": "background", "gradient": "background_gradient" },
           "links": "link_color",
           "icons": "text",
-          "primary_button": "background", 
+          "primary_button": "background",
           "on_primary_button": "text",
           "primary_button_border": "border",
           "secondary_button": "background_secondary",
@@ -569,154 +476,35 @@
   {
     "name": "Button",
     "settings": [
-      {
-        "type": "header",
-        "content": "Primary Button"
-      },
-      {
-        "type": "color",
-        "id": "primary_button_bg",
-        "label": "Background",
-        "default": "#222222"
-      },
-      {
-        "type": "color",
-        "id": "primary_button_label",
-        "label": "Text Color",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "primary_button_border",
-        "label": "Border Color",
-        "default": "#222222"
-      },
-      {
-        "type": "color",
-        "id": "primary_button_hover_bg",
-        "label": "Hover Background",
-        "default": "#111111"
-      },
-      {
-        "type": "color",
-        "id": "primary_button_hover_label",
-        "label": "Hover Text Color",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "primary_button_hover_border",
-        "label": "Hover Border Color",
-        "default": "#111111"
-      },
-      {
-        "type": "font_picker",
-        "id": "primary_button_font",
-        "label": "Font Family",
-        "default": "helvetica_n7"
-      },
+      { "type": "header", "content": "Primary Button" },
+      { "type": "color", "id": "primary_button_bg", "label": "Background", "default": "#222222" },
+      { "type": "color", "id": "primary_button_label", "label": "Text Color", "default": "#FFFFFF" },
+      { "type": "color", "id": "primary_button_border", "label": "Border Color", "default": "#222222" },
+      { "type": "color", "id": "primary_button_hover_bg", "label": "Hover Background", "default": "#111111" },
+      { "type": "color", "id": "primary_button_hover_label", "label": "Hover Text Color", "default": "#FFFFFF" },
+      { "type": "color", "id": "primary_button_hover_border", "label": "Hover Border Color", "default": "#111111" },
+      { "type": "font_picker", "id": "primary_button_font", "label": "Font Family", "default": "helvetica_n7" },
 
-      {
-        "type": "header",
-        "content": "Secondary Button"
-      },
-      {
-        "type": "color",
-        "id": "secondary_button_bg",
-        "label": "Background",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "secondary_button_label",
-        "label": "Text Color",
-        "default": "#222222"
-      },
-      {
-        "type": "color",
-        "id": "secondary_button_border",
-        "label": "Border Color",
-        "default": "#DDDDDD"
-      },
-      {
-        "type": "color",
-        "id": "secondary_button_hover_bg",
-        "label": "Hover Background",
-        "default": "#F5F5F5"
-      },
-      {
-        "type": "color",
-        "id": "secondary_button_hover_label",
-        "label": "Hover Text Color",
-        "default": "#222222"
-      },
-      {
-        "type": "color",
-        "id": "secondary_button_hover_border",
-        "label": "Hover Border Color",
-        "default": "#CCCCCC"
-      },
-      {
-        "type": "font_picker",
-        "id": "secondary_button_font",
-        "label": "Font Family",
-        "default": "helvetica_n7"
-      },
-      {
-        "type": "header",
-        "content": "Underline Button"
-      },
-      {
-        "type": "color",
-        "id": "underline_button_color",
-        "label": "Text & Underline Color",
-        "default": "#222222"
-      },
-      {
-        "type": "color",
-        "id": "underline_button_hover_color",
-        "label": "Hover Text & Underline Color",
-        "default": "#000000"
-      },
-      {
-        "type": "font_picker",
-        "id": "underline_button_font",
-        "label": "Font Family",
-        "default": "helvetica_n7"
-      },
+      { "type": "header", "content": "Secondary Button" },
+      { "type": "color", "id": "secondary_button_bg", "label": "Background", "default": "#FFFFFF" },
+      { "type": "color", "id": "secondary_button_label", "label": "Text Color", "default": "#222222" },
+      { "type": "color", "id": "secondary_button_border", "label": "Border Color", "default": "#DDDDDD" },
+      { "type": "color", "id": "secondary_button_hover_bg", "label": "Hover Background", "default": "#F5F5F5" },
+      { "type": "color", "id": "secondary_button_hover_label", "label": "Hover Text Color", "default": "#222222" },
+      { "type": "color", "id": "secondary_button_hover_border", "label": "Hover Border Color", "default": "#CCCCCC" },
+      { "type": "font_picker", "id": "secondary_button_font", "label": "Font Family", "default": "helvetica_n7" },
 
-      {
-        "type": "header",
-        "content": "Gradient Button"
-      },
-      {
-        "type": "color_background",
-        "id": "gradient_button_bg",
-        "label": "Gradient Background"
-      },
-      {
-        "type": "color_background",
-        "id": "gradient_button_hover_bg",
-        "label": "Hover Gradient Background"
-      },
-      {
-        "type": "color",
-        "id": "gradient_button_label",
-        "label": "Text Color",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "gradient_button_hover_label",
-        "label": "Hover Text Color",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "font_picker",
-        "id": "gradient_button_font",
-        "label": "Font Family",
-        "default": "helvetica_n7"
-      }
+      { "type": "header", "content": "Underline Button" },
+      { "type": "color", "id": "underline_button_color", "label": "Text & Underline Color", "default": "#222222" },
+      { "type": "color", "id": "underline_button_hover_color", "label": "Hover Text & Underline Color", "default": "#000000" },
+      { "type": "font_picker", "id": "underline_button_font", "label": "Font Family", "default": "helvetica_n7" },
+
+      { "type": "header", "content": "Gradient Button" },
+      { "type": "color_background", "id": "gradient_button_bg", "label": "Gradient Background" },
+      { "type": "color_background", "id": "gradient_button_hover_bg", "label": "Hover Gradient Background" },
+      { "type": "color", "id": "gradient_button_label", "label": "Text Color", "default": "#FFFFFF" },
+      { "type": "color", "id": "gradient_button_hover_label", "label": "Hover Text Color", "default": "#FFFFFF" },
+      { "type": "font_picker", "id": "gradient_button_font", "label": "Font Family", "default": "helvetica_n7" }
     ]
   },
   {
