@@ -369,9 +369,9 @@
         "id": "section_spacing_desktop",
         "label": "Desktop Section Spacing",
         "default": 100,
-        "min": 20,
+        "min": 0,
         "max": 200,
-        "step": 5,
+        "step": 2,
         "unit": "px"
       },
       {
@@ -379,9 +379,9 @@
         "id": "section_spacing_mobile",
         "label": "Mobile Section Spacing",
         "default": 60,
-        "min": 10,
+        "min": 0,
         "max": 120,
-        "step": 5,
+        "step": 2,
         "unit": "px"
       }
     ]
