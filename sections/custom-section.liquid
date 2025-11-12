@@ -31,7 +31,7 @@
   .section-{{ section.id }}-id .custom-section__inner {
     position: relative;
     z-index: 1;
-    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    padding: {{ section.settings.padding_y }}px {{ section.settings.padding_x }}px {{ section.settings.padding_y }}px {{ section.settings.padding_x }}px;
     display: flex;
     flex-direction: column;
     justify-content: {{ justify_content }};
@@ -247,8 +247,8 @@
     },
     {
       "type": "range",
-      "id": "padding_top",
-      "label": "Padding top",
+      "id": "padding_y",
+      "label": "Padding top/bottom",
       "min": 0,
       "max": 200,
       "step": 5,
@@ -257,28 +257,8 @@
     },
     {
       "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding bottom",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_left",
-      "label": "Padding left",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "padding_right",
-      "label": "Padding right",
+      "id": "padding_x",
+      "label": "Padding left/right",
       "min": 0,
       "max": 200,
       "step": 5,
