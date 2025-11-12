@@ -2,15 +2,30 @@
 
 {% liquid
   assign container_width = section.settings.container_width
+  assign color_scheme = section.settings.color_scheme
+  assign sticky_behavior = section.settings.sticky_behavior
   assign transparent_header = false
+
   if template.name == 'index' and section.settings.enable_transparent_header
     assign transparent_header = true
+  endif
+
+  assign header_classes = 'main-header m-color-' | append: color_scheme
+
+  if transparent_header
+    assign header_classes = header_classes | append: ' is-transparent'
+  endif
+
+  if sticky_behavior == 'always'
+    assign header_classes = header_classes | append: ' is-sticky sticky--always'
+  elsif sticky_behavior == 'scroll-up'
+    assign header_classes = header_classes | append: ' is-sticky sticky--scroll-up'
   endif
 %}
 
 <header
-  class="main-header m-color-{{ section.settings.color_scheme }}{% if transparent_header %} is-transparent{% endif %}{% if section.settings.sticky_behavior == 'always' %} is-sticky sticky--always{% endif %}{% if section.settings.sticky_behavior == 'scroll-up' %} is-sticky sticky--scroll-up{% endif %}"
-  data-color-scheme="{{ section.settings.color_scheme }}"
+  class="{{ header_classes }}"
+  data-color-scheme="{{ color_scheme }}"
   {% if transparent_header and section.settings.transparent_text_color %}
     style="--header-transparent-text: {{ section.settings.transparent_text_color }};"
   {% endif %}
