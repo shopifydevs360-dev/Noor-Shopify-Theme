@@ -1,6 +1,9 @@
 {% liquid
+  # Get the RTL setting from theme settings
   assign enable_rtl = settings.enable_rtl
   assign language_support_rtl = settings.language_support_rtl
+
+  # Check if the current shop locale is in the RTL language list
   if enable_rtl and language_support_rtl != blank
     assign shop_locale = localization.language.iso_code
     assign language_support_rtl_list = language_support_rtl | split: ','
@@ -12,11 +15,12 @@
     endif
   endif
 
+  # Compose body classes
   assign body_classes = 'template-' | append: template.name | append: ' ' | append: template.suffix
 %}
 
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}" data-template="{{ template.name }}"{% if enable_rtl %} dir="rtl" {% endif %}>
+<html lang="{{ request.locale.iso_code }}" data-template="{{ template.name }}" {% if enable_rtl %} dir="rtl" class="rtl" {% endif %}>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,29 +30,26 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
-    {%- if settings.favicon != blank -%}
+    {% if settings.favicon != blank %}
       <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-    {%- endif -%}
-    {% # Inlined CSS Variables %}
+    {% endif %}
+
+    {# Inlined CSS Variables and Critical CSS #}
     {% render 'css-variables' %}
     {% render 'critical-css' %}
 
-    {% # Load and preload the critical CSS %}
+    {# Load main theme CSS #}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
 
-    {% # Social, title, etc. %}
+    {# Meta tags #}
     {% render 'meta-tags' %}
-    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
     {{ content_for_header }}
   </head>
 
-  <body id="theme-noor"
-    class="{{ body_classes }}"
-    {% if template.name == 'product' %}
-      data-product-id="{{ product.id }}"
-    {% endif %}>
+  <body id="theme-noor" class="{{ body_classes }}{% if enable_rtl %} rtl{% endif %}" {% if template.name == 'product' %} data-product-id="{{ product.id }}" {% endif %}>
     {% sections 'header-group' %}
 
     {{ content_for_layout }}
