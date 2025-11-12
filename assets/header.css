@@ -102,3 +102,41 @@
   background-color: var(--header-transparent-text, #ffffff);
 }
 
+/* === Sticky Header Logic === */
+.main-header.is-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* --- Always sticky --- */
+.sticky--always {
+  position: sticky;
+  top: 0;
+}
+
+/* --- Scroll-up sticky --- */
+.sticky--scroll-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+}
+
+body.scroll-up .sticky--scroll-up {
+  transform: translateY(0);
+}
+
+body.scroll-down .sticky--scroll-up {
+  transform: translateY(-100%);
+}
+
+/* Optional shadow when sticky */
+.main-header.is-sticky {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
