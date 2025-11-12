@@ -567,7 +567,7 @@
     ]
   },
   {
-    "name": "t:general.buttons",
+    "name": "Button",
     "settings": [
       {
         "type": "header",
