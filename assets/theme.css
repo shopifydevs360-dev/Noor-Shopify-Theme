@@ -103,7 +103,19 @@ a {
 a:hover {
   color: var(--color-body-link-hover);
 }
+/* ------------------------------
+   RTL Mode
+------------------------------- */
+/* General RTL support */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
 
+/* Flip containers, floats, margins, paddings if needed */
+body.rtl .container {
+  text-align: right;
+}
 /* ------------------------------
    BUTTON STYLES
 ------------------------------- */
