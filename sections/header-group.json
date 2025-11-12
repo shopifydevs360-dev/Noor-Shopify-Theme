@@ -14,7 +14,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "container_width": "full-width",
+        "container_width": "container-fluid",
         "color_scheme": "default",
         "menu": "main-menu",
         "enable_search": true,
