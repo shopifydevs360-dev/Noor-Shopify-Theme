@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Drawer functionality
   const drawerToggles = document.querySelectorAll('[data-drawer-toggle]');
   const drawerCloses = document.querySelectorAll('[data-drawer-close]');
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  const mainElement = document.querySelector('main');
   
   drawerToggles.forEach(toggle => {
     toggle.addEventListener('click', function() {
@@ -10,20 +12,31 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (drawer) {
         drawer.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        drawerOverlay.classList.add('open');
+        this.classList.add('active');
+        
+        // Shift main content to the left
+        if (mainElement) {
+          mainElement.classList.add('open');
+        }
         
         // Add expanded class to menu drawer main when hovering over items with children
         if (drawerId === 'menu-drawer') {
           const menuItemsWithChildren = drawer.querySelectorAll('.menu__item--has-children');
-          const drawerMain = drawer.querySelector('.drawer__main');
           
           menuItemsWithChildren.forEach(item => {
             item.addEventListener('mouseenter', function() {
-              drawerMain.classList.add('expanded');
+              const drawerMain = drawer.querySelector('.drawer__main');
+              if (drawerMain) {
+                drawerMain.classList.add('expanded');
+              }
             });
             
             item.addEventListener('mouseleave', function() {
-              drawerMain.classList.remove('expanded');
+              const drawerMain = drawer.querySelector('.drawer__main');
+              if (drawerMain) {
+                drawerMain.classList.remove('expanded');
+              }
             });
           });
         }
@@ -37,18 +50,40 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (drawer) {
         drawer.classList.remove('open');
-        document.body.style.overflow = '';
+        drawerOverlay.classList.remove('open');
+        
+        // Reset main content position
+        if (mainElement) {
+          mainElement.classList.remove('open');
+        }
+        
+        // Reset menu trigger
+        const menuTrigger = document.querySelector('.header__menu-trigger');
+        if (menuTrigger) {
+          menuTrigger.classList.remove('active');
+        }
       }
     });
   });
   
-  // Close drawer when clicking outside
-  document.addEventListener('click', function(event) {
+  // Close drawer when clicking on overlay
+  drawerOverlay.addEventListener('click', function() {
     const openDrawer = document.querySelector('.drawer.open');
     
-    if (openDrawer && !openDrawer.contains(event.target) && !event.target.closest('[data-drawer-toggle]')) {
+    if (openDrawer) {
       openDrawer.classList.remove('open');
-      document.body.style.overflow = '';
+      this.classList.remove('open');
+      
+      // Reset main content position
+      if (mainElement) {
+        mainElement.classList.remove('open');
+      }
+      
+      // Reset menu trigger
+      const menuTrigger = document.querySelector('.header__menu-trigger');
+      if (menuTrigger) {
+        menuTrigger.classList.remove('active');
+      }
     }
   });
   
@@ -59,7 +94,18 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (openDrawer) {
         openDrawer.classList.remove('open');
-        document.body.style.overflow = '';
+        drawerOverlay.classList.remove('open');
+        
+        // Reset main content position
+        if (mainElement) {
+          mainElement.classList.remove('open');
+        }
+        
+        // Reset menu trigger
+        const menuTrigger = document.querySelector('.header__menu-trigger');
+        if (menuTrigger) {
+          menuTrigger.classList.remove('active');
+        }
       }
     }
   });
