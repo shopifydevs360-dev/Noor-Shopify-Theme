@@ -50,16 +50,12 @@
   .menu-icon span:nth-child(2) {
     top: 8px;
     transform-origin: left center;
+    width: 70%;
   }
 
   .menu-icon span:nth-child(3) {
     top: 16px;
     transform-origin: left center;
-  }
-  .header__menu-trigger:hover .menu-icon span:nth-child(2) {
-    width: 0%;
-    opacity: 0;
-    width: 70%;
   }
 
 
