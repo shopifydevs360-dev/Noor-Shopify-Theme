@@ -4,6 +4,7 @@
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text));
   border-bottom: 1px solid rgb(var(--color-border));
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .header-container {
@@ -29,8 +30,6 @@
   text-align: center;
   z-index: 1;
 }
-
-
 
 /* Right icons */
 .header__right {
@@ -85,7 +84,6 @@
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
 }
 
-
 /* Transparent header - color and logo behavior */
 .main-header.is-transparent {
   color: var(--header-transparent-text, #ffffff);
@@ -102,4 +100,50 @@
   background-color: var(--header-transparent-text, #ffffff);
 }
 
+/* Sticky header styles */
+.main-header.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 
+/* Always sticky - header stays at the top */
+.main-header.sticky--always {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Scroll-up sticky behavior */
+.main-header.sticky--scroll-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transform: translateY(0);
+}
+
+/* When scrolling down, hide the header */
+body.scroll-down .main-header.sticky--scroll-up {
+  transform: translateY(-100%);
+}
+
+/* When scrolling up, show the header */
+body.scroll-up .main-header.sticky--scroll-up {
+  transform: translateY(0);
+}
+
+/* Handle transparent header with scroll-up behavior */
+body.scroll-down .main-header.is-transparent.sticky--scroll-up {
+  background-color: rgb(var(--color-background));
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+body.scroll-up .main-header.is-transparent.sticky--scroll-up {
+  background-color: transparent;
+  border-bottom: none;
+}
