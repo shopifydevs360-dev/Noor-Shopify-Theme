@@ -147,7 +147,7 @@
         "padding_bottom": 60,
         "padding_left": 30,
         "padding_right": 30,
-        "justify_content": "center"
+        "justify_content": "flex-end"
       }
     },
     "custom_section_wqE3Yp": {
