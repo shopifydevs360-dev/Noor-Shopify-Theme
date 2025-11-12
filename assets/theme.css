@@ -98,7 +98,47 @@ h4 { font-size: var(--font-h4-size); }
 h5 { font-size: var(--font-h5-size); }
 h6 { font-size: var(--font-h6-size); }
 
+/* Container helpers */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--page-margin, 20px);
+  padding-right: var(--page-margin, 20px);
+}
 
+.container-fluid {
+  max-width: var(--container-fluid-width);
+  margin: 0 auto;
+  padding-left: var(--page-margin, 20px);
+  padding-right: var(--page-margin, 20px);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow-width);
+  margin: 0 auto;
+  padding-left: var(--page-margin, 20px);
+  padding-right: var(--page-margin, 20px);
+}
+
+.container-extra-narrow {
+  max-width: var(--container-extra-narrow-width);
+  margin: 0 auto;
+  padding-left: var(--page-margin, 20px);
+  padding-right: var(--page-margin, 20px);
+}
+
+/* Section spacing helpers */
+.section {
+  padding-top: var(--section-spacing-desktop);
+  padding-bottom: var(--section-spacing-desktop);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--section-spacing-mobile);
+    padding-bottom: var(--section-spacing-mobile);
+  }
+}
 /** --------------------------
   SHOPIFY SECTION GRID SYSTEM
 ----------------------------- */
@@ -115,14 +155,4 @@ h6 { font-size: var(--font-h6-size); }
   grid-template-columns: var(--content-grid);
   display: grid;
   width: 100%;
-}
-
-/* Child elements, by default, are constrained to the central column of the grid. */
-.shopify-section > * {
-  grid-column: 2;
-}
-
-/* Child elements that use the full-width utility class span the entire viewport. */
-.shopify-section > .full-width {
-  grid-column: 1 / -1;
 }
