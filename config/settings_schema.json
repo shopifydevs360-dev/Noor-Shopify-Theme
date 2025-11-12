@@ -457,80 +457,15 @@
           },
           {
             "type": "color",
-            "id": "primary_button",
-            "label": "Primary background",
+            "id": "link_color",
+            "label": "Link color",
             "default": "#222222"
           },
           {
             "type": "color",
-            "id": "primary_button_label",
-            "label": "Primary label",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "primary_button_outline",
-            "label": "Primary outline",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "secondary_button",
-            "label": "Secondary background",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "secondary_button_label",
-            "label": "Secondary label",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "secondary_button_outline",
-            "label": "Secondary outline",
-            "default": "#222222"
-          },
-
-          {
-            "type": "header",
-            "content": "Button hover"
-          },
-          {
-            "type": "color",
-            "id": "primary_hover",
-            "label": "Primary Background",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "primary_hover_label",
-            "label": "Primary label",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "primary_hover_outline",
-            "label": "Primary outline",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "secondary_hover",
-            "label": "Secondary Background",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "secondary_hover_label",
-            "label": "Secondary label",
-            "default": "#222222"
-          },
-          {
-            "type": "color",
-            "id": "secondary_hover_outline",
-            "label": "Secondary outline",
-            "default": "#222222"
+            "id": "link_hover_color",
+            "label": "Link hover color",
+            "default": "#000000"
           },
           {
             "type": "header",
@@ -597,14 +532,14 @@
             "solid": "background",
             "gradient": "background_gradient"
           },
-          "links": "primary_button_label",
+          "links": "link_color",
           "icons": "text",
-          "primary_button": "primary_button",
-          "on_primary_button": "primary_button_label",
-          "primary_button_border": "primary_button_outline",
-          "secondary_button": "secondary_button",
-          "on_secondary_button": "secondary_button_label",
-          "secondary_button_border": "secondary_button_outline"
+          "primary_button": "background", 
+          "on_primary_button": "text",
+          "primary_button_border": "border",
+          "secondary_button": "background_secondary",
+          "on_secondary_button": "text",
+          "secondary_button_border": "border"
         }
       },
       {
