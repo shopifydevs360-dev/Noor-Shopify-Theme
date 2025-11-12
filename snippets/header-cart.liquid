@@ -1,0 +1,6 @@
+<a href="{{ routes.cart_url }}" class="header__icon header__cart" aria-label="Cart">
+    <span class="icon icon-cart" aria-hidden="true">{%- render 'theme-icon', icon: 'cart' -%}</span>
+    {% if cart.item_count > 0 %}
+    <span class="cart-count">{{ cart.item_count }}</span>
+    {% endif %}
+</a>
