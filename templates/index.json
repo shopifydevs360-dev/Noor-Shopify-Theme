@@ -143,6 +143,8 @@
         "overlay_opacity": 25,
         "border_radius_top": 50,
         "border_radius_bottom": 66,
+        "padding_y": 60,
+        "padding_x": 30,
         "justify_content": "center"
       }
     },
@@ -202,6 +204,8 @@
         "overlay_opacity": 40,
         "border_radius_top": 0,
         "border_radius_bottom": 0,
+        "padding_y": 60,
+        "padding_x": 30,
         "justify_content": "center"
       }
     }
