@@ -80,15 +80,19 @@
 <div class="custom-section section-{{ section.id }}-id {{ section.settings.container_width }}" data-height="{{ section.settings.height_type }}">
   {% comment %} Background images (desktop + optional mobile) {% endcomment %}
   {% if section.settings.background_image or section.settings.background_image_mobile %}
-<div class="custom-section__background">
-  {% if section.settings.background_image %}
-    {{ section.settings.background_image | image_tag: widths: '2000,1600,1200,800', sizes: '100vw', class: 'desktop-bg', loading: 'lazy' }}
-  {% endif %}
-  {% if section.settings.background_image_mobile %}
-    {{ section.settings.background_image_mobile | image_tag: widths: '1000,800,600', sizes: '100vw', class: 'mobile-bg', loading: 'lazy' }}
-  {% endif %}
-</div>
+    <div class="custom-section__background">
+      {% if section.settings.background_image %}
+        {{ section.settings.background_image
+          | image_url: width: 2000
+          | image_tag: class: 'desktop-bg', loading: 'lazy' }}
+      {% endif %}
 
+      {% if section.settings.background_image_mobile %}
+        {{ section.settings.background_image_mobile
+          | image_url: width: 1000
+          | image_tag: class: 'mobile-bg', loading: 'lazy' }}
+      {% endif %}
+    </div>
   {% endif %}
 
   {% if section.settings.overlay_enable %}
