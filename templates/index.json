@@ -132,7 +132,7 @@
       "name": "t:general.custom_section",
       "settings": {
         "container_width": "container-fluid",
-        "height_type": "custom",
+        "height_type": "image",
         "height_desktop": 340,
         "height_tablet": 520,
         "height_mobile": 440,
@@ -146,7 +146,8 @@
         "padding_top": 75,
         "padding_bottom": 60,
         "padding_left": 30,
-        "padding_right": 30
+        "padding_right": 30,
+        "justify_content": "center"
       }
     },
     "custom_section_wqE3Yp": {
@@ -208,7 +209,8 @@
         "padding_top": 60,
         "padding_bottom": 60,
         "padding_left": 30,
-        "padding_right": 30
+        "padding_right": 30,
+        "justify_content": "center"
       }
     }
   },
