@@ -3,7 +3,6 @@
     z-index: 100;
     background-color: rgb(var(--color-background));
     color: rgb(var(--color-text));
-    padding: 0;
     border-bottom: 1px solid rgb(var(--color-border));
   }
 
@@ -13,10 +12,6 @@
     justify-content: space-between;
     padding: 1rem var(--page-margin);
   }
-
-
-
-
   /* Icons */
   .header__icons {
     display: flex;
