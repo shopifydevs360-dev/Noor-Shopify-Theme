@@ -567,6 +567,159 @@
     ]
   },
   {
+    "name": "t:general.buttons",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Primary Button"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_bg",
+        "label": "Background",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_label",
+        "label": "Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_border",
+        "label": "Border Color",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_hover_bg",
+        "label": "Hover Background",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_hover_label",
+        "label": "Hover Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_hover_border",
+        "label": "Hover Border Color",
+        "default": "#111111"
+      },
+      {
+        "type": "font_picker",
+        "id": "primary_button_font",
+        "label": "Font Family",
+        "default": "helvetica_n7"
+      },
+
+      {
+        "type": "header",
+        "content": "Secondary Button"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_bg",
+        "label": "Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_label",
+        "label": "Text Color",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_border",
+        "label": "Border Color",
+        "default": "#DDDDDD"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_hover_bg",
+        "label": "Hover Background",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_hover_label",
+        "label": "Hover Text Color",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_hover_border",
+        "label": "Hover Border Color",
+        "default": "#CCCCCC"
+      },
+      {
+        "type": "font_picker",
+        "id": "secondary_button_font",
+        "label": "Font Family",
+        "default": "helvetica_n7"
+      },
+      {
+        "type": "header",
+        "content": "Underline Button"
+      },
+      {
+        "type": "color",
+        "id": "underline_button_color",
+        "label": "Text & Underline Color",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "underline_button_hover_color",
+        "label": "Hover Text & Underline Color",
+        "default": "#000000"
+      },
+      {
+        "type": "font_picker",
+        "id": "underline_button_font",
+        "label": "Font Family",
+        "default": "helvetica_n7"
+      },
+
+      {
+        "type": "header",
+        "content": "Gradient Button"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient_button_bg",
+        "label": "Gradient Background"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient_button_hover_bg",
+        "label": "Hover Gradient Background"
+      },
+      {
+        "type": "color",
+        "id": "gradient_button_label",
+        "label": "Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "gradient_button_hover_label",
+        "label": "Hover Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "font_picker",
+        "id": "gradient_button_font",
+        "label": "Font Family",
+        "default": "helvetica_n7"
+      }
+    ]
+  },
+  {
     "name": "Section",
     "settings": [
       {
