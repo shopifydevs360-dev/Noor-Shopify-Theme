@@ -132,7 +132,7 @@
       "name": "t:general.custom_section",
       "settings": {
         "container_width": "container-fluid",
-        "height_type": "custom",
+        "height_type": "auto",
         "height_desktop": 340,
         "height_tablet": 520,
         "height_mobile": 440,
