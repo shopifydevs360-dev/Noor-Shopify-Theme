@@ -16,7 +16,7 @@
 
 
 {%- comment -%}
-  Load custom fonts via @font-face if enabled
+  Load custom fonts if enabled
 {%- endcomment -%}
 {% if settings.use_custom_font_body and settings.custom_body_font != blank %}
   <style>
@@ -57,7 +57,7 @@
   Root variables
 {%- endcomment -%}
 :root {
-  /* Body text font */
+  /* Typography */
   {% if settings.use_custom_font_body %}
     --font-body-family: 'CustomBodyFont', sans-serif;
     --font-body-weight: {{ settings.custom_body_weight }};
@@ -68,7 +68,6 @@
   --font-body-size: {{ settings.type_base_size }}px;
   --font-body-line-height: {{ settings.type_base_line_height }}px;
 
-  /* Headings font */
   {% if settings.use_custom_font_heading %}
     --font-heading-family: 'CustomHeadingFont', sans-serif;
     --font-heading-weight: {{ settings.custom_heading_weight }};
@@ -84,29 +83,26 @@
   --font-h5-size: {{ settings.h5_font_size }}px;
   --font-h6-size: {{ settings.h6_font_size }}px;
 
+  /* Layout */
   --page-margin: {{ settings.min_page_margin }}px;
-  /* container variable */
   --container-max-width: {{ settings.container_max_width }}px;
   --container-fluid-width: {{ settings.container_fluid_width }}px;
   --container-narrow-width: {{ settings.container_narrow_width }}px;
   --container-extra-narrow-width: {{ settings.container_extra_narrow_width }}px;
-  /* space between section */
   --section-spacing-desktop: {{ settings.section_spacing_desktop }}px;
   --section-spacing-mobile: {{ settings.section_spacing_mobile }}px;
-  /* Page Margin */
-  --page-margin: {{ settings.min_page_margin }}px;
 }
 
 
-
-
+/* =============================
+   COLOR SCHEMES
+============================= */
 {% for scheme in settings.color_schemes -%}
-  {% assign scheme_classes = scheme_classes | append: '.m-color-' | append: scheme.id | append: ', ' %}
   {%- if forloop.index == 1 -%}
     :root,
   {%- endif -%}
   .m-color-{{ scheme.id }} {
-    /* Background */
+    /* Backgrounds */
     --color-background: {{ scheme.settings.background.red }}, {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }};
     --color-background-secondary: {{ scheme.settings.background_secondary.red }}, {{ scheme.settings.background_secondary.green }}, {{ scheme.settings.background_secondary.blue }};
     {% if scheme.settings.background_gradient != empty %}
@@ -116,33 +112,19 @@
     {% endif %}
 
     /* Text */
-    --color-foreground: {{ scheme.settings.text.red }}, {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }};
-    --color-foreground-secondary: {{ scheme.settings.subtext.red }}, {{ scheme.settings.subtext.green }}, {{ scheme.settings.subtext.blue }};
+    --color-text: {{ scheme.settings.text.red }}, {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }};
+    --color-subtext: {{ scheme.settings.subtext.red }}, {{ scheme.settings.subtext.green }}, {{ scheme.settings.subtext.blue }};
     --color-heading: {{ scheme.settings.heading_text.red }}, {{ scheme.settings.heading_text.green }}, {{ scheme.settings.heading_text.blue }};
 
-    /* Buttons */
-    --color-primary-button: {{ scheme.settings.primary_button.red }}, {{ scheme.settings.primary_button.green }}, {{ scheme.settings.primary_button.blue }};
-    --color-primary-button-label: {{ scheme.settings.primary_button_label.red }}, {{ scheme.settings.primary_button_label.green }}, {{ scheme.settings.primary_button_label.blue }};
-    --color-primary-button-outline: {{ scheme.settings.primary_button_outline.red }}, {{ scheme.settings.primary_button_outline.green }}, {{ scheme.settings.primary_button_outline.blue }};
-
-    --color-secondary-button: {{ scheme.settings.secondary_button.red }}, {{ scheme.settings.secondary_button.green }}, {{ scheme.settings.secondary_button.blue }};
-    --color-secondary-button-label: {{ scheme.settings.secondary_button_label.red }}, {{ scheme.settings.secondary_button_label.green }}, {{ scheme.settings.secondary_button_label.blue }};
-    --color-secondary-button-outline: {{ scheme.settings.secondary_button_outline.red }}, {{ scheme.settings.secondary_button_outline.green }}, {{ scheme.settings.secondary_button_outline.blue }};
-
-    /* Hover states */
-    --color-primary-hover: {{ scheme.settings.primary_hover.red }}, {{ scheme.settings.primary_hover.green }}, {{ scheme.settings.primary_hover.blue }};
-    --color-primary-hover-label: {{ scheme.settings.primary_hover_label.red }}, {{ scheme.settings.primary_hover_label.green }}, {{ scheme.settings.primary_hover_label.blue }};
-    --color-primary-hover-outline: {{ scheme.settings.primary_hover_outline.red }}, {{ scheme.settings.primary_hover_outline.green }}, {{ scheme.settings.primary_hover_outline.blue }};
-
-    --color-secondary-hover: {{ scheme.settings.secondary_hover.red }}, {{ scheme.settings.secondary_hover.green }}, {{ scheme.settings.secondary_hover.blue }};
-    --color-secondary-hover-label: {{ scheme.settings.secondary_hover_label.red }}, {{ scheme.settings.secondary_hover_label.green }}, {{ scheme.settings.secondary_hover_label.blue }};
-    --color-secondary-hover-outline: {{ scheme.settings.secondary_hover_outline.red }}, {{ scheme.settings.secondary_hover_outline.green }}, {{ scheme.settings.secondary_hover_outline.blue }};
+    /* Links */
+    --color-link: {{ scheme.settings.link_color.red }}, {{ scheme.settings.link_color.green }}, {{ scheme.settings.link_color.blue }};
+    --color-link-hover: {{ scheme.settings.link_hover_color.red }}, {{ scheme.settings.link_hover_color.green }}, {{ scheme.settings.link_hover_color.blue }};
 
     /* Price */
     --color-price-sale: {{ scheme.settings.price_sale.red }}, {{ scheme.settings.price_sale.green }}, {{ scheme.settings.price_sale.blue }};
     --color-price-regular: {{ scheme.settings.price_regular.red }}, {{ scheme.settings.price_regular.green }}, {{ scheme.settings.price_regular.blue }};
 
-    /* Form fields */
+    /* Form Fields */
     --color-form-field: {{ scheme.settings.form_field.red }}, {{ scheme.settings.form_field.green }}, {{ scheme.settings.form_field.blue }};
     --color-form-field-text: {{ scheme.settings.form_field_label.red }}, {{ scheme.settings.form_field_label.green }}, {{ scheme.settings.form_field_label.blue }};
 
@@ -150,9 +132,49 @@
     --color-tooltip: {{ scheme.settings.tooltip.red }}, {{ scheme.settings.tooltip.green }}, {{ scheme.settings.tooltip.blue }};
     --color-tooltip-text: {{ scheme.settings.tooltip_label.red }}, {{ scheme.settings.tooltip_label.green }}, {{ scheme.settings.tooltip_label.blue }};
 
-    /* Misc */
+    /* Border */
     --color-border: {{ scheme.settings.border.red }}, {{ scheme.settings.border.green }}, {{ scheme.settings.border.blue }};
   }
 {% endfor %}
+
+
+/* =============================
+   BUTTON COLORS (GLOBAL)
+============================= */
+:root {
+  /* Primary Button */
+  --btn-primary-bg: {{ settings.primary_button_bg }};
+  --btn-primary-label: {{ settings.primary_button_label }};
+  --btn-primary-border: {{ settings.primary_button_border }};
+  --btn-primary-hover-bg: {{ settings.primary_button_hover_bg }};
+  --btn-primary-hover-label: {{ settings.primary_button_hover_label }};
+  --btn-primary-hover-border: {{ settings.primary_button_hover_border }};
+  --btn-primary-font: {{ settings.primary_button_font.family }}, {{ settings.primary_button_font.fallback_families }};
+
+  /* Secondary Button */
+  --btn-secondary-bg: {{ settings.secondary_button_bg }};
+  --btn-secondary-label: {{ settings.secondary_button_label }};
+  --btn-secondary-border: {{ settings.secondary_button_border }};
+  --btn-secondary-hover-bg: {{ settings.secondary_button_hover_bg }};
+  --btn-secondary-hover-label: {{ settings.secondary_button_hover_label }};
+  --btn-secondary-hover-border: {{ settings.secondary_button_hover_border }};
+  --btn-secondary-font: {{ settings.secondary_button_font.family }}, {{ settings.secondary_button_font.fallback_families }};
+
+  /* Underline Button */
+  --btn-underline-color: {{ settings.underline_button_color }};
+  --btn-underline-hover-color: {{ settings.underline_button_hover_color }};
+  --btn-underline-font: {{ settings.underline_button_font.family }}, {{ settings.underline_button_font.fallback_families }};
+
+  /* Gradient Button */
+  {% if settings.gradient_button_bg != blank %}
+    --btn-gradient-bg: {{ settings.gradient_button_bg }};
+  {% endif %}
+  {% if settings.gradient_button_hover_bg != blank %}
+    --btn-gradient-hover-bg: {{ settings.gradient_button_hover_bg }};
+  {% endif %}
+  --btn-gradient-label: {{ settings.gradient_button_label }};
+  --btn-gradient-hover-label: {{ settings.gradient_button_hover_label }};
+  --btn-gradient-font: {{ settings.gradient_button_font.family }}, {{ settings.gradient_button_font.fallback_families }};
+}
 
 {% endstyle %}
