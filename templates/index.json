@@ -137,7 +137,7 @@
         "height_tablet": 720,
         "height_mobile": 340,
         "background_color": "rgba(0,0,0,0)",
-        "background_image": "shopify://shop_images/22892312750573.jpg",
+        "background_image": "shopify://shop_images/theme_cover_image.jpg",
         "overlay_enable": true,
         "overlay_color": "#e02b2b",
         "overlay_opacity": 25,
