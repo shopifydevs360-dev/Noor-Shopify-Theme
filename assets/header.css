@@ -111,31 +111,27 @@
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* --- Always sticky --- */
-.sticky--always {
+/* Allow sticky behavior even when transparent */
+.main-header.is-transparent.is-sticky.sticky--always {
   position: sticky;
-  top: 0;
 }
 
-/* --- Scroll-up sticky --- */
-.sticky--scroll-up {
+.main-header.is-transparent.is-sticky.sticky--scroll-up {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  transform: translateY(-100%);
 }
 
-body.scroll-up .sticky--scroll-up {
-  transform: translateY(0);
+/* Transparent colors and logo styling */
+.main-header.is-transparent {
+  color: var(--header-transparent-text, #ffffff);
 }
 
-body.scroll-down .sticky--scroll-up {
-  transform: translateY(-100%);
+.main-header.is-transparent a,
+.main-header.is-transparent .header__icon svg,
+.main-header.is-transparent .menu-icon span {
+  color: var(--header-transparent-text, #ffffff);
+  stroke: var(--header-transparent-text, #ffffff);
 }
 
-/* Optional shadow when sticky */
-.main-header.is-sticky {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+.main-header.is-transparent .menu-icon span {
+  background-color: var(--header-transparent-text, #ffffff);
 }
-
