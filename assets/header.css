@@ -1,11 +1,16 @@
+/* ===============================
+   MAIN HEADER BASE STYLES
+================================= */
 .main-header {
   position: relative;
   z-index: 100;
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text));
   border-bottom: 1px solid rgb(var(--color-border));
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
+/* Header Container */
 .header-container {
   position: relative;
   display: flex;
@@ -30,8 +35,6 @@
   z-index: 1;
 }
 
-
-
 /* Right icons */
 .header__right {
   display: flex;
@@ -53,7 +56,7 @@
   background-color: transparent;
   color: rgb(var(--color-text));
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .header__icon:hover {
@@ -65,32 +68,21 @@
   height: 20px;
 }
 
-/* Transparent header mode */
+/* ===============================
+   TRANSPARENT HEADER
+================================= */
 .main-header.is-transparent {
   background: transparent;
   border-bottom: none;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  color: rgb(var(--color-text));
-  z-index: 200;
-}
-
-.main-header.is-transparent .header__icon:hover {
-  background-color: rgba(var(--color-text), 0.1);
-}
-
-.main-header.is-transparent .header__logo img {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
-}
-
-
-/* Transparent header - color and logo behavior */
-.main-header.is-transparent {
   color: var(--header-transparent-text, #ffffff);
+  z-index: 200;
+  transition: background-color 0.4s ease, color 0.3s ease;
 }
 
+/* Transparent text colors */
 .main-header.is-transparent a,
 .main-header.is-transparent .header__icon svg,
 .main-header.is-transparent .menu-icon span {
@@ -102,29 +94,44 @@
   background-color: var(--header-transparent-text, #ffffff);
 }
 
-/* === Sticky Header Logic === */
-.main-header.is-sticky {
+/* Allow sticky while transparent */
+.main-header.is-transparent.is-sticky.sticky--always {
   position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* --- Always sticky --- */
+.main-header.is-transparent.is-sticky.sticky--scroll-up {
+  position: fixed;
+}
+
+/* Drop shadow on transparent logo */
+.main-header.is-transparent .header__logo img {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+/* ===============================
+   STICKY HEADER BEHAVIORS
+================================= */
+
+/* Sticky container */
+.main-header.is-sticky {
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Always sticky */
 .sticky--always {
   position: sticky;
   top: 0;
 }
 
-/* --- Scroll-up sticky --- */
+/* Scroll-up sticky (hidden while scrolling down) */
 .sticky--scroll-up {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   transform: translateY(-100%);
+  background-color: rgb(var(--color-background));
+  border-bottom: 1px solid rgb(var(--color-border));
 }
 
 body.scroll-up .sticky--scroll-up {
@@ -135,8 +142,73 @@ body.scroll-down .sticky--scroll-up {
   transform: translateY(-100%);
 }
 
-/* Optional shadow when sticky */
+/* Optional subtle shadow */
 .main-header.is-sticky {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* ===============================
+   TRANSPARENT → SOLID TRANSITION
+================================= */
+
+/* When transparent header is scrolling down */
+body.scroll-down .main-header.is-transparent {
+  background-color: rgb(var(--color-background));
+  border-bottom: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-text));
+}
+
+/* Change icon and text color to default when scrolled */
+body.scroll-down .main-header.is-transparent .menu-icon span,
+body.scroll-down .main-header.is-transparent a,
+body.scroll-down .main-header.is-transparent .header__icon svg {
+  color: rgb(var(--color-text));
+  stroke: rgb(var(--color-text));
+  background-color: rgb(var(--color-text));
+}
+
+/* ===============================
+   MENU ICON BASE
+================================= */
+
+.menu-icon span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: rgb(var(--color-text));
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: all 0.25s ease-in-out;
+}
+
+.menu-icon span:nth-child(1) {
+  top: 0px;
+  transform-origin: left center;
+}
+
+.menu-icon span:nth-child(2) {
+  top: 8px;
+  transform-origin: left center;
+  width: 70%;
+}
+
+.menu-icon span:nth-child(3) {
+  top: 16px;
+  transform-origin: left center;
+}
+
+/* Hover animation */
+.header__menu-trigger:hover .menu-icon span:nth-child(1) {
+  transform: translateX(3px);
+}
+
+.header__menu-trigger:hover .menu-icon span:nth-child(2) {
+  width: 100%;
+}
+
+.header__menu-trigger:hover .menu-icon span:nth-child(3) {
+  transform: translateX(-3px);
+}
