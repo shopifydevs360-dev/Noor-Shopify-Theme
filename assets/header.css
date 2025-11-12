@@ -96,78 +96,57 @@
   background-color: var(--header-transparent-text, #ffffff);
 }
 
-/* Sticky header styles */
-.main-header.is-sticky {
+/* Sticky header styles - only apply when actually sticky */
+.main-header.is-sticky.is-fixed {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-}
-
-/* Always sticky - header stays at the top */
-.main-header.sticky--always {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-}
-
-/* Scroll-up sticky behavior */
-.main-header.sticky--scroll-up {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  transform: translateY(0);
-}
-
-/* When scrolling down, hide the header */
-body.scroll-down .main-header.sticky--scroll-up {
-  transform: translateY(-100%);
-}
-
-/* When scrolling up, show the header */
-body.scroll-up .main-header.sticky--scroll-up {
-  transform: translateY(0);
-}
-
-/*
- * When the page is scrolled (either up or down), ensure a transparent header
- * takes on the appearance of the selected color scheme.
- * This makes it solid and properly colored when it reappears on scroll-up.
- */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up {
   background-color: rgb(var(--color-background));
   border-bottom: 1px solid rgb(var(--color-border));
   color: rgb(var(--color-text));
+  z-index: 100;
 }
 
-/* Reset the colors of child elements for both scroll states */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up a,
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__icon svg,
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .menu-icon span,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up a,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__icon svg,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .menu-icon span {
+/* Reset colors for sticky header */
+.main-header.is-sticky.is-fixed a,
+.main-header.is-sticky.is-fixed .header__icon svg,
+.main-header.is-sticky.is-fixed .menu-icon span {
   color: rgb(var(--color-text));
   stroke: rgb(var(--color-text));
 }
 
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .menu-icon span,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .menu-icon span {
+.main-header.is-sticky.is-fixed .menu-icon span {
   background-color: rgb(var(--color-text));
 }
 
-/* Reset hover state for scrolled transparent header */
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__icon:hover,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__icon:hover {
+/* Reset hover state for sticky header */
+.main-header.is-sticky.is-fixed .header__icon:hover {
   background-color: rgba(var(--color-text), 0.1);
 }
 
-body.scroll-down .main-header.is-transparent.sticky--scroll-up .header__logo img,
-body.scroll-up .main-header.is-transparent.sticky--scroll-up .header__logo img {
+/* Reset logo filter for sticky header */
+.main-header.is-sticky.is-fixed .header__logo img {
   filter: none;
+}
+
+/* Always sticky - header stays at the top */
+.main-header.sticky--always {
+  /* This will be made fixed immediately by JS */
+}
+
+/* Scroll-up sticky behavior */
+.main-header.sticky--scroll-up {
+  /* This will be made fixed when user scrolls */
+  transform: translateY(0);
+}
+
+/* When scrolling down, hide the header */
+body.scroll-down .main-header.sticky--scroll-up.is-fixed {
+  transform: translateY(-100%);
+}
+
+/* When scrolling up, show the header */
+body.scroll-up .main-header.sticky--scroll-up.is-fixed {
+  transform: translateY(0);
 }
