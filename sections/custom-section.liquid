@@ -97,17 +97,6 @@
       pointer-events: none;
     }
   {% endif %}
-
-  /* Content (uses your existing container classes) */
-  .section-{{ section.id }}-id .custom-section__content {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: var(--content-grid);
-  }
-  .section-{{ section.id }}-id .custom-section__content > * {
-    grid-column: 2;
-  }
 </style>
 
 {% schema %}
