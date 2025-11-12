@@ -122,46 +122,7 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-  const sections = document.querySelectorAll(".custom-section");
 
-  sections.forEach(section => {
-    const inner = section.querySelector(".custom-section__inner");
-    const bgImage = section.querySelector(".custom-section__background img.desktop-bg");
-
-    if (!inner || !bgImage) return;
-
-    // Check if the section is in "adapt to image" mode
-    if (inner.dataset.height === "image") {
-
-      // Wait for the image to load
-      if (bgImage.complete) {
-        inner.style.height = bgImage.naturalHeight + "px";
-      } else {
-        bgImage.addEventListener("load", function() {
-          inner.style.height = bgImage.naturalHeight + "px";
-        });
-      }
-
-      // Optional: handle responsive swap for mobile image
-      const mobileBg = section.querySelector(".custom-section__background img.mobile-bg");
-      function updateHeight() {
-        const windowWidth = window.innerWidth;
-        if (windowWidth <= 768 && mobileBg) {
-          inner.style.height = mobileBg.naturalHeight + "px";
-        } else {
-          inner.style.height = bgImage.naturalHeight + "px";
-        }
-      }
-
-      window.addEventListener("resize", updateHeight);
-      updateHeight();
-    }
-  });
-});
-
-</script>
 
 {% schema %}
 {
