@@ -58,6 +58,17 @@
         "type": "image_picker",
         "id": "favicon",
         "label": "Favicon"
+      },
+      {
+        "type": "header",
+        "content": "RTL Mode"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_rtl",
+        "label": "Enable RTL Mode",
+        "default": false,
+        "info": "Check this to switch your store layout to right-to-left direction."
       }
     ]
   },
