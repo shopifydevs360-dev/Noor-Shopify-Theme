@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Check if RTL mode is enabled
+  const isRTL = document.body.classList.contains('rtl');
+  
   // Drawer functionality
   const drawerToggles = document.querySelectorAll('[data-drawer-toggle]');
   const drawerCloses = document.querySelectorAll('[data-drawer-close]');
