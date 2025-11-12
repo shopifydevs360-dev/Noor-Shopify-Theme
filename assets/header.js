@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentScroll = window.pageYOffset;
     
     // Don't add class when at the top of the page
-    if (currentScroll <= 0) {
+    if (currentScroll <= 200px) {
       body.classList.remove('scroll-up');
       body.classList.remove('scroll-down');
       return;
