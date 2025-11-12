@@ -88,7 +88,17 @@
     top: 19px;
   }
 
- 
+  /* Logo */
+  .header__logo {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .header__logo a {
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(var(--color-text));
+  }
 
   /* Icons */
   .header__icons {
@@ -118,24 +128,6 @@
   .header__icon svg {
     width: 20px;
     height: 20px;
-  }
-
-  .cart-count {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgb(var(--color-price-sale));
-    color: rgb(var(--color-background));
-    border-radius: 50%;
-    min-width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 1;
-    padding: 0 4px;
   }
 
   /* Mobile adjustments */
