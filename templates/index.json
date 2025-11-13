@@ -15,7 +15,7 @@
         "slide_atRg3f": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/58dd92d4-68d4-4847-8581-3a6965609564.jpg",
+            "image": "shopify://shop_images/2333879933368.jpg",
             "overlay_opacity": 30,
             "heading": "Natural Goodness",
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
@@ -47,10 +47,17 @@
       ],
       "name": "Hero Slider",
       "settings": {
+        "container_width": "container",
         "color_scheme": "",
-        "autoplay": true,
-        "autoplay_speed": 5,
-        "show_navigation": true
+        "slider_height": "adapt",
+        "slider_height_mobile": "medium",
+        "loop_sliders": true,
+        "auto_rotate_sliders": true,
+        "change_sliders_every": 5,
+        "show_pagination": true,
+        "pagination_position": "bottom",
+        "show_navigation": true,
+        "navigation_position": "bottom-right"
       }
     },
     "custom_section_CWt6yq": {
