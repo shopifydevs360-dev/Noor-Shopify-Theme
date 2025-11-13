@@ -9,6 +9,48 @@
  */
 {
   "sections": {
+    "hero_slider_dRAtkV": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_atRg3f": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 30,
+            "heading": "Natural Goodness",
+            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
+            "text_alignment": "center",
+            "button_label_1": "Shop Honey",
+            "button_link_1": "",
+            "button_label_2": "Learn More",
+            "button_link_2": ""
+          }
+        },
+        "slide_cLHMKG": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 30,
+            "heading": "Natural Goodness",
+            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
+            "text_alignment": "center",
+            "button_label_1": "Shop Honey",
+            "button_link_1": "",
+            "button_label_2": "Learn More",
+            "button_link_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_atRg3f",
+        "slide_cLHMKG"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "color_scheme": "",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_navigation": true
+      }
+    },
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
@@ -173,6 +215,7 @@
     }
   },
   "order": [
+    "hero_slider_dRAtkV",
     "custom_section_CWt6yq",
     "collections_RQEPWp"
   ]
