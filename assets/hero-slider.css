@@ -10,22 +10,22 @@
 /* --- Slider Height Options --- */
 .hero-slider--height-desktop-adapt {
   aspect-ratio: var(--aspect-ratio, 16 / 9);
-  width: 100%;
+  height: auto;
 }
-.hero-slider--height-desktop-small { min-height: 400px; }
-.hero-slider--height-desktop-medium { min-height: 600px; }
-.hero-slider--height-desktop-large { min-height: 80vh; }
-.hero-slider--height-desktop-full-screen { min-height: 100vh; }
+.hero-slider--height-desktop-small { height: 400px; }
+.hero-slider--height-desktop-medium { height: 600px; }
+.hero-slider--height-desktop-large { height: 80vh; }
+.hero-slider--height-desktop-full-screen { height: 100vh; }
 
 @media (max-width: 767px) {
   .hero-slider--height-mobile-adapt {
     aspect-ratio: var(--aspect-ratio, 4 / 3);
-    width: 100%;
+    height: auto;
   }
-  .hero-slider--height-mobile-small { min-height: 300px; }
-  .hero-slider--height-mobile-medium { min-height: 400px; }
-  .hero-slider--height-mobile-large { min-height: 60vh; }
-  .hero-slider--height-mobile-full-screen { min-height: 100vh; }
+  .hero-slider--height-mobile-small { height: 300px; }
+  .hero-slider--height-mobile-medium { height: 400px; }
+  .hero-slider--height-mobile-large { height: 60vh; }
+  .hero-slider--height-mobile-full-screen { height: 100vh; }
 }
 
 /* --- Slide Content --- */
@@ -111,7 +111,7 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: 0; /* Reset Swiper's default top margin */
+  margin-top: 0;
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
@@ -119,7 +119,6 @@
   transform: scale(1.1);
 }
 
-/* Positioning Arrows - Overriding Swiper's defaults */
 .swiper-button-prev { left: var(--page-margin, 20px); }
 .swiper-button-next { right: var(--page-margin, 20px); }
 
@@ -143,7 +142,6 @@
 /* --- RTL Support --- */
 .rtl .swiper-button-prev:after,
 .rtl .swiper-button-next:after {
-  /* Swiper uses an `::after` pseudo-element for the arrow. We rotate it. */
   transform: rotate(180deg);
 }
 
