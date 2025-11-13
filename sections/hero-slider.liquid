@@ -1,6 +1,6 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'hero-slider.js' | asset_url | script_tag: defer: true }}
 
-<script src="{{ 'hero-slider.js' | asset_url }}" defer="defer"></script>
 <div class="hero-slider m-color-{{ section.settings.color_scheme }}{% if section.settings.show_navigation %} hero-slider--has-nav{% endif %}" data-section-id="{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
   
   <div class="hero-slider__inner">
@@ -37,12 +37,12 @@
           </div>
         {% endif %}
 
-        <div class="hero-slide__overlay" style="background-color: rgba(var(--color-overlay), {{ block.settings.overlay_opacity | divided_by: 100.0 }});"></div>
+        <div class="hero-slide__overlay" style="background-color: rgba(var(--color-foreground), {{ block.settings.overlay_opacity | divided_by: 100.0 }});"></div>
         
         <div class="hero-slide__content-container">
           <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
             {% if block.settings.heading != blank %}
-              <h2 class="hero-slide__heading h1">{{ block.settings.heading | escape }}</h2>
+              <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
             {% endif %}
             {% if block.settings.text != blank %}
               <div class="hero-slide__text rte">{{ block.settings.text }}</div>
@@ -50,12 +50,12 @@
             {% if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank %}
               <div class="hero-slide__buttons">
                 {% if block.settings.button_label_1 != blank %}
-                  <a href="{{ block.settings.button_link_1 }}" class="button button--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
+                  <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
                     {{ block.settings.button_label_1 | escape }}
                   </a>
                 {% endif %}
                 {% if block.settings.button_label_2 != blank %}
-                  <a href="{{ block.settings.button_link_2 }}" class="button button--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
+                  <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
                     {{ block.settings.button_label_2 | escape }}
                   </a>
                 {% endif %}
@@ -94,7 +94,9 @@
   "name": "Hero Slider",
   "tag": "section",
   "class": "section",
-  "disabled_on": {"groups": ["header", "footer"]},
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
       "type": "color_scheme",
