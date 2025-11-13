@@ -11,16 +11,16 @@
     assign container_class = 'full-width'
   endif
 
-  assign adapt_aspect_ratio = ''
+  # CORRECTED: Calculate aspect ratio as a percentage for the padding-top trick
+  assign adapt_aspect_ratio_percent = ''
   if section.settings.slider_height == 'adapt' and section.blocks.first.settings.image != blank
-    # CORRECTED: Calculate aspect ratio as a fraction for the CSS property
-    assign adapt_aspect_ratio = section.blocks.first.settings.image.height | append: '/' | append: section.blocks.first.settings.image.width
+    assign adapt_aspect_ratio_percent = section.blocks.first.settings.image.height | times: 1.0 | divided_by: section.blocks.first.settings.image.width | times: 100.0 | append: '%'
   endif
 -%}
 
 <div class="{{ container_class }}">
   <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }} swiper" 
-       style="{% if adapt_aspect_ratio != '' %}--aspect-ratio: {{ adapt_aspect_ratio }};{% endif %}"
+       style="{% if adapt_aspect_ratio_percent != '' %}--aspect-ratio-percent: {{ adapt_aspect_ratio_percent }};{% endif %}"
        data-section-id="{{ section.id }}">
     
     <div class="swiper-wrapper">
