@@ -1,5 +1,3 @@
-{{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
-
 {{
   'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true
 }}
@@ -11,9 +9,9 @@
     assign container_class = 'full-width'
   endif
 
+  # Calculate aspect ratio as a fraction for the CSS property
   assign adapt_aspect_ratio = ''
   if section.settings.slider_height == 'adapt' and section.blocks.first.settings.image != blank
-    # CORRECTED: Calculate aspect ratio as a fraction for the CSS property
     assign adapt_aspect_ratio = section.blocks.first.settings.image.height | append: '/' | append: section.blocks.first.settings.image.width
   endif
 -%}
@@ -114,6 +112,9 @@
       },
       effect: 'slide',
       speed: 500,
+
+      // KEY FIX: Use autoHeight only when 'adapt' is selected
+      autoHeight: {{ section.settings.slider_height }} === 'adapt',
 
       // Navigation
       navigation: {{ section.settings.show_navigation | json }} ? {
