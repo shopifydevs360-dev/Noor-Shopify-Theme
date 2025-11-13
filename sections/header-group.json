@@ -14,7 +14,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "container_width": "container-fluid",
+        "container_width": "container",
         "color_scheme": "default",
         "menu": "main-menu",
         "enable_transparent_header": true,
