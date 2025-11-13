@@ -1,6 +1,9 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
 <script src="{{ 'hero-slider.js' | asset_url }}" defer="defer"></script>
 
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
 {%- liquid
   assign container_class = section.settings.container_width
   if section.settings.container_width == 'full-width'
@@ -14,16 +17,13 @@
 -%}
 
 <div class="{{ container_class }}">
-  <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }}" 
+  <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }} swiper" 
        style="{% if adapt_aspect_ratio != '' %}--aspect-ratio: {{ adapt_aspect_ratio }};{% endif %}"
-       data-section-id="{{ section.id }}" 
-       data-autoplay="{{ section.settings.auto_rotate_sliders }}" 
-       data-speed="{{ section.settings.change_sliders_every | times: 1000 }}"
-       data-loop="{{ section.settings.loop_sliders }}">
+       data-section-id="{{ section.id }}">
     
-    <div class="hero-slider__inner">
+    <div class="swiper-wrapper">
       {% for block in section.blocks %}
-        <div class="hero-slide m-color-{{ block.settings.color_scheme }}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+        <div class="swiper-slide m-color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
           {% if block.settings.image != blank %}
             <div class="hero-slide__image-container">
               {%- if block.settings.mobile_image != blank -%}
@@ -87,30 +87,56 @@
 
     {% if section.blocks.size > 1 %}
       {% if section.settings.show_navigation %}
-        <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Previous slide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button type="button" class="hero-slider__arrow hero-slider__arrow--next" aria-label="Next slide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       {% endif %}
 
       {% if section.settings.show_pagination %}
-        <div class="hero-slider__dots" role="tablist">
-          {% for block in section.blocks %}
-            <button type="button" class="hero-slider__dot" role="tab" aria-label="Show slide {{ forloop.index }}" aria-controls="Slide-{{ section.id }}-{{ forloop.index0 }}" data-index="{{ forloop.index0 }}">
-              <span class="visually-hidden">Show slide {{ forloop.index }}</span>
-            </button>
-          {% endfor %}
-        </div>
+        <div class="swiper-pagination"></div>
       {% endif %}
     {% endif %}
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const swiperContainer = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!swiperContainer) return;
+
+    const swiper = new Swiper(swiperContainer, {
+      loop: {{ section.settings.loop_sliders | json }},
+      autoplay: {
+        delay: {{ section.settings.change_sliders_every | times: 1000 }},
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      effect: 'slide', // Can be 'fade', 'cube', etc.
+      speed: 500,
+
+      // Navigation
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      // Pagination
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      // Disable navigation/pagination if hidden in settings
+      navigation: {{ section.settings.show_navigation | json }} ? {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      } : false,
+      pagination: {{ section.settings.show_pagination | json }} ? {
+        el: '.swiper-pagination',
+        clickable: true,
+      } : false,
+    });
+  });
+</script>
 
 {% schema %}
 {

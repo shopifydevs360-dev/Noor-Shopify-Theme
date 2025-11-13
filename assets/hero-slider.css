@@ -1,5 +1,5 @@
 /* -----------------------------------------
-  Hero Slider - Integrated with Theme Variables
+  Hero Slider - Using Swiper.js
 ----------------------------------------- */
 .hero-slider {
   position: relative;
@@ -9,7 +9,6 @@
 
 /* --- Slider Height Options --- */
 .hero-slider--height-desktop-adapt {
-  /* Modern aspect-ratio property is much more reliable */
   aspect-ratio: var(--aspect-ratio, 16 / 9);
   width: 100%;
 }
@@ -29,17 +28,8 @@
   .hero-slider--height-mobile-full-screen { min-height: 100vh; }
 }
 
-.hero-slider__inner {
-  display: flex;
-  height: 100%; /* Inner container should fill the height of the slider */
-  /* The transition is now handled purely by CSS */
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hero-slide {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%; /* Each slide should fill the height of the inner container */
+/* --- Slide Content --- */
+.swiper-slide {
   position: relative;
   display: flex;
   align-items: center;
@@ -105,8 +95,9 @@
 .text-left .hero-slide__buttons { justify-content: flex-start; }
 .text-right .hero-slide__buttons { justify-content: flex-end; }
 
-/* --- Navigation (Arrows) Positioning --- */
-.hero-slider__arrow {
+/* --- Swiper Navigation (Arrows) --- */
+.swiper-button-prev,
+.swiper-button-next {
   position: absolute;
   z-index: 3;
   background-color: rgba(var(--color-background), 0.8);
@@ -120,113 +111,46 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-top: 0; /* Reset Swiper's default top margin */
 }
-.hero-slider__arrow:hover {
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
   background-color: rgb(var(--color-background));
   transform: scale(1.1);
 }
 
-/* Default (middle-between) */
-.hero-slider--navigation-middle-between .hero-slider__arrow--prev { left: var(--page-margin, 20px); top: 50%; transform: translateY(-50%); }
-.hero-slider--navigation-middle-between .hero-slider__arrow--next { right: var(--page-margin, 20px); top: 50%; transform: translateY(-50%); }
+/* Positioning Arrows - Overriding Swiper's defaults */
+.swiper-button-prev { left: var(--page-margin, 20px); }
+.swiper-button-next { right: var(--page-margin, 20px); }
 
-/* Top-between */
-.hero-slider--navigation-top-between .hero-slider__arrow--prev { left: var(--page-margin, 20px); top: 20px; transform: none; }
-.hero-slider--navigation-top-between .hero-slider__arrow--next { right: var(--page-margin, 20px); top: 20px; transform: none; }
-
-/* Bottom-between */
-.hero-slider--navigation-bottom-between .hero-slider__arrow--prev { left: var(--page-margin, 20px); bottom: 20px; top: auto; transform: none; }
-.hero-slider--navigation-bottom-between .hero-slider__arrow--next { right: var(--page-margin, 20px); bottom: 20px; top: auto; transform: none; }
-
-/* Top-Left / Top-Right */
-.hero-slider--navigation-top-left .hero-slider__arrow,
-.hero-slider--navigation-top-right .hero-slider__arrow { top: 20px; transform: none; }
-.hero-slider--navigation-top-left .hero-slider__arrow--prev { left: var(--page-margin, 20px); }
-.hero-slider--navigation-top-left .hero-slider__arrow--next { left: 70px; }
-.hero-slider--navigation-top-right .hero-slider__arrow--prev { right: 70px; }
-.hero-slider--navigation-top-right .hero-slider__arrow--next { right: var(--page-margin, 20px); }
-
-/* Middle-Left / Middle-Right */
-.hero-slider--navigation-middle-left .hero-slider__arrow,
-.hero-slider--navigation-middle-right .hero-slider__arrow { top: 50%; transform: translateY(-50%); }
-.hero-slider--navigation-middle-left .hero-slider__arrow--prev { left: var(--page-margin, 20px); }
-.hero-slider--navigation-middle-left .hero-slider__arrow--next { left: 70px; }
-.hero-slider--navigation-middle-right .hero-slider__arrow--prev { right: 70px; }
-.hero-slider--navigation-middle-right .hero-slider__arrow--next { right: var(--page-margin, 20px); }
-
-/* Bottom-Left / Bottom-Right / Bottom-Center */
-.hero-slider--navigation-bottom-left .hero-slider__arrow,
-.hero-slider--navigation-bottom-right .hero-slider__arrow,
-.hero-slider--navigation-bottom-center .hero-slider__arrow { bottom: 20px; top: auto; transform: none; }
-.hero-slider--navigation-bottom-left .hero-slider__arrow--prev { left: var(--page-margin, 20px); }
-.hero-slider--navigation-bottom-left .hero-slider__arrow--next { left: 70px; }
-.hero-slider--navigation-bottom-right .hero-slider__arrow--prev { right: 70px; }
-.hero-slider--navigation-bottom-right .hero-slider__arrow--next { right: var(--page-margin, 20px); }
-.hero-slider--navigation-bottom-center .hero-slider__arrow { left: 50%; transform: translateX(-50%); }
-.hero-slider--navigation-bottom-center .hero-slider__arrow--prev { margin-right: 50px; }
-.hero-slider--navigation-bottom-center .hero-slider__arrow--next { margin-left: 50px; }
-
-
-/* --- Pagination (Dots) Positioning --- */
-.hero-slider__dots {
+/* --- Swiper Pagination (Dots) --- */
+.swiper-pagination {
   position: absolute;
   z-index: 3;
-  display: flex;
-  gap: 8px;
 }
-.hero-slider__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.swiper-pagination-bullet {
   background-color: rgba(var(--color-foreground), 0.3);
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  opacity: 1;
   transition: all 0.2s ease;
 }
-.hero-slider__dot:hover { background-color: rgba(var(--color-foreground), 0.6); }
-.hero-slider__dot.is-active { background-color: rgb(var(--color-foreground)); width: 30px; border-radius: 6px; }
-
-/* Bottom (Default) */
-.hero-slider--pagination-bottom .hero-slider__dots {
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  flex-direction: row;
+.swiper-pagination-bullet:hover {
+  background-color: rgba(var(--color-foreground), 0.6);
 }
-
-/* Left */
-.hero-slider--pagination-left .hero-slider__dots {
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  flex-direction: column;
-}
-
-/* Right */
-.hero-slider--pagination-right .hero-slider__dots {
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  flex-direction: column;
+.swiper-pagination-bullet-active {
+  background-color: rgb(var(--color-foreground));
 }
 
 /* --- RTL Support --- */
-.rtl .hero-slider__arrow svg { transform: rotate(180deg); }
-.rtl .hero-slider--navigation-top-left .hero-slider__arrow--prev { left: auto; right: var(--page-margin, 20px); }
-.rtl .hero-slider--navigation-top-left .hero-slider__arrow--next { left: auto; right: 70px; }
-.rtl .hero-slider--navigation-top-right .hero-slider__arrow--prev { right: auto; left: 70px; }
-.rtl .hero-slider--navigation-top-right .hero-slider__arrow--next { right: auto; left: var(--page-margin, 20px); }
-/* ... and so on for other left/right positions. The principle is the same. */
+.rtl .swiper-button-prev:after,
+.rtl .swiper-button-next:after {
+  /* Swiper uses an `::after` pseudo-element for the arrow. We rotate it. */
+  transform: rotate(180deg);
+}
 
 /* --- Mobile Adjustments --- */
 @media (max-width: 767px) {
   .hero-slide__content-container { padding: 2rem 1rem; }
-  .hero-slider__arrow { width: 36px; height: 36px; }
-  /* Simplified mobile navigation to avoid overlap */
-  .hero-slider__arrow--prev { left: 10px !important; top: 50% !important; transform: translateY(-50%) !important; }
-  .hero-slider__arrow--next { right: 10px !important; top: 50% !important; transform: translateY(-50%) !important; }
-  .hero-slider__dots { bottom: 10px; }
-  .hero-slider--pagination-left .hero-slider__dots { left: 10px; }
-  .hero-slider--pagination-right .hero-slider__dots { right: 10px; }
+  .swiper-button-prev, .swiper-button-next { width: 36px; height: 36px; }
+  .swiper-button-prev { left: 10px; }
+  .swiper-button-next { right: 10px; }
 }
