@@ -7,32 +7,42 @@
   overflow: hidden;
 }
 
-.hero-slider__inner {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hero-slide {
-  flex-shrink: 0;
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* --- Slider Height Options --- */
-.hero-slider--height-desktop-adapt .hero-slide { min-height: auto; }
+.hero-slider--height-desktop-adapt {
+  /* The aspect ratio is set via inline style in the Liquid file */
+  height: 0;
+  padding-top: var(--aspect-ratio, 56.25%); /* Fallback to 16:9 */
+}
 .hero-slider--height-desktop-small .hero-slide { min-height: 400px; }
 .hero-slider--height-desktop-medium .hero-slide { min-height: 600px; }
 .hero-slider--height-desktop-large .hero-slide { min-height: 80vh; }
 .hero-slider--height-desktop-full-screen .hero-slide { min-height: 100vh; }
 
 @media (max-width: 767px) {
-  .hero-slider--height-mobile-adapt .hero-slide { min-height: auto; }
+  .hero-slider--height-mobile-adapt {
+    height: 0;
+    padding-top: var(--aspect-ratio, 75%); /* Fallback to 4:3 for mobile */
+  }
   .hero-slider--height-mobile-small .hero-slide { min-height: 300px; }
   .hero-slider--height-mobile-medium .hero-slide { min-height: 400px; }
   .hero-slider--height-mobile-large .hero-slide { min-height: 60vh; }
+  .hero-slider--height-mobile-full-screen .hero-slide { min-height: 100vh; }
+}
+
+.hero-slider__inner {
+  display: flex;
+  height: 100%; /* Inner container should fill the height of the slider */
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%; /* Each slide should fill the height of the inner container */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-slide__image-container,
@@ -213,8 +223,8 @@
   .hero-slide__content-container { padding: 2rem 1rem; }
   .hero-slider__arrow { width: 36px; height: 36px; }
   /* Simplified mobile navigation to avoid overlap */
-  .hero-slider__arrow--prev { left: 10px; }
-  .hero-slider__arrow--next { right: 10px; }
+  .hero-slider__arrow--prev { left: 10px !important; top: 50% !important; transform: translateY(-50%) !important; }
+  .hero-slider__arrow--next { right: 10px !important; top: 50% !important; transform: translateY(-50%) !important; }
   .hero-slider__dots { bottom: 10px; }
   .hero-slider--pagination-left .hero-slider__dots { left: 10px; }
   .hero-slider--pagination-right .hero-slider__dots { right: 10px; }
