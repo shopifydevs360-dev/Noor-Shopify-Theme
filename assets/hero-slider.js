@@ -21,7 +21,8 @@ class HeroSlider extends HTMLElement {
 
   init() {
     this.setupEventListeners();
-    this.goToSlide(0, false); // Initialize the first slide
+    // Initialize the first slide without a transition animation
+    this.goToSlide(this.currentSlide, false);
     if (this.autoplay) {
       this.startAutoplay();
     }
@@ -76,11 +77,9 @@ class HeroSlider extends HTMLElement {
   goToSlide(index, animate = true) {
     // --- LOOP LOGIC ---
     if (!this.loop) {
-      // If looping is disabled, stop at the ends
       if (index < 0) index = 0;
       if (index >= this.slides.length) index = this.slides.length - 1;
     } else {
-      // If looping is enabled, wrap around
       if (index < 0) {
         index = this.slides.length - 1;
       } else if (index >= this.slides.length) {
@@ -90,13 +89,13 @@ class HeroSlider extends HTMLElement {
     
     this.currentSlide = index;
     const offset = -index * 100;
-    
-    // The transition is now handled purely by CSS
+
+    // SIMPLIFIED: Let CSS handle the transition. JS just sets the transform.
     if (!animate) {
-        this.slider.style.transition = 'none';
+      this.slider.style.transition = 'none';
     } else {
-        // Ensure the transition is enabled for animated slides
-        this.slider.style.transition = '';
+      // This line ensures the transition is active for all other slides
+      this.slider.style.transition = '';
     }
 
     this.slider.style.transform = `translateX(${offset}%)`;
