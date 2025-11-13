@@ -9,29 +9,30 @@
 
 /* --- Slider Height Options --- */
 .hero-slider--height-desktop-adapt {
-  /* The aspect ratio is set via inline style in the Liquid file */
-  height: 0;
-  padding-top: var(--aspect-ratio, 56.25%); /* Fallback to 16:9 */
+  /* Modern aspect-ratio property is much more reliable */
+  aspect-ratio: var(--aspect-ratio, 16 / 9);
+  width: 100%;
 }
-.hero-slider--height-desktop-small .hero-slide { min-height: 400px; }
-.hero-slider--height-desktop-medium .hero-slide { min-height: 600px; }
-.hero-slider--height-desktop-large .hero-slide { min-height: 80vh; }
-.hero-slider--height-desktop-full-screen .hero-slide { min-height: 100vh; }
+.hero-slider--height-desktop-small { min-height: 400px; }
+.hero-slider--height-desktop-medium { min-height: 600px; }
+.hero-slider--height-desktop-large { min-height: 80vh; }
+.hero-slider--height-desktop-full-screen { min-height: 100vh; }
 
 @media (max-width: 767px) {
   .hero-slider--height-mobile-adapt {
-    height: 0;
-    padding-top: var(--aspect-ratio, 75%); /* Fallback to 4:3 for mobile */
+    aspect-ratio: var(--aspect-ratio, 4 / 3);
+    width: 100%;
   }
-  .hero-slider--height-mobile-small .hero-slide { min-height: 300px; }
-  .hero-slider--height-mobile-medium .hero-slide { min-height: 400px; }
-  .hero-slider--height-mobile-large .hero-slide { min-height: 60vh; }
-  .hero-slider--height-mobile-full-screen .hero-slide { min-height: 100vh; }
+  .hero-slider--height-mobile-small { min-height: 300px; }
+  .hero-slider--height-mobile-medium { min-height: 400px; }
+  .hero-slider--height-mobile-large { min-height: 60vh; }
+  .hero-slider--height-mobile-full-screen { min-height: 100vh; }
 }
 
 .hero-slider__inner {
   display: flex;
   height: 100%; /* Inner container should fill the height of the slider */
+  /* The transition is now handled purely by CSS */
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
