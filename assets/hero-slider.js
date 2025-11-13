@@ -9,6 +9,7 @@ class HeroSlider extends HTMLElement {
     
     this.autoplay = this.dataset.autoplay === 'true';
     this.autoplaySpeed = parseInt(this.dataset.speed);
+    this.loop = this.dataset.loop === 'true';
     this.autoplayInterval = null;
     this.currentSlide = 0;
     this.sliderEvent = new CustomEvent('slideChanged', { bubbles: true, detail: { currentSlide: this.currentSlide } });
@@ -60,25 +61,33 @@ class HeroSlider extends HTMLElement {
   }
 
   handleSwipe(startX, endX) {
-    const swipeThreshold = 50; // Minimum distance for a swipe
+    const swipeThreshold = 50;
     const diff = startX - endX;
 
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
-        this.nextSlide(); // Swiped left
+        this.nextSlide();
       } else {
-        this.prevSlide(); // Swiped right
+        this.prevSlide();
       }
     }
   }
 
   goToSlide(index, animate = true) {
-    if (index < 0) {
-      index = this.slides.length - 1;
-    } else if (index >= this.slides.length) {
-      index = 0;
+    // --- LOOP LOGIC ---
+    if (!this.loop) {
+      // If looping is disabled, stop at the ends
+      if (index < 0) index = 0;
+      if (index >= this.slides.length) index = this.slides.length - 1;
+    } else {
+      // If looping is enabled, wrap around
+      if (index < 0) {
+        index = this.slides.length - 1;
+      } else if (index >= this.slides.length) {
+        index = 0;
+      }
     }
-
+    
     this.currentSlide = index;
     const offset = -index * 100;
     this.slider.style.transform = `translateX(${offset}%)`;
@@ -116,7 +125,7 @@ class HeroSlider extends HTMLElement {
   }
 
   startAutoplay() {
-    this.stopAutoplay(); // Clear any existing interval
+    this.stopAutoplay();
     this.autoplayInterval = setInterval(() => this.nextSlide(), this.autoplaySpeed);
   }
 
