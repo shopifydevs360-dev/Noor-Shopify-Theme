@@ -1,5 +1,6 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'hero-slider.js' | asset_url | script_tag: defer: true }}
+
+<script src="{{ 'hero-slider.js' | asset_url }}" defer="defer"></script>
 
 <div class="hero-slider m-color-{{ section.settings.color_scheme }}{% if section.settings.show_navigation %} hero-slider--has-nav{% endif %}" data-section-id="{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
   
@@ -68,12 +69,12 @@
   </div>
 
   {% if section.blocks.size > 1 and section.settings.show_navigation %}
-    <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" aria-label="{{ 'accessibility.previous_slide' | t }}">
+    <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Previous slide">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <button type="button" class="hero-slider__arrow hero-slider__arrow--next" aria-label="{{ 'accessibility.next_slide' | t }}">
+    <button type="button" class="hero-slider__arrow hero-slider__arrow--next" aria-label="Next slide">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -81,8 +82,8 @@
     
     <div class="hero-slider__dots" role="tablist">
       {% for block in section.blocks %}
-        <button type="button" class="hero-slider__dot" role="tab" aria-label="{{ 'accessibility.show_slide' | t }} {{ forloop.index }}" aria-controls="Slide-{{ section.id }}-{{ forloop.index0 }}" data-index="{{ forloop.index0 }}">
-          <span class="visually-hidden">{{ 'accessibility.show_slide' | t }} {{ forloop.index }}</span>
+        <button type="button" class="hero-slider__dot" role="tab" aria-label="Show slide {{ forloop.index }}" aria-controls="Slide-{{ section.id }}-{{ forloop.index0 }}" data-index="{{ forloop.index0 }}">
+          <span class="visually-hidden">Show slide {{ forloop.index }}</span>
         </button>
       {% endfor %}
     </div>
