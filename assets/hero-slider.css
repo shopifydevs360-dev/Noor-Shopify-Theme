@@ -1,11 +1,10 @@
 /* -----------------------------------------
-  Hero Slider
+  Hero Slider - Integrated with Theme Variables
 ----------------------------------------- */
 .hero-slider {
   position: relative;
   width: 100%;
   overflow: hidden;
-  --color-overlay: var(--color-foreground);
 }
 
 .hero-slider__inner {
@@ -20,6 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 60vh; /* Default height */
 }
 
 .hero-slide__image-container,
@@ -60,17 +60,17 @@
   margin: 0 auto;
 }
 
+/* Text styles will inherit from theme.css (h2, .rte, etc.) */
 .hero-slide__heading {
   margin: 0 0 1.5rem;
-  color: rgb(var(--color-foreground));
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  color: rgb(var(--color-foreground)); /* Use scheme's foreground color */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Subtle shadow for readability */
 }
 
 .hero-slide__text {
   margin: 0 0 2rem;
-  color: rgb(var(--color-foreground));
-  font-size: 1.25rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  color: rgb(var(--color-foreground)); /* Use scheme's foreground color */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .hero-slide__buttons {
@@ -81,15 +81,6 @@
 }
 
 /* Text Alignment Modifiers */
-.text-left {
-  text-align: left;
-}
-.text-center {
-  text-align: center;
-}
-.text-right {
-  text-align: right;
-}
 .text-left .hero-slide__buttons {
   justify-content: flex-start;
 }
@@ -97,16 +88,15 @@
   justify-content: flex-end;
 }
 
-
 /* Navigation */
 .hero-slider__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  background-color: rgba(var(--color-background), 0.7);
-  border: 1px solid rgba(var(--color-border), 0.5);
-  color: rgb(var(--color-foreground));
+  background-color: rgba(var(--color-background), 0.8); /* Use scheme's background */
+  border: 1px solid rgba(var(--color-border), 0.5); /* Use scheme's border */
+  color: rgb(var(--color-foreground)); /* Use scheme's foreground */
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -123,11 +113,11 @@
 }
 
 .hero-slider__arrow--prev {
-  left: 20px;
+  left: var(--page-margin, 20px);
 }
 
 .hero-slider__arrow--next {
-  right: 20px;
+  right: var(--page-margin, 20px);
 }
 
 .hero-slider__dots {
@@ -164,11 +154,11 @@
 /* RTL Support */
 .rtl .hero-slider__arrow--prev {
   left: auto;
-  right: 20px;
+  right: var(--page-margin, 20px);
 }
 .rtl .hero-slider__arrow--next {
   right: auto;
-  left: 20px;
+  left: var(--page-margin, 20px);
 }
 .rtl .hero-slider__arrow--prev svg {
   transform: rotate(180deg);
@@ -179,14 +169,11 @@
 
 /* Mobile Adjustments */
 @media (max-width: 767px) {
+  .hero-slide {
+    min-height: 50vh;
+  }
   .hero-slide__content-container {
     padding: 2rem 1rem;
-  }
-  .hero-slide__heading {
-    font-size: 2rem;
-  }
-  .hero-slide__text {
-    font-size: 1rem;
   }
   .hero-slider__arrow {
     width: 36px;
