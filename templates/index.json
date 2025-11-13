@@ -50,15 +50,15 @@
       "name": "Hero Slider",
       "settings": {
         "container_width": "full-width",
-        "slider_height": "adapt",
+        "slider_height": "small",
         "slider_height_mobile": "small",
-        "loop_sliders": false,
-        "auto_rotate_sliders": false,
+        "loop_sliders": true,
+        "auto_rotate_sliders": true,
         "change_sliders_every": 5,
         "show_pagination": true,
-        "pagination_position": "bottom",
+        "pagination_position": "right",
         "show_navigation": true,
-        "navigation_position": "bottom-right"
+        "navigation_position": "top-between"
       }
     },
     "custom_section_CWt6yq": {
