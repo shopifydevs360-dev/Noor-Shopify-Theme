@@ -10,7 +10,7 @@
 
 /* --- Slider Height Options --- */
 .hero-slider--height-desktop-adapt {
-  height: var(--adapt-height-desktop, auto);
+  height: auto; /* Let aspect-ratio control the height */
 }
 .hero-slider--height-desktop-small { height: 400px; }
 .hero-slider--height-desktop-medium { height: 600px; }
@@ -19,12 +19,18 @@
 
 @media (max-width: 767px) {
   .hero-slider--height-mobile-adapt {
-    height: var(--adapt-height-mobile, auto);
+    height: auto; /* Let aspect-ratio control the height */
   }
   .hero-slider--height-mobile-small { height: 300px; }
   .hero-slider--height-mobile-medium { height: 400px; }
   .hero-slider--height-mobile-large { height: 60vh; }
   .hero-slider--height-mobile-full-screen { height: 100vh; }
+}
+
+/* Ensure swiper wrapper and slides fill the container */
+.hero-slider .swiper-wrapper,
+.hero-slider .swiper-slide {
+  height: 100%;
 }
 
 /* --- Slide Content --- */
@@ -33,7 +39,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .hero-slide__image-container,
