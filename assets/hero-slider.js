@@ -90,13 +90,16 @@ class HeroSlider extends HTMLElement {
     
     this.currentSlide = index;
     const offset = -index * 100;
-    this.slider.style.transform = `translateX(${offset}%)`;
     
-    if (animate) {
-      this.slider.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    // The transition is now handled purely by CSS
+    if (!animate) {
+        this.slider.style.transition = 'none';
     } else {
-      this.slider.style.transition = 'none';
+        // Ensure the transition is enabled for animated slides
+        this.slider.style.transition = '';
     }
+
+    this.slider.style.transform = `translateX(${offset}%)`;
     
     this.updateDots();
     this.dispatchEvent(this.sliderEvent);

@@ -47,10 +47,9 @@
       ],
       "name": "Hero Slider",
       "settings": {
-        "container_width": "container",
-        "color_scheme": "",
+        "container_width": "full-width",
         "slider_height": "adapt",
-        "slider_height_mobile": "medium",
+        "slider_height_mobile": "large",
         "loop_sliders": true,
         "auto_rotate_sliders": true,
         "change_sliders_every": 5,
