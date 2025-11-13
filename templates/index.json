@@ -15,6 +15,7 @@
         "slide_atRg3f": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/58dd92d4-68d4-4847-8581-3a6965609564.jpg",
             "overlay_opacity": 30,
             "heading": "Natural Goodness",
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
@@ -28,6 +29,7 @@
         "slide_cLHMKG": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/22892312750573.jpg",
             "overlay_opacity": 30,
             "heading": "Natural Goodness",
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
