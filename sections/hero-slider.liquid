@@ -1,17 +1,38 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
-
 <script src="{{ 'hero-slider.js' | asset_url }}" defer="defer"></script>
 
-<div class="hero-slider m-color-{{ section.settings.color_scheme }}{% if section.settings.show_navigation %} hero-slider--has-nav{% endif %}" data-section-id="{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
-  
-  <div class="hero-slider__inner">
-    {% for block in section.blocks %}
-      <div class="hero-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          <div class="hero-slide__image-container">
-            {%- if block.settings.mobile_image != blank -%}
-              <picture>
-                <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 800, height: 800 }}">
+{%- liquid
+  assign container_class = section.settings.container_width
+  if section.settings.container_width == 'full-width'
+    assign container_class = 'full-width'
+  endif
+-%}
+
+<div class="{{ container_class }}">
+  <div class="hero-slider m-color-{{ section.settings.color_scheme }} hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }}" 
+       data-section-id="{{ section.id }}" 
+       data-autoplay="{{ section.settings.auto_rotate_sliders }}" 
+       data-speed="{{ section.settings.change_sliders_every | times: 1000 }}"
+       data-loop="{{ section.settings.loop_sliders }}">
+    
+    <div class="hero-slider__inner">
+      {% for block in section.blocks %}
+        <div class="hero-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <div class="hero-slide__image-container">
+              {%- if block.settings.mobile_image != blank -%}
+                <picture>
+                  <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 800, height: 800 }}">
+                  <img
+                    srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
+                    src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                  >
+                </picture>
+              {%- else -%}
                 <img
                   srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
                   src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
@@ -20,74 +41,69 @@
                   width="{{ block.settings.image.width }}"
                   height="{{ block.settings.image.height }}"
                 >
-              </picture>
-            {%- else -%}
-              <img
-                srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
-                src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
-                alt="{{ block.settings.image.alt | escape }}"
-                loading="lazy"
-                width="{{ block.settings.image.width }}"
-                height="{{ block.settings.image.height }}"
-              >
-            {%- endif -%}
-          </div>
-        {% else %}
-          <div class="hero-slide__placeholder">
-            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {% endif %}
+              {%- endif -%}
+            </div>
+          {% else %}
+            <div class="hero-slide__placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
 
-        <div class="hero-slide__overlay" style="background-color: rgba(var(--color-foreground), {{ block.settings.overlay_opacity | divided_by: 100.0 }});"></div>
-        
-        <div class="hero-slide__content-container">
-          <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
-            {% if block.settings.heading != blank %}
-              <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
-            {% endif %}
-            {% if block.settings.text != blank %}
-              <div class="hero-slide__text rte">{{ block.settings.text }}</div>
-            {% endif %}
-            {% if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank %}
-              <div class="hero-slide__buttons">
-                {% if block.settings.button_label_1 != blank %}
-                  <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
-                    {{ block.settings.button_label_1 | escape }}
-                  </a>
-                {% endif %}
-                {% if block.settings.button_label_2 != blank %}
-                  <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
-                    {{ block.settings.button_label_2 | escape }}
-                  </a>
-                {% endif %}
-              </div>
-            {% endif %}
+          <div class="hero-slide__overlay" style="background-color: rgba(var(--color-foreground), {{ block.settings.overlay_opacity | divided_by: 100.0 }});"></div>
+          
+          <div class="hero-slide__content-container">
+            <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
+              {% if block.settings.heading != blank %}
+                <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <div class="hero-slide__text rte">{{ block.settings.text }}</div>
+              {% endif %}
+              {% if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank %}
+                <div class="hero-slide__buttons">
+                  {% if block.settings.button_label_1 != blank %}
+                    <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
+                      {{ block.settings.button_label_1 | escape }}
+                    </a>
+                  {% endif %}
+                  {% if block.settings.button_label_2 != blank %}
+                    <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
+                      {{ block.settings.button_label_2 | escape }}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
-
-  {% if section.blocks.size > 1 and section.settings.show_navigation %}
-    <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Previous slide">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <button type="button" class="hero-slider__arrow hero-slider__arrow--next" aria-label="Next slide">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    
-    <div class="hero-slider__dots" role="tablist">
-      {% for block in section.blocks %}
-        <button type="button" class="hero-slider__dot" role="tab" aria-label="Show slide {{ forloop.index }}" aria-controls="Slide-{{ section.id }}-{{ forloop.index0 }}" data-index="{{ forloop.index0 }}">
-          <span class="visually-hidden">Show slide {{ forloop.index }}</span>
-        </button>
       {% endfor %}
     </div>
-  {% endif %}
+
+    {% if section.blocks.size > 1 %}
+      {% if section.settings.show_navigation %}
+        <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Previous slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="hero-slider__arrow hero-slider__arrow--next" aria-label="Next slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+
+      {% if section.settings.show_pagination %}
+        <div class="hero-slider__dots" role="tablist">
+          {% for block in section.blocks %}
+            <button type="button" class="hero-slider__dot" role="tab" aria-label="Show slide {{ forloop.index }}" aria-controls="Slide-{{ section.id }}-{{ forloop.index0 }}" data-index="{{ forloop.index0 }}">
+              <span class="visually-hidden">Show slide {{ forloop.index }}</span>
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
 </div>
 
 {% schema %}
@@ -100,32 +116,119 @@
   },
   "settings": [
     {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container type",
+      "options": [
+        { "value": "container", "label": "Container" },
+        { "value": "container-fluid", "label": "Container fluid" },
+        { "value": "container-narrow", "label": "Container narrow" },
+        { "value": "container-extra-narrow", "label": "Container extra narrow" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "full-width"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "background-1"
     },
     {
+      "type": "header",
+      "content": "Slider Height"
+    },
+    {
+      "type": "select",
+      "id": "slider_height",
+      "label": "Desktop height",
+      "options": [
+        { "value": "adapt", "label": "Adapt to first slide image" },
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" },
+        { "value": "full-screen", "label": "Full screen" }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "select",
+      "id": "slider_height_mobile",
+      "label": "Mobile height",
+      "options": [
+        { "value": "adapt", "label": "Adapt to first slide image" },
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "header",
+      "content": "Slider Controls"
+    },
+    {
       "type": "checkbox",
-      "id": "autoplay",
-      "label": "Enable autoplay",
+      "id": "loop_sliders",
+      "label": "Loop slides",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate_sliders",
+      "label": "Auto rotate slides",
       "default": true
     },
     {
       "type": "range",
-      "id": "autoplay_speed",
+      "id": "change_sliders_every",
       "min": 3,
       "max": 10,
       "step": 1,
       "unit": "s",
-      "label": "Autoplay speed",
+      "label": "Change slides every",
       "default": 5
     },
     {
       "type": "checkbox",
-      "id": "show_navigation",
-      "label": "Show navigation (arrows and dots)",
+      "id": "show_pagination",
+      "label": "Show pagination (dots)",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "pagination_position",
+      "label": "Pagination position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show navigation (arrows)",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "navigation_position",
+      "label": "Navigation position",
+      "options": [
+        { "value": "middle-between", "label": "Middle (between)" },
+        { "value": "top-between", "label": "Top (between)" },
+        { "value": "bottom-between", "label": "Bottom (between)" },
+        { "value": "top-left", "label": "Top Left" },
+        { "value": "top-right", "label": "Top Right" },
+        { "value": "middle-left", "label": "Middle Left" },
+        { "value": "middle-right", "label": "Middle Right" },
+        { "value": "bottom-left", "label": "Bottom Left" },
+        { "value": "bottom-center", "label": "Bottom Center" },
+        { "value": "bottom-right", "label": "Bottom Right" }
+      ],
+      "default": "middle-between"
     }
   ],
   "blocks": [
@@ -169,18 +272,9 @@
           "type": "select",
           "id": "text_alignment",
           "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
           ],
           "default": "center",
           "label": "Text alignment"
@@ -214,12 +308,8 @@
     {
       "name": "Hero Slider",
       "blocks": [
-        {
-          "type": "slide"
-        },
-        {
-          "type": "slide"
-        }
+        { "type": "slide" },
+        { "type": "slide" }
       ]
     }
   ]
