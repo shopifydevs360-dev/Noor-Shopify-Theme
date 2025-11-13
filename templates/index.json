@@ -155,7 +155,7 @@
         "background_color": "rgba(0,0,0,0)",
         "overlay_enable": true,
         "overlay_color": "#e02b2b",
-        "overlay_opacity": 25,
+        "overlay_opacity": 0,
         "border_radius_top": 0,
         "border_radius_bottom": 0,
         "padding_y": 40,
