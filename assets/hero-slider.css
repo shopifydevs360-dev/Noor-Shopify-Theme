@@ -9,10 +9,8 @@
 
 /* --- Slider Height Options --- */
 .hero-slider--height-desktop-adapt {
-  height: 0;
-  /* The height is determined by the padding-top, which is a percentage of the width */
-  padding-top: var(--aspect-ratio-percent, 56.25%); /* Fallback to 16:9 */
-  position: relative; /* Required to contain absolute children */
+  aspect-ratio: var(--aspect-ratio, 16 / 9);
+  width: 100%;
 }
 .hero-slider--height-desktop-small { min-height: 400px; }
 .hero-slider--height-desktop-medium { min-height: 600px; }
@@ -21,28 +19,14 @@
 
 @media (max-width: 767px) {
   .hero-slider--height-mobile-adapt {
-    height: 0;
-    padding-top: var(--aspect-ratio-percent, 75%); /* Fallback to 4:3 for mobile */
-    position: relative;
+    aspect-ratio: var(--aspect-ratio, 4 / 3);
+    width: 100%;
   }
   .hero-slider--height-mobile-small { min-height: 300px; }
   .hero-slider--height-mobile-medium { min-height: 400px; }
   .hero-slider--height-mobile-large { min-height: 60vh; }
   .hero-slider--height-mobile-full-screen { min-height: 100vh; }
 }
-
-/* For the 'adapt' mode, the Swiper wrapper and slides must fill the container */
-.hero-slider--height-desktop-adapt .swiper-wrapper,
-.hero-slider--height-desktop-adapt .swiper-slide,
-.hero-slider--height-mobile-adapt .swiper-wrapper,
-.hero-slider--height-mobile-adapt .swiper-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 
 /* --- Slide Content --- */
 .swiper-slide {
@@ -159,6 +143,7 @@
 /* --- RTL Support --- */
 .rtl .swiper-button-prev:after,
 .rtl .swiper-button-next:after {
+  /* Swiper uses an `::after` pseudo-element for the arrow. We rotate it. */
   transform: rotate(180deg);
 }
 
