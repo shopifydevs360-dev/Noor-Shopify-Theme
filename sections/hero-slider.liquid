@@ -11,15 +11,21 @@
     assign container_class = 'full-width'
   endif
 
-  assign adapt_aspect_ratio = ''
+  assign adapt_height_desktop = ''
+  assign adapt_height_mobile = ''
   if section.settings.slider_height == 'adapt' and section.blocks.first.settings.image != blank
-    assign adapt_aspect_ratio = 1.0 | times: section.blocks.first.settings.image.height | divided_by: section.blocks.first.settings.image.width
+    assign adapt_height_desktop = section.blocks.first.settings.image.height
+  endif
+  if section.settings.slider_height_mobile == 'adapt' and section.blocks.first.settings.mobile_image != blank
+    assign adapt_height_mobile = section.blocks.first.settings.mobile_image.height
+  elsif section.settings.slider_height_mobile == 'adapt' and section.blocks.first.settings.image != blank
+    assign adapt_height_mobile = section.blocks.first.settings.image.height
   endif
 -%}
 
 <div class="{{ container_class }}">
   <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }} swiper" 
-       style="{% if adapt_aspect_ratio != '' %}--aspect-ratio: {{ adapt_aspect_ratio }};{% endif %}"
+       style="{% if adapt_height_desktop != '' %}--adapt-height-desktop: {{ adapt_height_desktop }}px;{% endif %}{% if adapt_height_mobile != '' %}--adapt-height-mobile: {{ adapt_height_mobile }}px;{% endif %}"
        data-section-id="{{ section.id }}">
     
     <div class="swiper-wrapper">
