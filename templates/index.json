@@ -15,7 +15,7 @@
         "slide_atRg3f": {
           "type": "slide",
           "settings": {
-            "color_scheme": "",
+            "color_scheme": "default",
             "image": "shopify://shop_images/2333879933368.jpg",
             "mobile_image": "shopify://shop_images/22892312750573.jpg",
             "overlay_opacity": 30,
@@ -52,7 +52,7 @@
       "name": "Hero Slider",
       "settings": {
         "container_width": "full-width",
-        "slider_height": "medium",
+        "slider_height": "adapt",
         "slider_height_mobile": "large",
         "loop_sliders": true,
         "auto_rotate_sliders": true,
