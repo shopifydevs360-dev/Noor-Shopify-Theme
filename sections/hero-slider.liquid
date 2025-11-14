@@ -107,13 +107,15 @@
       {% endfor %}
     </div>
 
-    {% if section.blocks.size > 1 and section.settings.show_navigation %}
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    {% endif %}
+    {% if section.blocks.size > 1 %}
+      {% if section.settings.show_navigation %}
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      {% endif %}
 
-    {% if section.blocks.size > 1 and section.settings.show_pagination %}
-      <div class="swiper-pagination"></div>
+      {% if section.settings.show_pagination %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
     {% endif %}
   </div>
 </div>
@@ -123,44 +125,28 @@
     const swiperContainer = document.querySelector('[data-section-id="{{ section.id }}"]');
     if (!swiperContainer) return;
 
-    // Check if navigation elements exist
-    const nextEl = swiperContainer.querySelector('.swiper-button-next');
-    const prevEl = swiperContainer.querySelector('.swiper-button-prev');
-    const paginationEl = swiperContainer.querySelector('.swiper-pagination');
-
     const swiper = new Swiper(swiperContainer, {
       loop: {{ section.settings.loop_sliders | json }},
-      {% if section.settings.auto_rotate_sliders %}
       autoplay: {
         delay: {{ section.settings.change_sliders_every | times: 1000 }},
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       },
-      {% endif %}
       effect: 'slide',
       speed: 500,
 
-      // Navigation - only enable if elements exist and setting is true
-      navigation: ({{ section.settings.show_navigation | json }} && nextEl && prevEl) ? {
+      // Navigation
+      navigation: {{ section.settings.show_navigation | json }} ? {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       } : false,
 
-      // Pagination - only enable if element exists and setting is true
-      pagination: ({{ section.settings.show_pagination | json }} && paginationEl) ? {
+      // Pagination
+      pagination: {{ section.settings.show_pagination | json }} ? {
         el: '.swiper-pagination',
         clickable: true,
       } : false,
     });
-
-    // Re-initialize autoplay if it was disabled by user interaction but auto_rotate is enabled
-    {% if section.settings.auto_rotate_sliders %}
-    swiperContainer.addEventListener('mouseleave', function() {
-      if (swiper.autoplay.running === false) {
-        swiper.autoplay.start();
-      }
-    });
-    {% endif %}
   });
 </script>
 
