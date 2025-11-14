@@ -130,6 +130,96 @@
   transform: scale(1.1);
 }
 
+/* --- Navigation Positioning --- */
+.hero-slider--navigation-middle-between .swiper-button-prev,
+.hero-slider--navigation-middle-between .swiper-button-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-slider--navigation-top-between .swiper-button-prev,
+.hero-slider--navigation-top-between .swiper-button-next {
+  top: 20px;
+}
+
+.hero-slider--navigation-bottom-between .swiper-button-prev,
+.hero-slider--navigation-bottom-between .swiper-button-next {
+  bottom: 20px;
+  top: auto;
+}
+
+.hero-slider--navigation-top-left .swiper-button-prev,
+.hero-slider--navigation-top-left .swiper-button-next {
+  top: 20px;
+  left: 20px;
+}
+.hero-slider--navigation-top-left .swiper-button-next {
+  left: 80px;
+}
+
+.hero-slider--navigation-top-right .swiper-button-prev,
+.hero-slider--navigation-top-right .swiper-button-next {
+  top: 20px;
+  right: 20px;
+}
+.hero-slider--navigation-top-right .swiper-button-prev {
+  right: 80px;
+}
+
+.hero-slider--navigation-middle-left .swiper-button-prev,
+.hero-slider--navigation-middle-left .swiper-button-next {
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+.hero-slider--navigation-middle-left .swiper-button-next {
+  top: calc(50% + 60px);
+}
+
+.hero-slider--navigation-middle-right .swiper-button-prev,
+.hero-slider--navigation-middle-right .swiper-button-next {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+.hero-slider--navigation-middle-right .swiper-button-prev {
+  top: calc(50% + 60px);
+}
+
+.hero-slider--navigation-bottom-left .swiper-button-prev,
+.hero-slider--navigation-bottom-left .swiper-button-next {
+  bottom: 20px;
+  top: auto;
+  left: 20px;
+}
+.hero-slider--navigation-bottom-left .swiper-button-next {
+  left: 80px;
+}
+
+.hero-slider--navigation-bottom-center .swiper-button-prev,
+.hero-slider--navigation-bottom-center .swiper-button-next {
+  bottom: 20px;
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hero-slider--navigation-bottom-center .swiper-button-prev {
+  transform: translateX(calc(-50% - 40px));
+}
+.hero-slider--navigation-bottom-center .swiper-button-next {
+  transform: translateX(calc(-50% + 40px));
+}
+
+.hero-slider--navigation-bottom-right .swiper-button-prev,
+.hero-slider--navigation-bottom-right .swiper-button-next {
+  bottom: 20px;
+  top: auto;
+  right: 20px;
+}
+.hero-slider--navigation-bottom-right .swiper-button-prev {
+  right: 80px;
+}
+
 .swiper-button-prev { left: var(--page-margin, 20px); }
 .swiper-button-next { right: var(--page-margin, 20px); }
 
@@ -150,6 +240,40 @@
   background-color: rgb(var(--color-text));
 }
 
+/* --- Pagination Positioning --- */
+.hero-slider--pagination-bottom .swiper-pagination {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+}
+
+.hero-slider--pagination-left .swiper-pagination {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-slider--pagination-right .swiper-pagination {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Vertical pagination bullet styles */
+.hero-slider--pagination-left .swiper-pagination-bullet,
+.hero-slider--pagination-right .swiper-pagination-bullet {
+  margin: 4px 0 !important;
+}
+
 /* --- RTL Support --- */
 .rtl .swiper-button-prev:after,
 .rtl .swiper-button-next:after {
@@ -162,4 +286,29 @@
   .swiper-button-prev, .swiper-button-next { width: 36px; height: 36px; }
   .swiper-button-prev { left: 10px; }
   .swiper-button-next { right: 10px; }
+  
+  /* Adjust navigation positions for mobile */
+  .hero-slider--navigation-top-left .swiper-button-prev,
+  .hero-slider--navigation-top-left .swiper-button-next,
+  .hero-slider--navigation-top-right .swiper-button-prev,
+  .hero-slider--navigation-top-right .swiper-button-next {
+    top: 10px;
+  }
+  
+  .hero-slider--navigation-bottom-left .swiper-button-prev,
+  .hero-slider--navigation-bottom-left .swiper-button-next,
+  .hero-slider--navigation-bottom-right .swiper-button-prev,
+  .hero-slider--navigation-bottom-right .swiper-button-next {
+    bottom: 10px;
+  }
+  
+  /* Adjust pagination positions for mobile */
+  .hero-slider--pagination-bottom .swiper-pagination {
+    bottom: 10px;
+  }
+  
+  .hero-slider--pagination-left .swiper-pagination,
+  .hero-slider--pagination-right .swiper-pagination {
+    gap: 6px;
+  }
 }
