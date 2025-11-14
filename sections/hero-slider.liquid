@@ -42,7 +42,10 @@
 
 <div class="{{ container_class }}">
   <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }} swiper" 
-       data-section-id="{{ section.id }}">
+       data-section-id="{{ section.id }}"
+       data-autoplay="{{ section.settings.auto_rotate_sliders }}"
+       data-delay="{{ section.settings.change_sliders_every | times: 1000 }}"
+       data-loop="{{ section.settings.loop_sliders }}">
     
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
@@ -51,10 +54,10 @@
             <div class="hero-slide__image-container">
               {%- if block.settings.mobile_image != blank -%}
                 <picture>
-                  <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 800, height: 800 }}">
+                  <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 800 }}">
                   <img
-                    srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
-                    src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
+                    srcset="{{ block.settings.image | image_url: width: 1800 }}"
+                    src="{{ block.settings.image | image_url: width: 1800 }}"
                     alt="{{ block.settings.image.alt | escape }}"
                     loading="lazy"
                     width="{{ block.settings.image.width }}"
@@ -63,8 +66,8 @@
                 </picture>
               {%- else -%}
                 <img
-                  srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
-                  src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
+                  srcset="{{ block.settings.image | image_url: width: 1800 }}"
+                  src="{{ block.settings.image | image_url: width: 1800 }}"
                   alt="{{ block.settings.image.alt | escape }}"
                   loading="lazy"
                   width="{{ block.settings.image.width }}"
@@ -91,12 +94,12 @@
               {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
                 <div class="hero-slide__buttons">
                   {%- if block.settings.button_label_1 != blank -%}
-                    <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
+                    <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary">
                       {{ block.settings.button_label_1 | escape }}
                     </a>
                   {%- endif -%}
                   {%- if block.settings.button_label_2 != blank -%}
-                    <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
+                    <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary">
                       {{ block.settings.button_label_2 | escape }}
                     </a>
                   {%- endif -%}
@@ -126,49 +129,37 @@
     const swiperContainer = document.querySelector('[data-section-id="{{ section.id }}"]');
     if (!swiperContainer) return;
 
-    // Build swiper options
     const swiperOptions = {
-      loop: {% if section.settings.loop_sliders %}true{% else %}false{% endif %},
-      effect: 'slide',
+      loop: swiperContainer.dataset.loop === 'true',
       speed: 500,
     };
 
-    // Add autoplay if enabled
-    {% if section.settings.auto_rotate_sliders %}
+    // Autoplay
+    if (swiperContainer.dataset.autoplay === 'true') {
       swiperOptions.autoplay = {
-        delay: {{ section.settings.change_sliders_every | times: 1000 }},
+        delay: parseInt(swiperContainer.dataset.delay),
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       };
-    {% endif %}
+    }
 
-    // Add navigation if enabled
-    {% if section.settings.show_navigation %}
+    // Navigation
+    if (swiperContainer.querySelector('.swiper-button-next')) {
       swiperOptions.navigation = {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       };
-    {% endif %}
+    }
 
-    // Add pagination if enabled
-    {% if section.settings.show_pagination %}
+    // Pagination
+    if (swiperContainer.querySelector('.swiper-pagination')) {
       swiperOptions.pagination = {
         el: '.swiper-pagination',
         clickable: true,
       };
-    {% endif %}
-
-    // Initialize Swiper
-    const swiper = new Swiper(swiperContainer, swiperOptions);
-    
-    // Make sure the navigation arrows are visible
-    const prevButton = swiperContainer.querySelector('.swiper-button-prev');
-    const nextButton = swiperContainer.querySelector('.swiper-button-next');
-    
-    if (prevButton && nextButton) {
-      prevButton.style.display = 'flex';
-      nextButton.style.display = 'flex';
     }
+
+    new Swiper(swiperContainer, swiperOptions);
   });
 </script>
 
