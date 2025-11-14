@@ -1,5 +1,4 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
-
 {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
 <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
 
@@ -16,10 +15,12 @@
     assign adapt_aspect_ratio_desktop = section.blocks.first.settings.image.aspect_ratio
   endif
   
-  if section.settings.slider_height_mobile == 'adapt' and section.blocks.first.settings.mobile_image != blank
-    assign adapt_aspect_ratio_mobile = section.blocks.first.settings.mobile_image.aspect_ratio
-  elsif section.settings.slider_height_mobile == 'adapt' and section.blocks.first.settings.image != blank
-    assign adapt_aspect_ratio_mobile = section.blocks.first.settings.image.aspect_ratio
+  if section.settings.slider_height_mobile == 'adapt'
+    if section.blocks.first.settings.mobile_image != blank
+      assign adapt_aspect_ratio_mobile = section.blocks.first.settings.mobile_image.aspect_ratio
+    elsif section.blocks.first.settings.image != blank
+      assign adapt_aspect_ratio_mobile = section.blocks.first.settings.image.aspect_ratio
+    endif
   endif
 -%}
 
@@ -46,7 +47,7 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         <div class="swiper-slide m-color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
+          {%- if block.settings.image != blank -%}
             <div class="hero-slide__image-container">
               {%- if block.settings.mobile_image != blank -%}
                 <picture>
@@ -71,52 +72,52 @@
                 >
               {%- endif -%}
             </div>
-          {% else %}
+          {%- else -%}
             <div class="hero-slide__placeholder">
               {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
             </div>
-          {% endif %}
+          {%- endif -%}
 
           <div class="hero-slide__overlay" style="--overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
           
           <div class="hero-slide__content-container">
             <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
-              {% if block.settings.heading != blank %}
+              {%- if block.settings.heading != blank -%}
                 <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
-              {% endif %}
-              {% if block.settings.text != blank %}
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
                 <div class="hero-slide__text rte">{{ block.settings.text }}</div>
-              {% endif %}
-              {% if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank %}
+              {%- endif -%}
+              {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
                 <div class="hero-slide__buttons">
-                  {% if block.settings.button_label_1 != blank %}
+                  {%- if block.settings.button_label_1 != blank -%}
                     <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
                       {{ block.settings.button_label_1 | escape }}
                     </a>
-                  {% endif %}
-                  {% if block.settings.button_label_2 != blank %}
+                  {%- endif -%}
+                  {%- if block.settings.button_label_2 != blank -%}
                     <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
                       {{ block.settings.button_label_2 | escape }}
                     </a>
-                  {% endif %}
+                  {%- endif -%}
                 </div>
-              {% endif %}
+              {%- endif -%}
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
 
-    {% if section.blocks.size > 1 %}
-      {% if section.settings.show_navigation %}
+    {%- if section.blocks.size > 1 -%}
+      {%- if section.settings.show_navigation -%}
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
-      {% endif %}
+      {%- endif -%}
 
-      {% if section.settings.show_pagination %}
+      {%- if section.settings.show_pagination -%}
         <div class="swiper-pagination"></div>
-      {% endif %}
-    {% endif %}
+      {%- endif -%}
+    {%- endif -%}
   </div>
 </div>
 
@@ -125,28 +126,39 @@
     const swiperContainer = document.querySelector('[data-section-id="{{ section.id }}"]');
     if (!swiperContainer) return;
 
-    const swiper = new Swiper(swiperContainer, {
-      loop: {{ section.settings.loop_sliders }},
-      autoplay: {
+    // Build swiper options
+    const swiperOptions = {
+      loop: {% if section.settings.loop_sliders %}true{% else %}false{% endif %},
+      effect: 'slide',
+      speed: 500,
+    };
+
+    // Add autoplay if enabled
+    {% if section.settings.auto_rotate_sliders %}
+      swiperOptions.autoplay = {
         delay: {{ section.settings.change_sliders_every | times: 1000 }},
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
-      },
-      effect: 'slide',
-      speed: 500,
+      };
+    {% endif %}
 
-      // Navigation
-      navigation: {{ section.settings.show_navigation }} ? {
+    // Add navigation if enabled
+    {% if section.settings.show_navigation %}
+      swiperOptions.navigation = {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-      } : false,
+      };
+    {% endif %}
 
-      // Pagination
-      pagination: {{ section.settings.show_pagination }} ? {
+    // Add pagination if enabled
+    {% if section.settings.show_pagination %}
+      swiperOptions.pagination = {
         el: '.swiper-pagination',
         clickable: true,
-      } : false,
-    });
+      };
+    {% endif %}
+
+    const swiper = new Swiper(swiperContainer, swiperOptions);
   });
 </script>
 
