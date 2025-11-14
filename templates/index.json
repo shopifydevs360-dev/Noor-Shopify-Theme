@@ -17,7 +17,7 @@
           "settings": {
             "color_scheme": "default",
             "image": "shopify://shop_images/theme_cover_image.jpg",
-            "overlay_opacity": 25,
+            "overlay_opacity": 0,
             "heading": "Natural Goodness",
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
             "text_alignment": "center",
@@ -50,7 +50,7 @@
       "name": "Hero Slider",
       "settings": {
         "container_width": "full-width",
-        "slider_height": "small",
+        "slider_height": "medium",
         "slider_height_mobile": "small",
         "loop_sliders": true,
         "auto_rotate_sliders": true,
