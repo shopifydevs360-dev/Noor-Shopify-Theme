@@ -79,7 +79,7 @@
             </div>
           {% endif %}
 
-          <div class="hero-slide__overlay" style="background-color: rgba(var(--color-foreground), {{ block.settings.overlay_opacity | divided_by: 100.0 }});"></div>
+          <div class="hero-slide__overlay" style="--overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
           
           <div class="hero-slide__content-container">
             <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
