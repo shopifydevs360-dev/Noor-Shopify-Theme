@@ -53,7 +53,7 @@
         "slider_height": "medium",
         "slider_height_mobile": "small",
         "loop_sliders": true,
-        "auto_rotate_sliders": false,
+        "auto_rotate_sliders": true,
         "change_sliders_every": 3,
         "show_pagination": true,
         "pagination_position": "left",
