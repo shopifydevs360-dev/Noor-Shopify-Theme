@@ -56,9 +56,9 @@
         "auto_rotate_sliders": true,
         "change_sliders_every": 5,
         "show_pagination": true,
-        "pagination_position": "right",
+        "pagination_position": "left",
         "show_navigation": true,
-        "navigation_position": "top-left"
+        "navigation_position": "middle-right"
       }
     },
     "custom_section_CWt6yq": {
