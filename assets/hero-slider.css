@@ -130,74 +130,8 @@
   transform: scale(1.1);
 }
 
-/* Navigation positioning classes */
-.hero-slider--navigation-middle-between .swiper-button-prev {
-  left: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hero-slider--navigation-middle-between .swiper-button-next {
-  right: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.hero-slider--navigation-top-between .swiper-button-prev {
-  left: var(--page-margin, 20px);
-  top: 20px;
-}
-.hero-slider--navigation-top-between .swiper-button-next {
-  right: var(--page-margin, 20px);
-  top: 20px;
-}
-
-.hero-slider--navigation-bottom-between .swiper-button-prev {
-  left: var(--page-margin, 20px);
-  bottom: 20px;
-}
-.hero-slider--navigation-bottom-between .swiper-button-next {
-  right: var(--page-margin, 20px);
-  bottom: 20px;
-}
-
-.hero-slider--navigation-top-left .swiper-button-prev {
-  left: var(--page-margin, 20px);
-  top: 20px;
-}
-.hero-slider--navigation-top-right .swiper-button-next {
-  right: var(--page-margin, 20px);
-  top: 20px;
-}
-
-.hero-slider--navigation-middle-left .swiper-button-prev {
-  left: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hero-slider--navigation-middle-right .swiper-button-next {
-  right: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.hero-slider--navigation-bottom-left .swiper-button-prev {
-  left: var(--page-margin, 20px);
-  bottom: 20px;
-}
-.hero-slider--navigation-bottom-center .swiper-button-prev {
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-}
-.hero-slider--navigation-bottom-center .swiper-button-next {
-  right: 50%;
-  bottom: 20px;
-  transform: translateX(50%);
-}
-.hero-slider--navigation-bottom-right .swiper-button-next {
-  right: var(--page-margin, 20px);
-  bottom: 20px;
-}
+.swiper-button-prev { left: var(--page-margin, 20px); }
+.swiper-button-next { right: var(--page-margin, 20px); }
 
 /* --- Swiper Pagination (Dots) --- */
 .swiper-pagination {
@@ -214,38 +148,6 @@
 }
 .swiper-pagination-bullet-active {
   background-color: rgb(var(--color-text));
-}
-
-/* Pagination positioning classes */
-.hero-slider--pagination-left .swiper-pagination {
-  left: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hero-slider--pagination-left .swiper-pagination-bullet {
-  display: block;
-  margin: 6px 0;
-}
-
-.hero-slider--pagination-bottom .swiper-pagination {
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-}
-.hero-slider--pagination-bottom .swiper-pagination-bullet {
-  display: inline-block;
-  margin: 0 4px;
-}
-
-.hero-slider--pagination-right .swiper-pagination {
-  right: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hero-slider--pagination-right .swiper-pagination-bullet {
-  display: block;
-  margin: 6px 0;
 }
 
 /* --- RTL Support --- */
