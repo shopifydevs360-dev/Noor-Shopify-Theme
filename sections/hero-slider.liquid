@@ -110,10 +110,8 @@
 
     {%- if section.blocks.size > 1 -%}
       {%- if section.settings.show_navigation -%}
-        <div class="navigation">
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
-        </div>
       {%- endif -%}
 
       {%- if section.settings.show_pagination -%}
@@ -160,7 +158,17 @@
       };
     {% endif %}
 
+    // Initialize Swiper
     const swiper = new Swiper(swiperContainer, swiperOptions);
+    
+    // Make sure the navigation arrows are visible
+    const prevButton = swiperContainer.querySelector('.swiper-button-prev');
+    const nextButton = swiperContainer.querySelector('.swiper-button-next');
+    
+    if (prevButton && nextButton) {
+      prevButton.style.display = 'flex';
+      nextButton.style.display = 'flex';
+    }
   });
 </script>
 
