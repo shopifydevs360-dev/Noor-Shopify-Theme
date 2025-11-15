@@ -243,11 +243,6 @@
 
 /* --- BOTTOM-RIGHT --- */
 
-.hero-slider .swiper-button-prev::after,
-.hero-slider .swiper-button-next::after {
-  font-size: 18px;
-}
-
 /* --- Pagination Positioning --- */
 .hero-slider .swiper-pagination-bullet {
   background: rgba(255,255,255,0.8);
