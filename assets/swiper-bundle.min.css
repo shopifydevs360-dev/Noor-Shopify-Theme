@@ -281,11 +281,7 @@
 .swiper-rtl .swiper-button-next svg {
   transform: rotate(180deg);
 }
-.swiper-button-prev,
-.swiper-rtl .swiper-button-next {
-  left: var(--swiper-navigation-sides-offset, 10px);
-  right: auto;
-}
+
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
   right: var(--swiper-navigation-sides-offset, 10px);
