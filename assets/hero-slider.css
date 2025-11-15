@@ -163,73 +163,102 @@
 }
 
 /* --- Navigation Position Variations --- */
+
+/* Top Between */
 .hero-slider--navigation-top-between .swiper-button-prev,
 .hero-slider--navigation-top-between .swiper-button-next {
   top: 20px;
   transform: translateY(0);
 }
+.hero-slider--navigation-top-between .swiper-button-prev { left: 20px; }
+.hero-slider--navigation-top-between .swiper-button-next { right: 20px; }
 
+/* Bottom Between */
 .hero-slider--navigation-bottom-between .swiper-button-prev,
 .hero-slider--navigation-bottom-between .swiper-button-next {
   bottom: 20px;
   top: auto;
   transform: translateY(0);
 }
+.hero-slider--navigation-bottom-between .swiper-button-prev { left: 20px; }
+.hero-slider--navigation-bottom-between .swiper-button-next { right: 20px; }
 
-.hero-slider--navigation-top-left .swiper-button-prev {
-  top: 20px;
+/* Top Left - Stacked */
+.hero-slider--navigation-top-left .swiper-button-prev,
+.hero-slider--navigation-top-left .swiper-button-next {
   left: 20px;
   transform: translateY(0);
 }
+.hero-slider--navigation-top-left .swiper-button-prev { top: 20px; }
+.hero-slider--navigation-top-left .swiper-button-next { top: 74px; } /* 20px + 44px height + 10px gap */
 
+/* Top Right - Stacked */
+.hero-slider--navigation-top-right .swiper-button-prev,
 .hero-slider--navigation-top-right .swiper-button-next {
-  top: 20px;
   right: 20px;
   transform: translateY(0);
 }
+.hero-slider--navigation-top-right .swiper-button-next { top: 20px; }
+.hero-slider--navigation-top-right .swiper-button-prev { top: 74px; }
 
-.hero-slider--navigation-middle-left .swiper-button-prev {
-  top: 50%;
+/* Middle Left - Stacked */
+.hero-slider--navigation-middle-left .swiper-button-prev,
+.hero-slider--navigation-middle-left .swiper-button-next {
   left: 20px;
   transform: translateY(-50%);
 }
+.hero-slider--navigation-middle-left .swiper-button-prev { top: calc(50% - 27px); } /* 50% - (44px/2 + 10px/2) */
+.hero-slider--navigation-middle-left .swiper-button-next { top: calc(50% + 27px); }
 
+/* Middle Right - Stacked */
+.hero-slider--navigation-middle-right .swiper-button-prev,
 .hero-slider--navigation-middle-right .swiper-button-next {
-  top: 50%;
   right: 20px;
   transform: translateY(-50%);
 }
+.hero-slider--navigation-middle-right .swiper-button-prev { top: calc(50% - 27px); }
+.hero-slider--navigation-middle-right .swiper-button-next { top: calc(50% + 27px); }
 
-.hero-slider--navigation-bottom-left .swiper-button-prev {
-  bottom: 20px;
-  top: auto;
+/* Bottom Left - Stacked */
+.hero-slider--navigation-bottom-left .swiper-button-prev,
+.hero-slider--navigation-bottom-left .swiper-button-next {
   left: 20px;
   transform: translateY(0);
 }
+.hero-slider--navigation-bottom-left .swiper-button-next { bottom: 20px; }
+.hero-slider--navigation-bottom-left .swiper-button-prev { bottom: 74px; }
 
+/* Bottom Right - Stacked */
+.hero-slider--navigation-bottom-right .swiper-button-prev,
+.hero-slider--navigation-bottom-right .swiper-button-next {
+  right: 20px;
+  transform: translateY(0);
+}
+.hero-slider--navigation-bottom-right .swiper-button-next { bottom: 20px; }
+.hero-slider--navigation-bottom-right .swiper-button-prev { bottom: 74px; }
+
+/* Bottom Center - Side by side */
 .hero-slider--navigation-bottom-center .swiper-button-prev,
 .hero-slider--navigation-bottom-center .swiper-button-next {
   bottom: 20px;
   top: auto;
   transform: translateY(0);
 }
-
 .hero-slider--navigation-bottom-center .swiper-button-prev {
   left: calc(50% - 50px);
 }
-
 .hero-slider--navigation-bottom-center .swiper-button-next {
   right: calc(50% - 50px);
 }
 
-.hero-slider--navigation-bottom-right .swiper-button-next {
-  bottom: 20px;
-  top: auto;
-  right: 20px;
-  transform: translateY(0);
+/* --- Pagination Position Variations --- */
+.hero-slider--pagination-left .swiper-pagination,
+.hero-slider--pagination-right .swiper-pagination {
+  /* Swiper.js sets display: flex, so we can change direction */
+  flex-direction: column;
+  gap: 8px; /* Add vertical gap between dots */
 }
 
-/* --- Pagination Position Variations --- */
 .hero-slider--pagination-left .swiper-pagination {
   left: 20px;
   right: auto;
@@ -259,7 +288,16 @@
     width: 36px; 
     height: 36px; 
   }
-  .swiper-button-prev { left: 10px; }
-  .swiper-button-next { right: 10px; }
+  /* Reset navigation to default middle position on mobile for better UX */
+  .swiper-button-prev { 
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .swiper-button-next { 
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   .swiper-pagination { bottom: 10px; }
 }
