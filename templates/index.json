@@ -16,34 +16,36 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/theme_cover_image.jpg",
-            "content_position": "bottom-left",
-            "padding_top_bottom": 20,
-            "padding_left_right": 20,
-            "show_background": true,
-            "background_blur": 5,
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
             "text_alignment": "center",
             "button_label_1": "Shop Honey",
             "button_link_1": "",
             "button_label_2": "Learn More",
-            "button_link_2": ""
+            "button_link_2": "",
+            "horizontal_alignment": "right",
+            "vertical_alignment": "center",
+            "padding_top_bottom": 20,
+            "padding_left_right": 20,
+            "show_background": true,
+            "background_blur": 5
           }
         },
         "slide_cLHMKG": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/381420017835.jpg",
-            "content_position": "middle-center",
-            "padding_top_bottom": 20,
-            "padding_left_right": 20,
-            "show_background": false,
-            "background_blur": 5,
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
             "text_alignment": "center",
             "button_label_1": "Shop Honey",
             "button_link_1": "",
             "button_label_2": "Learn More",
-            "button_link_2": ""
+            "button_link_2": "",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "padding_top_bottom": 20,
+            "padding_left_right": 20,
+            "show_background": false,
+            "background_blur": 5
           }
         }
       },
