@@ -55,9 +55,9 @@
         "loop_sliders": true,
         "auto_rotate_sliders": true,
         "change_sliders_every": 3,
-        "show_pagination": false,
+        "show_pagination": true,
         "pagination_position": "bottom",
-        "show_navigation": false,
+        "show_navigation": true,
         "navigation_position": "middle-between"
       }
     },
