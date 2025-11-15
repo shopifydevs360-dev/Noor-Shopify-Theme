@@ -107,10 +107,17 @@
 .text-right .hero-slide__buttons { justify-content: flex-end; }
 
 /* --- Swiper Navigation (Arrows) --- */
-.swiper-button-prev,
-.swiper-button-next {
+.navigation-set {
   position: absolute;
   z-index: 3;
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  /* Position is now handled by the flex container */
+  position: static; /* Override absolute positioning from Swiper.js */
   background-color: rgba(var(--color-background, var(--color-body-background)), 0.8);
   border: 1px solid rgba(var(--color-border), 0.5);
   color: rgb(var(--color-text));
@@ -122,24 +129,12 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: 0; /* Override Swiper default */
+  margin: 0; /* Reset margin */
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   background-color: rgb(var(--color-background, var(--color-body-background)));
   transform: scale(1.1);
-}
-
-/* Default navigation positioning (middle-between) */
-.swiper-button-prev { 
-  left: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.swiper-button-next { 
-  right: var(--page-margin, 20px);
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 /* --- Swiper Pagination (Dots) --- */
@@ -168,106 +163,89 @@
 
 /* --- Navigation Position Variations --- */
 
-/* Top Between - Horizontal */
-.hero-slider--navigation-top-between .swiper-button-prev {
+/* Default (middle-between) */
+.hero-slider--navigation-middle-between .navigation-set {
+  top: 50%;
+  left: var(--page-margin, 20px);
+  right: var(--page-margin, 20px);
+  transform: translateY(-50%);
+  justify-content: space-between;
+}
+
+/* Top Between */
+.hero-slider--navigation-top-between .navigation-set {
   top: 20px;
   left: 20px;
-  transform: none;
-}
-.hero-slider--navigation-top-between .swiper-button-next {
-  top: 20px;
   right: 20px;
-  transform: none;
+  justify-content: space-between;
 }
 
-/* Bottom Between - Horizontal */
-.hero-slider--navigation-bottom-between .swiper-button-prev {
+/* Bottom Between */
+.hero-slider--navigation-bottom-between .navigation-set {
   bottom: 20px;
-  top: auto;
   left: 20px;
-  transform: none;
-}
-.hero-slider--navigation-bottom-between .swiper-button-next {
-  bottom: 20px;
-  top: auto;
   right: 20px;
-  transform: none;
+  justify-content: space-between;
 }
 
-/* Top Left - Horizontal */
-.hero-slider--navigation-top-left .swiper-button-prev,
-.hero-slider--navigation-top-left .swiper-button-next {
+/* Top Left */
+.hero-slider--navigation-top-left .navigation-set {
   top: 20px;
-  transform: none;
+  left: 20px;
+  flex-direction: row;
 }
-.hero-slider--navigation-top-left .swiper-button-prev { left: 20px; }
-.hero-slider--navigation-top-left .swiper-button-next { left: 74px; } /* 20px + 44px width + 10px gap */
 
-/* Top Right - Horizontal */
-.hero-slider--navigation-top-right .swiper-button-prev,
-.hero-slider--navigation-top-right .swiper-button-next {
+/* Top Right */
+.hero-slider--navigation-top-right .navigation-set {
   top: 20px;
-  transform: none;
+  right: 20px;
+  flex-direction: row;
 }
-.hero-slider--navigation-top-right .swiper-button-next { right: 20px; }
-.hero-slider--navigation-top-right .swiper-button-prev { right: 74px; }
 
-/* Middle Left - Vertical */
-.hero-slider--navigation-middle-left .swiper-button-prev,
-.hero-slider--navigation-middle-left .swiper-button-next {
+/* Middle Left */
+.hero-slider--navigation-middle-left .navigation-set {
+  top: 50%;
   left: 20px;
   transform: translateY(-50%);
+  flex-direction: column;
 }
-.hero-slider--navigation-middle-left .swiper-button-prev { top: calc(50% - 27px); } /* 50% - (44px/2 + 10px/2) */
-.hero-slider--navigation-middle-left .swiper-button-next { top: calc(50% + 27px); }
 
-/* Middle Right - Vertical */
-.hero-slider--navigation-middle-right .swiper-button-prev,
-.hero-slider--navigation-middle-right .swiper-button-next {
+/* Middle Right */
+.hero-slider--navigation-middle-right .navigation-set {
+  top: 50%;
   right: 20px;
   transform: translateY(-50%);
+  flex-direction: column;
 }
-.hero-slider--navigation-middle-right .swiper-button-prev { top: calc(50% - 27px); }
-.hero-slider--navigation-middle-right .swiper-button-next { top: calc(50% + 27px); }
 
-/* Bottom Left - Horizontal */
-.hero-slider--navigation-bottom-left .swiper-button-prev,
-.hero-slider--navigation-bottom-left .swiper-button-next {
+/* Bottom Left */
+.hero-slider--navigation-bottom-left .navigation-set {
   bottom: 20px;
-  top: auto;
-  transform: none;
+  left: 20px;
+  flex-direction: row;
 }
-.hero-slider--navigation-bottom-left .swiper-button-prev { left: 20px; }
-.hero-slider--navigation-bottom-left .swiper-button-next { left: 74px; }
 
-/* Bottom Right - Horizontal */
-.hero-slider--navigation-bottom-right .swiper-button-prev,
-.hero-slider--navigation-bottom-right .swiper-button-next {
+/* Bottom Right */
+.hero-slider--navigation-bottom-right .navigation-set {
   bottom: 20px;
-  top: auto;
-  transform: none;
+  right: 20px;
+  flex-direction: row;
 }
-.hero-slider--navigation-bottom-right .swiper-button-next { right: 20px; }
-.hero-slider--navigation-bottom-right .swiper-button-prev { right: 74px; }
 
-/* Bottom Center - Horizontal */
-.hero-slider--navigation-bottom-center .swiper-button-prev,
-.hero-slider--navigation-bottom-center .swiper-button-next {
+/* Bottom Center */
+.hero-slider--navigation-bottom-center .navigation-set {
   bottom: 20px;
-  top: auto;
-  transform: none;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
 }
-.hero-slider--navigation-bottom-center .swiper-button-prev {
-  left: calc(50% - 50px);
-}
-.hero-slider--navigation-bottom-center .swiper-button-next {
-  right: calc(50% - 50px);
-}
+
 
 /* --- Pagination Position Variations --- */
 /* Vertical pagination for Left and Right positions */
 .hero-slider--pagination-left .swiper-pagination,
 .hero-slider--pagination-right .swiper-pagination {
+  display: flex;
   flex-direction: column;
   gap: 8px;
 }
@@ -302,15 +280,12 @@
     height: 36px; 
   }
   /* Reset navigation to default middle position on mobile for better UX */
-  .swiper-button-prev { 
+  .navigation-set {
+    top: 50%;
     left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .swiper-button-next { 
     right: 10px;
-    top: 50%;
     transform: translateY(-50%);
+    justify-content: space-between;
   }
   .swiper-pagination { bottom: 10px; }
 }
