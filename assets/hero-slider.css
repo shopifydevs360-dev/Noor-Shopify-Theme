@@ -116,33 +116,6 @@
 .text-left .hero-slide__buttons { justify-content: flex-start; }
 .text-right .hero-slide__buttons { justify-content: flex-end; }
 
-/* --- Swiper Navigation (Arrows) --- */
-.navigation-set {
-  display: flex;
-  justify-content: center;
-  gap: 10px; /* Space between buttons */
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  background-color: rgba(var(--color-background, var(--color-body-background)), 0.8);
-  border: 1px solid rgba(var(--color-border), 0.5);
-  color: rgb(var(--color-text));
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin: 0; /* Reset margin */
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background-color: rgb(var(--color-background, var(--color-body-background)));
-  transform: scale(1.1);
-}
 
 /* --- Swiper Pagination (Dots) --- */
 .swiper-pagination {
