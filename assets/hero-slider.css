@@ -272,7 +272,15 @@
   gap: 8px;
 }
 /* RIGHT */
-
+.hero-slider--pagination-right .swiper-pagination {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+/* Mobile adjustments */
 @media (max-width: 767px) {
   .hero-slider .swiper-pagination {
     bottom: 12px !important;
