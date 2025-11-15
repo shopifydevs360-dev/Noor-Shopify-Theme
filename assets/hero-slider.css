@@ -133,6 +133,10 @@
   backdrop-filter: blur(4px);
   cursor: pointer;
 }
+.hero-slider .swiper-button-prev::after,
+.hero-slider .swiper-button-next::after {
+  font-size: 18px;
+}
 /* --- Navigation Positioning --- */
 /* --- MIDDLE–BETWEEN --- */
 .hero-slider--navigation-middle-between .swiper-button-prev {
