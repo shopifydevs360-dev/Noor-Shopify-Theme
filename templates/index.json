@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/theme_cover_image.jpg",
-            "content_position": "middle-center",
+            "content_position": "bottom-left",
             "padding_top_bottom": 20,
             "padding_left_right": 20,
             "show_background": true,
