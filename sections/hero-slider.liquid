@@ -44,24 +44,6 @@
       {% endif %}
     }
   }
-
-  /* Navigation colors */
-  .hero-slider[data-section-id="{{ section.id }}"] .swiper-button-prev,
-  .hero-slider[data-section-id="{{ section.id }}"] .swiper-button-next {
-    color: {{ section.settings.nav_color_normal }};
-  }
-  .hero-slider[data-section-id="{{ section.id }}"] .swiper-button-prev:hover,
-  .hero-slider[data-section-id="{{ section.id }}"] .swiper-button-next:hover {
-    color: {{ section.settings.nav_color_hover }};
-  }
-
-  /* Pagination colors */
-  .hero-slider[data-section-id="{{ section.id }}"] .swiper-pagination-bullet {
-    background: {{ section.settings.pagination_color_normal }};
-  }
-  .hero-slider[data-section-id="{{ section.id }}"] .swiper-pagination-bullet-active {
-    background: {{ section.settings.pagination_color_active }};
-  }
 </style>
 
 <div class="{{ container_class }}">
@@ -133,8 +115,9 @@
 
     {%- if section.blocks.size > 1 -%}
       {%- if section.settings.show_navigation -%}
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
       {%- endif -%}
 
       {%- if section.settings.show_pagination -%}
@@ -186,6 +169,9 @@
   "name": "Hero Slider",
   "tag": "section",
   "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
       "type": "select",
@@ -296,30 +282,6 @@
         { "value": "bottom-right", "label": "Bottom Right" }
       ],
       "default": "middle-between"
-    },
-    {
-      "type": "color",
-      "id": "nav_color_normal",
-      "label": "Navigation color (normal)",
-      "default": "#007aff"
-    },
-    {
-      "type": "color",
-      "id": "nav_color_hover",
-      "label": "Navigation color (hover)",
-      "default": "#ff0000"
-    },
-    {
-      "type": "color",
-      "id": "pagination_color_normal",
-      "label": "Pagination color (normal)",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "pagination_color_active",
-      "label": "Pagination color (active)",
-      "default": "#007aff"
     }
   ],
   "blocks": [
