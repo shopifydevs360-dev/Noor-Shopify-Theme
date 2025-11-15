@@ -52,7 +52,7 @@
         "container_width": "full-width",
         "slider_height": "medium",
         "slider_height_mobile": "small",
-        "loop_sliders": true,
+        "loop_sliders": false,
         "auto_rotate_sliders": false,
         "change_sliders_every": 3,
         "show_pagination": true,
