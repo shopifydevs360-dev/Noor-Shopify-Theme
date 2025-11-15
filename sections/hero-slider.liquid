@@ -290,10 +290,8 @@
       "name": "Slide",
       "settings": [
         {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "Color scheme",
-          "default": "background-1"
+          "type": "header",
+          "content": "Background Image"
         },
         {
           "type": "image_picker",
@@ -306,59 +304,98 @@
           "label": "Mobile Image (optional)"
         },
         {
-          "type": "range",
-          "id": "overlay_opacity",
-          "min": 0,
-          "max": 80,
-          "step": 5,
-          "unit": "%",
-          "label": "Image overlay opacity",
-          "default": 30
+          "type": "header",
+          "content": "Content Settings"
         },
         {
-          "type": "text",
-          "id": "heading",
-          "default": "Natural Goodness",
-          "label": "Heading"
+          "type": "select",
+          "id": "content_position",
+          "label": "Content Position",
+          "options": [
+            { "value": "top-left", "label": "Top Left" },
+            { "value": "top-center", "label": "Top Center" },
+            { "value": "top-right", "label": "Top Right" },
+            { "value": "middle-left", "label": "Middle Left" },
+            { "value": "middle-center", "label": "Middle Center" },
+            { "value": "middle-right", "label": "Middle Right" },
+            { "value": "bottom-left", "label": "Bottom Left" },
+            { "value": "bottom-center", "label": "Bottom Center" },
+            { "value": "bottom-right", "label": "Bottom Right" }
+          ],
+          "default": "middle-center"
+        },
+        {
+          "type": "range",
+          "id": "padding_top_bottom",
+          "label": "Padding Top & Bottom",
+          "min": 0,
+          "max": 200,
+          "step": 5,
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "padding_left_right",
+          "label": "Padding Left & Right",
+          "min": 0,
+          "max": 200,
+          "step": 5,
+          "default": 20
+        },
+        {
+          "type": "checkbox",
+          "id": "show_background",
+          "label": "Show Background Behind Content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "background_blur",
+          "label": "Background Blur",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 5
         },
         {
           "type": "richtext",
           "id": "text",
-          "default": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
-          "label": "Text"
+          "label": "Text",
+          "default": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>"
         },
         {
           "type": "select",
           "id": "text_alignment",
+          "label": "Text Alignment",
           "options": [
             { "value": "left", "label": "Left" },
             { "value": "center", "label": "Center" },
             { "value": "right", "label": "Right" }
           ],
-          "default": "center",
-          "label": "Text alignment"
+          "default": "center"
         },
         {
           "type": "text",
           "id": "button_label_1",
-          "default": "Shop Honey",
-          "label": "First button label"
+          "label": "First Button Label",
+          "default": "Shop Honey"
         },
         {
           "type": "url",
           "id": "button_link_1",
-          "label": "First button link"
+          "label": "First Button Link"
         },
         {
           "type": "text",
           "id": "button_label_2",
-          "default": "Learn More",
-          "label": "Second button label"
+          "label": "Second Button Label",
+          "default": "Learn More"
         },
         {
           "type": "url",
           "id": "button_link_2",
-          "label": "Second button link"
+          "label": "Second Button Link"
         }
       ]
     }
