@@ -172,6 +172,27 @@
 }
 
 /* --- Pagination Positioning --- */
+.hero-slider .swiper-button-prev,
+.hero-slider .swiper-button-next {
+  position: absolute;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.hero-slider .swiper-button-prev::after,
+.hero-slider .swiper-button-next::after {
+  font-size: 18px;
+}
+
+/* --- Pagination Positioning --- */
 .hero-slider-wrapper--pag-top .swiper-pagination {
   order: -1;
 }
