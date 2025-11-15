@@ -164,27 +164,68 @@
 /* --- Control Positioning with Flexbox --- */
 
 /* --- Navigation Positioning --- */
-/* Default is bottom-center */
-.hero-slider-wrapper--nav-top-between .navigation-set { order: -1; }
-.hero-slider-wrapper--nav-top-left .navigation-set { order: -1; align-self: flex-start; }
-.hero-slider-wrapper--nav-top-right .navigation-set { order: -1; align-self: flex-end; }
+.hero-slider-wrapper--nav-top-between .navigation-set {
+  order: -1;
+  align-self: center;
+}
 
-.hero-slider-wrapper--nav-middle-between .navigation-set { /* Default */ }
-.hero-slider-wrapper--nav-bottom-between .navigation-set { /* Default */ }
-.hero-slider-wrapper--nav-bottom-center .navigation-set { /* Default */ }
+.hero-slider-wrapper--nav-top-left .navigation-set {
+  order: -1;
+  align-self: flex-start;
+}
 
-.hero-slider-wrapper--nav-middle-left .navigation-set { align-self: flex-start; }
-.hero-slider-wrapper--nav-bottom-left .navigation-set { align-self: flex-start; }
+.hero-slider-wrapper--nav-top-right .navigation-set {
+  order: -1;
+  align-self: flex-end;
+}
 
-.hero-slider-wrapper--nav-middle-right .navigation-set { align-self: flex-end; }
-.hero-slider-wrapper--nav-bottom-right .navigation-set { align-self: flex-end; }
+.hero-slider-wrapper--nav-middle-between .navigation-set {
+  order: 0;
+  align-self: center;
+}
+
+.hero-slider-wrapper--nav-bottom-between .navigation-set {
+  order: 0;
+  align-self: center;
+}
+
+.hero-slider-wrapper--nav-middle-left .navigation-set {
+  order: 0;
+  align-self: flex-start;
+}
+
+.hero-slider-wrapper--nav-middle-right .navigation-set {
+  order: 0;
+  align-self: flex-end;
+}
+
+.hero-slider-wrapper--nav-bottom-left .navigation-set {
+  order: 0;
+  align-self: flex-start;
+}
+
+.hero-slider-wrapper--nav-bottom-center .navigation-set {
+  order: 0;
+  align-self: center;
+}
+
+.hero-slider-wrapper--nav-bottom-right .navigation-set {
+  order: 0;
+  align-self: flex-end;
+}
 
 /* --- Pagination Positioning --- */
-/* Default is bottom */
-.hero-slider-wrapper--pag-left .swiper-pagination { order: -1; }
-.hero-slider-wrapper--pag-bottom .swiper-pagination { /* Default */ }
-.hero-slider-wrapper--pag-right .swiper-pagination { /* Default */ }
+.hero-slider-wrapper--pag-left .swiper-pagination {
+  order: -1;
+}
 
+.hero-slider-wrapper--pag-bottom .swiper-pagination {
+  order: 0;
+}
+
+.hero-slider-wrapper--pag-right .swiper-pagination {
+  order: 0;
+}
 
 /* --- RTL Support --- */
 .rtl .swiper-button-prev:after,
