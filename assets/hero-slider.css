@@ -1,6 +1,14 @@
 /* -----------------------------------------
-  Hero Slider - Using Swiper.js
+  Hero Slider - Using Flexbox for Controls
 ----------------------------------------- */
+
+/* --- Main Wrapper --- */
+.hero-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Space between slider and controls */
+}
+
 .hero-slider {
   position: relative;
   width: 100%;
@@ -19,7 +27,7 @@
 
 @media (max-width: 767px) {
   .hero-slider--height-mobile-adapt {
-    height: auto; /* Let aspect-ratio control the height */
+    height: auto;
   }
   .hero-slider--height-mobile-small { height: 300px; }
   .hero-slider--height-mobile-medium { height: 400px; }
@@ -108,16 +116,13 @@
 
 /* --- Swiper Navigation (Arrows) --- */
 .navigation-set {
-  position: absolute;
-  z-index: 3;
   display: flex;
+  justify-content: center;
   gap: 10px; /* Space between buttons */
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-  /* Position is now handled by the flex container */
-  position: static; /* Override absolute positioning from Swiper.js */
   background-color: rgba(var(--color-background, var(--color-body-background)), 0.8);
   border: 1px solid rgba(var(--color-border), 0.5);
   color: rgb(var(--color-text));
@@ -139,14 +144,10 @@
 
 /* --- Swiper Pagination (Dots) --- */
 .swiper-pagination {
-  position: absolute;
-  z-index: 3;
-}
-/* Default pagination (bottom) */
-.swiper-pagination {
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .swiper-pagination-bullet {
   background-color: rgba(var(--color-text), 0.3);
@@ -160,111 +161,30 @@
   background-color: rgb(var(--color-text));
 }
 
+/* --- Control Positioning with Flexbox --- */
 
-/* --- Navigation Position Variations --- */
+/* --- Navigation Positioning --- */
+/* Default is bottom-center */
+.hero-slider-wrapper--nav-top-between .navigation-set { order: -1; }
+.hero-slider-wrapper--nav-top-left .navigation-set { order: -1; align-self: flex-start; }
+.hero-slider-wrapper--nav-top-right .navigation-set { order: -1; align-self: flex-end; }
 
-/* Default (middle-between) */
-.hero-slider--navigation-middle-between .navigation-set {
-  top: 50%;
-  left: var(--page-margin, 20px);
-  right: var(--page-margin, 20px);
-  transform: translateY(-50%);
-  justify-content: space-between;
-}
+.hero-slider-wrapper--nav-middle-between .navigation-set { /* Default */ }
+.hero-slider-wrapper--nav-bottom-between .navigation-set { /* Default */ }
+.hero-slider-wrapper--nav-bottom-center .navigation-set { /* Default */ }
 
-/* Top Between */
-.hero-slider--navigation-top-between .navigation-set {
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  justify-content: space-between;
-}
+.hero-slider-wrapper--nav-middle-left .navigation-set { align-self: flex-start; }
+.hero-slider-wrapper--nav-bottom-left .navigation-set { align-self: flex-start; }
 
-/* Bottom Between */
-.hero-slider--navigation-bottom-between .navigation-set {
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  justify-content: space-between;
-}
+.hero-slider-wrapper--nav-middle-right .navigation-set { align-self: flex-end; }
+.hero-slider-wrapper--nav-bottom-right .navigation-set { align-self: flex-end; }
 
-/* Top Left */
-.hero-slider--navigation-top-left .navigation-set {
-  top: 20px;
-  left: 20px;
-  flex-direction: row;
-}
+/* --- Pagination Positioning --- */
+/* Default is bottom */
+.hero-slider-wrapper--pag-left .swiper-pagination { order: -1; }
+.hero-slider-wrapper--pag-bottom .swiper-pagination { /* Default */ }
+.hero-slider-wrapper--pag-right .swiper-pagination { /* Default */ }
 
-/* Top Right */
-.hero-slider--navigation-top-right .navigation-set {
-  top: 20px;
-  right: 20px;
-  flex-direction: row;
-}
-
-/* Middle Left */
-.hero-slider--navigation-middle-left .navigation-set {
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  flex-direction: column;
-}
-
-/* Middle Right */
-.hero-slider--navigation-middle-right .navigation-set {
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  flex-direction: column;
-}
-
-/* Bottom Left */
-.hero-slider--navigation-bottom-left .navigation-set {
-  bottom: 20px;
-  left: 20px;
-  flex-direction: row;
-}
-
-/* Bottom Right */
-.hero-slider--navigation-bottom-right .navigation-set {
-  bottom: 20px;
-  right: 20px;
-  flex-direction: row;
-}
-
-/* Bottom Center */
-.hero-slider--navigation-bottom-center .navigation-set {
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  flex-direction: row;
-}
-
-
-/* --- Pagination Position Variations --- */
-/* Vertical pagination for Left and Right positions */
-.hero-slider--pagination-left .swiper-pagination,
-.hero-slider--pagination-right .swiper-pagination {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.hero-slider--pagination-left .swiper-pagination {
-  left: 20px;
-  right: auto;
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
-}
-
-.hero-slider--pagination-right .swiper-pagination {
-  right: 20px;
-  left: auto;
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
-}
 
 /* --- RTL Support --- */
 .rtl .swiper-button-prev:after,
@@ -279,13 +199,4 @@
     width: 36px; 
     height: 36px; 
   }
-  /* Reset navigation to default middle position on mobile for better UX */
-  .navigation-set {
-    top: 50%;
-    left: 10px;
-    right: 10px;
-    transform: translateY(-50%);
-    justify-content: space-between;
-  }
-  .swiper-pagination { bottom: 10px; }
 }
