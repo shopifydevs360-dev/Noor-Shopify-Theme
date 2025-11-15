@@ -41,30 +41,17 @@
 </style>
 
 <div class="{{ container_class }}">
-  <!-- This wrapper now has the positioning classes -->
-  <div class="hero-slider-wrapper hero-slider-wrapper--nav-{{ section.settings.navigation_position }} hero-slider-wrapper--pag-{{ section.settings.pagination_position }}">
+  <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }} swiper" 
+       data-section-id="{{ section.id }}">
     
-    <div class="hero-slider hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} swiper" 
-         data-section-id="{{ section.id }}">
-      
-      <div class="swiper-wrapper">
-        {% for block in section.blocks %}
-          <div class="swiper-slide m-color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
-            {%- if block.settings.image != blank -%}
-              <div class="hero-slide__image-container">
-                {%- if block.settings.mobile_image != blank -%}
-                  <picture>
-                    <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 800, height: 800 }}">
-                    <img
-                      srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
-                      src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
-                      alt="{{ block.settings.image.alt | escape }}"
-                      loading="lazy"
-                      width="{{ block.settings.image.width }}"
-                      height="{{ block.settings.image.height }}"
-                    >
-                  </picture>
-                {%- else -%}
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide m-color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="hero-slide__image-container">
+              {%- if block.settings.mobile_image != blank -%}
+                <picture>
+                  <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 800, height: 800 }}">
                   <img
                     srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
                     src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
@@ -73,43 +60,52 @@
                     width="{{ block.settings.image.width }}"
                     height="{{ block.settings.image.height }}"
                   >
-                {%- endif -%}
-              </div>
-            {%- else -%}
-              <div class="hero-slide__placeholder">
-                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              </div>
-            {%- endif -%}
+                </picture>
+              {%- else -%}
+                <img
+                  srcset="{{ block.settings.image | image_url: width: 1800, height: 800 }} 1x, {{ block.settings.image | image_url: width: 1800, height: 800, scale: 2 }} 2x"
+                  src="{{ block.settings.image | image_url: width: 1800, height: 800 }}"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            <div class="hero-slide__placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
 
-            <div class="hero-slide__overlay" style="--overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
-            
-            <div class="hero-slide__content-container">
-              <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
-                {%- endif -%}
-                {%- if block.settings.text != blank -%}
-                  <div class="hero-slide__text rte">{{ block.settings.text }}</div>
-                {%- endif -%}
-                {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
-                  <div class="hero-slide__buttons">
-                    {%- if block.settings.button_label_1 != blank -%}
-                      <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
-                        {{ block.settings.button_label_1 | escape }}
-                      </a>
-                    {%- endif -%}
-                    {%- if block.settings.button_label_2 != blank -%}
-                      <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
-                        {{ block.settings.button_label_2 | escape }}
-                      </a>
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
-              </div>
+          <div class="hero-slide__overlay" style="--overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+          
+          <div class="hero-slide__content-container">
+            <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
+              {%- if block.settings.heading != blank -%}
+                <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="hero-slide__text rte">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+                <div class="hero-slide__buttons">
+                  {%- if block.settings.button_label_1 != blank -%}
+                    <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
+                      {{ block.settings.button_label_1 | escape }}
+                    </a>
+                  {%- endif -%}
+                  {%- if block.settings.button_label_2 != blank -%}
+                    <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
+                      {{ block.settings.button_label_2 | escape }}
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
             </div>
           </div>
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
     </div>
 
     {%- if section.blocks.size > 1 -%}
@@ -132,12 +128,14 @@
     const swiperContainer = document.querySelector('[data-section-id="{{ section.id }}"]');
     if (!swiperContainer) return;
 
+    // Build swiper options
     const swiperOptions = {
       loop: {% if section.settings.loop_sliders %}true{% else %}false{% endif %},
       effect: 'slide',
       speed: 500,
     };
 
+    // Add autoplay if enabled
     {% if section.settings.auto_rotate_sliders %}
       swiperOptions.autoplay = {
         delay: {{ section.settings.change_sliders_every | times: 1000 }},
@@ -146,6 +144,7 @@
       };
     {% endif %}
 
+    // Add navigation if enabled
     {% if section.settings.show_navigation %}
       swiperOptions.navigation = {
         nextEl: '.swiper-button-next',
@@ -153,6 +152,7 @@
       };
     {% endif %}
 
+    // Add pagination if enabled
     {% if section.settings.show_pagination %}
       swiperOptions.pagination = {
         el: '.swiper-pagination',
@@ -160,6 +160,7 @@
       };
     {% endif %}
 
+    // Initialize Swiper
     const swiper = new Swiper(swiperContainer, swiperOptions);
   });
 </script>
@@ -253,8 +254,9 @@
       "id": "pagination_position",
       "label": "Pagination position",
       "options": [
-        { "value": "top", "label": "Top" },
-        { "value": "bottom", "label": "Bottom" }
+        { "value": "left", "label": "Left" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "bottom"
     },
@@ -269,14 +271,18 @@
       "id": "navigation_position",
       "label": "Navigation position",
       "options": [
-        { "value": "top-center", "label": "Top (Centered)" },
-        { "value": "top-left", "label": "Top (Left)" },
-        { "value": "top-right", "label": "Top (Right)" },
-        { "value": "bottom-center", "label": "Bottom (Centered)" },
-        { "value": "bottom-left", "label": "Bottom (Left)" },
-        { "value": "bottom-right", "label": "Bottom (Right)" }
+        { "value": "middle-between", "label": "Middle (between)" },
+        { "value": "top-between", "label": "Top (between)" },
+        { "value": "bottom-between", "label": "Bottom (between)" },
+        { "value": "top-left", "label": "Top Left" },
+        { "value": "top-right", "label": "Top Right" },
+        { "value": "middle-left", "label": "Middle Left" },
+        { "value": "middle-right", "label": "Middle Right" },
+        { "value": "bottom-left", "label": "Bottom Left" },
+        { "value": "bottom-center", "label": "Bottom Center" },
+        { "value": "bottom-right", "label": "Bottom Right" }
       ],
-      "default": "bottom-center"
+      "default": "middle-between"
     }
   ],
   "blocks": [
