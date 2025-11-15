@@ -85,28 +85,30 @@
 
           <div class="hero-slide__overlay" style="--overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
           
-          <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}">
-            <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
-              {%- if block.settings.heading != blank -%}
-                <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
-              {%- endif -%}
-              {%- if block.settings.text != blank -%}
-                <div class="hero-slide__text rte">{{ block.settings.text }}</div>
-              {%- endif -%}
-              {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
-                <div class="hero-slide__buttons">
-                  {%- if block.settings.button_label_1 != blank -%}
-                    <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
-                      {{ block.settings.button_label_1 | escape }}
-                    </a>
-                  {%- endif -%}
-                  {%- if block.settings.button_label_2 != blank -%}
-                    <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
-                      {{ block.settings.button_label_2 | escape }}
-                    </a>
-                  {%- endif -%}
-                </div>
-              {%- endif -%}
+          <div class="content-wapper" style="text-align: {{ block.settings.horizontal_alignment }}">
+            <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}">
+              <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="hero-slide__text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+                {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
+                  <div class="hero-slide__buttons">
+                    {%- if block.settings.button_label_1 != blank -%}
+                      <a href="{{ block.settings.button_link_1 }}" class="btn btn--primary" {% if block.settings.button_link_1 contains '://' %}target="_blank"{% endif %}>
+                        {{ block.settings.button_label_1 | escape }}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.button_label_2 != blank -%}
+                      <a href="{{ block.settings.button_link_2 }}" class="btn btn--secondary" {% if block.settings.button_link_2 contains '://' %}target="_blank"{% endif %}>
+                        {{ block.settings.button_label_2 | escape }}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
             </div>
           </div>
         </div>
