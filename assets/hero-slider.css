@@ -302,19 +302,21 @@
 }
 
 /* --- Pagination Positioning --- */
-.hero-slider-wrapper--pag-top .swiper-pagination {
-  order: -1;
+.hero-slider .swiper-pagination {
+  position: absolute;
+  width: auto;
+  z-index: 15;
 }
 
-.hero-slider-wrapper--pag-bottom .swiper-pagination {
-  order: 1;
+.hero-slider .swiper-pagination-bullet {
+  background: rgba(255,255,255,0.8);
+  opacity: 1;
 }
 
-/* --- RTL Support --- */
-.rtl .swiper-button-prev:after,
-.rtl .swiper-button-next:after {
-  transform: rotate(180deg);
+.hero-slider .swiper-pagination-bullet-active {
+  background: #fff;
 }
+
 
 /* --- Mobile Adjustments --- */
 @media (max-width: 767px) {
