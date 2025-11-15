@@ -123,25 +123,32 @@
   cursor: pointer;
   transition: all 0.2s ease;
   margin-top: 0;
-  top: 50%; /* Added to center vertically */
-  transform: translateY(-50%); /* Added to center vertically */
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   background-color: rgb(var(--color-background, var(--color-body-background)));
-  transform: translateY(-50%) scale(1.1); /* Combined with translateY */
+  transform: scale(1.1);
 }
 
-.swiper-button-prev { left: var(--page-margin, 20px); }
-.swiper-button-next { right: var(--page-margin, 20px); }
+/* Default navigation positioning (middle-between) */
+.swiper-button-prev { 
+  left: var(--page-margin, 20px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.swiper-button-next { 
+  right: var(--page-margin, 20px);
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 /* --- Swiper Pagination (Dots) --- */
 .swiper-pagination {
   position: absolute;
   z-index: 3;
-  bottom: 20px; /* Added to position at bottom */
-  left: 50%; /* Added to center horizontally */
-  transform: translateX(-50%); /* Added to center horizontally */
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
 }
 .swiper-pagination-bullet {
   background-color: rgba(var(--color-text), 0.3);
