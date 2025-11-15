@@ -15,10 +15,12 @@
         "slide_atRg3f": {
           "type": "slide",
           "settings": {
-            "color_scheme": "default",
             "image": "shopify://shop_images/theme_cover_image.jpg",
-            "overlay_opacity": 0,
-            "heading": "Natural Goodness",
+            "content_position": "middle-center",
+            "padding_top_bottom": 20,
+            "padding_left_right": 20,
+            "show_background": true,
+            "background_blur": 5,
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
             "text_alignment": "center",
             "button_label_1": "Shop Honey",
@@ -30,10 +32,12 @@
         "slide_cLHMKG": {
           "type": "slide",
           "settings": {
-            "color_scheme": "",
             "image": "shopify://shop_images/381420017835.jpg",
-            "overlay_opacity": 30,
-            "heading": "Natural Goodness",
+            "content_position": "middle-center",
+            "padding_top_bottom": 20,
+            "padding_left_right": 20,
+            "show_background": false,
+            "background_blur": 5,
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
             "text_alignment": "center",
             "button_label_1": "Shop Honey",
