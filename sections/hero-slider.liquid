@@ -110,8 +110,10 @@
 
     {%- if section.blocks.size > 1 -%}
       {%- if section.settings.show_navigation -%}
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="navigation-set">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
       {%- endif -%}
 
       {%- if section.settings.show_pagination -%}
