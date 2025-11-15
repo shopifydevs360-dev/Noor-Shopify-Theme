@@ -171,7 +171,7 @@
   align-self: flex-end;
 }
 
-/* --- Pagination Positioning --- */
+/* --- Navigation --- */
 .hero-slider .swiper-button-prev,
 .hero-slider .swiper-button-next {
   position: absolute;
@@ -186,6 +186,115 @@
   justify-content: center;
   backdrop-filter: blur(4px);
 }
+/* --- Navigation Positioning --- */
+/* --- MIDDLE–BETWEEN --- */
+.hero-slider--navigation-middle-between .swiper-button-prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-slider--navigation-middle-between .swiper-button-next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* --- TOP–BETWEEN --- */
+.hero-slider--navigation-top-between .swiper-button-prev {
+  left: 20px;
+  top: 20px;
+}
+
+.hero-slider--navigation-top-between .swiper-button-next {
+  right: 20px;
+  top: 20px;
+}
+
+/* --- BOTTOM–BETWEEN --- */
+.hero-slider--navigation-bottom-between .swiper-button-prev {
+  left: 20px;
+  bottom: 20px;
+}
+
+.hero-slider--navigation-bottom-between .swiper-button-next {
+  right: 20px;
+  bottom: 20px;
+}
+
+/* --- TOP-LEFT --- */
+.hero-slider--navigation-top-left .swiper-button-prev,
+.hero-slider--navigation-top-left .swiper-button-next {
+  top: 20px;
+  left: 20px;
+}
+
+.hero-slider--navigation-top-left .swiper-button-next {
+  left: 70px; /* push next button to right of prev */
+}
+
+/* --- TOP-RIGHT --- */
+.hero-slider--navigation-top-right .swiper-button-prev,
+.hero-slider--navigation-top-right .swiper-button-next {
+  top: 20px;
+  right: 20px;
+}
+
+.hero-slider--navigation-top-right .swiper-button-prev {
+  right: 70px; /* push prev button left of next */
+}
+
+/* --- MIDDLE-LEFT --- */
+.hero-slider--navigation-middle-left .swiper-button-prev,
+.hero-slider--navigation-middle-left .swiper-button-next {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-slider--navigation-middle-left .swiper-button-next {
+  top: calc(50% + 60px);
+}
+
+/* --- MIDDLE-RIGHT --- */
+.hero-slider--navigation-middle-right .swiper-button-prev,
+.hero-slider--navigation-middle-right .swiper-button-next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-slider--navigation-middle-right .swiper-button-prev {
+  top: calc(50% - 60px);
+}
+
+/* --- BOTTOM-LEFT --- */
+.hero-slider--navigation-bottom-left .swiper-button-prev,
+.hero-slider--navigation-bottom-left .swiper-button-next {
+  left: 20px;
+  bottom: 20px;
+}
+
+.hero-slider--navigation-bottom-left .swiper-button-next {
+  left: 70px;
+}
+
+/* --- BOTTOM-CENTER --- */
+.hero-slider--navigation-bottom-center .swiper-button-prev,
+.hero-slider--navigation-bottom-center .swiper-button-next {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero-slider--navigation-bottom-center .swiper-button-prev {
+  margin-left: -40px;
+}
+
+.hero-slider--navigation-bottom-center .swiper-button-next {
+  margin-left: 40px;
+}
+
+/* --- BOTTOM-RIGHT --- */
 
 .hero-slider .swiper-button-prev::after,
 .hero-slider .swiper-button-next::after {
