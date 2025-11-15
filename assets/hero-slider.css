@@ -117,60 +117,6 @@
 .text-right .hero-slide__buttons { justify-content: flex-end; }
 
 
-/* --- Swiper Pagination (Dots) --- */
-.swiper-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.swiper-pagination-bullet {
-  background-color: rgba(var(--color-text), 0.3);
-  opacity: 1;
-  transition: all 0.2s ease;
-}
-.swiper-pagination-bullet:hover {
-  background-color: rgba(var(--color-text), 0.6);
-}
-.swiper-pagination-bullet-active {
-  background-color: rgb(var(--color-text));
-}
-
-/* --- Control Positioning with Flexbox --- */
-
-/* --- Navigation Positioning --- */
-/* Top Positions */
-.hero-slider-wrapper--nav-top-center .navigation-set {
-  order: -1;
-  align-self: center;
-}
-
-.hero-slider-wrapper--nav-top-left .navigation-set {
-  order: -1;
-  align-self: flex-start;
-}
-
-.hero-slider-wrapper--nav-top-right .navigation-set {
-  order: -1;
-  align-self: flex-end;
-}
-
-/* Bottom Positions */
-.hero-slider-wrapper--nav-bottom-center .navigation-set {
-  order: 1;
-  align-self: center;
-}
-
-.hero-slider-wrapper--nav-bottom-left .navigation-set {
-  order: 1;
-  align-self: flex-start;
-}
-
-.hero-slider-wrapper--nav-bottom-right .navigation-set {
-  order: 1;
-  align-self: flex-end;
-}
-
 /* --- Navigation --- */
 .hero-slider .swiper-button-prev,
 .hero-slider .swiper-button-next {
