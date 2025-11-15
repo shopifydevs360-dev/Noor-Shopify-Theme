@@ -10,6 +10,8 @@
 }
 
 .hero-slider {
+  /* The slider itself is the main item, it stays in the middle */
+  order: 0;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -164,7 +166,8 @@
 /* --- Control Positioning with Flexbox --- */
 
 /* --- Navigation Positioning --- */
-.hero-slider-wrapper--nav-top-between .navigation-set {
+/* Top Positions */
+.hero-slider-wrapper--nav-top-center .navigation-set {
   order: -1;
   align-self: center;
 }
@@ -179,52 +182,29 @@
   align-self: flex-end;
 }
 
-.hero-slider-wrapper--nav-middle-between .navigation-set {
-  order: 0;
+/* Bottom Positions */
+.hero-slider-wrapper--nav-bottom-center .navigation-set {
+  order: 1;
   align-self: center;
-}
-
-.hero-slider-wrapper--nav-bottom-between .navigation-set {
-  order: 0;
-  align-self: center;
-}
-
-.hero-slider-wrapper--nav-middle-left .navigation-set {
-  order: 0;
-  align-self: flex-start;
-}
-
-.hero-slider-wrapper--nav-middle-right .navigation-set {
-  order: 0;
-  align-self: flex-end;
 }
 
 .hero-slider-wrapper--nav-bottom-left .navigation-set {
-  order: 0;
+  order: 1;
   align-self: flex-start;
 }
 
-.hero-slider-wrapper--nav-bottom-center .navigation-set {
-  order: 0;
-  align-self: center;
-}
-
 .hero-slider-wrapper--nav-bottom-right .navigation-set {
-  order: 0;
+  order: 1;
   align-self: flex-end;
 }
 
 /* --- Pagination Positioning --- */
-.hero-slider-wrapper--pag-left .swiper-pagination {
+.hero-slider-wrapper--pag-top .swiper-pagination {
   order: -1;
 }
 
 .hero-slider-wrapper--pag-bottom .swiper-pagination {
-  order: 0;
-}
-
-.hero-slider-wrapper--pag-right .swiper-pagination {
-  order: 0;
+  order: 1;
 }
 
 /* --- RTL Support --- */
