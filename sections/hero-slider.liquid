@@ -22,6 +22,12 @@
       assign adapt_aspect_ratio_mobile = section.blocks.first.settings.image.aspect_ratio
     endif
   endif
+
+  assign slider_classes = 'hero-slider swiper'
+  assign slider_classes = slider_classes | append: ' hero-slider--height-desktop-' | append: section.settings.slider_height
+  assign slider_classes = slider_classes | append: ' hero-slider--height-mobile-' | append: section.settings.slider_height_mobile
+  assign slider_classes = slider_classes | append: ' hero-slider--pagination-' | append: section.settings.pagination_position
+  assign slider_classes = slider_classes | append: ' hero-slider--navigation-' | append: section.settings.navigation_position
 -%}
 
 <style>
@@ -41,8 +47,7 @@
 </style>
 
 <div class="{{ container_class }}">
-  <div class="hero-slider swiper hero-slider--height-desktop-{{ section.settings.slider_height }} hero-slider--height-mobile-{{ section.settings.slider_height_mobile }} hero-slider--pagination-{{ section.settings.pagination_position }} hero-slider--navigation-{{ section.settings.navigation_position }}" 
-       data-section-id="{{ section.id }}">
+  <div class="{{ slider_classes }}" data-section-id="{{ section.id }}">
     
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
@@ -128,14 +133,12 @@
     const swiperContainer = document.querySelector('[data-section-id="{{ section.id }}"]');
     if (!swiperContainer) return;
 
-    // Build swiper options
     const swiperOptions = {
       loop: {% if section.settings.loop_sliders %}true{% else %}false{% endif %},
       effect: 'slide',
       speed: 500,
     };
 
-    // Add autoplay if enabled
     {% if section.settings.auto_rotate_sliders %}
       swiperOptions.autoplay = {
         delay: {{ section.settings.change_sliders_every | times: 1000 }},
@@ -144,7 +147,6 @@
       };
     {% endif %}
 
-    // Add navigation if enabled
     {% if section.settings.show_navigation %}
       swiperOptions.navigation = {
         nextEl: '.swiper-button-next',
@@ -152,7 +154,6 @@
       };
     {% endif %}
 
-    // Add pagination if enabled
     {% if section.settings.show_pagination %}
       swiperOptions.pagination = {
         el: '.swiper-pagination',
@@ -160,7 +161,6 @@
       };
     {% endif %}
 
-    // Initialize Swiper
     const swiper = new Swiper(swiperContainer, swiperOptions);
   });
 </script>
