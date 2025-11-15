@@ -51,7 +51,7 @@
     
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
-        <div class="swiper-slide m-color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
+        <div class="swiper-slide m-color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }} style="text-align: {{ block.settings.horizontal_alignment }}">
           {%- if block.settings.image != blank -%}
             <div class="hero-slide__image-container">
               {%- if block.settings.mobile_image != blank -%}
@@ -366,9 +366,9 @@
           "id": "vertical_alignment",
           "label": "Vertical alignment",
           "options": [
-            { "value": "left", "label": "Left" },
-            { "value": "center", "label": "Center" },
-            { "value": "right", "label": "Right" },
+            { "value": "left", "label": "Top" },
+            { "value": "center", "label": "Middle" },
+            { "value": "right", "label": "Bottom" },
           ],
           "default": "center"
         },
