@@ -246,6 +246,15 @@
 }
 
 /* --- BOTTOM-RIGHT --- */
+.hero-slider--navigation-bottom-right .swiper-button-prev,
+.hero-slider--navigation-bottom-right .swiper-button-next {
+  bottom: 20px;
+  right: 20px;
+}
+
+.hero-slider--navigation-bottom-right .swiper-button-prev {
+  right: 70px;
+}
 
 /* --- Pagination Positioning --- */
 .hero-slider .swiper-pagination-bullet {
