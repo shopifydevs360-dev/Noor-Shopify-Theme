@@ -39,6 +39,7 @@
     "primary_button_border": "#e02b2b",
     "spacing_sections": 0,
     "spacing_sections_mobile": 0,
+    "search_type": "drawer",
     "background_color": "#222222",
     "foreground_color": "#666666",
     "max_page_width": "110rem",
