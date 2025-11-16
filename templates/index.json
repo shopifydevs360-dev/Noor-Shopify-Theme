@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/theme_cover_image.jpg",
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee. dzfgdsf sdf </p>",
-            "text_alignment": "left",
+            "text_alignment": "center",
             "button_label_1": "Shop Honey",
             "button_link_1": "",
             "button_label_2": "",
