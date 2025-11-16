@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const overlay = document.getElementById('drawer-overlay');
   const drawerToggle = document.querySelector('[data-drawer-toggle="menu-drawer"]');
   const closeButton = document.querySelector('[data-drawer-close]');
-  const submenuToggles = document.querySelectorAll('[data-submenu-toggle]');
-  const backButtons = document.querySelectorAll('[data-back-to]');
   
   // Check if elements exist
   if (!drawer) {
@@ -42,26 +40,22 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function to show a specific panel
   function showPanel(panelId) {
-    // Hide all panels
+    console.log('Showing panel:', panelId); // Debug log
+    
+    // Remove active class from all panels
     const allPanels = document.querySelectorAll('.drawer__panel');
     allPanels.forEach(panel => {
-      panel.hidden = true;
+      panel.classList.remove('active');
     });
     
-    // Show the requested panel
+    // Add active class to the requested panel
     const targetPanel = document.querySelector(`[data-panel="${panelId}"]`);
     if (targetPanel) {
-      targetPanel.hidden = false;
+      targetPanel.classList.add('active');
+      console.log('Panel found and activated:', panelId); // Debug log
+    } else {
+      console.error('Panel not found:', panelId); // Debug log
     }
-    
-    // Update ARIA attributes for submenu toggles
-    submenuToggles.forEach(toggle => {
-      const submenuId = toggle.getAttribute('aria-controls');
-      const submenu = document.getElementById(submenuId);
-      if (submenu) {
-        toggle.setAttribute('aria-expanded', !submenu.hidden);
-      }
-    });
   }
   
   // Event listener for the menu trigger button
@@ -92,19 +86,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Event listeners for submenu toggles
-  submenuToggles.forEach(toggle => {
-    toggle.addEventListener('click', function() {
-      const submenuId = toggle.getAttribute('data-submenu-toggle');
+  // Event delegation for submenu toggles
+  document.addEventListener('click', function(e) {
+    // Check if clicked element is a submenu toggle
+    const submenuToggle = e.target.closest('[data-submenu-toggle]');
+    if (submenuToggle) {
+      e.preventDefault();
+      const submenuId = submenuToggle.getAttribute('data-submenu-toggle');
+      console.log('Submenu toggle clicked:', submenuId); // Debug log
       showPanel(submenuId);
-    });
-  });
-  
-  // Event listeners for back buttons
-  backButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const backToPanel = button.getAttribute('data-back-to');
+    }
+    
+    // Check if clicked element is a back button
+    const backButton = e.target.closest('[data-back-to]');
+    if (backButton) {
+      e.preventDefault();
+      const backToPanel = backButton.getAttribute('data-back-to');
+      console.log('Back button clicked:', backToPanel); // Debug log
       showPanel(backToPanel);
-    });
+    }
   });
 });

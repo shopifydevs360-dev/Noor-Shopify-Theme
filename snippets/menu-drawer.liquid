@@ -17,7 +17,7 @@
       
       <div class="drawer__panels">
         <!-- Main Menu Panel -->
-        <div class="drawer__panel drawer__panel--main" data-panel="main">
+        <div class="drawer__panel drawer__panel--main active" data-panel="main">
           <nav class="menu" role="navigation" aria-label="Main Menu">
             <ul class="menu__list menu__list--level-1">
               {%- for link in linklists[section.settings.menu].links -%}
@@ -26,7 +26,6 @@
                     <!-- Item with submenu -->
                     <button class="menu__link menu__link--button" 
                             aria-expanded="false" 
-                            aria-controls="submenu-{{ link.handle }}"
                             data-submenu-toggle="{{ link.handle }}">
                       <span>{{ link.title }}</span>
                       <svg class="menu__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,8 +36,7 @@
                     <!-- Submenu Panel -->
                     <div class="drawer__panel drawer__panel--submenu" 
                          id="submenu-{{ link.handle }}" 
-                         data-panel="{{ link.handle }}"
-                         hidden>
+                         data-panel="{{ link.handle }}">
                       <div class="drawer__submenu-header">
                         <button class="drawer__back" 
                                 aria-label="Back to main menu" 
@@ -58,7 +56,6 @@
                                 <!-- Nested submenu item -->
                                 <button class="menu__link menu__link--button" 
                                         aria-expanded="false" 
-                                        aria-controls="submenu-{{ child_link.handle }}"
                                         data-submenu-toggle="{{ child_link.handle }}">
                                   <span>{{ child_link.title }}</span>
                                   <svg class="menu__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,8 +66,7 @@
                                 <!-- Third level submenu -->
                                 <div class="drawer__panel drawer__panel--submenu" 
                                      id="submenu-{{ child_link.handle }}" 
-                                     data-panel="{{ child_link.handle }}"
-                                     hidden>
+                                     data-panel="{{ child_link.handle }}">
                                   <div class="drawer__submenu-header">
                                     <button class="drawer__back" 
                                             aria-label="Back to {{ link.title }}" 
