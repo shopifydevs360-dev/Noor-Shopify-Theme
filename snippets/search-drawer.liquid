@@ -1,0 +1,56 @@
+{{ 'search-drawer.css' | asset_url | stylesheet_tag: preload: true }}
+
+<!-- Search Drawer Overlay -->
+<div class="drawer__overlay" id="search-drawer-overlay"></div>
+
+<!-- Search Drawer -->
+<div class="search-drawer" id="search-drawer" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-drawer__inner">
+    <div class="search-drawer__header">
+      <div class="search-drawer__input-wrapper">
+        <label class="visually-hidden" for="search-input">Search</label>
+        <input 
+          type="search" 
+          id="search-input" 
+          class="search-drawer__input" 
+          placeholder="{{ 'general.search.placeholder' | t }}" 
+          autocomplete="off"
+          aria-label="{{ 'general.search.placeholder' | t }}"
+        >
+        <button class="search-drawer__submit" aria-label="Submit search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 19L14.65 14.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <button class="search-drawer__close" aria-label="Close search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="search-drawer__content">
+      <div class="search-drawer__results" id="search-results">
+        <!-- Search results will be dynamically inserted here -->
+        <div class="search-drawer__initial">
+          <h3 class="search-drawer__title">{{ 'general.search.popular' | t }}</h3>
+          <ul class="search-drawer__popular">
+            {% assign popular_searches = section.settings.popular_searches | split: ',' %}
+            {% for search_term in popular_searches %}
+              <li class="search-drawer__popular-item">
+                <a href="{{ routes.search_url }}?q={{ search_term | strip | url_encode }}" class="search-drawer__popular-link">
+                  {{ search_term | strip }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'search-drawer.js' | asset_url }}" defer="defer"></script>
