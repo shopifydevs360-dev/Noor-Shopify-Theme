@@ -16,11 +16,11 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/theme_cover_image.jpg",
-            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee. dzfgdsf sdf sdfv sdvsdag sdafgv dfv sdafvd vfdv gsdfv sdfv sdvsd fvsdfsdfgv zcfb zdxfvg zdfgv zdfvzsefvzds zerazvcz dsffcvc easrvdf</p>",
+            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee. dzfgdsf sdf </p>",
             "text_alignment": "center",
             "button_label_1": "Shop Honey",
             "button_link_1": "",
-            "button_label_2": "Learn More",
+            "button_label_2": "",
             "button_link_2": "",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "flex-end",
@@ -55,7 +55,7 @@
       "settings": {
         "container_width": "full-width",
         "slider_height": "medium",
-        "slider_height_mobile": "small",
+        "slider_height_mobile": "medium",
         "loop_sliders": true,
         "auto_rotate_sliders": false,
         "change_sliders_every": 3,
