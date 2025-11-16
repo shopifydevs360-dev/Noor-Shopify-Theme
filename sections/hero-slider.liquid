@@ -293,7 +293,19 @@
           "type": "header",
           "content": "Content area"
         },
-        
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container type",
+          "options": [
+            { "value": "container", "label": "Container" },
+            { "value": "container-fluid", "label": "Container fluid" },
+            { "value": "container-narrow", "label": "Container narrow" },
+            { "value": "container-extra-narrow", "label": "Container extra narrow" },
+            { "value": "full-width", "label": "Full width" }
+          ],
+          "default": "full-width"
+        },
         {
           "type": "header",
           "content": "Background Image"
