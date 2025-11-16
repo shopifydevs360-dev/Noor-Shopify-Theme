@@ -156,14 +156,7 @@ button,
   justify-content: center;
   padding: 0.8em 1.6em;
 }
-@media (max-width: 767px) {
-button,
-.btn,
-.shopify-payment-button button {
-  line-height: 1;
-  padding: 0.6em 1.1em;
-}
-}
+
 /* Primary Button */
 .btn--primary {
   background-color: var(--btn-primary-bg);
@@ -222,7 +215,32 @@ button,
   background: var(--btn-gradient-hover-bg, var(--btn-gradient-bg));
   color: var(--btn-gradient-hover-label);
 }
+@media (max-width: 767px) {
+button,
+.btn,
+.shopify-payment-button button {
+  line-height: 1;
+  padding: 0.6em 1.1em;
+}
+/* Primary Button */
+.btn--primary {
+  font-size: calc(var(--btn-primary-font-size) * 0.8);
+}
 
+/* Secondary Button */
+.btn--secondary {
+  font-size: calc(var(--btn-secondary-font-size) * 0.8);
+}
+
+/* Underline Button */
+.btn--underline {
+  font-size: calc(var(--btn-underline-font-size) * 0.8);
+}
+/* Gradient Button */
+.btn--gradient {
+  font-size: calc(var(--btn-gradient-font-size) * 0.8);
+}
+}
 /* Disabled buttons */
 button:disabled,
 .btn[disabled] {
