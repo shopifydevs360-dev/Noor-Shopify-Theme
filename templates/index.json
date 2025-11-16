@@ -27,7 +27,7 @@
             "background": "rgba(0, 0, 0, 0.1)",
             "background_blur": 3,
             "content_width": "small",
-            "corner-radius": "style-two"
+            "corner-radius": "style-one"
           }
         },
         "slide_cLHMKG": {
