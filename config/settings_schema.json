@@ -570,6 +570,12 @@
         "default": true,
         "label": "Enable page transition"
       },
+      {
+      "type": "color_scheme",
+      "id": "search_color_scheme",
+      "label": "Color scheme",
+      "default": "inverse"
+    },
     ]
   },
   {
