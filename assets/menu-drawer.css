@@ -215,3 +215,158 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+
+/* Add these styles to your existing menu-drawer.css */
+
+/* Menu Styles */
+.menu {
+  width: 100%;
+}
+
+.menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu__item {
+  position: relative;
+}
+
+.menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  color: rgb(var(--color-text));
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.menu__link:hover {
+  background-color: rgba(var(--color-text), 0.05);
+}
+
+.menu__link[aria-current="page"] {
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.menu__link--button {
+  padding-right: 1rem;
+}
+
+.menu__arrow {
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.menu__arrow--back {
+  margin-left: 0;
+  margin-right: 0.5rem;
+  transform: rotate(180deg);
+}
+
+/* Submenu Styles */
+.drawer__panel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(var(--color-background));
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer__panel:not([hidden]) {
+  transform: translateX(0);
+}
+
+.drawer__panel--main {
+  position: relative;
+  transform: none;
+}
+
+.drawer__submenu-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+  background-color: rgba(var(--color-text), 0.02);
+}
+
+.drawer__back {
+  display: flex;
+  align-items: center;
+  color: rgb(var(--color-text));
+  font-weight: 500;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.drawer__back:hover {
+  background-color: rgba(var(--color-text), 0.05);
+}
+
+.drawer__back span {
+  margin-left: 0.5rem;
+}
+
+/* Menu Level Styles */
+.menu__list--level-2 .menu__link {
+  padding-left: 2rem;
+  font-size: 0.95rem;
+}
+
+.menu__list--level-3 .menu__link {
+  padding-left: 2.5rem;
+  font-size: 0.9rem;
+}
+
+/* RTL Adjustments */
+.rtl .menu__link {
+  text-align: right;
+}
+
+.rtl .menu__arrow {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.rtl .menu__arrow--back {
+  margin-right: 0;
+  margin-left: 0.5rem;
+  transform: rotate(180deg);
+}
+
+.rtl .menu__list--level-2 .menu__link {
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+}
+
+.rtl .menu__list--level-3 .menu__link {
+  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+}
+
+.rtl .drawer__back span {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
