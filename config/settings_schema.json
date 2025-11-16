@@ -573,6 +573,27 @@
     ]
   },
   {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "select",
+        "id": "search_type",
+        "label": "Search type",
+        "default": "page",
+        "options": [
+          {
+            "value": "page",
+            "label": "Search page"
+          },
+          {
+            "value": "drawer",
+            "label": "Search drawer"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Content Card",
     "settings": [
       {
