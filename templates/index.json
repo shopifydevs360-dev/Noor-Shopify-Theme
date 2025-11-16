@@ -29,11 +29,11 @@
             "button_label_2": "",
             "button_link_2": "",
             "second_button_type": "btn--secondary",
+            "background": "radial-gradient(rgba(214, 214, 214, 0.19), rgba(209, 198, 199, 0.19) 100%)",
+            "background_blur": 3,
             "text_alignment": "center",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "flex-end",
-            "background": "radial-gradient(rgba(214, 214, 214, 0.19), rgba(209, 198, 199, 0.19) 100%)",
-            "background_blur": 3,
             "content_width": "small",
             "corner-radius": "style-two"
           }
@@ -55,11 +55,11 @@
             "button_label_2": "Learn More",
             "button_link_2": "",
             "second_button_type": "btn--secondary",
+            "background": "rgba(0, 0, 0, 0.5)",
+            "background_blur": 5,
             "text_alignment": "center",
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
-            "background": "rgba(0, 0, 0, 0.5)",
-            "background_blur": 5,
             "content_width": "medium",
             "corner-radius": "none"
           }
@@ -73,7 +73,7 @@
       "settings": {
         "container_width": "full-width",
         "slider_height": "medium",
-        "slider_height_mobile": "medium",
+        "slider_height_mobile": "small",
         "loop_sliders": true,
         "auto_rotate_sliders": false,
         "change_sliders_every": 3,
