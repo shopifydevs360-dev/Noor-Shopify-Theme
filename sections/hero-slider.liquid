@@ -86,7 +86,7 @@
           <div class="hero-slide__overlay" style="--overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
           
           <div class="content-wapper" style="text-align: {{ block.settings.horizontal_alignment }}">
-            <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}">
+            <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}; height: 100%;">
               <div class="hero-slide__content text-{{ block.settings.text_alignment }}">
                 {%- if block.settings.heading != blank -%}
                   <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
