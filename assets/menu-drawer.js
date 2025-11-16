@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const panelToggles = document.querySelectorAll('[data-panel-toggle]');
   const panelBacks = document.querySelectorAll('[data-panel-back]');
   
-  // Mobile detection
-  const isMobile = window.innerWidth <= 767;
-  
   // Current panel state
   let currentPanel = 1;
   let panelHistory = [];
@@ -78,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Open the panel
         if (targetPanel === 4 && collectionHandle) {
           // Special handling for collection panel
-          openCollectionPanel(parentTitle, collectionHandle, isMobile);
+          openCollectionPanel(parentTitle, collectionHandle);
         } else {
-          openPanel(targetPanel, parentTitle, submenu, isMobile);
+          openPanel(targetPanel, parentTitle, submenu);
         }
       }
     });
@@ -102,12 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
           panelHistory = [targetPanel];
         }
         
-        closePanel(targetPanel, isMobile);
+        closePanel(targetPanel);
       }
     });
   });
   
-  // Close drawer when clicking outside
+  // Close drawer when clicking outside (blank space)
   document.addEventListener('click', function(event) {
     if (drawer.classList.contains('open') && 
         !drawer.contains(event.target) && 
@@ -135,20 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    const newIsMobile = window.innerWidth <= 767;
-    
-    // If we switch between mobile and desktop, reset panels
-    if (isMobile !== newIsMobile) {
-      resetPanels();
-      currentPanel = 1;
-      panelHistory = [];
-    }
-  });
-  
   // Functions
-  function openPanel(panelNumber, title, submenu, isMobileView) {
+  function openPanel(panelNumber, title, submenu) {
     const targetPanel = drawer.querySelector(`[data-panel="${panelNumber}"]`);
     const targetList = targetPanel.querySelector('.menu__list');
     const targetTitle = targetPanel.querySelector('.drawer__panel-title');
@@ -180,25 +165,19 @@ document.addEventListener('DOMContentLoaded', function() {
           // Open the panel
           if (nextPanel === 4 && collectionHandle) {
             // Special handling for collection panel
-            openCollectionPanel(nextTitle, collectionHandle, isMobileView);
+            openCollectionPanel(nextTitle, collectionHandle);
           } else {
-            openPanel(nextPanel, nextTitle, nextSubmenu, isMobileView);
+            openPanel(nextPanel, nextTitle, nextSubmenu);
           }
         }
       });
     });
     
-    // Show panel
-    if (isMobileView) {
-      // Mobile: slide in from right
-      targetPanel.classList.add('active');
-    } else {
-      // Desktop: show side by side
-      drawer.classList.add(`panel-${panelNumber}-open`);
-    }
+    // Show panel - Desktop only
+    drawer.classList.add(`panel-${panelNumber}-open`);
   }
   
-  function openCollectionPanel(title, collectionHandle, isMobileView) {
+  function openCollectionPanel(title, collectionHandle) {
     const targetPanel = drawer.querySelector('[data-panel="4"]');
     const targetTitle = targetPanel.querySelector('.drawer__panel-title');
     const loadingElement = targetPanel.querySelector('.collection-products__loading');
@@ -233,14 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
         emptyElement.style.display = 'block';
       });
     
-    // Show panel
-    if (isMobileView) {
-      // Mobile: slide in from right
-      targetPanel.classList.add('active');
-    } else {
-      // Desktop: show side by side
-      drawer.classList.add('panel-4-open');
-    }
+    // Show panel - Desktop only
+    drawer.classList.add('panel-4-open');
   }
   
   function fetchCollectionProducts(collectionHandle) {
@@ -291,18 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
     return `$${(cents / 100).toFixed(2)}`;
   }
   
-  function closePanel(panelNumber, isMobileView) {
-    if (isMobileView) {
-      // Mobile: just hide current panel
-      const currentPanelElement = drawer.querySelector('.drawer__panel.active');
-      if (currentPanelElement) {
-        currentPanelElement.classList.remove('active');
-      }
-    } else {
-      // Desktop: hide all panels after the target
-      for (let i = panelNumber + 1; i <= 4; i++) {
-        drawer.classList.remove(`panel-${i}-open`);
-      }
+  function closePanel(panelNumber) {
+    // Desktop: hide all panels after the target
+    for (let i = panelNumber + 1; i <= 4; i++) {
+      drawer.classList.remove(`panel-${i}-open`);
     }
   }
   
