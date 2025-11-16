@@ -141,7 +141,9 @@ body.rtl .container {
 /* ------------------------------
    BUTTON STYLES
 ------------------------------- */
-
+button{
+  border: none;
+}
 .btn,
 .shopify-payment-button button {
   cursor: pointer;
