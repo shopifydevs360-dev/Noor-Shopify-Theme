@@ -49,34 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Mobile submenu toggle
-  if (window.innerWidth <= 767) {
-    const submenuToggles = document.querySelectorAll('[data-toggle-submenu]');
-    
-    submenuToggles.forEach(toggle => {
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        const submenuId = this.getAttribute('data-toggle-submenu');
-        const submenu = document.querySelector(`[data-submenu="${submenuId}"]`);
-        
-        if (submenu) {
-          submenu.classList.add('active');
-        }
-      });
-    });
-    
-    // Back button for mobile submenus
-    const backButtons = document.querySelectorAll('[data-back-button]');
-    
-    backButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const submenu = this.closest('.menu__submenu');
-        if (submenu) {
-          submenu.classList.remove('active');
-        }
-      });
-    });
-  }
   
   // Handle ESC key to close drawer
   document.addEventListener('keydown', function(event) {
