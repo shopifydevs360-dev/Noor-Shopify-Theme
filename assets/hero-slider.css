@@ -44,12 +44,6 @@
 }
 
 /* --- Slide Content --- */
-.swiper-slide {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .hero-slide__image-container,
 .hero-slide__placeholder {
@@ -306,3 +300,4 @@
     gap: 6px;
   }
 }
+/* Content Width */
