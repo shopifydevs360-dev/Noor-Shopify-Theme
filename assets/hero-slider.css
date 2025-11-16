@@ -126,7 +126,9 @@
 }
 .text-left .hero-slide__buttons { justify-content: flex-start; }
 .text-right .hero-slide__buttons { justify-content: flex-end; }
-
+.hero-slider .text-left{text-align: left;}
+.hero-slider .text-center{text-align: center;}
+.hero-slider .text-right{text-align: right;}
 
 /* --- Navigation --- */
 .hero-slider .swiper-button-prev,
