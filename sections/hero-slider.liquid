@@ -88,7 +88,7 @@
           <div class="content-wapper" style="display: flex; justify-content: {{ block.settings.horizontal_alignment }}; height: 100%;">
             <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}; height: 100%;; width: auto;">
               <div class="hero-slide__content content-width-{{ block.settings.content_width }} text-{{ block.settings.text_alignment }} border-radius-{{ block.settings.corner-radius }}" style="background: {{ block.settings.background }}; backdrop-filter: blur({{ block.settings.background_blur }}px);">
-
+                  <h4 class="hero-slide__heading">{{ block.settings.sub_heading | escape }}</h4>
                   <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
                   <div class="hero-slide__text rte">{{ block.settings.text }}</div>
 
@@ -308,17 +308,6 @@
           "content": "Content"
         },
         {
-          "type": "select",
-          "id": "text_alignment",
-          "label": "Text Alignment",
-          "options": [
-            { "value": "left", "label": "Left" },
-            { "value": "center", "label": "Center" },
-            { "value": "right", "label": "Right" }
-          ],
-          "default": "center"
-        },
-        {
           "type": "richtext",
           "id": "text",
           "label": "Text",
@@ -349,6 +338,17 @@
         {
           "type": "header",
           "content": "Content Settings"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
         },
         {
           "type": "select",
