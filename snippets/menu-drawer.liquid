@@ -1,6 +1,6 @@
 {{ 'menu-drawer.css' | asset_url | stylesheet_tag: preload: true }}
-<!-- Menu Drawer -->
-<div class="drawer drawer--menu m-color-{{ section.settings.color_scheme }}" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+<!-- Menu Drawer - Desktop Only -->
+<div class="drawer drawer--menu m-color-{{ section.settings.color_scheme }} desktop-only" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
   <!-- Overlay -->
   <div class="drawer__overlay"></div>
   
@@ -91,11 +91,6 @@
           </svg>
         </button>
         <h3 class="drawer__panel-title"></h3>
-        <button class="drawer__close" aria-label="Close" data-drawer-close>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
       
       <div class="drawer__content">
@@ -114,11 +109,6 @@
           </svg>
         </button>
         <h3 class="drawer__panel-title"></h3>
-        <button class="drawer__close" aria-label="Close" data-drawer-close>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
       
       <div class="drawer__content">
@@ -137,11 +127,6 @@
           </svg>
         </button>
         <h3 class="drawer__panel-title"></h3>
-        <button class="drawer__close" aria-label="Close" data-drawer-close>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
       
       <div class="drawer__content">
