@@ -32,8 +32,8 @@
             "text_alignment": "center",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "flex-end",
-            "background": "",
-            "background_blur": 14,
+            "background": "radial-gradient(rgba(214, 214, 214, 0.19), rgba(209, 198, 199, 0.19) 100%)",
+            "background_blur": 3,
             "content_width": "small",
             "corner-radius": "style-two"
           }
