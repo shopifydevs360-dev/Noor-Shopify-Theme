@@ -13,9 +13,9 @@
           type="search" 
           id="search-input" 
           class="search-drawer__input" 
-          placeholder="{{ 'general.search.placeholder' | t }}" 
+          placeholder="search" 
           autocomplete="off"
-          aria-label="{{ 'general.search.placeholder' | t }}"
+          aria-label="search"
         >
         <button class="search-drawer__submit" aria-label="Submit search">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,22 +33,7 @@
     </div>
     
     <div class="search-drawer__content">
-      <div class="search-drawer__results" id="search-results">
-        <!-- Search results will be dynamically inserted here -->
-        <div class="search-drawer__initial">
-          <h3 class="search-drawer__title">{{ 'general.search.popular' | t }}</h3>
-          <ul class="search-drawer__popular">
-            {% assign popular_searches = section.settings.popular_searches | split: ',' %}
-            {% for search_term in popular_searches %}
-              <li class="search-drawer__popular-item">
-                <a href="{{ routes.search_url }}?q={{ search_term | strip | url_encode }}" class="search-drawer__popular-link">
-                  {{ search_term | strip }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
