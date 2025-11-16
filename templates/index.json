@@ -67,64 +67,6 @@
         "navigation_position": "bottom-right"
       }
     },
-    "hero_slider_mkPk9d": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_qrf3AJ": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/theme_cover_image.jpg",
-            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee. dzfgdsf sdf </p>",
-            "text_alignment": "center",
-            "button_label_1": "Shop Honey",
-            "button_link_1": "",
-            "button_label_2": "",
-            "button_link_2": "",
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-end",
-            "background": "rgba(0, 0, 0, 0.1)",
-            "background_blur": 3,
-            "content_width": "small",
-            "corner-radius": "style-one"
-          }
-        },
-        "slide_hRzbHx": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/381420017835.jpg",
-            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
-            "text_alignment": "center",
-            "button_label_1": "Shop Honey",
-            "button_link_1": "",
-            "button_label_2": "Learn More",
-            "button_link_2": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "background": "rgba(0, 0, 0, 0.5)",
-            "background_blur": 5,
-            "content_width": "medium",
-            "corner-radius": "none"
-          }
-        }
-      },
-      "block_order": [
-        "slide_qrf3AJ",
-        "slide_hRzbHx"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "container_width": "full-width",
-        "slider_height": "medium",
-        "slider_height_mobile": "medium",
-        "loop_sliders": true,
-        "auto_rotate_sliders": false,
-        "change_sliders_every": 3,
-        "show_pagination": true,
-        "pagination_position": "right",
-        "show_navigation": true,
-        "navigation_position": "bottom-right"
-      }
-    },
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
@@ -290,7 +232,6 @@
   },
   "order": [
     "hero_slider_dRAtkV",
-    "hero_slider_mkPk9d",
     "custom_section_CWt6yq",
     "collections_RQEPWp"
   ]
