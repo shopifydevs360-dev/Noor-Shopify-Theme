@@ -26,7 +26,8 @@
             "vertical_alignment": "flex-end",
             "background": "rgba(0, 0, 0, 0.1)",
             "background_blur": 3,
-            "content_width": "small"
+            "content_width": "small",
+            "corner-radius": "style-two"
           }
         },
         "slide_cLHMKG": {
@@ -43,7 +44,8 @@
             "vertical_alignment": "center",
             "background": "rgba(0, 0, 0, 0.5)",
             "background_blur": 5,
-            "content_width": "medium"
+            "content_width": "medium",
+            "corner-radius": "none"
           }
         }
       },
