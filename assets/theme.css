@@ -141,7 +141,7 @@ body.rtl .container {
 /* ------------------------------
    BUTTON STYLES
 ------------------------------- */
-button,
+
 .btn,
 .shopify-payment-button button {
   cursor: pointer;
@@ -215,7 +215,7 @@ button,
   color: var(--btn-gradient-hover-label);
 }
 @media (max-width: 767px) {
-button,
+
 .btn,
 .shopify-payment-button button {
   line-height: 1;
