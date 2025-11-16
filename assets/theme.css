@@ -59,7 +59,6 @@ body {
   font-family: var(--font-body-family, sans-serif);
   font-weight: var(--font-body-weight, 400);
   font-size: var(--font-body-size, 16px);
-  line-height: var(--font-body-line-height, 1.6);
   background-color: var(--color-body-background);
   color: var(--color-body-text);
 }
