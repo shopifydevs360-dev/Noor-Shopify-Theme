@@ -87,7 +87,7 @@
           
           <div class="content-wapper" style="display: flex; justify-content: {{ block.settings.horizontal_alignment }}; height: 100%;">
             <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}; height: 100%;; width: auto;">
-              <div class="hero-slide__content text-{{ block.settings.text_alignment }}" style="background: {{ block.settings.background }}; backdrop-filter: blur({{ block.settings.background_blur }}px);">
+              <div class="hero-slide__content content-width-{{ block-settings.content-width }} text-{{ block.settings.text_alignment }}" style="background: {{ block.settings.background }}; backdrop-filter: blur({{ block.settings.background_blur }}px);">
                 {%- if block.settings.heading != blank -%}
                   <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
                 {%- endif -%}
@@ -375,24 +375,6 @@
           "default": "center"
         },
         {
-          "type": "range",
-          "id": "padding_top_bottom",
-          "label": "Padding Top & Bottom",
-          "min": 0,
-          "max": 200,
-          "step": 5,
-          "default": 20
-        },
-        {
-          "type": "range",
-          "id": "padding_left_right",
-          "label": "Padding Left & Right",
-          "min": 0,
-          "max": 200,
-          "step": 5,
-          "default": 20
-        },
-        {
           "type": "color_background",
           "id": "background",
           "label": "Background",
@@ -407,7 +389,23 @@
           "step": 1,
           "unit": "px",
           "default": 5
-        }
+        },
+        {
+          "type": "header",
+          "content": "Content width"
+        },
+        {
+          "type": "select",
+          "id": "content-widtht",
+          "label": "Width",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" },
+            { "value": "extra-large", "label": "Extra large" },
+          ],
+          "default": "medium"
+        },
       ]
     }
   ],
