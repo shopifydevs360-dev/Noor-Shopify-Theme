@@ -1,7 +1,4 @@
 {{ 'hero-slider.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
-<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
-
 {%- liquid
   assign container_class = section.settings.container_width
   if section.settings.container_width == 'full-width'
