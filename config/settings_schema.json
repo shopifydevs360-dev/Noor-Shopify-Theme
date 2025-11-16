@@ -565,6 +565,35 @@
     ]
   },
   {
+    "name": "Content Card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Corner Radius"
+      },
+      {
+        "type": "range",
+        "id": "corner-radius-style-one",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 4,
+        "unit": "px",
+        "label": "Style One"
+      },
+      {
+        "type": "range",
+        "id": "corner-radius-style-two",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 12,
+        "unit": "px",
+        "label": "Style Two"
+      }
+    ]
+  },
+  {
     "name": "Product card",
     "settings": [
       {
