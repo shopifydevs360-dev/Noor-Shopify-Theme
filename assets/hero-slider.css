@@ -80,8 +80,20 @@
 }
 
 .hero-slide__content {
-  max-width: 1200px;
   margin: 0 auto;
+}
+/* Content width variable */
+.content-width-small{
+  max-width: 500px;
+}
+.content-width-medium{
+  max-width: 750px;
+}
+.content-width-large{
+  max-width: 1000px;
+}
+.content-width-extra-large{
+  max-width: 1200px;
 }
 
 .hero-slide__heading {
