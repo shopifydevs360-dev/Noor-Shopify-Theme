@@ -26,7 +26,7 @@
             "vertical_alignment": "center",
             "padding_top_bottom": 80,
             "padding_left_right": 20,
-            "background": "",
+            "background": "rgba(0, 0, 0, 0.1)",
             "background_blur": 3
           }
         },
