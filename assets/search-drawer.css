@@ -30,7 +30,7 @@
 }
 
 /* Apply theme color scheme wrapper */
-.search-drawer.m-color-wrapper {
+.search-drawer {
   background: rgb(var(--color-background));
   color: rgb(var(--color-text));
 }
