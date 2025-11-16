@@ -22,11 +22,10 @@
             "button_link_1": "",
             "button_label_2": "Learn More",
             "button_link_2": "",
-            "horizontal_alignment": "right",
-            "vertical_alignment": "center",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-end",
             "padding_top_bottom": 20,
             "padding_left_right": 20,
-            "show_background": true,
             "background_blur": 5
           }
         },
@@ -44,7 +43,6 @@
             "vertical_alignment": "center",
             "padding_top_bottom": 20,
             "padding_left_right": 20,
-            "show_background": false,
             "background_blur": 5
           }
         }
