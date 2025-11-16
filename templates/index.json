@@ -27,7 +27,7 @@
             "padding_top_bottom": 20,
             "padding_left_right": 20,
             "background": "rgba(0, 0, 0, 0.1)",
-            "background_blur": 0
+            "background_blur": 3
           }
         },
         "slide_cLHMKG": {
