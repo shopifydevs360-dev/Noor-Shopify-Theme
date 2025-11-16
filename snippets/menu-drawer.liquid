@@ -46,7 +46,7 @@
           </nav>
         </div>
         
-        <!-- Submenu Panels -->
+        <!-- Second Level Submenu Panels -->
         {%- for link in linklists[section.settings.menu].links -%}
           {%- if link.links != blank -%}
             <!-- Submenu Panel -->
@@ -76,34 +76,6 @@
                             <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
                         </button>
-                        
-                        <!-- Third level submenu -->
-                        <div class="drawer__panel drawer__panel--submenu" id="panel-{{ child_link.handle }}">
-                          <div class="drawer__submenu-header">
-                            <button class="drawer__back" 
-                                    aria-label="Back to {{ link.title }}" 
-                                    data-target-panel="panel-{{ link.handle }}">
-                              <svg class="menu__arrow menu__arrow--back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                              <span>{{ child_link.title }}</span>
-                            </button>
-                          </div>
-                          
-                          <nav class="menu menu--submenu" role="navigation" aria-label="{{ child_link.title }} submenu">
-                            <ul class="menu__list menu__list--level-3">
-                              {%- for grandchild_link in child_link.links -%}
-                                <li class="menu__item">
-                                  <a href="{{ grandchild_link.url }}" 
-                                     class="menu__link"
-                                     {% if grandchild_link.current %} aria-current="page"{% endif %}>
-                                    {{ grandchild_link.title }}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          </nav>
-                        </div>
                       {%- else -%}
                         <!-- Simple child link -->
                         <a href="{{ child_link.url }}" 
@@ -117,6 +89,43 @@
                 </ul>
               </nav>
             </div>
+          {%- endif -%}
+        {%- endfor -%}
+        
+        <!-- Third Level Submenu Panels -->
+        {%- for link in linklists[section.settings.menu].links -%}
+          {%- if link.links != blank -%}
+            {%- for child_link in link.links -%}
+              {%- if child_link.links != blank -%}
+                <!-- Third Level Submenu Panel -->
+                <div class="drawer__panel drawer__panel--submenu" id="panel-{{ child_link.handle }}">
+                  <div class="drawer__submenu-header">
+                    <button class="drawer__back" 
+                            aria-label="Back to {{ link.title }}" 
+                            data-target-panel="panel-{{ link.handle }}">
+                      <svg class="menu__arrow menu__arrow--back" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>{{ child_link.title }}</span>
+                    </button>
+                  </div>
+                  
+                  <nav class="menu menu--submenu" role="navigation" aria-label="{{ child_link.title }} submenu">
+                    <ul class="menu__list menu__list--level-3">
+                      {%- for grandchild_link in child_link.links -%}
+                        <li class="menu__item">
+                          <a href="{{ grandchild_link.url }}" 
+                             class="menu__link"
+                             {% if grandchild_link.current %} aria-current="page"{% endif %}>
+                            {{ grandchild_link.title }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </nav>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
