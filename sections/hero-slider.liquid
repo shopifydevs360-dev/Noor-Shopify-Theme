@@ -85,8 +85,8 @@
           <div class="content-wapper {{ block.settings.container_width }}" style="display: flex; justify-content: {{ block.settings.horizontal_alignment }}; height: 100%;">
             <div class="hero-slide__content-container" style="display: flex; align-items: {{ block.settings.vertical_alignment }}; height: 100%;; width: auto;">
               <div class="hero-slide__content content-width-{{ block.settings.content_width }} text-{{ block.settings.text_alignment }} border-radius-{{ block.settings.corner-radius }}" style="background: {{ block.settings.background }}; backdrop-filter: blur({{ block.settings.background_blur }}px);">
-                  <h4 class="hero-slide__heading {{ block.settings.sub_heading_font_size }}">{{ block.settings.sub_heading | escape }}</h4>
-                  <h2 class="hero-slide__heading {{ block.settings.heading_font_size }}">{{ block.settings.heading | escape }}</h2>
+                  <h4 class="hero-slide__heading {{ block.settings.sub_heading_font_size }}" style="color: var(--color-subtext)">{{ block.settings.sub_heading | escape }}</h4>
+                  <h2 class="hero-slide__heading {{ block.settings.heading_font_size }}" style="color: var(--color-heading)">{{ block.settings.heading | escape }}</h2>
                   <div class="hero-slide__text rte">{{ block.settings.text }}</div>
 
                 {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
