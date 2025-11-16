@@ -24,7 +24,7 @@
             "button_link_2": "",
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
-            "padding_top_bottom": 20,
+            "padding_top_bottom": 80,
             "padding_left_right": 20,
             "background": "rgba(0, 0, 0, 0.1)",
             "background_blur": 3
