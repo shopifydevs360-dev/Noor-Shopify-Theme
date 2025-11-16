@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const overlay = document.getElementById('drawer-overlay');
   const drawerToggle = document.querySelector('[data-drawer-toggle="menu-drawer"]');
   const closeButton = document.querySelector('[data-drawer-close]');
-  const panelsContainer = document.querySelector('.drawer__panels-container');
   
   // Check if elements exist
   if (!drawer) {
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Keep track of navigation history
-  const navigationHistory = ['main'];
+  const navigationHistory = ['panel-main'];
   
   // Function to open the drawer
   function openDrawer() {
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Prevent body scroll when drawer is open
     document.body.style.overflow = 'hidden';
     // Reset to main panel when opening
-    showPanel('main', false);
+    showPanel('panel-main', false);
   }
   
   // Function to close the drawer
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
     // Reset to main panel when closing
     setTimeout(() => {
-      showPanel('main', false);
+      showPanel('panel-main', false);
     }, 300);
   }
   
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Showing panel:', panelId); // Debug log
     
     // Find the target panel
-    const targetPanel = document.querySelector(`[data-panel="${panelId}"]`);
+    const targetPanel = document.getElementById(panelId);
     if (!targetPanel) {
       console.error('Panel not found:', panelId);
       return;
@@ -59,33 +58,24 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       // Reset history
       navigationHistory.length = 0;
-      navigationHistory.push('main');
+      navigationHistory.push('panel-main');
     }
     
-    // Update the transform of the panels container
-    const panelIndex = Array.from(document.querySelectorAll('.drawer__panel')).indexOf(targetPanel);
-    panelsContainer.style.transform = `translateX(-${panelIndex * 100}%)`;
-    
-    // Update active states
+    // Hide all panels
     document.querySelectorAll('.drawer__panel').forEach(panel => {
       panel.classList.remove('active');
+      panel.style.transform = 'translateX(100%)';
     });
+    
+    // Show the target panel
     targetPanel.classList.add('active');
+    targetPanel.style.transform = 'translateX(0)';
     
     // Update ARIA attributes
-    document.querySelectorAll('[data-submenu-toggle]').forEach(toggle => {
-      const submenuId = toggle.getAttribute('data-submenu-toggle');
-      toggle.setAttribute('aria-expanded', submenuId === panelId);
+    document.querySelectorAll('[data-target-panel]').forEach(toggle => {
+      const targetId = toggle.getAttribute('data-target-panel');
+      toggle.setAttribute('aria-expanded', targetId === panelId);
     });
-  }
-  
-  // Function to go back to the previous panel
-  function goBack() {
-    if (navigationHistory.length > 1) {
-      navigationHistory.pop(); // Remove current panel
-      const previousPanelId = navigationHistory[navigationHistory.length - 1];
-      showPanel(previousPanelId, false);
-    }
   }
   
   // Event listener for the menu trigger button
@@ -116,24 +106,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Event delegation for submenu toggles and back buttons
+  // Event delegation for panel navigation
   document.addEventListener('click', function(e) {
-    // Check if clicked element is a submenu toggle
-    const submenuToggle = e.target.closest('[data-submenu-toggle]');
-    if (submenuToggle) {
+    // Check if clicked element has data-target-panel attribute
+    const targetButton = e.target.closest('[data-target-panel]');
+    if (targetButton) {
       e.preventDefault();
-      const submenuId = submenuToggle.getAttribute('data-submenu-toggle');
-      console.log('Submenu toggle clicked:', submenuId); // Debug log
-      showPanel(submenuId);
-    }
-    
-    // Check if clicked element is a back button
-    const backButton = e.target.closest('[data-back-to]');
-    if (backButton) {
-      e.preventDefault();
-      const backToPanel = backButton.getAttribute('data-back-to');
-      console.log('Back button clicked:', backToPanel); // Debug log
-      showPanel(backToPanel, false);
+      const targetPanelId = targetButton.getAttribute('data-target-panel');
+      console.log('Navigation button clicked:', targetPanelId); // Debug log
+      showPanel(targetPanelId);
     }
   });
 });
