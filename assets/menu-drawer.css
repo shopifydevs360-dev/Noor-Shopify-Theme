@@ -197,37 +197,33 @@
   background-color: rgba(var(--color-text), 0.1);
 }
 
-/* Panels Container - Modern Sliding Approach */
-.drawer__panels-container {
+/* Drawer Content - Container for panels */
+.drawer__content {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   flex: 1;
-  display: flex;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
 }
 
-/* Drawer Panels */
+/* Drawer Panels - Simple Show/Hide Approach */
 .drawer__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  flex-shrink: 0;
+  background-color: rgb(var(--color-background));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background-color: rgb(var(--color-background));
-}
-
-.drawer__panel--main {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1;
 }
 
-.drawer__panel--submenu {
-  z-index: 2;
-}
-
 .drawer__panel.active {
-  /* Active state for styling if needed */
+  transform: translateX(0);
+  z-index: 2;
 }
 
 /* Menu Styles */
