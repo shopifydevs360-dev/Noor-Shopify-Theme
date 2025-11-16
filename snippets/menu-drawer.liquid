@@ -55,7 +55,7 @@
                                 {% for grandchildlink in childlink.links %}
                                   <li class="menu__item {% if grandchildlink.type == 'collection' %}menu__item--is-collection{% endif %}" data-level="3">
                                     <a href="{{ grandchildlink.url }}" class="menu__link {% if grandchildlink.active %}menu__link--active{% endif %}"
-                                       {% if grandchildlink.type == 'collection' %}data-panel-toggle="4" data-parent-title="{{ grandchildlink.title }}"{% endif %}>
+                                       {% if grandchildlink.type == 'collection' %}data-panel-toggle="4" data-parent-title="{{ grandchildlink.title }}" data-collection-handle="{{ grandchildlink.object.handle }}"{% endif %}>
                                       {{ grandchildlink.title }}
                                       {% if grandchildlink.type == 'collection' %}
                                         <span class="menu__arrow">
@@ -128,7 +128,7 @@
       </div>
     </div>
     
-    <!-- Panel 4: Collection Details (conditionally shown) -->
+    <!-- Panel 4: Collection Products -->
     <div class="drawer__panel drawer__panel--level-4" data-panel="4">
       <div class="drawer__header">
         <button class="drawer__back" aria-label="Back" data-panel-back="3">
@@ -145,8 +145,17 @@
       </div>
       
       <div class="drawer__content">
-        <div class="collection-details">
-          <!-- Collection details will be dynamically populated -->
+        <div class="collection-products">
+          <div class="collection-products__loading">
+            <div class="loading-spinner"></div>
+            <p>Loading products...</p>
+          </div>
+          <div class="collection-products__grid" style="display: none;">
+            <!-- Products will be dynamically populated here -->
+          </div>
+          <div class="collection-products__empty" style="display: none;">
+            <p>No products found in this collection.</p>
+          </div>
         </div>
       </div>
     </div>
