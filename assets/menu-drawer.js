@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Current panel state
   let currentPanel = 1;
   let panelHistory = [];
+  let hoverTimer = null;
   
   // Open drawer
   drawerToggles.forEach(toggle => {
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     panelHistory = [];
   });
   
-  // Panel navigation - forward
+  // Panel navigation - forward (click)
   panelToggles.forEach(toggle => {
     toggle.addEventListener('click', function(e) {
       e.preventDefault();
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const submenu = this.nextElementSibling;
       const collectionHandle = this.getAttribute('data-collection-handle');
       
-      if (targetPanel && submenu) {
+      if (targetPanel) {
         // Update panel history
         panelHistory.push(targetPanel);
         currentPanel = targetPanel;
@@ -79,6 +80,43 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           openPanel(targetPanel, parentTitle, submenu);
         }
+      }
+    });
+    
+    // Panel navigation - forward (hover)
+    toggle.addEventListener('mouseenter', function() {
+      // Clear any existing timer
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+      }
+      
+      // Set a small delay before opening on hover
+      hoverTimer = setTimeout(() => {
+        const targetPanel = parseInt(this.getAttribute('data-panel-toggle'));
+        const parentTitle = this.getAttribute('data-parent-title');
+        const submenu = this.nextElementSibling;
+        const collectionHandle = this.getAttribute('data-collection-handle');
+        
+        if (targetPanel) {
+          // Update panel history
+          panelHistory.push(targetPanel);
+          currentPanel = targetPanel;
+          
+          // Open the panel
+          if (targetPanel === 4 && collectionHandle) {
+            // Special handling for collection panel
+            openCollectionPanel(parentTitle, collectionHandle);
+          } else {
+            openPanel(targetPanel, parentTitle, submenu);
+          }
+        }
+      }, 200); // 200ms delay before opening on hover
+    });
+    
+    // Clear hover timer when mouse leaves
+    toggle.addEventListener('mouseleave', function() {
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
       }
     });
   });
@@ -157,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextSubmenu = this.nextElementSibling;
         const collectionHandle = this.getAttribute('data-collection-handle');
         
-        if (nextPanel && nextSubmenu) {
+        if (nextPanel) {
           // Update panel history
           panelHistory.push(nextPanel);
           currentPanel = nextPanel;
@@ -169,6 +207,43 @@ document.addEventListener('DOMContentLoaded', function() {
           } else {
             openPanel(nextPanel, nextTitle, nextSubmenu);
           }
+        }
+      });
+      
+      // Add hover event listeners
+      toggle.addEventListener('mouseenter', function() {
+        // Clear any existing timer
+        if (hoverTimer) {
+          clearTimeout(hoverTimer);
+        }
+        
+        // Set a small delay before opening on hover
+        hoverTimer = setTimeout(() => {
+          const nextPanel = parseInt(this.getAttribute('data-panel-toggle'));
+          const nextTitle = this.getAttribute('data-parent-title');
+          const nextSubmenu = this.nextElementSibling;
+          const collectionHandle = this.getAttribute('data-collection-handle');
+          
+          if (nextPanel) {
+            // Update panel history
+            panelHistory.push(nextPanel);
+            currentPanel = nextPanel;
+            
+            // Open the panel
+            if (nextPanel === 4 && collectionHandle) {
+              // Special handling for collection panel
+              openCollectionPanel(nextTitle, collectionHandle);
+            } else {
+              openPanel(nextPanel, nextTitle, nextSubmenu);
+            }
+          }
+        }, 200); // 200ms delay before opening on hover
+      });
+      
+      // Clear hover timer when mouse leaves
+      toggle.addEventListener('mouseleave', function() {
+        if (hoverTimer) {
+          clearTimeout(hoverTimer);
         }
       });
     });
@@ -218,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function fetchCollectionProducts(collectionHandle) {
     // Use Shopify's AJAX API to fetch collection products
-    return fetch(`/collections/${collectionHandle}?view=json`)
+    return fetch(`/collections/${collectionHandle}/products.json?limit=20`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -226,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
       })
       .then(data => {
-        // The response should be a JSON array of products
+        // The response should be a JSON object with products array
         return data.products || [];
       });
   }
@@ -238,10 +313,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
       
-      const productImage = product.featured_image || 'https://via.placeholder.com/150x150';
+      const productImage = product.images && product.images.length > 0 
+        ? product.images[0].src 
+        : 'https://via.placeholder.com/150x150';
       const productTitle = product.title;
       const productPrice = product.price ? formatMoney(product.price) : 'Price not available';
-      const productUrl = product.url;
+      const productUrl = `/products/${product.handle}`;
       
       productCard.innerHTML = `
         <a href="${productUrl}" class="product-card__link">
