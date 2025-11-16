@@ -81,6 +81,7 @@
 
 .hero-slide__content {
   margin: 0 auto;
+  padding: 2rem;
 }
 /* Content width variable */
 .content-width-small{
