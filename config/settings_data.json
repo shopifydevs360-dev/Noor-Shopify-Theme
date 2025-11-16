@@ -25,7 +25,7 @@
     "h2_font_size": 23,
     "type_header_base_size": 19,
     "h4_font_size": 19,
-    "type_header_spacing": 2,
+    "type_header_spacing": 0,
     "container_max_width": 1480,
     "container_fluid_width": 1620,
     "container_narrow_width": 1100,
