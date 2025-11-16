@@ -1,123 +1,315 @@
-{{ 'menu-drawer.css' | asset_url | stylesheet_tag: preload: true }}
-
 <!-- Menu Drawer -->
-<div class="drawer drawer--menu {% if settings.enable_rtl %}rtl{% endif %}" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="drawer__overlay" data-drawer-close></div>
-  <div class="drawer__inner">
-
-    <!-- Desktop Panels -->
-    <div class="drawer__panel drawer__panel--parent">
-      <div class="drawer__header">
-        <button class="drawer__close" aria-label="Close" data-drawer-close>&times;</button>
-      </div>
-      <div class="drawer__content">
-        <ul class="menu__list menu__list--level-1">
-          {% for link in settings.menu.links %}
-            <li class="menu__item {% if link.links != blank %}has-children{% endif %}">
-              <a href="{{ link.url }}" class="menu__link" data-target-panel="child" data-title="{{ link.title }}">
-                {{ link.title }}
-                {% if link.links != blank %}
-                  <span class="menu__arrow">&rsaquo;</span>
-                {% endif %}
-              </a>
+<div id="menu-drawer" class="drawer{% if settings.enable_rtl %} rtl{% endif %}">
+  <div class="drawer__overlay" data-drawer-close="menu-drawer"></div>
+  <div class="drawer__content">
+    <div class="drawer__header">
+      <h2 class="drawer__title">{{ 'general.navigation.menu' | t }}</h2>
+      <button class="drawer__close" aria-label="{{ 'general.accessibility.close' | t }}" data-drawer-close="menu-drawer">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="drawer__body">
+      <nav class="mobile-nav">
+        <ul class="mobile-nav__list">
+          {% for link in linklists.main-menu.links %}
+            <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
+              {% if link.links != blank %}
+                <div class="mobile-nav__has-sublist">
+                  <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+                  <button class="mobile-nav__toggle" aria-expanded="false" aria-controls="Submenu-{{ forloop.index }}">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 10 6">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </div>
+                <ul id="Submenu-{{ forloop.index }}" class="mobile-nav__sublist">
+                  {% for childlink in link.links %}
+                    <li class="mobile-nav__item{% if childlink.active %} mobile-nav__item--active{% endif %}">
+                      {% if childlink.links != blank %}
+                        <div class="mobile-nav__has-sublist">
+                          <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title }}</a>
+                          <button class="mobile-nav__toggle" aria-expanded="false" aria-controls="Submenu-{{ forloop.index }}-{{ forloop.index0 }}">
+                            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-down" viewBox="0 0 10 6">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                            </svg>
+                          </button>
+                        </div>
+                        <ul id="Submenu-{{ forloop.index }}-{{ forloop.index0 }}" class="mobile-nav__sublist">
+                          {% for grandchildlink in childlink.links %}
+                            <li class="mobile-nav__item{% if grandchildlink.active %} mobile-nav__item--active{% endif %}">
+                              <a href="{{ grandchildlink.url }}" class="mobile-nav__link">{{ grandchildlink.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% else %}
+                        <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title }}</a>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+              {% endif %}
             </li>
           {% endfor %}
         </ul>
-      </div>
+      </nav>
     </div>
-
-    <div class="drawer__panel drawer__panel--child">
-      <div class="drawer__header">
-        <button class="drawer__back" data-back-panel="parent">&larr; Back</button>
-        <span class="drawer__panel-title"></span>
-      </div>
-      <div class="drawer__content">
-        <ul class="menu__list menu__list--level-2"></ul>
-      </div>
-    </div>
-
-    <div class="drawer__panel drawer__panel--grandchild">
-      <div class="drawer__header">
-        <button class="drawer__back" data-back-panel="child">&larr; Back</button>
-        <span class="drawer__panel-title"></span>
-      </div>
-      <div class="drawer__content">
-        <ul class="menu__list menu__list--level-3"></ul>
-      </div>
-    </div>
-
   </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const drawer = document.getElementById('menu-drawer');
-  const panels = drawer.querySelectorAll('.drawer__panel');
-  const parentPanel = drawer.querySelector('.drawer__panel--parent');
-  const childPanel = drawer.querySelector('.drawer__panel--child');
-  const grandchildPanel = drawer.querySelector('.drawer__panel--grandchild');
+<style>
+  /* Drawer Styles */
+  .drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
 
-  // Toggle Drawer
-  document.querySelectorAll('[data-drawer-toggle]').forEach(btn => {
-    btn.addEventListener('click', function() {
-      drawer.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      showPanel(parentPanel);
-    });
-  });
+  .drawer.is-open {
+    visibility: visible;
+    opacity: 1;
+  }
 
-  document.querySelectorAll('[data-drawer-close]').forEach(btn => {
-    btn.addEventListener('click', function() {
-      drawer.classList.remove('open');
-      document.body.style.overflow = '';
-      panels.forEach(p => p.classList.remove('active'));
-    });
-  });
+  .drawer__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-  // Back buttons
-  drawer.querySelectorAll('.drawer__back').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const target = this.dataset.backPanel;
-      if(target === 'parent') {
-        showPanel(parentPanel);
-      } else if(target === 'child') {
-        showPanel(childPanel);
-      }
-    });
-  });
+  .drawer.is-open .drawer__overlay {
+    opacity: 1;
+  }
 
-  // Navigate to child / grandchild panels
-  parentPanel.querySelectorAll('.menu__link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const children = this.closest('.menu__item').querySelector('ul');
-      if(children) {
-        e.preventDefault();
-        populatePanel(childPanel, children, this.dataset.title);
-        showPanel(childPanel);
-      }
-    });
-  });
+  .drawer__content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    max-width: 80%;
+    background-color: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-  childPanel.addEventListener('click', function(e) {
-    const targetItem = e.target.closest('.menu__item.has-children');
-    if(targetItem) {
-      const children = targetItem.querySelector('ul');
-      if(children) {
-        populatePanel(grandchildPanel, children, targetItem.querySelector('.menu__link').textContent);
-        showPanel(grandchildPanel);
-      }
+  .drawer.is-open .drawer__content {
+    transform: translateX(0);
+  }
+
+  /* RTL Support */
+  .drawer.rtl .drawer__content {
+    right: 0;
+    left: auto;
+    transform: translateX(100%);
+  }
+
+  .drawer.rtl.is-open .drawer__content {
+    transform: translateX(0);
+  }
+
+  .drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .drawer__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .drawer__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .drawer__close .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .drawer__body {
+    padding: 0;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav__item {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .mobile-nav__link {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .mobile-nav__item--active > .mobile-nav__link {
+    font-weight: 600;
+  }
+
+  .mobile-nav__has-sublist {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-nav__has-sublist > .mobile-nav__link {
+    flex: 1;
+  }
+
+  .mobile-nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-nav__toggle .icon {
+    width: 10px;
+    height: 6px;
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-nav__toggle[aria-expanded="true"] .icon {
+    transform: rotate(180deg);
+  }
+
+  .mobile-nav__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    display: none;
+  }
+
+  .mobile-nav__sublist.is-open {
+    display: block;
+  }
+
+  .mobile-nav__sublist .mobile-nav__link {
+    padding-left: 35px;
+    font-size: 15px;
+  }
+
+  .mobile-nav__sublist .mobile-nav__sublist .mobile-nav__link {
+    padding-left: 50px;
+    font-size: 14px;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (min-width: 768px) {
+    .drawer__content {
+      width: 350px;
     }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Drawer functionality
+    const drawerTriggers = document.querySelectorAll('[data-drawer-toggle]');
+    const drawerCloses = document.querySelectorAll('[data-drawer-close]');
+    
+    drawerTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        const drawerId = this.getAttribute('data-drawer-toggle');
+        const drawer = document.getElementById(drawerId);
+        if (drawer) {
+          drawer.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+    
+    drawerCloses.forEach(close => {
+      close.addEventListener('click', function(e) {
+        e.preventDefault();
+        const drawerId = this.getAttribute('data-drawer-close');
+        const drawer = document.getElementById(drawerId);
+        if (drawer) {
+          drawer.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    
+    // Submenu toggles
+    const submenuToggles = document.querySelectorAll('.mobile-nav__toggle');
+    
+    submenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        const controlId = this.getAttribute('aria-controls');
+        const submenu = document.getElementById(controlId);
+        
+        if (isExpanded) {
+          this.setAttribute('aria-expanded', 'false');
+          submenu.classList.remove('is-open');
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          submenu.classList.add('is-open');
+        }
+      });
+    });
+    
+    // Close drawer when clicking on overlay
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('drawer__overlay')) {
+        const drawer = e.target.closest('.drawer');
+        if (drawer) {
+          drawer.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+    
+    // Close drawer with escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const openDrawer = document.querySelector('.drawer.is-open');
+        if (openDrawer) {
+          openDrawer.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      }
+    });
   });
-
-  function showPanel(panel) {
-    panels.forEach(p => p.classList.remove('active'));
-    panel.classList.add('active');
-  }
-
-  function populatePanel(panel, content, title) {
-    panel.querySelector('.drawer__panel-title').textContent = title;
-    const list = panel.querySelector('ul');
-    list.innerHTML = content.innerHTML;
-  }
-});
 </script>
