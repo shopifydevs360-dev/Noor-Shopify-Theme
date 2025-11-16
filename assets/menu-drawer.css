@@ -202,14 +202,5 @@
   .rtl .drawer.open .drawer__main {
     transform: translateX(0);
   }
-  
-  .rtl .menu__submenu {
-    left: auto;
-    right: 0;
-    transform: translateX(-100%);
-  }
-  
-  .rtl .menu__submenu.active {
-    transform: translateX(0);
-  }
+
 }
