@@ -31,8 +31,8 @@
   text-align: right;
 }
 
-/* Drawer Overlay */
-.drawer-overlay {
+/* Drawer Overlay - Fixed ID selector */
+#drawer-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -43,9 +43,10 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
 }
 
-.drawer-overlay.active {
+#drawer-overlay.active {
   opacity: 1;
   visibility: visible;
 }
@@ -162,6 +163,8 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+  z-index: 1001;
 }
 
 .drawer.open .drawer__main {
@@ -202,5 +205,11 @@
   .rtl .drawer.open .drawer__main {
     transform: translateX(0);
   }
+}
 
+/* Additional overlay behavior for touch devices */
+@media (max-width: 989px) {
+  #drawer-overlay {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
