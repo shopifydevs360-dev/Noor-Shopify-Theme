@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Mobile detection
   const isMobile = window.innerWidth <= 767;
   
+  // Current panel state
+  let currentPanel = 1;
+  let panelHistory = [];
+  
   // Open drawer
   drawerToggles.forEach(toggle => {
     toggle.addEventListener('click', function() {
@@ -26,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset all panels on open
         resetPanels();
+        currentPanel = 1;
+        panelHistory = [1];
       }
     });
   });
@@ -38,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Reset panels after closing animation
       setTimeout(resetPanels, 300);
+      currentPanel = 1;
+      panelHistory = [];
     });
   });
   
@@ -48,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Reset panels after closing animation
     setTimeout(resetPanels, 300);
+    currentPanel = 1;
+    panelHistory = [];
   });
   
   // Panel navigation - forward
@@ -55,12 +65,23 @@ document.addEventListener('DOMContentLoaded', function() {
     toggle.addEventListener('click', function(e) {
       e.preventDefault();
       
-      const targetPanel = this.getAttribute('data-panel-toggle');
+      const targetPanel = parseInt(this.getAttribute('data-panel-toggle'));
       const parentTitle = this.getAttribute('data-parent-title');
       const submenu = this.nextElementSibling;
+      const collectionHandle = this.getAttribute('data-collection-handle');
       
       if (targetPanel && submenu) {
-        openPanel(targetPanel, parentTitle, submenu, isMobile);
+        // Update panel history
+        panelHistory.push(targetPanel);
+        currentPanel = targetPanel;
+        
+        // Open the panel
+        if (targetPanel === 4 && collectionHandle) {
+          // Special handling for collection panel
+          openCollectionPanel(parentTitle, collectionHandle, isMobile);
+        } else {
+          openPanel(targetPanel, parentTitle, submenu, isMobile);
+        }
       }
     });
   });
@@ -68,9 +89,19 @@ document.addEventListener('DOMContentLoaded', function() {
   // Panel navigation - back
   panelBacks.forEach(back => {
     back.addEventListener('click', function() {
-      const targetPanel = this.getAttribute('data-panel-back');
+      const targetPanel = parseInt(this.getAttribute('data-panel-back'));
       
       if (targetPanel) {
+        // Update panel history
+        const currentIndex = panelHistory.indexOf(currentPanel);
+        if (currentIndex > 0) {
+          panelHistory = panelHistory.slice(0, currentIndex);
+          currentPanel = panelHistory[panelHistory.length - 1];
+        } else {
+          currentPanel = targetPanel;
+          panelHistory = [targetPanel];
+        }
+        
         closePanel(targetPanel, isMobile);
       }
     });
@@ -86,6 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Reset panels after closing animation
       setTimeout(resetPanels, 300);
+      currentPanel = 1;
+      panelHistory = [];
     }
   });
   
@@ -97,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Reset panels after closing animation
       setTimeout(resetPanels, 300);
+      currentPanel = 1;
+      panelHistory = [];
     }
   });
   
@@ -107,6 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // If we switch between mobile and desktop, reset panels
     if (isMobile !== newIsMobile) {
       resetPanels();
+      currentPanel = 1;
+      panelHistory = [];
     }
   });
   
@@ -130,12 +167,23 @@ document.addEventListener('DOMContentLoaded', function() {
       toggle.addEventListener('click', function(e) {
         e.preventDefault();
         
-        const nextPanel = this.getAttribute('data-panel-toggle');
+        const nextPanel = parseInt(this.getAttribute('data-panel-toggle'));
         const nextTitle = this.getAttribute('data-parent-title');
         const nextSubmenu = this.nextElementSibling;
+        const collectionHandle = this.getAttribute('data-collection-handle');
         
         if (nextPanel && nextSubmenu) {
-          openPanel(nextPanel, nextTitle, nextSubmenu, isMobileView);
+          // Update panel history
+          panelHistory.push(nextPanel);
+          currentPanel = nextPanel;
+          
+          // Open the panel
+          if (nextPanel === 4 && collectionHandle) {
+            // Special handling for collection panel
+            openCollectionPanel(nextTitle, collectionHandle, isMobileView);
+          } else {
+            openPanel(nextPanel, nextTitle, nextSubmenu, isMobileView);
+          }
         }
       });
     });
@@ -150,18 +198,109 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  function closePanel(panelNumber, isMobileView) {
-    const targetPanel = drawer.querySelector(`[data-panel="${panelNumber}"]`);
+  function openCollectionPanel(title, collectionHandle, isMobileView) {
+    const targetPanel = drawer.querySelector('[data-panel="4"]');
+    const targetTitle = targetPanel.querySelector('.drawer__panel-title');
+    const loadingElement = targetPanel.querySelector('.collection-products__loading');
+    const gridElement = targetPanel.querySelector('.collection-products__grid');
+    const emptyElement = targetPanel.querySelector('.collection-products__empty');
     
+    // Set panel title
+    targetTitle.textContent = title;
+    
+    // Show loading state
+    loadingElement.style.display = 'block';
+    gridElement.style.display = 'none';
+    emptyElement.style.display = 'none';
+    
+    // Fetch collection products
+    fetchCollectionProducts(collectionHandle)
+      .then(products => {
+        loadingElement.style.display = 'none';
+        
+        if (products.length > 0) {
+          // Render products
+          renderProducts(products, gridElement);
+          gridElement.style.display = 'grid';
+        } else {
+          // Show empty state
+          emptyElement.style.display = 'block';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching collection products:', error);
+        loadingElement.style.display = 'none';
+        emptyElement.style.display = 'block';
+      });
+    
+    // Show panel
+    if (isMobileView) {
+      // Mobile: slide in from right
+      targetPanel.classList.add('active');
+    } else {
+      // Desktop: show side by side
+      drawer.classList.add('panel-4-open');
+    }
+  }
+  
+  function fetchCollectionProducts(collectionHandle) {
+    // Use Shopify's AJAX API to fetch collection products
+    return fetch(`/collections/${collectionHandle}?view=json`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // The response should be a JSON array of products
+        return data.products || [];
+      });
+  }
+  
+  function renderProducts(products, container) {
+    container.innerHTML = '';
+    
+    products.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+      
+      const productImage = product.featured_image || 'https://via.placeholder.com/150x150';
+      const productTitle = product.title;
+      const productPrice = product.price ? formatMoney(product.price) : 'Price not available';
+      const productUrl = product.url;
+      
+      productCard.innerHTML = `
+        <a href="${productUrl}" class="product-card__link">
+          <div class="product-card__image">
+            <img src="${productImage}" alt="${productTitle}" loading="lazy">
+          </div>
+          <div class="product-card__info">
+            <h4 class="product-card__title">${productTitle}</h4>
+            <p class="product-card__price">${productPrice}</p>
+          </div>
+        </a>
+      `;
+      
+      container.appendChild(productCard);
+    });
+  }
+  
+  function formatMoney(cents) {
+    // Simple money formatting - adjust based on your store's currency
+    return `$${(cents / 100).toFixed(2)}`;
+  }
+  
+  function closePanel(panelNumber, isMobileView) {
     if (isMobileView) {
       // Mobile: just hide current panel
-      const currentPanel = drawer.querySelector('.drawer__panel.active');
-      if (currentPanel) {
-        currentPanel.classList.remove('active');
+      const currentPanelElement = drawer.querySelector('.drawer__panel.active');
+      if (currentPanelElement) {
+        currentPanelElement.classList.remove('active');
       }
     } else {
       // Desktop: hide all panels after the target
-      for (let i = parseInt(panelNumber) + 1; i <= 4; i++) {
+      for (let i = panelNumber + 1; i <= 4; i++) {
         drawer.classList.remove(`panel-${i}-open`);
       }
     }
