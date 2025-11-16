@@ -30,7 +30,7 @@
             "button_link_2": "",
             "second_button_type": "btn--secondary",
             "text_alignment": "center",
-            "horizontal_alignment": "flex-end",
+            "horizontal_alignment": "flex-start",
             "vertical_alignment": "flex-end",
             "background": "",
             "background_blur": 14,
