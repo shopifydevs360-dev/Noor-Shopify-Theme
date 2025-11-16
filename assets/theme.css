@@ -143,6 +143,7 @@ body.rtl .container {
 ------------------------------- */
 button{
   border: none;
+  pointer: cursor;
 }
 .btn,
 .shopify-payment-button button {
