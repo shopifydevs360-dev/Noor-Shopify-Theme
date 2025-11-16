@@ -1,4 +1,4 @@
-/* RTL Mode Styles */
+/* RTL Mode Styles - Enhanced */
 .rtl .drawer__main {
   left: auto;
   right: 0;
@@ -9,14 +9,26 @@
   transform: translateX(0);
 }
 
+.rtl .drawer__panel {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.rtl .drawer__panel.active {
+  transform: translateX(0);
+}
+
 .rtl .menu__arrow {
   margin-left: 0;
   margin-right: 0.5rem;
+  transform: rotate(180deg);
 }
 
-.rtl .menu__submenu {
-  left: auto;
-  right: 100%;
+.rtl .menu__arrow--back {
+  margin-left: 0.5rem;
+  margin-right: 0;
+  transform: rotate(0deg);
 }
 
 .rtl .drawer__header {
@@ -25,10 +37,45 @@
 
 .rtl .menu__link {
   text-align: right;
+  flex-direction: row-reverse;
 }
 
 .rtl .menu__list--level-2 .menu__link {
   text-align: right;
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+}
+
+.rtl .menu__list--level-3 .menu__link {
+  text-align: right;
+  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+}
+
+.rtl .drawer__back {
+  flex-direction: row-reverse;
+}
+
+.rtl .drawer__back span {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.rtl .drawer__submenu-header {
+  flex-direction: row-reverse;
+}
+
+/* RTL Mobile adjustments */
+@media (max-width: 767px) {
+  .rtl .drawer__main {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+  
+  .rtl .drawer.open .drawer__main {
+    transform: translateX(0);
+  }
 }
 
 /* Drawer Overlay - Fixed ID selector */
@@ -327,50 +374,6 @@
 .menu__list--level-3 .menu__link {
   padding-left: 2.5rem;
   font-size: 0.9rem;
-}
-
-/* RTL Adjustments */
-.rtl .menu__link {
-  text-align: right;
-}
-
-.rtl .menu__arrow {
-  margin-left: 0;
-  margin-right: 0.5rem;
-}
-
-.rtl .menu__arrow--back {
-  margin-right: 0;
-  margin-left: 0.5rem;
-  transform: rotate(180deg);
-}
-
-.rtl .menu__list--level-2 .menu__link {
-  padding-left: 1.5rem;
-  padding-right: 2rem;
-}
-
-.rtl .menu__list--level-3 .menu__link {
-  padding-left: 1.5rem;
-  padding-right: 2.5rem;
-}
-
-.rtl .drawer__back span {
-  margin-left: 0;
-  margin-right: 0.5rem;
-}
-
-/* RTL Mobile adjustments */
-@media (max-width: 767px) {
-  .rtl .drawer__main {
-    left: auto;
-    right: 0;
-    transform: translateX(100%);
-  }
-  
-  .rtl .drawer.open .drawer__main {
-    transform: translateX(0);
-  }
 }
 
 /* Additional overlay behavior for touch devices */
