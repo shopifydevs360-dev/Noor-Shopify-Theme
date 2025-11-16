@@ -1,56 +1,45 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Check if RTL mode is enabled
-  const isRTL = document.body.classList.contains('rtl');
+document.addEventListener('DOMContentLoaded', () => {
+  // Select the drawer and overlay
+  const drawer = document.getElementById('menu-drawer');
+  const overlay = document.getElementById('drawer-overlay');
   
-  // Drawer functionality
-  const drawerToggles = document.querySelectorAll('[data-drawer-toggle]');
-  const drawerCloses = document.querySelectorAll('[data-drawer-close]');
-  const drawerOverlay = document.getElementById('drawer-overlay');
-  const menuDrawer = document.getElementById('menu-drawer');
-  
-  // Toggle drawer
-  function toggleDrawer(drawerId, isOpen) {
-    const drawer = document.getElementById(drawerId);
-    
-    if (drawer) {
-      if (isOpen) {
-        drawer.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        drawerOverlay.classList.add('active');
-      } else {
-        drawer.classList.remove('open');
-        document.body.style.overflow = '';
-        drawerOverlay.classList.remove('active');
-      }
-    }
-  }
-  
-  // Drawer toggle events
+  // Select all drawer toggle buttons (in case you have multiple triggers)
+  const drawerToggles = document.querySelectorAll('[data-drawer-toggle="menu-drawer"]');
+  const drawerClose = drawer.querySelector('[data-drawer-close]');
+
+  // Function to open the drawer
+  const openDrawer = () => {
+    drawer.classList.add('open');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  };
+
+  // Function to close the drawer
+  const closeDrawer = () => {
+    drawer.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = ''; // restore scroll
+  };
+
+  // Add click events to open drawer
   drawerToggles.forEach(toggle => {
-    toggle.addEventListener('click', function() {
-      const drawerId = this.getAttribute('data-drawer-toggle');
-      toggleDrawer(drawerId, true);
-    });
+    toggle.addEventListener('click', openDrawer);
   });
-  
-  // Drawer close events
-  drawerCloses.forEach(close => {
-    close.addEventListener('click', function() {
-      const drawer = this.closest('.drawer');
-      if (drawer) {
-        toggleDrawer(drawer.id, false);
-      }
-    });
-  });
-  
-  
-  // Handle ESC key to close drawer
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      const openDrawer = document.querySelector('.drawer.open');
-      if (openDrawer) {
-        toggleDrawer(openDrawer.id, false);
-      }
+
+  // Close drawer when clicking close button
+  if (drawerClose) {
+    drawerClose.addEventListener('click', closeDrawer);
+  }
+
+  // Close drawer when clicking overlay
+  if (overlay) {
+    overlay.addEventListener('click', closeDrawer);
+  }
+
+  // Optional: Close drawer on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
     }
   });
 });
