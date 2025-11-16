@@ -202,7 +202,7 @@
               "settings": {
                 "text": "Text",
                 "text_style": "h1",
-                "alignment": "right"
+                "alignment": "center"
               },
               "blocks": {}
             }
