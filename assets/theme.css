@@ -65,7 +65,7 @@ body {
 }
 @media (max-width: 767px) {
     body {
-    font-size: calc(var(--font-body-size, 16px) * 0.92);
+    font-size: calc(var(--font-body-size, 16px) * 0.95);
   }
 }
 p {
