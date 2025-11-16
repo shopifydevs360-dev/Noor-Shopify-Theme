@@ -1,49 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+  // Get DOM elements
   const drawer = document.getElementById('menu-drawer');
   const overlay = document.getElementById('drawer-overlay');
-  const drawerToggles = document.querySelectorAll('[data-drawer-toggle="menu-drawer"]');
-  const drawerClose = drawer.querySelector('[data-drawer-close]');
-
-  const openDrawer = () => {
-    drawer.classList.add('open');
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeDrawer = () => {
-    drawer.classList.remove('open');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  };
-
-  // Open drawer on toggle click
-  drawerToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation(); // prevent click from bubbling to document
-      openDrawer();
-    });
-  });
-
-  // Close drawer on close button click
-  if (drawerClose) {
-    drawerClose.addEventListener('click', closeDrawer);
+  const drawerToggle = document.querySelector('[data-drawer-toggle="menu-drawer"]');
+  const closeButton = document.querySelector('[data-drawer-close]');
+  
+  // Function to open the drawer
+  function openDrawer() {
+    if (drawer && overlay) {
+      drawer.classList.add('open');
+      overlay.classList.add('active');
+      // Prevent body scroll when drawer is open
+      document.body.style.overflow = 'hidden';
+    }
   }
-
-  // Close drawer on overlay click
+  
+  // Function to close the drawer
+  function closeDrawer() {
+    if (drawer && overlay) {
+      drawer.classList.remove('open');
+      overlay.classList.remove('active');
+      // Restore body scroll
+      document.body.style.overflow = '';
+    }
+  }
+  
+  // Event listener for the menu trigger button
+  if (drawerToggle) {
+    drawerToggle.addEventListener('click', openDrawer);
+  }
+  
+  // Event listener for the close button
+  if (closeButton) {
+    closeButton.addEventListener('click', closeDrawer);
+  }
+  
+  // Event listener for clicking on the overlay
   if (overlay) {
     overlay.addEventListener('click', closeDrawer);
   }
-
-  // Close drawer if clicking outside the drawer
-  document.addEventListener('click', (e) => {
-    if (drawer.classList.contains('open') && !drawer.contains(e.target)) {
-      closeDrawer();
-    }
-  });
-
-  // Optional: Close drawer on ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+  
+  // Event listener for ESC key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && drawer.classList.contains('open')) {
       closeDrawer();
     }
   });
