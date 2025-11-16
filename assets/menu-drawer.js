@@ -21,12 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         drawer.classList.remove('open');
         document.body.style.overflow = '';
         drawerOverlay.classList.remove('active');
-        
-        // Reset mobile submenus
-        const activeSubmenus = drawer.querySelectorAll('.menu__submenu.active');
-        activeSubmenus.forEach(submenu => {
-          submenu.classList.remove('active');
-        });
       }
     }
   }
