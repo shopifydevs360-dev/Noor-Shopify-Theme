@@ -590,7 +590,31 @@
         "default": 12,
         "unit": "px",
         "label": "Style Two"
-      }
+      },
+      {
+        "type": "header",
+        "content": "Content spacing"
+      },
+      {
+        "type": "range",
+        "id": "heading-spacing",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 18,
+        "unit": "px",
+        "label": "Heading spacing"
+      },
+      {
+        "type": "range",
+        "id": "paragraph-spacing",
+        "min": 0,
+        "max": 80,
+        "step": 1,
+        "default": 12,
+        "unit": "px",
+        "label": "Paragraph spacing"
+      },
     ]
   },
   {
