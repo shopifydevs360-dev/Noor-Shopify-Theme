@@ -149,6 +149,18 @@
 .hero-slider .swiper-button-next::after {
   font-size: 18px;
 }
+@media (max-width: 767px) {
+  .hero-slider .swiper-button-prev,
+  .hero-slider .swiper-button-next {
+    width: 36px;
+    height: 36px;
+  }
+  .hero-slider .swiper-button-prev::after,
+  .hero-slider .swiper-button-next::after {
+    font-size: 16px;
+  }
+}
+
 /* --- Navigation Positioning --- */
 /* --- MIDDLE–BETWEEN --- */
 .hero-slider--navigation-middle-between .swiper-button-prev {
