@@ -72,6 +72,17 @@ p {
   text-wrap: pretty;
   margin: var(--paragraph-spacing);
 }
+h1, h2, h3, h4, h5, h6 {
+  margin: var(--heading-spacing);
+}
+@media (max-width: 767px) {
+    p {
+    margin:: calc(var(--paragraph-spacing) * 0.8);
+  }
+    h1, h2, h3, h4, h5, h6{
+    margin:: calc(var(--heading-spacing) * 0.8);
+  }
+}
 
 p,
 h1, h2, h3, h4, h5, h6 {
