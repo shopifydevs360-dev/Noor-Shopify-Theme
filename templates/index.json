@@ -22,12 +22,11 @@
             "button_link_1": "",
             "button_label_2": "Learn More",
             "button_link_2": "",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "padding_top_bottom": 80,
-            "padding_left_right": 20,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-end",
             "background": "rgba(0, 0, 0, 0.1)",
-            "background_blur": 3
+            "background_blur": 3,
+            "content-widtht": "medium"
           }
         },
         "slide_cLHMKG": {
@@ -42,10 +41,9 @@
             "button_link_2": "",
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
-            "padding_top_bottom": 20,
-            "padding_left_right": 20,
             "background": "rgba(0, 0, 0, 0.5)",
-            "background_blur": 5
+            "background_blur": 5,
+            "content-widtht": "medium"
           }
         }
       },
