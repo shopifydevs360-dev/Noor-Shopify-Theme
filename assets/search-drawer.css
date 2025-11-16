@@ -40,9 +40,10 @@
 }
 
 .search-drawer__inner {
-  padding: 20px;
+    padding: 20px;
+    max-width: 920px;
+    margin: auto;
 }
-
 /* =============================
    HEADER + INPUT
 ============================= */
