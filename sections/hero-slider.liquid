@@ -90,10 +90,8 @@
               <div class="hero-slide__content content-width-{{ block.settings.content_width }} text-{{ block.settings.text_alignment }} border-radius-{{ block.settings.corner-radius }}" style="background: {{ block.settings.background }}; backdrop-filter: blur({{ block.settings.background_blur }}px);">
 
                   <h2 class="hero-slide__heading">{{ block.settings.heading | escape }}</h2>
-
-                {%- if block.settings.text != blank -%}
                   <div class="hero-slide__text rte">{{ block.settings.text }}</div>
-                {%- endif -%}
+
                 {%- if block.settings.button_label_1 != blank or block.settings.button_label_2 != blank -%}
                   <div class="hero-slide__buttons">
                     {%- if block.settings.button_label_1 != blank -%}
