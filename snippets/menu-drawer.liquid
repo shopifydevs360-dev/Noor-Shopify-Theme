@@ -36,11 +36,12 @@
                   <div class="menu__submenu" data-submenu="2">
                     <ul class="menu__list menu__list--level-2">
                       {% for childlink in link.links %}
-                        <li class="menu__item {% if childlink.links != blank %}menu__item--has-children{% endif %}" data-level="2">
+                        <li class="menu__item {% if childlink.links != blank or childlink.type == 'collection' %}menu__item--has-children{% endif %}" data-level="2">
                           <a href="{{ childlink.url }}" class="menu__link {% if childlink.active %}menu__link--active{% endif %}"
-                             {% if childlink.links != blank %}data-panel-toggle="3" data-parent-title="{{ childlink.title }}"{% endif %}>
+                             {% if childlink.links != blank %}data-panel-toggle="3" data-parent-title="{{ childlink.title }}"{% endif %}
+                             {% if childlink.type == 'collection' %}data-panel-toggle="4" data-parent-title="{{ childlink.title }}" data-collection-handle="{{ childlink.object.handle }}"{% endif %}>
                             {{ childlink.title }}
-                            {% if childlink.links != blank %}
+                            {% if childlink.links != blank or childlink.type == 'collection' %}
                               <span class="menu__arrow">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
