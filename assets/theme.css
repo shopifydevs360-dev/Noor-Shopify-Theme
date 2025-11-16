@@ -273,3 +273,11 @@ button:disabled,
   }
 }
 
+.border-radius-style-one{
+  overflow: hidden;
+  border-radius: var(--border-radius-style-one, 4px);
+}
+.border-radius-style-two{
+  overflow: hidden;
+  border-radius: var(--border-radius-style-two, 12px);
+}
