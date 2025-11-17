@@ -1,5 +1,4 @@
 {{ 'collection-style.css' | asset_url | stylesheet_tag }}
-{{ 'collection-filter.js' | asset_url | script_tag }}
 
 <div class="shopify-section m-color-{{ section.settings.color_scheme.id }}">
   <div class="container">
@@ -193,3 +192,5 @@
   ]
 }
 {% endschema %}
+
+ <script src="{{ 'collection-filter.js' | asset_url }}" defer="defer"></script>
