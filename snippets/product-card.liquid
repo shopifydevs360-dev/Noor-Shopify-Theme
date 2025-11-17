@@ -23,7 +23,7 @@
     
     <div class="product-actions">
       {% if product.available %}
-        {% if section.settings.cart_behavior == 'redirect' %}
+        {% if settings.cart_behavior == 'redirect' %}
           <!-- Traditional form submission -->
           <form action="/cart/add" method="post" enctype="multipart/form-data" onclick="event.stopPropagation()">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
