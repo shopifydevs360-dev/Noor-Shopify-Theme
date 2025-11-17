@@ -1,4 +1,4 @@
-// Initialize view state
+// Collection Filter & View Functionality
 let currentView = localStorage.getItem('collectionView') || 'grid';
 
 // Set initial view
@@ -71,26 +71,29 @@ function initializeFilters() {
   });
 
   // Handle price form
-  document.querySelector('.price-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const url = new URL(window.location);
-    const minPrice = this.querySelector('input[name="filter.v.price.gte"]').value;
-    const maxPrice = this.querySelector('input[name="filter.v.price.lte"]').value;
-    
-    if (minPrice) {
-      url.searchParams.set('filter.v.price.gte', minPrice);
-    } else {
-      url.searchParams.delete('filter.v.price.gte');
-    }
-    
-    if (maxPrice) {
-      url.searchParams.set('filter.v.price.lte', maxPrice);
-    } else {
-      url.searchParams.delete('filter.v.price.lte');
-    }
-    
-    window.location.href = url.toString();
-  });
+  const priceForm = document.querySelector('.price-form');
+  if (priceForm) {
+    priceForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const url = new URL(window.location);
+      const minPrice = this.querySelector('input[name="filter.v.price.gte"]').value;
+      const maxPrice = this.querySelector('input[name="filter.v.price.lte"]').value;
+      
+      if (minPrice) {
+        url.searchParams.set('filter.v.price.gte', minPrice);
+      } else {
+        url.searchParams.delete('filter.v.price.gte');
+      }
+      
+      if (maxPrice) {
+        url.searchParams.set('filter.v.price.lte', maxPrice);
+      } else {
+        url.searchParams.delete('filter.v.price.lte');
+      }
+      
+      window.location.href = url.toString();
+    });
+  }
 }
 
 // Close mobile filters when clicking outside
@@ -99,6 +102,7 @@ document.addEventListener('click', function(e) {
   const toggle = document.querySelector('.mobile-filter-toggle');
   
   if (window.innerWidth <= 1024 && 
+      sidebar && 
       !sidebar.contains(e.target) && 
       !toggle.contains(e.target) &&
       sidebar.classList.contains('active')) {
@@ -110,6 +114,8 @@ document.addEventListener('click', function(e) {
 window.addEventListener('resize', function() {
   if (window.innerWidth > 1024) {
     const sidebar = document.getElementById('filtersSidebar');
-    sidebar.classList.remove('active');
+    if (sidebar) {
+      sidebar.classList.remove('active');
+    }
   }
 });
