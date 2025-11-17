@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   inputField.addEventListener("input", function () {
     const query = this.value.trim();
 
-    if (query.length < 2) {
+    if (query.length < 1) {
       predictiveContainer.classList.add("hidden");
       return;
     }
