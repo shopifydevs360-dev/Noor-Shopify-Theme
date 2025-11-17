@@ -1,4 +1,181 @@
-/* Additional filter-specific styles */
+/* Filters Sidebar */
+.filters-sidebar {
+  background: rgb(var(--color-background));
+  border-radius: var(--border-radius-style-two);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(var(--color-border), 0.5);
+}
+
+.filter-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(var(--color-heading));
+}
+
+.clear-filters {
+  color: rgb(var(--color-link));
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.clear-filters:hover {
+  color: rgb(var(--color-link-hover));
+  text-decoration: underline;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-section h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgb(var(--color-subtext));
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+/* Search Bar */
+.search-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 2px solid rgba(var(--color-border), 0.5);
+  border-radius: var(--input_corner_radius);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background: rgb(var(--color-form-field));
+  color: rgb(var(--color-form-field-text));
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgb(var(--color-link));
+  box-shadow: 0 0 0 3px rgba(var(--color-link), 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(var(--color-subtext));
+}
+
+/* Filter Options */
+.filter-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.filter-option:hover {
+  transform: translateX(4px);
+}
+
+.filter-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  accent-color: rgb(var(--color-link));
+}
+
+.filter-option label {
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: rgb(var(--color-text));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.filter-count {
+  background: rgba(var(--color-background-secondary), 0.5);
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: rgb(var(--color-subtext));
+}
+
+/* Price Range */
+.price-inputs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.price-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid rgba(var(--color-border), 0.5);
+  border-radius: var(--input_corner_radius);
+  font-size: 0.875rem;
+  background: rgb(var(--color-form-field));
+  color: rgb(var(--color-form-field-text));
+}
+
+/* Color Swatches */
+.color-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.active {
+  border-color: rgb(var(--color-link));
+  box-shadow: 0 0 0 2px rgba(var(--color-link), 0.2);
+}
+
+.color-swatch.active::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* Close button for mobile filters */
 .close-filters {
   display: none;
   position: absolute;
@@ -24,6 +201,23 @@
 
 /* Mobile filter overlay */
 @media (max-width: 1024px) {
+  .filters-sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    z-index: 999;
+    border-radius: 0;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+  }
+
+  .filters-sidebar.active {
+    left: 0;
+  }
+
   .filters-sidebar::before {
     content: '';
     position: fixed;
@@ -39,5 +233,9 @@
   
   .filters-sidebar.active::before {
     opacity: 1;
+  }
+
+  .close-filters {
+    display: flex;
   }
 }
