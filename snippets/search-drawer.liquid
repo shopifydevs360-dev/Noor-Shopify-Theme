@@ -32,8 +32,32 @@
       </button>
     </div>
     
-    <div class="search-drawer__content" id="search-drawer-content">
+    <div class="search-drawer__content">
+    <!-- Dropdown container -->
+        <div id="search-predictive" class="search-predictive hidden">
 
+            <div class="predictive-columns">
+
+            <!-- Column 1: Suggestions -->
+            <div class="predictive-suggestions">
+                <h4>Suggestions</h4>
+                <ul id="predictive-suggestions-list"></ul>
+            </div>
+
+            <!-- Column 2: Products -->
+            <div class="predictive-products">
+                <h4>Products</h4>
+                <div id="predictive-products-list"></div>
+            </div>
+
+            </div>
+
+            <!-- Bottom text -->
+            <div class="predictive-bottom">
+            Results for "<span id="predictive-query-text"></span>"
+            </div>
+
+        </div>
     </div>
   </div>
 </div>
