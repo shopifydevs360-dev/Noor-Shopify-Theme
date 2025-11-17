@@ -657,8 +657,28 @@
     "settings": [
       {
         "type": "header",
-        "content": "Product card"
-      }
+        "content": "Add to cart behavior"
+      },
+      {
+        "type": "select",
+        "id": "cart_behavior",
+        "label": "Add to Cart Action",
+        "options": [
+          {
+            "value": "redirect",
+            "label": "Redirect to Cart Page"
+          },
+          {
+            "value": "ajax",
+            "label": "Ajax - No Redirect"
+          },
+          {
+            "value": "ajax_drawer",
+            "label": "Ajax + Open Cart Drawer"
+          }
+        ],
+        "default": "redirect"
+      },
     ]
   },
   {
