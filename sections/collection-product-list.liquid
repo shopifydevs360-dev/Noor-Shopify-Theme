@@ -3,7 +3,7 @@
 {{ 'product-card-style.css' | asset_url | stylesheet_tag }}
 <div class="shopify-section m-color-{{ section.settings.color_scheme.id }}">
   <div class="{{ section.settings.container_type }}">
-    <div class="collection-wrapper">
+    <div class="collection-wrapper {% if section.settings.enable_filter and section.settings.filter_position == 'sidebar' %}with-sidebar{% else %}without-sidebar{% endif %}">
       <!-- Filters Sidebar -->
       {% if section.settings.enable_filter %}
         {% render 'products-filter' %}
