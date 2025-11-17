@@ -1,0 +1,87 @@
+{% comment %}
+  Product Card Snippet
+  Usage: {% render 'product-card', product: product %}
+{% endcomment %}
+
+<div class="product-card">
+  <div class="product-image">
+    <a href="{{ product.url }}">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | img_url: '400x400' }}" 
+             alt="{{ product.featured_image.alt | escape }}"
+             loading="lazy">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </a>
+    
+    {% if product.compare_at_price > product.price %}
+      <span class="product-badge sale">{{ 'products.product.on_sale' | t }}</span>
+    {% elsif product.available == false %}
+      <span class="product-badge">{{ 'products.product.sold_out' | t }}</span>
+    {% endif %}
+    
+    <div class="product-actions">
+      {% if product.available %}
+        <form action="/cart/add" method="post" enctype="multipart/form-data" onclick="event.stopPropagation()">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <button type="submit" class="action-btn" title="{{ 'products.product.add_to_cart' | t }}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </form>
+      {% endif %}
+      
+      <button class="action-btn" onclick="event.stopPropagation(); toggleWishlist(this)" title="{{ 'products.product.add_to_wishlist' | t }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="product-info">
+    {% if product.vendor %}
+      <div class="product-vendor">{{ product.vendor }}</div>
+    {% endif %}
+    
+    <h3 class="product-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    
+    {% comment %}
+      Rating display - You can integrate with a review app like Loox or Judge.me
+    {% endcomment %}
+    <div class="product-rating">
+      <div class="stars">
+        {% assign rating = product.metafields.reviews.rating.value | default: 4 %}
+        {% for i in (1..5) %}
+          {% if i <= rating %}
+            <span class="star">★</span>
+          {% else %}
+            <span class="star empty">★</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <span class="rating-count">({{ product.metafields.reviews.count.value | default: 0 }})</span>
+    </div>
+    
+    <div class="product-price">
+      <span class="price-current">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="price-original">{{ product.compare_at_price | money }}</span>
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <span class="price-discount">-{{ discount }}%</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleWishlist(button) {
+    button.classList.toggle('active');
+    // Integrate with your wishlist app here
+    console.log('Wishlist toggled');
+  }
+</script>
