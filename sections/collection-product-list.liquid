@@ -10,7 +10,7 @@
       {% endif %}
 
       <!-- Main Content -->
-      <main class="main-content">
+      <main class="main-content {% if section.settings.filter_position == 'sidebar' %}with-sidebar{% endif %}">
         <!-- Toolbar -->
         <div class="toolbar">
           <div class="results-count">
@@ -44,6 +44,18 @@
           </div>
         </div>
 
+        <!-- Off-canvas Filter Trigger (for desktop) -->
+        {% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
+          <div class="filter-trigger">
+            <button class="btn btn--secondary" onclick="toggleDesktopFilters()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+              </svg>
+              Filters
+            </button>
+          </div>
+        {% endif %}
+
         <!-- Products Grid -->
         <div class="products-grid grid-desktop-{{ section.settings.grid_columns_desktop }} grid-mobile-{{ section.settings.grid_columns_mobile }}" id="productsContainer">
           {% for product in collection.products %}
@@ -75,8 +87,21 @@
   </div>
 </div>
 
-<!-- Mobile Filter Toggle -->
+<!-- Off-canvas Filters (for desktop) -->
 {% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
+  <div class="off-canvas-filters" id="desktopFilters">
+    <div class="off-canvas-filters-header">
+      <h2>Filters</h2>
+      <button class="close-filters" onclick="toggleDesktopFilters()">×</button>
+    </div>
+    <div class="off-canvas-filters-content">
+      {% render 'products-filter' %}
+    </div>
+  </div>
+{% endif %}
+
+<!-- Mobile Filter Toggle -->
+{% if section.settings.enable_filter %}
 <button class="mobile-filter-toggle" onclick="toggleMobileFilters()">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
     <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
