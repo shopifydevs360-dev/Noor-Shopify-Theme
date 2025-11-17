@@ -1,4 +1,4 @@
-/* Collection Page Layout & Filters */
+/* Collection Page Layout */
 .collection-wrapper {
   display: grid;
   grid-template-columns: 280px 1fr;
