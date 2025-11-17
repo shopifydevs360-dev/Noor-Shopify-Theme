@@ -50,50 +50,64 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      LOAD PREDICTIVE RESULTS
   ========================= */
-  function loadPredictiveSearch(query) {
-    const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection&resources[limit]=5`;
+function loadPredictiveSearch(query) {
+  const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection&resources[limit]=5`;
 
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        predictiveContainer.classList.remove("hidden");
-        queryText.textContent = query;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      predictiveContainer.classList.remove("hidden");
+      queryText.textContent = query;
 
-        /* ---------- Suggestions ---------- */
-        suggestionsList.innerHTML = "";
-        const queries = data?.queries || [];
+      /* ---------- Suggestions ---------- */
+      suggestionsList.innerHTML = "";
 
-        queries.forEach(t => {
-          const li = document.createElement("li");
-          li.textContent = t.text;
+      const queries = data?.queries || [];
+      const products = data?.resources?.results?.products || [];
 
-          li.addEventListener("click", () => {
-            window.location.href = `/search?q=${encodeURIComponent(t.text)}`;
-          });
+      // Collect words from product titles, collection titles, and tags
+      let wordsSet = new Set();
 
-          suggestionsList.appendChild(li);
-        });
-
-        /* ---------- Products ---------- */
-        productsList.innerHTML = "";
-        const products = data?.resources?.results?.products || [];
-
-        products.forEach(p => {
-          const item = document.createElement("div");
-          item.className = "predictive-product-item";
-
-          item.innerHTML = `
-            <img src="${p.image}" alt="${p.title}">
-            <div class="predictive-product-info">
-              <a href="${p.url}">${p.title}</a>
-              <div class="price">${p.price}</div>
-            </div>
-          `;
-
-          productsList.appendChild(item);
-        });
+      // From product titles
+      products.forEach(p => {
+        p.title.split(/\s+/).forEach(word => wordsSet.add(word));
+        p.tags?.forEach(tag => tag.split(/\s+/).forEach(word => wordsSet.add(word)));
       });
-  }
+
+      // Limit to maximum 6 words
+      const suggestionWords = Array.from(wordsSet).slice(0, 6);
+
+      // Render suggestions
+      suggestionWords.forEach(word => {
+        const li = document.createElement("li");
+        li.textContent = word;
+
+        li.addEventListener("click", () => {
+          window.location.href = `/search?q=${encodeURIComponent(word)}`;
+        });
+
+        suggestionsList.appendChild(li);
+      });
+
+      /* ---------- Products ---------- */
+      productsList.innerHTML = "";
+
+      products.forEach(p => {
+        const item = document.createElement("div");
+        item.className = "predictive-product-item";
+
+        item.innerHTML = `
+          <img src="${p.image}" alt="${p.title}">
+          <div class="predictive-product-info">
+            <a href="${p.url}">${p.title}</a>
+            <div class="price">${p.price}</div>
+          </div>
+        `;
+
+        productsList.appendChild(item);
+      });
+    });
+}
 
   /* =========================
      EVENT LISTENERS
