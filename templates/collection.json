@@ -14,8 +14,8 @@
       "settings": {
         "container_type": "container-fluid",
         "color_scheme": "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99",
-        "grid_columns_desktop": "2",
-        "grid_columns_mobile": "2",
+        "grid_columns_desktop": "4",
+        "grid_columns_mobile": "1",
         "enable_pagination": true,
         "products_per_page": 24,
         "pagination_type": "pagination_by_number",
