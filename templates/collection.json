@@ -17,7 +17,7 @@
         "grid_columns_desktop": "2",
         "grid_columns_mobile": "1",
         "enable_pagination": true,
-        "products_per_page": 12,
+        "products_per_page": 2,
         "pagination_type": "pagination_by_number",
         "enable_sorting": true,
         "enable_filter": true,
