@@ -15,7 +15,7 @@ function setView(view) {
   localStorage.setItem('collectionView', view);
   
   const container = document.getElementById('productsContainer');
-  container.className = view === 'grid' ? 'products-grid' : 'products-list';
+  container.className = view === 'grid' ? `products-grid grid-desktop-{{ section.settings.grid_columns_desktop }} grid-mobile-{{ section.settings.grid_columns_mobile }}` : 'products-list';
   
   document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
   event.target.closest('.view-btn').classList.add('active');
@@ -25,6 +25,12 @@ function setView(view) {
 function toggleMobileFilters() {
   const sidebar = document.getElementById('filtersSidebar');
   sidebar.classList.toggle('active');
+}
+
+// Toggle desktop off-canvas filters
+function toggleDesktopFilters() {
+  const filters = document.getElementById('desktopFilters');
+  filters.classList.toggle('active');
 }
 
 // Initialize filters
@@ -107,6 +113,14 @@ document.addEventListener('click', function(e) {
       !toggle.contains(e.target) &&
       sidebar.classList.contains('active')) {
     sidebar.classList.remove('active');
+  }
+  
+  // Close desktop off-canvas filters when clicking outside
+  const desktopFilters = document.getElementById('desktopFilters');
+  if (desktopFilters && 
+      !desktopFilters.contains(e.target) &&
+      desktopFilters.classList.contains('active')) {
+    desktopFilters.classList.remove('active');
   }
 });
 
