@@ -7,8 +7,8 @@
       <!-- Filters Sidebar -->
       <aside class="filters-sidebar" id="filtersSidebar">
         <div class="filter-header">
-          <h2 class="filter-title">{{ 'collections.filters.title' | t }}</h2>
-          <a href="{{ collection.url }}" class="clear-filters">{{ 'collections.filters.clear' | t }}</a>
+          <h2 class="filter-title">Filters</h2>
+          <a href="{{ collection.url }}" class="clear-filters">Clear all</a>
         </div>
 
         <!-- Search -->
@@ -19,14 +19,14 @@
           <form action="{{ routes.search_url }}" method="get" class="search-form">
             <input type="hidden" name="type" value="product">
             <input type="hidden" name="options[prefix]" value="last">
-            <input type="search" name="q" class="search-input" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
+            <input type="search" name="q" class="search-input" placeholder="Search products..." value="{{ search.terms | escape }}">
           </form>
         </div>
 
         <!-- Product Types -->
         {% if collection.all_types.size > 0 %}
         <div class="filter-section">
-          <h3>{{ 'collections.filters.product_types' | t }}</h3>
+          <h3>Product Types</h3>
           {% for product_type in collection.all_types %}
             {% assign type_handle = product_type | handle %}
             <div class="filter-option">
@@ -44,7 +44,7 @@
         <!-- Vendors -->
         {% if collection.all_vendors.size > 0 %}
         <div class="filter-section">
-          <h3>{{ 'collections.filters.brands' | t }}</h3>
+          <h3>Brands</h3>
           {% for product_vendor in collection.all_vendors %}
             {% assign vendor_handle = product_vendor | handle %}
             <div class="filter-option">
@@ -61,11 +61,11 @@
 
         <!-- Price Range -->
         <div class="filter-section">
-          <h3>{{ 'collections.filters.price_range' | t }}</h3>
+          <h3>Price Range</h3>
           <form class="price-form">
             <div class="price-inputs">
-              <input type="number" class="price-input" placeholder="{{ 'collections.filters.min_price' | t }}" name="filter.v.price.gte" value="{{ current_min_price }}">
-              <input type="number" class="price-input" placeholder="{{ 'collections.filters.max_price' | t }}" name="filter.v.price.lte" value="{{ current_max_price }}">
+              <input type="number" class="price-input" placeholder="Min" name="filter.v.price.gte" value="{{ current_min_price }}">
+              <input type="number" class="price-input" placeholder="Max" name="filter.v.price.lte" value="{{ current_max_price }}">
             </div>
           </form>
         </div>
@@ -74,7 +74,7 @@
         {% assign color_tags = section.settings.color_tags | split: ',' %}
         {% if color_tags.size > 0 %}
         <div class="filter-section">
-          <h3>{{ 'collections.filters.colors' | t }}</h3>
+          <h3>Colors</h3>
           <div class="color-options">
             {% for color in color_tags %}
               {% assign color_handle = color | handle | strip %}
@@ -90,7 +90,7 @@
         <!-- Tags for other filters -->
         {% if collection.tags.size > 0 %}
         <div class="filter-section">
-          <h3>{{ 'collections.filters.features' | t }}</h3>
+          <h3>Features</h3>
           {% assign filtered_tags = collection.tags | where: 'contains', 'feature-' %}
           {% for tag in filtered_tags %}
             {% assign clean_tag = tag | remove: 'feature-' %}
@@ -111,16 +111,16 @@
         <!-- Toolbar -->
         <div class="toolbar">
           <div class="results-count">
-            {{ 'collections.general.showing_count' | t: count: collection.products_count }}
+            Showing <strong>{{ collection.products_count }}</strong> products
           </div>
           <div class="toolbar-actions">
             <div class="view-toggle">
-              <button class="view-btn active" onclick="setView('grid')" title="{{ 'collections.grid_view' | t }}">
+              <button class="view-btn active" onclick="setView('grid')" title="Grid View">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z"/>
                 </svg>
               </button>
-              <button class="view-btn" onclick="setView('list')" title="{{ 'collections.list_view' | t }}">
+              <button class="view-btn" onclick="setView('list')" title="List View">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
                 </svg>
@@ -128,7 +128,7 @@
             </div>
             <select class="sort-dropdown" onchange="location = this.value;">
               <option value="{{ collection.url }}?sort_by={{ collection.sort_by | default: collection.default_sort_by }}" selected>
-                {{ 'collections.sorting.title' | t }}
+                Sort by
               </option>
               {% for option in collection.sort_options %}
                 <option value="{{ collection.url }}?sort_by={{ option.value }}" {% if collection.sort_by == option.value %}selected{% endif %}>
