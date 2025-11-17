@@ -662,7 +662,7 @@
       {
         "type": "select",
         "id": "cart_behavior",
-        "label": "Add to Cart Action",
+        "label": "Action",
         "options": [
           {
             "value": "redirect",
