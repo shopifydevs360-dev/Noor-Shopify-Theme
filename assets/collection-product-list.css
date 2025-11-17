@@ -1,5 +1,5 @@
 /* Collection Page Layout */
-.collection-wrapper {
+.collection-wrapper.with-sidebar {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 2rem;
@@ -301,11 +301,6 @@
   .collection-wrapper {
     grid-template-columns: 1fr;
   }
-
-  .main-content.with-sidebar {
-    width: 100%;
-  }
-
   .mobile-filter-toggle {
     display: flex;
     align-items: center;
