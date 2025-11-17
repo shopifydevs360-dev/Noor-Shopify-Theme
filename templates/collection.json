@@ -23,7 +23,7 @@
         "enable_filter": true,
         "filter_position": "off_canvas",
         "enable_availability": true,
-        "enable_price": true,
+        "enable_price": false,
         "enable_collection": true,
         "specific_collections": "",
         "enable_brand": true,
