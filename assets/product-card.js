@@ -1,5 +1,5 @@
 // Product Card Functionality
-let cartBehavior = '{{ section.settings.cart_behavior }}';
+let cartBehavior = '{{ settings.cart_behavior }}';
 
 // Initialize product cards
 document.addEventListener('DOMContentLoaded', function() {
