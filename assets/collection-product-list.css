@@ -4,6 +4,9 @@
   grid-template-columns: 280px 1fr;
   gap: 2rem;
 }
+.collection-wrapper.without-sidebar {
+  display: block;
+}
 
 /* Main Content */
 .main-content {
