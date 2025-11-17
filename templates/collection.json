@@ -29,7 +29,7 @@
         "enable_brand": true,
         "specific_brands": "",
         "enable_color": true,
-        "specific_colors": "red",
+        "specific_colors": "",
         "enable_custom_filter_1": false,
         "custom_filter_1_title": "",
         "custom_filter_1_tags": "",
