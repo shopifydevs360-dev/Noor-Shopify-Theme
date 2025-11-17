@@ -6,201 +6,11 @@
     <div class="collection-wrapper">
       <!-- Filters Sidebar -->
       {% if section.settings.enable_filter %}
-        <aside class="filters-sidebar {% if section.settings.filter_position == 'off_canvas' %}off-canvas{% endif %}" id="filtersSidebar">
-          {% if section.settings.filter_position == 'off_canvas' %}
-            <button class="close-filters" onclick="toggleDesktopFilters()">×</button>
-          {% endif %}
-          
-          <div class="filter-header">
-            <h2 class="filter-title">Filters</h2>
-            <a href="{{ collection.url }}" class="clear-filters">Clear all</a>
-          </div>
-
-          <!-- Search -->
-          <div class="search-container">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
-            <form action="{{ routes.search_url }}" method="get" class="search-form">
-              <input type="hidden" name="type" value="product">
-              <input type="hidden" name="options[prefix]" value="last">
-              <input type="search" name="q" class="search-input" placeholder="Search products..." value="{{ search.terms | escape }}">
-            </form>
-          </div>
-
-          <!-- Availability Filter -->
-          {% if section.settings.enable_availability %}
-          <div class="filter-section">
-            <h3>Availability</h3>
-            <div class="filter-option">
-              <input type="checkbox" id="filter-in-stock" value="in-stock" 
-                     {% if current_tags contains 'in-stock' %}checked{% endif %}>
-              <label for="filter-in-stock">
-                <span>In Stock</span>
-              </label>
-            </div>
-          </div>
-          {% endif %}
-
-          <!-- Product Types -->
-          {% if section.settings.enable_collection %}
-            {% assign collections_to_show = collections %}
-            {% if section.settings.specific_collections != blank %}
-              {% assign specific_handles = section.settings.specific_collections | split: ',' %}
-              {% assign collections_to_show = '' | split: '' %}
-              {% for handle in specific_handles %}
-                {% for collection_item in collections %}
-                  {% if collection_item.handle == handle %}
-                    {% assign collections_to_show = collections_to_show | append: collection_item | append: ',' %}
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
-            {% endif %}
-
-            {% if collections_to_show.size > 0 %}
-            <div class="filter-section">
-              <h3>Collections</h3>
-              {% for collection_item in collections_to_show %}
-                {% assign collection_handle = collection_item.handle %}
-                <div class="filter-option">
-                  <input type="checkbox" id="collection-{{ collection_handle }}" value="{{ collection_handle }}" 
-                         {% if current_tags contains collection_handle %}checked{% endif %}>
-                  <label for="collection-{{ collection_handle }}">
-                    <span>{{ collection_item.title }}</span>
-                  </label>
-                </div>
-              {% endfor %}
-            </div>
-            {% endif %}
-          {% endif %}
-
-          <!-- Brands -->
-          {% if section.settings.enable_brand %}
-            {% assign brands_to_show = collection.all_vendors %}
-            {% if section.settings.specific_brands != blank %}
-              {% assign specific_brands = section.settings.specific_brands | split: ',' %}
-              {% assign brands_to_show = '' | split: '' %}
-              {% for brand in specific_brands %}
-                {% assign brand_handle = brand | handle | strip %}
-                {% for vendor in collection.all_vendors %}
-                  {% if vendor == brand %}
-                    {% assign brands_to_show = brands_to_show | append: vendor | append: ',' %}
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
-            {% endif %}
-
-            {% if brands_to_show.size > 0 %}
-            <div class="filter-section">
-              <h3>Brands</h3>
-              {% for product_vendor in brands_to_show %}
-                {% assign vendor_handle = product_vendor | handle %}
-                <div class="filter-option">
-                  <input type="checkbox" id="vendor-{{ vendor_handle }}" value="{{ vendor_handle }}"
-                         {% if current_tags contains vendor_handle %}checked{% endif %}>
-                  <label for="vendor-{{ vendor_handle }}">
-                    <span>{{ product_vendor }}</span>
-                  </label>
-                </div>
-              {% endfor %}
-            </div>
-            {% endif %}
-          {% endif %}
-
-          <!-- Price Range -->
-          {% if section.settings.enable_price %}
-          <div class="filter-section">
-            <h3>Price Range</h3>
-            <form class="price-form">
-              <div class="price-inputs">
-                <input type="number" class="price-input" placeholder="Min" name="filter.v.price.gte" value="{{ current_min_price }}">
-                <input type="number" class="price-input" placeholder="Max" name="filter.v.price.lte" value="{{ current_max_price }}">
-              </div>
-            </form>
-          </div>
-          {% endif %}
-
-          <!-- Colors -->
-          {% if section.settings.enable_color %}
-            {% assign colors_to_show = section.settings.color_tags | split: ',' %}
-            {% if section.settings.specific_colors != blank %}
-              {% assign colors_to_show = section.settings.specific_colors | split: ',' %}
-            {% endif %}
-
-            {% if colors_to_show.size > 0 %}
-            <div class="filter-section">
-              <h3>Colors</h3>
-              <div class="color-options">
-                {% for color in colors_to_show %}
-                  {% assign color_handle = color | handle | strip %}
-                  {% assign color_code = color | downcase | strip %}
-                  <div class="color-swatch {% if current_tags contains color_handle %}active{% endif %}" 
-                       style="background: {% if color_code == 'white' %}#ffffff; border: 1px solid rgba(var(--color-border), 0.5){% else %}{{ color_code }}{% endif %}" 
-                       data-color="{{ color_handle }}"></div>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
-          {% endif %}
-
-          <!-- Custom Filter 1 -->
-          {% if section.settings.enable_custom_filter_1 %}
-          <div class="filter-section">
-            <h3>{{ section.settings.custom_filter_1_title }}</h3>
-            {% assign filter_tags = section.settings.custom_filter_1_tags | split: ',' %}
-            {% for tag in filter_tags %}
-              {% assign tag_handle = tag | handle | strip %}
-              <div class="filter-option">
-                <input type="checkbox" id="custom-filter-1-{{ tag_handle }}" value="{{ tag_handle }}"
-                       {% if current_tags contains tag_handle %}checked{% endif %}>
-                <label for="custom-filter-1-{{ tag_handle }}">
-                  <span>{{ tag }}</span>
-                </label>
-              </div>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          <!-- Custom Filter 2 -->
-          {% if section.settings.enable_custom_filter_2 %}
-          <div class="filter-section">
-            <h3>{{ section.settings.custom_filter_2_title }}</h3>
-            {% assign filter_tags = section.settings.custom_filter_2_tags | split: ',' %}
-            {% for tag in filter_tags %}
-              {% assign tag_handle = tag | handle | strip %}
-              <div class="filter-option">
-                <input type="checkbox" id="custom-filter-2-{{ tag_handle }}" value="{{ tag_handle }}"
-                       {% if current_tags contains tag_handle %}checked{% endif %}>
-                <label for="custom-filter-2-{{ tag_handle }}">
-                  <span>{{ tag }}</span>
-                </label>
-              </div>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          <!-- Custom Filter 3 -->
-          {% if section.settings.enable_custom_filter_3 %}
-          <div class="filter-section">
-            <h3>{{ section.settings.custom_filter_3_title }}</h3>
-            {% assign filter_tags = section.settings.custom_filter_3_tags | split: ',' %}
-            {% for tag in filter_tags %}
-              {% assign tag_handle = tag | handle | strip %}
-              <div class="filter-option">
-                <input type="checkbox" id="custom-filter-3-{{ tag_handle }}" value="{{ tag_handle }}"
-                       {% if current_tags contains tag_handle %}checked{% endif %}>
-                <label for="custom-filter-3-{{ tag_handle }}">
-                  <span>{{ tag }}</span>
-                </label>
-              </div>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </aside>
+        {% render 'products-filter' %}
       {% endif %}
 
       <!-- Main Content -->
-      <main class="main-content {% if section.settings.filter_position == 'sidebar' %}with-sidebar{% endif %}">
+      <main class="main-content">
         <!-- Toolbar -->
         <div class="toolbar">
           <div class="results-count">
@@ -234,18 +44,6 @@
           </div>
         </div>
 
-        <!-- Off-canvas Filter Trigger (for desktop) -->
-        {% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
-          <div class="filter-trigger">
-            <button class="btn btn--secondary" onclick="toggleDesktopFilters()">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
-              </svg>
-              Filters
-            </button>
-          </div>
-        {% endif %}
-
         <!-- Products Grid -->
         <div class="products-grid grid-desktop-{{ section.settings.grid_columns_desktop }} grid-mobile-{{ section.settings.grid_columns_mobile }}" id="productsContainer">
           {% for product in collection.products %}
@@ -277,21 +75,8 @@
   </div>
 </div>
 
-<!-- Off-canvas Filters (for desktop) -->
-{% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
-  <div class="off-canvas-filters" id="desktopFilters">
-    <div class="off-canvas-filters-header">
-      <h2>Filters</h2>
-      <button class="close-filters" onclick="toggleDesktopFilters()">×</button>
-    </div>
-    <div class="off-canvas-filters-content">
-      <!-- Filter content is already rendered above -->
-    </div>
-  </div>
-{% endif %}
-
 <!-- Mobile Filter Toggle -->
-{% if section.settings.enable_filter %}
+{% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
 <button class="mobile-filter-toggle" onclick="toggleMobileFilters()">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
     <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
