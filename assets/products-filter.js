@@ -1,4 +1,4 @@
-// Collection Filter & View Functionality
+// Collection View & Filter Functionality
 let currentView = localStorage.getItem('collectionView') || 'grid';
 
 // Set initial view
