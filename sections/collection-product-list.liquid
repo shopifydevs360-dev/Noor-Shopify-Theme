@@ -5,17 +5,34 @@
   <div class="{{ section.settings.container_type }}">
     <div class="collection-wrapper">
       <!-- Filters Sidebar -->
-      {% if section.settings.enable_filter %}
-        {% render 'products-filter' %}
+      {% if section.settings.enable_filter and section.settings.filter_position == 'sidebar' %}
+        <aside class="filters-sidebar" id="filtersSidebar">
+          {% render 'products-filter' %}
+        </aside>
       {% endif %}
 
       <!-- Main Content -->
       <main class="main-content {% if section.settings.filter_position == 'sidebar' %}with-sidebar{% endif %}">
         <!-- Toolbar -->
         <div class="toolbar">
+          <!-- Filter Button - Show when off-canvas is selected -->
+          {% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
+            <div class="toolbar-actions">
+              <button class="btn btn--secondary" onclick="toggleDesktopFilters()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                </svg>
+                Filters
+              </button>
+            </div>
+          {% endif %}
+          
+          <!-- Results Count -->
           <div class="results-count">
             Showing <strong>{{ collection.products_count }}</strong> products
           </div>
+          
+          <!-- Sorting Options -->
           <div class="toolbar-actions">
             {% if section.settings.enable_sorting %}
               <div class="view-toggle">
@@ -43,18 +60,6 @@
             {% endif %}
           </div>
         </div>
-
-        <!-- Off-canvas Filter Trigger (for desktop) -->
-        {% if section.settings.enable_filter and section.settings.filter_position == 'off_canvas' %}
-          <div class="filter-trigger">
-            <button class="btn btn--secondary" onclick="toggleDesktopFilters()">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
-              </svg>
-              Filters
-            </button>
-          </div>
-        {% endif %}
 
         <!-- Products Grid -->
         <div class="products-grid grid-desktop-{{ section.settings.grid_columns_desktop }} grid-mobile-{{ section.settings.grid_columns_mobile }}" id="productsContainer">
