@@ -1,47 +1,195 @@
-{% comment %}
-  This section is used in the collection template to render collection page
-  listing all products within a collection.
+{{ 'collection-style.css' | asset_url | stylesheet_tag }}
+{{ 'collection-filter.js' | asset_url | script_tag }}
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
-{% endcomment %}
-
-<h1>{{ collection.title }}</h1>
-
-<div class="collection-products">
-  {% paginate collection.products by 20 %}
-    {% for product in collection.products %}
-      <div class="collection-product">
-        {% if product.featured_image %}
-          {% render 'image',
-            class: 'collection-product__image',
-            image: product.featured_image,
-            url: product.url,
-            width: 400,
-            height: 400,
-            crop: 'center'
-          %}
-        {% endif %}
-        <div class="collection-product__content">
-          <p>{{ product.title | escape | link_to: product.url }}</p>
-          <p>{{ product.price | money }}</p>
+<div class="shopify-section m-color-{{ section.settings.color_scheme.id }}">
+  <div class="container">
+    <div class="collection-wrapper">
+      <!-- Filters Sidebar -->
+      <aside class="filters-sidebar" id="filtersSidebar">
+        <div class="filter-header">
+          <h2 class="filter-title">{{ 'collections.filters.title' | t }}</h2>
+          <a href="{{ collection.url }}" class="clear-filters">{{ 'collections.filters.clear' | t }}</a>
         </div>
-      </div>
-    {% endfor %}
 
-    {{ paginate | default_pagination }}
-  {% endpaginate %}
+        <!-- Search -->
+        <div class="search-container">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <form action="{{ routes.search_url }}" method="get" class="search-form">
+            <input type="hidden" name="type" value="product">
+            <input type="hidden" name="options[prefix]" value="last">
+            <input type="search" name="q" class="search-input" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
+          </form>
+        </div>
+
+        <!-- Product Types -->
+        {% if collection.all_types.size > 0 %}
+        <div class="filter-section">
+          <h3>{{ 'collections.filters.product_types' | t }}</h3>
+          {% for product_type in collection.all_types %}
+            {% assign type_handle = product_type | handle %}
+            <div class="filter-option">
+              <input type="checkbox" id="type-{{ type_handle }}" value="{{ type_handle }}" 
+                     {% if current_tags contains type_handle %}checked{% endif %}>
+              <label for="type-{{ type_handle }}">
+                <span>{{ product_type }}</span>
+                <span class="filter-count">{{ collection.all_types_count[forloop.index0] }}</span>
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Vendors -->
+        {% if collection.all_vendors.size > 0 %}
+        <div class="filter-section">
+          <h3>{{ 'collections.filters.brands' | t }}</h3>
+          {% for product_vendor in collection.all_vendors %}
+            {% assign vendor_handle = product_vendor | handle %}
+            <div class="filter-option">
+              <input type="checkbox" id="vendor-{{ vendor_handle }}" value="{{ vendor_handle }}"
+                     {% if current_tags contains vendor_handle %}checked{% endif %}>
+              <label for="vendor-{{ vendor_handle }}">
+                <span>{{ product_vendor }}</span>
+                <span class="filter-count">{{ collection.all_vendors_count[forloop.index0] }}</span>
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Price Range -->
+        <div class="filter-section">
+          <h3>{{ 'collections.filters.price_range' | t }}</h3>
+          <form class="price-form">
+            <div class="price-inputs">
+              <input type="number" class="price-input" placeholder="{{ 'collections.filters.min_price' | t }}" name="filter.v.price.gte" value="{{ current_min_price }}">
+              <input type="number" class="price-input" placeholder="{{ 'collections.filters.max_price' | t }}" name="filter.v.price.lte" value="{{ current_max_price }}">
+            </div>
+          </form>
+        </div>
+
+        <!-- Colors - Using product tags -->
+        {% assign color_tags = section.settings.color_tags | split: ',' %}
+        {% if color_tags.size > 0 %}
+        <div class="filter-section">
+          <h3>{{ 'collections.filters.colors' | t }}</h3>
+          <div class="color-options">
+            {% for color in color_tags %}
+              {% assign color_handle = color | handle | strip %}
+              {% assign color_code = color | downcase | strip %}
+              <div class="color-swatch {% if current_tags contains color_handle %}active{% endif %}" 
+                   style="background: {% if color_code == 'white' %}#ffffff; border: 1px solid rgba(var(--color-border), 0.5){% else %}{{ color_code }}{% endif %}" 
+                   data-color="{{ color_handle }}"></div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Tags for other filters -->
+        {% if collection.tags.size > 0 %}
+        <div class="filter-section">
+          <h3>{{ 'collections.filters.features' | t }}</h3>
+          {% assign filtered_tags = collection.tags | where: 'contains', 'feature-' %}
+          {% for tag in filtered_tags %}
+            {% assign clean_tag = tag | remove: 'feature-' %}
+            <div class="filter-option">
+              <input type="checkbox" id="tag-{{ tag | handle }}" value="{{ tag | handle }}"
+                     {% if current_tags contains tag %}checked{% endif %}>
+              <label for="tag-{{ tag | handle }}">
+                <span>{{ clean_tag }}</span>
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="results-count">
+            {{ 'collections.general.showing_count' | t: count: collection.products_count }}
+          </div>
+          <div class="toolbar-actions">
+            <div class="view-toggle">
+              <button class="view-btn active" onclick="setView('grid')" title="{{ 'collections.grid_view' | t }}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z"/>
+                </svg>
+              </button>
+              <button class="view-btn" onclick="setView('list')" title="{{ 'collections.list_view' | t }}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                </svg>
+              </button>
+            </div>
+            <select class="sort-dropdown" onchange="location = this.value;">
+              <option value="{{ collection.url }}?sort_by={{ collection.sort_by | default: collection.default_sort_by }}" selected>
+                {{ 'collections.sorting.title' | t }}
+              </option>
+              {% for option in collection.sort_options %}
+                <option value="{{ collection.url }}?sort_by={{ option.value }}" {% if collection.sort_by == option.value %}selected{% endif %}>
+                  {{ option.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsContainer">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if paginate.pages > 1 %}
+          <div class="pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      </main>
+    </div>
+  </div>
 </div>
 
-{% stylesheet %}
-  .collection-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  }
-{% endstylesheet %}
+<!-- Mobile Filter Toggle -->
+<button class="mobile-filter-toggle" onclick="toggleMobileFilters()">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+  </svg>
+</button>
 
 {% schema %}
 {
-  "name": "t:general.collection",
-  "settings": []
+  "name": "Collection Page",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "color_tags",
+      "label": "Color Tags",
+      "default": "Red,Blue,Green,Black,White,Yellow,Pink,Purple,Orange",
+      "info": "Comma-separated list of color tags"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 12,
+      "label": "Products per page",
+      "default": 24
+    }
+  ]
 }
 {% endschema %}
