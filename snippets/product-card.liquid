@@ -23,14 +23,29 @@
     
     <div class="product-actions">
       {% if product.available %}
-        <form action="/cart/add" method="post" enctype="multipart/form-data" onclick="event.stopPropagation()">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-          <button type="submit" class="action-btn" title="Add to Cart">
+        {% if section.settings.cart_behavior == 'redirect' %}
+          <!-- Traditional form submission -->
+          <form action="/cart/add" method="post" enctype="multipart/form-data" onclick="event.stopPropagation()">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <button type="submit" class="action-btn" title="Add to Cart">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+            </button>
+          </form>
+        {% else %}
+          <!-- Ajax add to cart -->
+          <button type="button" 
+                  class="action-btn add-to-cart-ajax" 
+                  title="Add to Cart"
+                  data-variant-id="{{ product.variants.first.id }}"
+                  data-product-title="{{ product.title | escape }}"
+                  onclick="event.stopPropagation(); addToCart(this)">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
             </svg>
           </button>
-        </form>
+        {% endif %}
       {% endif %}
       
       <button class="action-btn" onclick="event.stopPropagation(); toggleWishlist(this)" title="Add to Wishlist">
@@ -77,11 +92,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  function toggleWishlist(button) {
-    button.classList.toggle('active');
-    // Integrate with your wishlist app here
-    console.log('Wishlist toggled');
-  }
-</script>
