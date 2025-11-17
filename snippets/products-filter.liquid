@@ -1,0 +1,107 @@
+{% comment %}
+  Products Filter Component
+  Usage: {% render 'products-filter' %}
+{% endcomment %}
+
+<aside class="filters-sidebar" id="filtersSidebar">
+  <button class="close-filters" onclick="toggleMobileFilters()">×</button>
+  
+  <div class="filter-header">
+    <h2 class="filter-title">Filters</h2>
+    <a href="{{ collection.url }}" class="clear-filters">Clear all</a>
+  </div>
+
+  <!-- Search -->
+  <div class="search-container">
+    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+    <form action="{{ routes.search_url }}" method="get" class="search-form">
+      <input type="hidden" name="type" value="product">
+      <input type="hidden" name="options[prefix]" value="last">
+      <input type="search" name="q" class="search-input" placeholder="Search products..." value="{{ search.terms | escape }}">
+    </form>
+  </div>
+
+  <!-- Product Types -->
+  {% if collection.all_types.size > 0 %}
+  <div class="filter-section">
+    <h3>Product Types</h3>
+    {% for product_type in collection.all_types %}
+      {% assign type_handle = product_type | handle %}
+      <div class="filter-option">
+        <input type="checkbox" id="type-{{ type_handle }}" value="{{ type_handle }}" 
+               {% if current_tags contains type_handle %}checked{% endif %}>
+        <label for="type-{{ type_handle }}">
+          <span>{{ product_type }}</span>
+          <span class="filter-count">{{ collection.all_types_count[forloop.index0] }}</span>
+        </label>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Vendors -->
+  {% if collection.all_vendors.size > 0 %}
+  <div class="filter-section">
+    <h3>Brands</h3>
+    {% for product_vendor in collection.all_vendors %}
+      {% assign vendor_handle = product_vendor | handle %}
+      <div class="filter-option">
+        <input type="checkbox" id="vendor-{{ vendor_handle }}" value="{{ vendor_handle }}"
+               {% if current_tags contains vendor_handle %}checked{% endif %}>
+        <label for="vendor-{{ vendor_handle }}">
+          <span>{{ product_vendor }}</span>
+          <span class="filter-count">{{ collection.all_vendors_count[forloop.index0] }}</span>
+        </label>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Price Range -->
+  <div class="filter-section">
+    <h3>Price Range</h3>
+    <form class="price-form">
+      <div class="price-inputs">
+        <input type="number" class="price-input" placeholder="Min" name="filter.v.price.gte" value="{{ current_min_price }}">
+        <input type="number" class="price-input" placeholder="Max" name="filter.v.price.lte" value="{{ current_max_price }}">
+      </div>
+    </form>
+  </div>
+
+  <!-- Colors - Using product tags -->
+  {% assign color_tags = section.settings.color_tags | split: ',' %}
+  {% if color_tags.size > 0 %}
+  <div class="filter-section">
+    <h3>Colors</h3>
+    <div class="color-options">
+      {% for color in color_tags %}
+        {% assign color_handle = color | handle | strip %}
+        {% assign color_code = color | downcase | strip %}
+        <div class="color-swatch {% if current_tags contains color_handle %}active{% endif %}" 
+             style="background: {% if color_code == 'white' %}#ffffff; border: 1px solid rgba(var(--color-border), 0.5){% else %}{{ color_code }}{% endif %}" 
+             data-color="{{ color_handle }}"></div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Tags for other filters -->
+  {% if collection.tags.size > 0 %}
+  <div class="filter-section">
+    <h3>Features</h3>
+    {% assign filtered_tags = collection.tags | where: 'contains', 'feature-' %}
+    {% for tag in filtered_tags %}
+      {% assign clean_tag = tag | remove: 'feature-' %}
+      <div class="filter-option">
+        <input type="checkbox" id="tag-{{ tag | handle }}" value="{{ tag | handle }}"
+               {% if current_tags contains tag %}checked{% endif %}>
+        <label for="tag-{{ tag | handle }}">
+          <span>{{ clean_tag }}</span>
+        </label>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</aside>
