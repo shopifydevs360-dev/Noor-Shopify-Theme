@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
      LOAD PREDICTIVE RESULTS
   ========================= */
 function loadPredictiveSearch(query) {
-  const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection&resources[limit]=5`;
+  const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=5`;
 
   fetch(url)
     .then(res => res.json())
@@ -62,16 +62,17 @@ function loadPredictiveSearch(query) {
       /* ---------- Suggestions ---------- */
       suggestionsList.innerHTML = "";
 
-      const queries = data?.queries || [];
       const products = data?.resources?.results?.products || [];
 
-      // Collect words from product titles, collection titles, and tags
+      // Collect single words only from product titles that match the typed query
       let wordsSet = new Set();
 
-      // From product titles
       products.forEach(p => {
-        p.title.split(/\s+/).forEach(word => wordsSet.add(word));
-        p.tags?.forEach(tag => tag.split(/\s+/).forEach(word => wordsSet.add(word)));
+        p.title.split(/\s+/).forEach(word => {
+          if (word.toLowerCase().startsWith(query.toLowerCase())) {
+            wordsSet.add(word);
+          }
+        });
       });
 
       // Limit to maximum 6 words
@@ -106,6 +107,11 @@ function loadPredictiveSearch(query) {
 
         productsList.appendChild(item);
       });
+
+      // If no suggestions, hide suggestions column
+      if (suggestionWords.length === 0) {
+        suggestionsList.innerHTML = `<li>No suggestions</li>`;
+      }
     });
 }
 
