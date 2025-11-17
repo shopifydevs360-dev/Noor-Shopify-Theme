@@ -41,7 +41,7 @@
     "spacing_sections_mobile": 0,
     "search_type": "drawer",
     "search_color_scheme": "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99",
-    "cart_behavior": "redirect",
+    "cart_behavior": "ajax_drawer",
     "background_color": "#222222",
     "foreground_color": "#666666",
     "max_page_width": "110rem",
