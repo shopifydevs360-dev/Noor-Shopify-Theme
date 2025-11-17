@@ -445,7 +445,12 @@
           { "type": "color", "id": "tooltip_label", "label": "Tooltip text", "default": "#FFFFFF" },
 
           { "type": "header", "content": "Other" },
-          { "type": "color", "id": "border", "label": "Border", "default": "#EEEEEE" }
+          { "type": "color", "id": "border", "label": "Border", "default": "#EEEEEE" },
+
+          { "type": "header", "content": "Additional Colors" },
+          { "type": "color", "id": "additional_color_1", "label": "Additional Color 1", "default": "#FF0000" },
+          { "type": "color", "id": "additional_color_2", "label": "Additional Color 2", "default": "#00FF00" }
+
         ],
         "role": {
           "text": "text",
