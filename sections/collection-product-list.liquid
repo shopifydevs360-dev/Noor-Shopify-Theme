@@ -5,10 +5,9 @@
   <div class="{{ section.settings.container_type }}">
     <div class="collection-wrapper {% if section.settings.enable_filter and section.settings.filter_position == 'sidebar' %}with-sidebar{% else %}without-sidebar{% endif %}">
       <!-- Filters Sidebar -->
-      {% if section.settings.enable_filter %}
+      {% if section.settings.enable_filter and section.settings.filter_position == 'sidebar' %}
         {% render 'products-filter' %}
       {% endif %}
-
       <!-- Main Content -->
       <main class="main-content">
         <!-- Toolbar -->
@@ -83,7 +82,9 @@
   </svg>
 </button>
 {% endif %}
-
+{% if section.settings.enable_filter and section.settings.filter_position == 'off-canvas' %}
+    {% render 'off-canvas-products-filter' %}
+{% endif %}
 <script src="{{ 'products-filter.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
 
