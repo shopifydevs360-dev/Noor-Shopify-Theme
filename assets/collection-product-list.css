@@ -86,7 +86,66 @@
   gap: 1.5rem;
   animation: fadeIn 0.5s ease-in;
 }
+/* Grid Layout Variations */
+.products-grid.grid-desktop-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
 
+.products-grid.grid-desktop-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.products-grid.grid-desktop-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.products-grid.grid-desktop-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.products-grid.grid-desktop-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.products-grid.grid-mobile-1 {
+  grid-template-columns: 1fr;
+}
+
+.products-grid.grid-mobile-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Load More Button */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Infinity Loading */
+.infinity-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.infinity-loading .loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(var(--color-border), 0.3);
+  border-top-color: rgb(var(--color-link));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.infinity-loading p {
+  color: rgb(var(--color-subtext));
+  font-size: 0.875rem;
+}
 .products-list {
   display: flex;
   flex-direction: column;
