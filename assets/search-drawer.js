@@ -5,14 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeButton = drawer.querySelector(".search-drawer__close");
   const inputField = drawer.querySelector("#search-input");
   const submitButton = drawer.querySelector(".search-drawer__submit");
-
-  /* Predictive Search Elements */
-  const predictiveContainer = document.getElementById("search-predictive");
-  const suggestionsList = document.getElementById("predictive-suggestions-list");
-  const productsList = document.getElementById("predictive-products-list");
-  const queryText = document.getElementById("predictive-query-text");
-
-  let predictiveTimer = null;
+  const contentBox = drawer.querySelector("#search-drawer-content");
 
   /* =========================
      OPEN DRAWER
@@ -20,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function openDrawer() {
     drawer.classList.add("active");
     overlay.classList.add("active");
-
-    // focus after animation
     setTimeout(() => inputField?.focus(), 200);
   }
 
@@ -31,9 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeDrawer() {
     drawer.classList.remove("active");
     overlay.classList.remove("active");
-
-    // hide predictive dropdown
-    predictiveContainer?.classList.add("hidden");
   }
 
   /* =========================
@@ -42,76 +30,104 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleSearchSubmit() {
     const query = inputField.value.trim();
     if (!query) return;
-
-    const url = `/search?q=${encodeURIComponent(query)}`;
-    window.location.href = url;
+    window.location.href = `/search?q=${encodeURIComponent(query)}`;
   }
 
   /* =========================
-     LOAD PREDICTIVE RESULTS
+     PREDICTIVE SEARCH
   ========================= */
-  function loadPredictiveSearch(query) {
-    const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection&resources[limit]=5`;
+  async function runPredictiveSearch(term) {
+    if (term.length < 1) {
+      contentBox.innerHTML = "";
+      return;
+    }
 
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        predictiveContainer.classList.remove("hidden");
-        queryText.textContent = query;
+    const url = `/search/suggest.json?q=${encodeURIComponent(term)}&resources[type]=product&resources[limit]=6`;
 
-        /* ---------- Suggestions ---------- */
-        suggestionsList.innerHTML = "";
-        const queries = data?.queries || [];
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
 
-        queries.forEach(t => {
-          const li = document.createElement("li");
-          li.textContent = t.text;
+      const products = data.resources?.results?.products ?? [];
 
-          li.addEventListener("click", () => {
-            window.location.href = `/search?q=${encodeURIComponent(t.text)}`;
-          });
-
-          suggestionsList.appendChild(li);
-        });
-
-        /* ---------- Products ---------- */
-        productsList.innerHTML = "";
-        const products = data?.resources?.results?.products || [];
-
-        products.forEach(p => {
-          const item = document.createElement("div");
-          item.className = "predictive-product-item";
-
-          item.innerHTML = `
-            <img src="${p.image}" alt="${p.title}">
-            <div class="predictive-product-info">
-              <a href="${p.url}">${p.title}</a>
-              <div class="price">${p.price}</div>
-            </div>
-          `;
-
-          productsList.appendChild(item);
-        });
+      // Build suggestion keywords
+      const suggestions = new Set();
+      products.forEach((p) => {
+        suggestions.add(p.title);
+        p.tags?.forEach(tag => suggestions.add(tag));
       });
+
+      renderDropdown({
+        query: term,
+        suggestions: [...suggestions],
+        products
+      });
+
+    } catch (err) {
+      console.error("Predictive search error:", err);
+    }
+  }
+
+  /* =========================
+     RENDER DROPDOWN CONTENT
+  ========================= */
+  function renderDropdown({ query, suggestions, products }) {
+    contentBox.innerHTML = `
+      <div class="search-dropdown">
+        
+        <div class="search-col">
+          <h4>Suggestions</h4>
+          <ul>
+            ${suggestions
+              .map(s => `<li><button class="suggest-item" data-value="${s}">${s}</button></li>`)
+              .join("")}
+          </ul>
+        </div>
+
+        <div class="search-col">
+          <h4>Products</h4>
+          <ul>
+            ${
+              products.length
+                ? products
+                    .map(
+                      (p) => `
+                <li class="predictive-product">
+                  <a href="${p.url}">
+                    <img src="${p.image}" alt="${p.title}" />
+                    <span>${p.title}</span>
+                  </a>
+                </li>`
+                    )
+                    .join("")
+                : `<li>No products found.</li>`
+            }
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="search-result-text">Results for "${query}"</p>
+    `;
+
+    // Clicking suggestion fills input & redirects
+    contentBox.querySelectorAll(".suggest-item").forEach(btn => {
+      btn.addEventListener("click", () => {
+        inputField.value = btn.dataset.value;
+        handleSearchSubmit();
+      });
+    });
   }
 
   /* =========================
      EVENT LISTENERS
   ========================= */
 
-  // Open drawer on trigger
-  drawerToggleButtons.forEach(btn => {
-    btn.addEventListener("click", openDrawer);
-  });
-
-  // Close drawer
+  drawerToggleButtons.forEach(btn => btn.addEventListener("click", openDrawer));
   closeButton.addEventListener("click", closeDrawer);
   overlay.addEventListener("click", closeDrawer);
-
-  // Submit button click
   submitButton.addEventListener("click", handleSearchSubmit);
 
-  // Enter key in input field
   inputField.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -119,25 +135,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Escape key to close
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeDrawer();
   });
 
   /* =========================
-     INPUT: TRIGGER PREDICTIVE SEARCH
+     INPUT LISTENER (1 letter)
   ========================= */
-  inputField.addEventListener("input", function () {
-    const query = this.value.trim();
-
-    if (query.length < 2) {
-      predictiveContainer.classList.add("hidden");
-      return;
-    }
-
-    clearTimeout(predictiveTimer);
-    predictiveTimer = setTimeout(() => {
-      loadPredictiveSearch(query);
-    }, 250);
+  inputField.addEventListener("input", () => {
+    const value = inputField.value.trim();
+    runPredictiveSearch(value);
   });
 });
