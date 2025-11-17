@@ -448,8 +448,8 @@
           { "type": "color", "id": "border", "label": "Border", "default": "#EEEEEE" },
 
           { "type": "header", "content": "Additional Colors" },
-          { "type": "color", "id": "additional_color_1", "label": "Additional Color 1", "default": "#FF0000" },
-          { "type": "color", "id": "additional_color_2", "label": "Additional Color 2", "default": "#00FF00" }
+          { "type": "color", "id": "additional_color_1", "label": "Color 1", "default": "#FF0000" },
+          { "type": "color", "id": "additional_color_2", "label": "Color 2", "default": "#00FF00" }
 
         ],
         "role": {
