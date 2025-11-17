@@ -1,8 +1,7 @@
-{% comment %}
-  Product Card Snippet
-  Usage: {% render 'product-card', product: product %}
-{% endcomment %}
+
 {{ 'product-card-style.css' | asset_url | stylesheet_tag }}
+
+
 <div class="product-card">
   <div class="product-image">
     <a href="{{ product.url }}">
