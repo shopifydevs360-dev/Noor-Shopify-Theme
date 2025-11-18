@@ -21,7 +21,7 @@
         "pagination_type": "pagination_by_number",
         "enable_sorting": true,
         "enable_filter": true,
-        "filter_position": "sidebar",
+        "filter_position": "off_canvas",
         "enable_availability": true,
         "enable_price": true,
         "enable_collection": true,
