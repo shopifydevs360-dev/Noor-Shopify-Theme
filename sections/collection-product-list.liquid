@@ -1,16 +1,17 @@
 {{ 'collection-product-list.css' | asset_url | stylesheet_tag }}
 {{ 'products-filter.css' | asset_url | stylesheet_tag }}
 {{ 'product-card-style.css' | asset_url | stylesheet_tag }}
+
 <div class="shopify-section m-color-{{ section.settings.color_scheme.id }}">
   <div class="{{ section.settings.container_type }}">
     <div class="collection-wrapper {% if section.settings.enable_filter and section.settings.filter_position == 'sidebar' %}with-sidebar{% endif %}">
       <!-- Filters Sidebar -->
-      {% if section.settings.enable_filter and section.settings.filter_position == 'sidebar' %}
+      {% if section.settings.enable_filter %}
         {% render 'products-filter' %}
       {% endif %}
 
       <!-- Main Content -->
-      <main class="main-content">
+      <main class="product-list-wapper" data-pagination-type="{{ section.settings.pagination_type }}">
         <!-- Toolbar -->
         <div class="toolbar">
           <!-- Filter Button - Show when off-canvas is selected -->
@@ -61,35 +62,36 @@
 
         <!-- Products Grid -->
         <div class="products-grid grid-desktop-{{ section.settings.grid_columns_desktop }} grid-mobile-{{ section.settings.grid_columns_mobile }}" id="productsContainer">
-          {% for product in collection.products %}
-            {% render 'product-card', product: product %}
-          {% endfor %}
-        </div>
+          {% paginate collection.products by section.settings.products_per_page %}
+            {% for product in collection.products %}
+              {% render 'product-card', product: product %}
+            {% endfor %}
 
-        <!-- Pagination -->
-        {% if section.settings.enable_pagination and paginate.pages > 1 %}
-          {% if section.settings.pagination_type == 'pagination_by_number' %}
-            <div class="pagination">
-              {{ paginate | default_pagination }}
-            </div>
-          {% elsif section.settings.pagination_type == 'load_more_button' %}
-            <div class="load-more-container">
-              <button id="load-more-btn" class="btn btn--primary" onclick="loadMoreProducts()">
-                Load More
-              </button>
-            </div>
-          {% elsif section.settings.pagination_type == 'infinity_loading' %}
-            <div class="infinity-loading">
-              <div class="loading-spinner"></div>
-              <p>Loading more products...</p>
-            </div>
-          {% endif %}
-        {% endif %}
+            <!-- Pagination -->
+            {% if section.settings.enable_pagination and paginate.pages > 1 %}
+              {% if section.settings.pagination_type == 'pagination_by_number' %}
+                <div class="pagination">
+                  {{ paginate | default_pagination }}
+                </div>
+              {% elsif section.settings.pagination_type == 'load_more_button' %}
+                <div class="load-more-container">
+                  <button id="load-more-btn" class="btn btn--primary">
+                    Load More
+                  </button>
+                </div>
+              {% elsif section.settings.pagination_type == 'infinity_loading' %}
+                <div class="infinity-loading">
+                  <div class="loading-spinner"></div>
+                  <p>Loading more products...</p>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endpaginate %}
+        </div>
       </main>
     </div>
   </div>
 </div>
-
 
 <!-- Mobile Filter Toggle -->
 {% if section.settings.enable_filter %}
@@ -102,7 +104,9 @@
 
 <script src="{{ 'products-filter.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'pagination.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'filter-toggle.js' | asset_url }}" defer="defer"></script>
+
 {% schema %}
 {
   "name": "Collection Product List",
