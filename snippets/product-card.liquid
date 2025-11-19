@@ -1,11 +1,16 @@
 {% comment %}
-  This snippet renders a single product card.
-  It's used within the collection-product-list.liquid section.
+  Renders a single product card for the collection grid.
+
+  Accepts:
+  - product: {Object} Product object.
+
+  Usage:
+  {% render 'product-card', product: product %}
 {% endcomment %}
 
-<div class="product-card" data-product-id="{{ product.id }}">
-  <div class="product-image">
-    <a href="{{ product.url }}" title="{{ product.title | escape }}">
+<div class="product-card border-radius-style-two" data-product-id="{{ product.id }}">
+  <div class="product-card__media">
+    <a href="{{ product.url }}" class="product-card__link" title="{{ product.title | escape }}">
       {% if product.featured_image %}
         <img
           srcset="{%- if product.featured_image.width >= 165 -%}{{ product.featured_image | img_url: '165x' }} 165w,{%- endif -%}
@@ -17,74 +22,70 @@
           src="{{ product.featured_image | img_url: '533x' }}"
           sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
           alt="{{ product.featured_image.alt | escape }}"
+          class="product-card__image"
           loading="lazy"
           width="{{ product.featured_image.width }}"
           height="{{ product.featured_image.height }}"
         >
       {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-card__image' }}
       {% endif %}
     </a>
-    
+
     {% if product.compare_at_price > product.price %}
-      <span class="product-badge sale">Sale</span>
+      <span class="product-card__badge product-card__badge--sale">Sale</span>
     {% elsif product.available == false %}
-      <span class="product-badge sold-out">Sold Out</span>
+      <span class="product-card__badge product-card__badge--sold-out">Sold Out</span>
     {% endif %}
-    
-    <div class="product-actions">
+
+    <div class="product-card__actions">
       {% if product.available %}
         {% form 'product', product, id: "product-form-#{product.id}", class: "product-form", novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <button type="submit" class="action-btn add-to-cart-js" title="Add to Cart">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-          </button>
+          
+          {% if settings.cart_behavior == 'redirect' %}
+            <!-- Traditional form submission -->
+            <button type="submit" class="action-btn" title="Add to Cart">
+              {% render 'icon-add-to-cart' %}
+            </button>
+          {% else %}
+            <!-- Ajax add to cart -->
+            <button type="submit" class="action-btn add-to-cart-js" title="Add to Cart">
+              {% render 'icon-add-to-cart' %}
+            </button>
+          {% endif %}
         {% endform %}
       {% endif %}
       
       <button class="action-btn wishlist-btn" title="Add to Wishlist">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
+        {% render 'icon-wishlist' %}
       </button>
     </div>
   </div>
   
-  <div class="product-info">
-    {% if product.vendor %}
-      <div class="product-vendor">{{ product.vendor }}</div>
+  <div class="product-card__info">
+    {% if section.settings.show_vendor %}
+      <div class="product-card__vendor">{{ product.vendor }}</div>
     {% endif %}
     
-    <h3 class="product-title">
+    <h3 class="product-card__title h5">
       <a href="{{ product.url }}">{{ product.title | truncate: 50 }}</a>
     </h3>
     
     {% comment %}
-      Rating display - You can integrate with a review app like Loox or Judge.me.
-      This is a placeholder example.
+      Rating display - Integrate with your review app here.
     {% endcomment %}
-    <div class="product-rating">
-      <div class="stars">
-        {% assign rating = product.metafields.reviews.rating.value | default: 4 | round %}
-        {% for i in (1..5) %}
-          {% if i <= rating %}
-            <span class="star">★</span>
-          {% else %}
-            <span class="star empty">★</span>
-          {% endif %}
-        {% endfor %}
+    {%- if product.metafields.reviews.rating.value != blank -%}
+      <div class="product-card__rating">
+        {% render 'rating-stars', rating: product.metafields.reviews.rating.value %}
+        <span class="rating-count">({{ product.metafields.reviews.count.value }})</span>
       </div>
-      <span class="rating-count">({{ product.metafields.reviews.count.value | default: 0 }})</span>
-    </div>
+    {%- endif -%}
     
-    <div class="product-price">
+    <div class="product-card__price">
       {% if product.compare_at_price > product.price %}
         <span class="price-original">{{ product.compare_at_price | money }}</span>
         <span class="price-current">{{ product.price | money }}</span>
-        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
-        <span class="price-discount">-{{ discount }}%</span>
       {% else %}
         <span class="price-current">{{ product.price | money }}</span>
       {% endif %}
