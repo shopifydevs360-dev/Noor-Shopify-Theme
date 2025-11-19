@@ -1,201 +1,138 @@
 {% comment %}
-  Products Filter Component
-  Usage: {% render 'products-filter' %}
+  This snippet renders the filter sidebar or off-canvas panel.
+  It's used within the collection-product-list.liquid section.
 {% endcomment %}
 
-{% assign filter_classes = '' %}
-{% if section.settings.filter_position == 'off_canvas' %}
-  {% assign filter_classes = filter_classes | append: ' off-canvas' %}
-{% endif %}
-
-<aside class="filters-sidebar {{ filter_classes }}" id="filtersSidebar">
-  {% if section.settings.filter_position == 'off_canvas' %}
-    <button class="close-filters" onclick="toggleMobileFilters()">×</button>
-  {% endif %}
-  
-  <div class="filter-header">
-    <h2 class="filter-title">Filters</h2>
-    <a href="{{ collection.url }}" class="clear-filters">Clear all</a>
+<div class="filters-wrapper" id="filters-wrapper">
+  <div class="filters-header">
+    <h2>Filter</h2>
+    <button class="filters-close-btn" onclick="toggleDesktopFilters()" aria-label="Close filters">
+      {% render 'icon-close' %}
+    </button>
   </div>
 
-  <!-- Search -->
-  <div class="search-container">
-    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-    </svg>
-    <form action="{{ routes.search_url }}" method="get" class="search-form">
-      <input type="hidden" name="type" value="product">
-      <input type="hidden" name="options[prefix]" value="last">
-      <input type="search" name="q" class="search-input" placeholder="Search products..." value="{{ search.terms | escape }}">
-    </form>
-  </div>
-
-  <!-- Availability Filter -->
-  {% if section.settings.enable_availability %}
-  <div class="filter-section">
-    <h3>Availability</h3>
-    <div class="filter-option">
-      <input type="checkbox" id="filter-in-stock" value="in-stock" 
-             {% if current_tags contains 'in-stock' %}checked{% endif %}>
-      <label for="filter-in-stock">
-        <span>In Stock</span>
-      </label>
-    </div>
-  </div>
-  {% endif %}
-
-  <!-- Product Types -->
-  {% if section.settings.enable_collection %}
-    {% assign collections_to_show = collections %}
-    {% if section.settings.specific_collections != blank %}
-      {% assign specific_handles = section.settings.specific_collections | split: ',' %}
-      {% assign collections_to_show = '' | split: '' %}
-      {% for handle in specific_handles %}
-        {% for collection in collections %}
-          {% if collection.handle == handle %}
-            {% assign collections_to_show = collections_to_show | append: collection | append: ',' %}
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
+  <form class="filters-form" id="filters-form">
+    <!-- Availability Filter -->
+    {% if section.settings.enable_availability %}
+      <div class="filter-group">
+        <h3>Availability</h3>
+        <label class="filter-label">
+          <input type="checkbox" name="filter.v.availability" value="1" {% if current_tags contains 'filter.v.availability:1' %}checked{% endif %}>
+          <span>In Stock</span>
+        </label>
+      </div>
     {% endif %}
 
-    {% if collections_to_show.size > 0 %}
-    <div class="filter-section">
-      <h3>Collections</h3>
-      {% for collection_item in collections_to_show %}
-        {% assign collection_handle = collection_item.handle %}
-        <div class="filter-option">
-          <input type="checkbox" id="collection-{{ collection_handle }}" value="{{ collection_handle }}" 
-                 {% if current_tags contains collection_handle %}checked{% endif %}>
-          <label for="collection-{{ collection_handle }}">
-            <span>{{ collection_item.title }}</span>
-          </label>
+    <!-- Price Filter -->
+    {% if section.settings.enable_price %}
+      <div class="filter-group">
+        <h3>Price</h3>
+        <div class="price-filter">
+          <div class="price-slider">
+            <div class="progress"></div>
+          </div>
+          <div class="range-input">
+            <input type="range" class="range-min" min="0" max="{{ collection.products.max_price | money_without_currency | replace: ',', '' }}" value="0" step="10">
+            <input type="range" class="range-max" min="0" max="{{ collection.products.max_price | money_without_currency | replace: ',', '' }}" value="{{ collection.products.max_price | money_without_currency | replace: ',', '' }}" step="10">
+          </div>
+          <div class="price-input">
+            <input type="number" class="input-min" value="0" min="0" max="{{ collection.products.max_price | money_without_currency | replace: ',', '' }}">
+            <span>-</span>
+            <input type="number" class="input-max" value="{{ collection.products.max_price | money_without_currency | replace: ',', '' }}" min="0" max="{{ collection.products.max_price | money_without_currency | replace: ',', '' }}">
+          </div>
         </div>
-      {% endfor %}
-    </div>
+      </div>
     {% endif %}
-  {% endif %}
 
-  <!-- Brands -->
-  {% if section.settings.enable_brand %}
-    {% assign brands_to_show = collection.all_vendors %}
-    {% if section.settings.specific_brands != blank %}
-      {% assign specific_brands = section.settings.specific_brands | split: ',' %}
-      {% assign brands_to_show = '' | split: '' %}
-      {% for brand in specific_brands %}
-        {% assign brand_handle = brand | handle | strip %}
-        {% for vendor in collection.all_vendors %}
-          {% if vendor == brand %}
-            {% assign brands_to_show = brands_to_show | append: vendor | append: ',' %}
-          {% endif %}
+    <!-- Brand (Vendor) Filter -->
+    {% if section.settings.enable_brand %}
+      {% assign brand_list = section.settings.specific_brands | split: "," %}
+      <div class="filter-group">
+        <h3>Brand</h3>
+        {% for product in collection.products %}
+          {% unless brand_list contains product.vendor %}
+            {% assign brand_list = brand_list | append: product.vendor | append: "," %}
+          {% endunless %}
         {% endfor %}
-      {% endfor %}
-    {% endif %}
-
-    {% if brands_to_show.size > 0 %}
-    <div class="filter-section">
-      <h3>Brands</h3>
-      {% for product_vendor in brands_to_show %}
-        {% assign vendor_handle = product_vendor | handle %}
-        <div class="filter-option">
-          <input type="checkbox" id="vendor-{{ vendor_handle }}" value="{{ vendor_handle }}"
-                 {% if current_tags contains vendor_handle %}checked{% endif %}>
-          <label for="vendor-{{ vendor_handle }}">
-            <span>{{ product_vendor }}</span>
+        {% assign brands = brand_list | uniq | sort %}
+        {% for brand in brands %}
+          {% assign brand_handle = brand | handle | prepend: 'filter.v.vendor:' %}
+          <label class="filter-label">
+            <input type="checkbox" name="filter.v.vendor" value="{{ brand | handle }}" {% if current_tags contains brand_handle %}checked{% endif %}>
+            <span>{{ brand }}</span>
           </label>
-        </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-  {% endif %}
-
-  <!-- Price Range -->
-  {% if section.settings.enable_price %}
-  <div class="filter-section">
-    <h3>Price Range</h3>
-    <form class="price-form">
-      <div class="price-inputs">
-        <input type="number" class="price-input" placeholder="Min" name="filter.v.price.gte" value="{{ current_min_price }}">
-        <input type="number" class="price-input" placeholder="Max" name="filter.v.price.lte" value="{{ current_max_price }}">
-      </div>
-    </form>
-  </div>
-  {% endif %}
-
-  <!-- Colors -->
-  {% if section.settings.enable_color %}
-    {% assign colors_to_show = section.settings.color_tags | split: ',' %}
-    {% if section.settings.specific_colors != blank %}
-      {% assign colors_to_show = section.settings.specific_colors | split: ',' %}
-    {% endif %}
-
-    {% if colors_to_show.size > 0 %}
-    <div class="filter-section">
-      <h3>Colors</h3>
-      <div class="color-options">
-        {% for color in colors_to_show %}
-          {% assign color_handle = color | handle | strip %}
-          {% assign color_code = color | downcase | strip %}
-          <div class="color-swatch {% if current_tags contains color_handle %}active{% endif %}" 
-               style="background: {% if color_code == 'white' %}#ffffff; border: 1px solid rgba(var(--color-border), 0.5){% else %}{{ color_code }}{% endif %}" 
-               data-color="{{ color_handle }}"></div>
         {% endfor %}
       </div>
-    </div>
     {% endif %}
-  {% endif %}
 
-  <!-- Custom Filter 1 -->
-  {% if section.settings.enable_custom_filter_1 %}
-  <div class="filter-section">
-    <h3>{{ section.settings.custom_filter_1_title }}</h3>
-    {% assign filter_tags = section.settings.custom_filter_1_tags | split: ',' %}
-    {% for tag in filter_tags %}
-      {% assign tag_handle = tag | handle | strip %}
-      <div class="filter-option">
-        <input type="checkbox" id="custom-filter-1-{{ tag_handle }}" value="{{ tag_handle }}"
-               {% if current_tags contains tag_handle %}checked{% endif %}>
-        <label for="custom-filter-1-{{ tag_handle }}">
-          <span>{{ tag }}</span>
-        </label>
+    <!-- Collection (Product Type) Filter -->
+    {% if section.settings.enable_collection %}
+      {% assign type_list = section.settings.specific_collections | split: "," %}
+      <div class="filter-group">
+        <h3>Product Type</h3>
+        {% for product in collection.products %}
+          {% unless type_list contains product.type %}
+            {% assign type_list = type_list | append: product.type | append: "," %}
+          {% endunless %}
+        {% endfor %}
+        {% assign types = type_list | uniq | sort %}
+        {% for type in types %}
+          {% assign type_handle = type | handle | prepend: 'filter.p.product_type:' %}
+          <label class="filter-label">
+            <input type="checkbox" name="filter.p.product_type" value="{{ type | handle }}" {% if current_tags contains type_handle %}checked{% endif %}>
+            <span>{{ type }}</span>
+          </label>
+        {% endfor %}
       </div>
-    {% endfor %}
-  </div>
-  {% endif %}
+    {% endif %}
+    
+    <!-- Color Filter -->
+    {% if section.settings.enable_color %}
+      {% assign color_list = section.settings.specific_colors | split: "," %}
+      <div class="filter-group">
+        <h3>Color</h3>
+        {% for product in collection.products %}
+          {% for tag in product.tags %}
+            {% assign tag_prefix = tag | slice: 0, 6 %}
+            {% if tag_prefix == 'color:' %}
+              {% assign color_name = tag | remove: 'color:' %}
+              {% unless color_list contains color_name %}
+                {% assign color_list = color_list | append: color_name | append: "," %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+        {% assign colors = color_list | uniq | sort %}
+        {% for color in colors %}
+          {% assign color_handle = color | handle | prepend: 'filter.v.tag:' | prepend: 'color:' %}
+          <label class="filter-label color-filter-label">
+            <input type="checkbox" name="filter.v.tag" value="color:{{ color | handle }}" {% if current_tags contains color_handle %}checked{% endif %}>
+            <span class="color-swatch" style="background-color: {{ color }};"></span>
+            <span class="color-name">{{ color }}</span>
+          </label>
+        {% endfor %}
+      </div>
+    {% endif %}
 
-  <!-- Custom Filter 2 -->
-  {% if section.settings.enable_custom_filter_2 %}
-  <div class="filter-section">
-    <h3>{{ section.settings.custom_filter_2_title }}</h3>
-    {% assign filter_tags = section.settings.custom_filter_2_tags | split: ',' %}
-    {% for tag in filter_tags %}
-      {% assign tag_handle = tag | handle | strip %}
-      <div class="filter-option">
-        <input type="checkbox" id="custom-filter-2-{{ tag_handle }}" value="{{ tag_handle }}"
-               {% if current_tags contains tag_handle %}checked{% endif %}>
-        <label for="custom-filter-2-{{ tag_handle }}">
-          <span>{{ tag }}</span>
-        </label>
-      </div>
+    <!-- Custom Filters -->
+    {% for i in (1..3) %}
+      {% assign custom_filter_enable = 'enable_custom_filter_' | append: i %}
+      {% assign custom_filter_title = 'custom_filter_' | append: i | append: '_title' %}
+      {% assign custom_filter_tags = 'custom_filter_' | append: i | append: '_tags' %}
+      
+      {% if section.settings[custom_filter_enable] and section.settings[custom_filter_tags] != blank %}
+        <div class="filter-group">
+          <h3>{{ section.settings[custom_filter_title] }}</h3>
+          {% assign tags = section.settings[custom_filter_tags] | split: "," %}
+          {% for tag in tags %}
+            {% assign tag_handle = tag | handle | prepend: 'filter.v.tag:' %}
+            <label class="filter-label">
+              <input type="checkbox" name="filter.v.tag" value="{{ tag | handle }}" {% if current_tags contains tag_handle %}checked{% endif %}>
+              <span>{{ tag | strip }}</span>
+            </label>
+          {% endfor %}
+        </div>
+      {% endif %}
     {% endfor %}
-  </div>
-  {% endif %}
-
-  <!-- Custom Filter 3 -->
-  {% if section.settings.enable_custom_filter_3 %}
-  <div class="filter-section">
-    <h3>{{ section.settings.custom_filter_3_title }}</h3>
-    {% assign filter_tags = section.settings.custom_filter_3_tags | split: ',' %}
-    {% for tag in filter_tags %}
-      {% assign tag_handle = tag | handle | strip %}
-      <div class="filter-option">
-        <input type="checkbox" id="custom-filter-3-{{ tag_handle }}" value="{{ tag_handle }}"
-               {% if current_tags contains tag_handle %}checked{% endif %}>
-        <label for="custom-filter-3-{{ tag_handle }}">
-          <span>{{ tag }}</span>
-        </label>
-      </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-</aside>
+  </form>
+</div>
