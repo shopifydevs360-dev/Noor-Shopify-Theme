@@ -75,24 +75,36 @@ function updateCartCount() {
     .catch(error => console.error('Error fetching cart:', error));
 }
 
-// Open cart drawer (you'll need to implement this based on your theme)
+// Open cart drawer
 function openCartDrawer() {
   // Check if cart drawer exists in theme
   const cartDrawer = document.querySelector('[data-cart-drawer]') || 
-                     document.querySelector('.cart-drawer') || 
-                     document.querySelector('#cart-drawer');
+                 document.querySelector('.cart-drawer') || 
+                 document.getElementById('cart-drawer');
   
   if (cartDrawer) {
     cartDrawer.classList.add('active');
+    
     // Add overlay if needed
-    const overlay = document.querySelector('.cart-overlay') || document.querySelector('[data-cart-overlay]');
+    const overlay = document.querySelector('[data-cart-overlay') || 
+                   document.querySelector('[data-cart-overlay]');
+    
     if (overlay) {
       overlay.classList.add('active');
     }
-  } else {
-    console.warn('Cart drawer not found. Please add a cart drawer component to your theme.');
-    // Fallback: show notification with link to cart
-    showNotification('Product added! <a href="/cart" style="color: inherit; text-decoration: underline;">View Cart</a>');
+    
+    // Add close button if needed
+    const closeButton = cartDrawer.querySelector('[data-cart-close] || 
+                   cartDrawer.querySelector('[data-cart-close]');
+    
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        cartDrawer.classList.remove('active');
+        if (overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+    }
   }
 }
 
@@ -121,9 +133,15 @@ function showNotification(message, type = 'success') {
   }, 3000);
 }
 
-// Wishlist toggle function
+// Add to wishlist
 function toggleWishlist(button) {
   button.classList.toggle('active');
   // Integrate with your wishlist app here
   console.log('Wishlist toggled');
+}
+
+// Show product details
+function viewProduct(productId) {
+  // Integrate with your product modal or redirect to product page
+  console.log('Viewing product', productId);
 }
