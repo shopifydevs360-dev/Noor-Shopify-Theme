@@ -82,9 +82,6 @@
   </svg>
 </button>
 {% endif %}
-{% if section.settings.enable_filter and section.settings.filter_position == 'off-canvas' %}
-    {% render 'off-canvas-products-filter' %}
-{% endif %}
 <script src="{{ 'products-filter.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
 
