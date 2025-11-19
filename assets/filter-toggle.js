@@ -1,43 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const filterForm = document.getElementById('filters-form');
-  if (!filterForm) return;
+  const filterToggleBtn = document.querySelector('.toolbar-actions button[onclick="toggleDesktopFilters()"]');
+  const mobileFilterToggleBtn = document.querySelector('.mobile-filter-toggle');
+  const filtersWrapper = document.getElementById('filters-wrapper');
+  const filtersCloseBtn = document.querySelector('.filters-close-btn');
 
-  // Listen for changes on any filter input
-  const filterInputs = filterForm.querySelectorAll('input');
-  filterInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      applyFilters();
-    });
-  });
-
-  function applyFilters() {
-    const formData = new FormData(filterForm);
-    const searchParams = new URLSearchParams();
-
-    // Build the search parameters from the form data
-    for (let [key, value] of formData.entries()) {
-      if (key === 'filter.v.availability') {
-        searchParams.append(key, value);
-      } else {
-        // For other filters, we need to group them under the same key
-        if (searchParams.has(key)) {
-          searchParams.append(key, value);
-        } else {
-          searchParams.set(key, value);
-        }
-      }
+  function toggleFilters() {
+    if (filtersWrapper) {
+      filtersWrapper.classList.toggle('active');
+      // Prevent body scroll when filter is open on mobile
+      document.body.classList.toggle('filter-open');
     }
+  }
 
-    // Get the current URL without any parameters
-    const currentUrl = window.location.origin + window.location.pathname;
+  if (filterToggleBtn) {
+    filterToggleBtn.addEventListener('click', toggleFilters);
+  }
 
-    // Construct the new URL with the filter parameters
-    let newUrl = currentUrl;
-    if (searchParams.toString()) {
-      newUrl += '?' + searchParams.toString();
-    }
+  if (mobileFilterToggleBtn) {
+    mobileFilterToggleBtn.addEventListener('click', toggleFilters);
+  }
 
-    // Reload the page with the new URL
-    window.location.href = newUrl;
+  if (filtersCloseBtn) {
+    filtersCloseBtn.addEventListener('click', toggleFilters);
   }
 });
