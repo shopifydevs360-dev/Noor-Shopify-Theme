@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const paginationType = document.querySelector('.product-list-wapper').dataset.paginationType;
+  const productWrapper = document.querySelector('.product-list-wapper');
+  if (!productWrapper) return;
+
+  const paginationType = productWrapper.dataset.paginationType;
+  if (!paginationType || paginationType === 'pagination_by_number') return;
+
   const loadMoreBtn = document.getElementById('load-more-btn');
   const productsContainer = document.getElementById('productsContainer');
   let currentPage = {{ paginate.current_page }};
@@ -29,7 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     currentPage++;
-    const nextUrl = `{{ collection.url }}?page=${currentPage}`;
+    // Preserve all current URL parameters (sort, filters)
+    const currentUrlParams = new URLSearchParams(window.location.search);
+    currentUrlParams.set('page', currentPage);
+    const nextUrl = `${window.location.pathname}?${currentUrlParams.toString()}`;
 
     // Show loading state
     if (loadMoreBtn) {
