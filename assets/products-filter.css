@@ -1,9 +1,12 @@
 /* Filters Wrapper (for both sidebar and off-canvas) */
 .filters-wrapper {
-  background-color: var(--card-background);
+  background-color: rgb(var(--color-background));
   padding: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-style-two, 8px);
+  border: 1px solid rgb(var(--color-border));
+  height: fit-content;
+  position: sticky;
+  top: 20px;
 }
 
 .filters-header {
@@ -12,12 +15,11 @@
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgb(var(--color-border));
 }
 
 .filters-header h2 {
   margin: 0;
-  font-size: 1.5em;
 }
 
 .filters-close-btn {
@@ -26,6 +28,7 @@
   border: none;
   cursor: pointer;
   padding: 5px;
+  color: rgb(var(--color-text));
 }
 
 .filter-group {
@@ -37,6 +40,7 @@
   font-size: 1.1em;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: rgb(var(--color-heading));
 }
 
 .filter-label {
@@ -45,12 +49,13 @@
   gap: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  color: rgb(var(--color-text));
 }
 
 .filter-label input[type="checkbox"] {
   min-width: 18px;
   min-height: 18px;
-  accent-color: var(--primary-color);
+  accent-color: rgb(var(--color-link));
 }
 
 /* Price Filter Specifics */
@@ -59,6 +64,8 @@
   height: 5px;
   width: 100%;
   margin: 20px 0;
+  background: rgb(var(--color-border));
+  border-radius: 5px;
 }
 
 .range-input input {
@@ -75,7 +82,7 @@
   height: 17px;
   width: 17px;
   border-radius: 50%;
-  background: var(--primary-color);
+  background: rgb(var(--color-link));
   pointer-events: auto;
   -webkit-appearance: none;
   appearance: none;
@@ -90,8 +97,8 @@
 .price-input input {
   width: 100%;
   padding: 8px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--border-radius-style-one, 4px);
 }
 
 /* Color Filter Specifics */
@@ -103,7 +110,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(var(--color-border), 0.5);
 }
 
 /* Off-Canvas Filter Styles */
@@ -117,7 +124,7 @@
     z-index: 1000;
     overflow-y: auto;
     transition: right 0.3s ease;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: -5px 0 15px rgba(var(--color-text), 0.1);
   }
 
   .collection-wrapper:not(.with-sidebar) .filters-wrapper.active {
@@ -138,11 +145,11 @@
   z-index: 999;
   width: 60px;
   height: 60px;
-  background-color: var(--primary-color);
-  color: #fff;
+  background-color: rgb(var(--color-link));
+  color: rgb(var(--color-background));
   border: none;
   border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(var(--color-text), 0.2);
   cursor: pointer;
   justify-content: center;
   align-items: center;
@@ -163,7 +170,7 @@
     z-index: 1000;
     overflow-y: auto;
     transition: left 0.3s ease;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 0 15px rgba(var(--color-text), 0.1);
   }
 
   .filters-wrapper.active {
@@ -173,4 +180,9 @@
   .filters-close-btn {
     display: block;
   }
+}
+
+/* Prevent body scroll when filter is open on mobile */
+body.filter-open {
+  overflow: hidden;
 }
