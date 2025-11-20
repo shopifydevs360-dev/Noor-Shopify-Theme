@@ -1,64 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // AJAX Add to Cart
-  const addToCartButtons = document.querySelectorAll('.add-to-cart-js');
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      const form = this.closest('form');
-      const formData = new FormData(form);
-      
-      // Show loading state
-      button.classList.add('loading');
-      button.disabled = true;
+  const filterForm = document.getElementById('filters-form');
+  if (!filterForm) return;
 
-      fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        // On success, update cart UI (e.g., open cart drawer, update count)
-        console.log('Product added to cart:', data);
-        updateCartUI(); // You'll need to implement this function
-      })
-      .catch(error => {
-        console.error('Error adding to cart:', error);
-        alert('There was an error adding this product to your cart. Please try again.');
-      })
-      .finally(() => {
-        // Remove loading state
-        button.classList.remove('loading');
-        button.disabled = false;
-      });
+  // Listen for changes on any filter input
+  const filterInputs = filterForm.querySelectorAll('input');
+  filterInputs.forEach(input => {
+    input.addEventListener('change', function() {
+      applyFilters();
     });
   });
 
-  // Placeholder for Wishlist functionality
-  const wishlistButtons = document.querySelectorAll('.wishlist-btn');
-  wishlistButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('Wishlist functionality is not implemented. This would typically require an app or custom logic.');
-    });
-  });
+  function applyFilters() {
+    const formData = new FormData(filterForm);
+    const searchParams = new URLSearchParams(window.location.search);
 
-  // Function to update the cart UI (e.g., cart drawer, cart count)
-  function updateCartUI() {
-    // This is a placeholder. You would typically fetch the cart data
-    // and update the UI elements like the cart count or open a cart drawer.
-    fetch('/cart.js')
-      .then(response => response.json())
-      .then(cart => {
-        // Update cart count element if it exists
-        const cartCountElement = document.querySelector('.cart-count');
-        if (cartCountElement) {
-          cartCountElement.textContent = cart.item_count;
-        }
-        
-        // Example: open a cart drawer
-        // if (typeof openCartDrawer === 'function') {
-        //   openCartDrawer();
-        // }
-      });
+    // Clear existing filter parameters from the URL
+    for (const [key] of searchParams) {
+      if (key.startsWith('filter.')) {
+        searchParams.delete(key);
+      }
+    }
+
+    // Build the search parameters from the form data
+    for (const [key, value] of formData.entries()) {
+      searchParams.append(key, value);
+    }
+
+    // Get the current URL without any parameters
+    const currentUrl = window.location.origin + window.location.pathname;
+
+    // Construct the new URL with the filter parameters
+    let newUrl = `${currentUrl}?${searchParams.toString()}`;
+
+    // Reload the page with the new URL
+    window.location.href = newUrl;
   }
 });
