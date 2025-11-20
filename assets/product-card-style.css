@@ -1,50 +1,58 @@
 /* Product Card */
 .product-card {
-  background-color: var(--card-background);
-  border-radius: 8px;
-  overflow: hidden;
+  background-color: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-border));
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  border: 1px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(var(--color-text), 0.1);
   transform: translateY(-5px);
 }
 
-.product-image {
+.product-card__media {
   position: relative;
   overflow: hidden;
 }
 
-.product-image img {
+.product-card__link {
+  display: block;
+}
+
+.product-card__image {
   display: block;
   width: 100%;
   transition: transform 0.5s ease;
 }
 
-.product-card:hover .product-image img {
+.product-card:hover .product-card__image {
   transform: scale(1.05);
 }
 
-.product-badge {
+.product-card__badge {
   position: absolute;
   top: 10px;
   left: 10px;
   padding: 5px 10px;
-  background-color: var(--secondary-color);
-  color: #fff;
   font-size: 0.8em;
   font-weight: 600;
-  border-radius: 5px;
+  border-radius: var(--border-radius-style-one, 4px);
   text-transform: uppercase;
+  color: rgb(var(--color-background));
 }
 
-.product-badge.sale {
-  background-color: #e74c3c;
+.product-card__badge--sale {
+  background-color: rgb(var(--color-price-sale));
 }
 
-.product-actions {
+.product-card__badge--sold-out {
+  background-color: rgb(var(--color-subtext));
+}
+
+.product-card__actions {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -55,7 +63,7 @@
   transition: opacity 0.3s ease;
 }
 
-.product-card:hover .product-actions {
+.product-card:hover .product-card__actions {
   opacity: 1;
 }
 
@@ -63,63 +71,78 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: none;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(var(--color-background), 0.9);
+  border: 1px solid rgba(var(--color-border), 0.5);
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  color: rgb(var(--color-text));
 }
 
 .action-btn:hover {
-  background-color: var(--primary-color);
-  color: #fff;
+  background-color: rgb(var(--color-link));
+  color: rgb(var(--color-background));
+  border-color: rgb(var(--color-link));
 }
 
-.product-info {
+.product-card__info {
   padding: 15px;
   text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.product-vendor {
+.product-card__vendor {
   font-size: 0.8em;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--secondary-color);
+  color: rgb(var(--color-subtext));
   margin-bottom: 5px;
 }
 
-.product-title {
-  font-size: 1em;
-  font-weight: 600;
-  margin-bottom: 10px;
+.product-card__title {
+  margin: 0 0 10px;
   line-height: 1.4;
+  flex-grow: 1;
 }
 
-.product-title a {
-  color: var(--text-color);
+.product-card__title a {
+  color: rgb(var(--color-heading));
   text-decoration: none;
 }
 
-.product-rating {
+.product-card__rating {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   margin-bottom: 10px;
   font-size: 0.9em;
+  color: rgb(var(--color-subtext));
 }
 
-.stars .star {
-  color: #ffc107;
+/* Star Rating Display */
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1;
+  background: linear-gradient(90deg, rgb(var(--color-link)) var(--percent), rgba(var(--color-border), 0.3) var(--percent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Times; /* A font with a solid star */
+  letter-spacing: 3px;
 }
 
-.stars .star.empty {
-  color: #ddd;
+.stars::before {
+  content: '★★★★★';
 }
 
-.product-price {
+.product-card__price {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,19 +151,11 @@
 }
 
 .price-current {
-  color: var(--primary-color);
+  color: rgb(var(--color-price-sale));
 }
 
 .price-original {
-  color: var(--secondary-color);
+  color: rgb(var(--color-subtext));
   text-decoration: line-through;
   font-size: 0.9em;
-}
-
-.price-discount {
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 10px;
-  font-size: 0.8em;
 }
