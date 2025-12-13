@@ -4,46 +4,37 @@
   assign color_scheme = section.settings.color_scheme
 %}
 
-<div
-  class="m-sidebar m-color-{{ settings.sidebar_color_scheme }}"
-  id="m-sidebar"
-  aria-hidden="true"
->
-  <div class="m-sidebar__inner">
+<div class="m-sidebar m-color-{{ settings.sidebar_color_scheme }}">
 
-    <!-- Background image -->
-    {% if settings.sidebar_image != blank %}
-      <div class="m-sidebar__media">
-        {{ settings.sidebar_image | image_url: width: 1200 | image_tag }}
-      </div>
-    {% endif %}
+  <div class="m-sidebar__content">
 
-    <!-- Content -->
-    <div class="m-sidebar__content">
-
-      <!-- Logo -->
-      <div class="m-sidebar__logo">
-        <a href="/">
-          {% if settings.logo != blank %}
-            {{ settings.logo | image_url: width: 200 | image_tag }}
-          {% else %}
-            {{ shop.name }}
-          {% endif %}
-        </a>
-      </div>
-
-      <!-- Navigation -->
-      <nav class="m-sidebar__nav">
-        <button data-sidebar-action="search">Search</button>
-        <a href="/account">
-          {% if customer %}My Account{% else %}Login / Signup{% endif %}
-        </a>
-        <button data-sidebar-action="cart">
-          Bag ({{ cart.item_count }})
-        </button>
-      </nav>
-
+    <!-- Logo -->
+    <div class="m-sidebar__logo">
+      <a href="/">
+        {% if settings.logo != blank %}
+          {{ settings.logo | image_url: width: 180 | image_tag }}
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </a>
     </div>
+
+    <!-- Navigation -->
+    <nav class="m-sidebar__nav">
+      <a href="/search">Search</a>
+      <a href="/account">
+        {% if customer %}My Account{% else %}Login / Signup{% endif %}
+      </a>
+      <a href="/cart">Bag ({{ cart.item_count }})</a>
+    </nav>
+
+    <!-- Promo -->
+    <div class="m-sidebar__promo">
+      <button class="m-sidebar__promo-btn">
+        Get 15% off
+      </button>
+    </div>
+
   </div>
 </div>
 
