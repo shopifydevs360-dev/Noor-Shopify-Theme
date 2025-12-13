@@ -1,0 +1,23 @@
+{{ 'sidebar.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% liquid
+  assign color_scheme = section.settings.color_scheme
+%}
+
+
+
+<script src="{{ 'sidebar.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:general.header",
+  "limit": 1,
+  "enabled_on": {"groups": ["header"]},
+  "settings": [
+
+  ],
+  "presets": [
+    { "name": "Sidebar" }
+  ]
+}
+{% endschema %}
