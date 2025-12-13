@@ -5,35 +5,48 @@
 %}
 
 <div
-  class="m-sidebar m-color-{{ color_scheme }}"
+  class="m-sidebar m-color-{{ settings.sidebar_color_scheme }}"
   id="m-sidebar"
-  role="dialog"
   aria-hidden="true"
 >
   <div class="m-sidebar__inner">
 
     <!-- Background image -->
-    {% if section.settings.image != blank %}
+    {% if settings.sidebar_image != blank %}
       <div class="m-sidebar__media">
-        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {{ settings.sidebar_image | image_url: width: 1200 | image_tag }}
       </div>
     {% endif %}
 
     <!-- Content -->
     <div class="m-sidebar__content">
-      <div class="m-sidebar__brand">
-        {{ section.settings.brand_text }}
+
+      <!-- Logo -->
+      <div class="m-sidebar__logo">
+        <a href="/">
+          {% if settings.logo != blank %}
+            {{ settings.logo | image_url: width: 200 | image_tag }}
+          {% else %}
+            {{ shop.name }}
+          {% endif %}
+        </a>
       </div>
 
+      <!-- Navigation -->
       <nav class="m-sidebar__nav">
-        <a href="/search" class="m-sidebar__link">Search</a>
-        <a href="/account" class="m-sidebar__link">Login / Signup</a>
-        <a href="/cart" class="m-sidebar__link">Bag ({{ cart.item_count }})</a>
+        <button data-sidebar-action="search">Search</button>
+        <a href="/account">
+          {% if customer %}My Account{% else %}Login / Signup{% endif %}
+        </a>
+        <button data-sidebar-action="cart">
+          Bag ({{ cart.item_count }})
+        </button>
       </nav>
-    </div>
 
+    </div>
   </div>
 </div>
+
 
 <script src="{{ 'sidebar.js' | asset_url }}" defer="defer"></script>
 
