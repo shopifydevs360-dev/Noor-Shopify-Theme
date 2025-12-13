@@ -26,7 +26,6 @@
   z-index: 1;
   height: 100%;
   padding: 32px;
-  background: rgba(var(--color-background), 0.75);
 }
 
 /* RTL */
