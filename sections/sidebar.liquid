@@ -4,17 +4,62 @@
   assign color_scheme = section.settings.color_scheme
 %}
 
+<div
+  class="m-sidebar m-color-{{ color_scheme }}"
+  id="m-sidebar"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="m-sidebar__inner">
 
+    <!-- Background image -->
+    {% if section.settings.image != blank %}
+      <div class="m-sidebar__media">
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+      </div>
+    {% endif %}
+
+    <!-- Content -->
+    <div class="m-sidebar__content">
+      <div class="m-sidebar__brand">
+        {{ section.settings.brand_text }}
+      </div>
+
+      <nav class="m-sidebar__nav">
+        <a href="/search" class="m-sidebar__link">Search</a>
+        <a href="/account" class="m-sidebar__link">Login / Signup</a>
+        <a href="/cart" class="m-sidebar__link">Bag ({{ cart.item_count }})</a>
+      </nav>
+    </div>
+
+  </div>
+</div>
 
 <script src="{{ 'sidebar.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
-  "name": "t:general.header",
+  "name": "Sidebar",
   "limit": 1,
-  "enabled_on": {"groups": ["header"]},
+  "enabled_on": { "groups": ["header"] },
   "settings": [
-
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Sidebar background image"
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "OUAI"
+    }
   ],
   "presets": [
     { "name": "Sidebar" }
