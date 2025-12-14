@@ -72,9 +72,7 @@
     display: block;
     margin-bottom: 35px;
 }
-.m-sidebar__nav a{
-    transition: all 1s cubic-bezier(.32,.24,.15,1);
-}
+
 .expended .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
 }
@@ -86,9 +84,11 @@
 }
 .minimal .expended-area-active .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
+        transition: all 1s cubic-bezier(.32,.24,.15,1);
 }
 .minimal .expended-area-active .m-sidebar__nav a .js-open-icon-text .text{
     display: block !important; 
+        transition: all 1s cubic-bezier(.32,.24,.15,1);
 }
 .sidebar-overlay {
     position: fixed;
