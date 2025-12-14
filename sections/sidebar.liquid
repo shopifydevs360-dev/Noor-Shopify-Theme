@@ -20,17 +20,17 @@
       <!-- Search -->
       <a href="#" class="js-open-section nav-icon-text-wrap"
           data-trigger-section="search-drawer" aria-label="Site search">
-          <span class="js-open-icon-text">
+          <span class="js-open-icon-text" data-open-item="search-drawer-open-item">
               <span class="icon">
                   <!-- icon search -->
                 {%- render 'theme-icon', icon: 'search' -%}
               </span>
               <strong class="text">Search</strong>
           </span>
-          <span class="js-close-icon-text hide">
+          <span class="js-close-icon-text hide" data-close-item="search-drawer-close-item">
               <span class="icon">
               <!-- icon close -->
-                {%- render 'theme-icon', icon: 'search' -%}
+                {%- render 'theme-icon', icon: 'close' -%}
               </span>
               <strong class="text">Close</strong>
           </span>
