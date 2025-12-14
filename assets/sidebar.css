@@ -112,3 +112,6 @@ transform: rotate(45deg)!important;
 .color-dark{
     color: #000;
 }
+.color-light{
+    color: #fff;
+}
