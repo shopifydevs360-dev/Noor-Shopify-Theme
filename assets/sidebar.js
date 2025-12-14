@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.getElementById("is-sidebar");
+  const sidebar = document.getElementById("js-sidebar");
   if (!sidebar) return;
 
   const togglePoint = 100;
