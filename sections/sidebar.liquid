@@ -20,7 +20,25 @@
       </button>
     <!-- Navigation -->
     <nav class="m-sidebar__nav">
-      <a href="/search">Search</a>
+      <!-- ACCOUNT LINKS -->
+      <a href="#" class="nav-search js-open-nav-section text-only nav-icon-text-wrap"
+          data-nav-section="search" aria-label="Site search">
+          <span class="js-open-icon-text">
+              <span class="icon">
+                  <!-- icon search -->
+                {{ 'icon-search.svg' | inline_asset_content }}
+              </span>
+              <strong class="text hide-tablet-down">Search</strong>
+          </span>
+          <span class="js-close-icon-text hide">
+              <span class="icon">
+              <!-- icon close -->
+                {{ 'icon-close.svg' | inline_asset_content }}
+              </span>
+              <strong class="text hide-tablet-down">Close</strong>
+          </span>
+      </a>
+      <!-- ACCOUNT LINKS -->
       <a href="/account">
         {% if customer %}My Account{% else %}Login / Signup{% endif %}
       </a>
