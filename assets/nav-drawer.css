@@ -14,5 +14,4 @@
   transform: translateX(0);
   visibility: visible;
   pointer-events: auto;
-  transition: transform .4s ease;
 }
