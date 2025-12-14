@@ -14,3 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  if (!hamburger) return;
+
+  // Delay slightly to allow initial animation to play
+  setTimeout(() => {
+    hamburger.classList.add("loaded");
+  }, 800);
+});
+
