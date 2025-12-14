@@ -1,17 +1,22 @@
 .shopify-section-nav {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    max-width: 700px;
-    background: #fff;
-    z-index: 9;
-    transform: translateX(-100%);
-    transition: transform .4s ease;
-    visibility: hidden;
-    pointer-events: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  max-width: 700px;
+  background: #fff;
+  z-index: 9;
+
+  transform: translateX(-100%);
+  transition: transform .4s ease, visibility 0s linear .4s;
+  visibility: hidden;
+  pointer-events: none;
 }
+
 .shopify-section-nav.nav-drawer-open {
   transform: translateX(0);
   visibility: visible;
   pointer-events: auto;
+
+  transition: transform .4s ease, visibility 0s;
 }
+
