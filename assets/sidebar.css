@@ -75,7 +75,9 @@
  display: none;
 }
 .m-sidebar__content .hamburger.is-active span:last-of-type {
-
+top: calc(50% - 1px);
+transform: rotate(45deg)!important;
+-webkit-animation: none;
 }
 .m-sidebar__nav a {
     display: block;
