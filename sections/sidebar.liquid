@@ -8,13 +8,7 @@
 
     <!-- Logo -->
     <div class="m-sidebar__logo">
-      <a href="/">
-        {% if settings.logo != blank %}
-          {{ settings.logo | image_url: width: 180 | image_tag }}
-        {% else %}
-          {{ shop.name }}
-        {% endif %}
-      </a>
+        {% render 'logo' %}
     </div>
 
     <!-- Navigation -->
