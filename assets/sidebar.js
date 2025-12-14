@@ -34,7 +34,7 @@ function initHamburgerAnimation() {
   const hamburger = document.querySelector(".hamburger");
   if (!hamburger) return;
 
-  const ANIMATION_DELAY = 0;
+  const ANIMATION_DELAY = 800;
 
   setTimeout(() => {
     hamburger.classList.add("loaded");
