@@ -276,7 +276,7 @@
       "type": "custom-section",
       "name": "Custom Section",
       "settings": {
-        "container_width": "container",
+        "container_width": "full-width",
         "height_type": "image",
         "height_desktop": 800,
         "height_tablet": 600,
