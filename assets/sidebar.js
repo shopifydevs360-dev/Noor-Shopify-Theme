@@ -174,17 +174,15 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (GLOBAL, SCROLL)
+   COLOR CONTROL (SECTION-AWARE)
 ================================ */
 function initColorControlObserver() {
   const colorControls = document.querySelectorAll(".color-control");
   if (!colorControls.length) return;
 
-  // Observe only content sections (exclude header/sidebar)
   const sections = document.querySelectorAll(
-    ".section-dark, .section-light"
+    ".section-dark, .section-light, section, .shopify-section"
   );
-
   if (!sections.length) return;
 
   const observer = new IntersectionObserver(
@@ -192,28 +190,27 @@ function initColorControlObserver() {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        // Reset all icons first
         colorControls.forEach(control => {
-          control.classList.remove("color-light", "color-dark");
-        });
+          // 🔹 If this section CONTAINS the control, ignore it
+          if (entry.target.contains(control)) {
+            return;
+          }
 
-        // Apply based on active section
-        if (entry.target.classList.contains("section-dark")) {
-          colorControls.forEach(control =>
-            control.classList.add("color-light")
-          );
-        } 
-        else if (entry.target.classList.contains("section-light")) {
-          colorControls.forEach(control =>
-            control.classList.add("color-dark")
-          );
-        }
+          // Reset first
+          control.classList.remove("color-light", "color-dark");
+
+          if (entry.target.classList.contains("section-dark")) {
+            control.classList.add("color-light");
+          } 
+          else if (entry.target.classList.contains("section-light")) {
+            control.classList.add("color-dark");
+          }
+          // neutral section → no class
+        });
       });
     },
     {
       root: null,
-
-      // 🔥 This makes the logic match viewport center
       rootMargin: "-45% 0px -45% 0px",
       threshold: 0
     }
