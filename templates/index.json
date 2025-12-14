@@ -292,7 +292,7 @@
         "padding_x": 30,
         "justify_content": "center",
         "custom_class": "",
-        "color_control": "section-light"
+        "color_control": "section-dark"
       }
     }
   },
