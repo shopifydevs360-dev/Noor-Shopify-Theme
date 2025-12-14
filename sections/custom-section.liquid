@@ -138,7 +138,7 @@
   {% endif %}
 </style>
 
-<div class="custom-section section-{{ section.id }}-id {{ container_width }}">
+<div class="custom-section section-{{ section.id }}-id {{ container_width }} {{ section.settings.color_control }} {{ section.settings.custom_class }}">
   <div class="custom-section__inner" data-height="{{ height_type }}">
 
     {% if has_bg_image %}
