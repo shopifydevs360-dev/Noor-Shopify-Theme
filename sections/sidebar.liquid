@@ -39,7 +39,7 @@
       <a href="/account">
         {% if customer %}My Account{% else %}Login / Signup{% endif %}
       </a>
-      <a href="/cart">Bag ({{ cart.item_count }})</a>
+      <a href="/cart">Bag <span class="cart-count">{{ cart.item_count }}</span></a>
     </nav>
 
 
