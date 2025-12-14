@@ -17,6 +17,7 @@
   z-index: 1;
   height: 100%;
   padding: 32px;
+  color: #000;
 }
 .m-sidebar__content .m-sidebar__logo {
     margin-bottom: 50px;
