@@ -8,7 +8,7 @@
 <h1>{{ 'collections.title' | t }}</h1>
 
 <div
-  class="collections {{ section.settings.grid_item_width }} {{ section.settings.custom_class }}"
+  class="collections {{ section.settings.grid_item_width }} {{ section.settings.color_control }}"
   style="--grid-gap: {{ section.settings.grid_gap }}px"
 >
   {% for collection in collections %}
@@ -83,7 +83,19 @@
       "id": "custom_class",
       "label": "custom class"
 
-    }
+    },
+        {
+      "type": "select",
+      "id": "color_control",
+      "label": "Color Control",
+      "info": "This These settings control the color of the sidebar text. If you select Dark, it will be a light shade of the sidebar text/icon color, and if you select Light, it will be a dark shade of the sidebar text/icon color.",
+      "options": [
+        { "value": "section-dark", "label": "Dark" },
+        { "value": "section-light", "label": "Light" },
+        { "value": "default", "label": "Default" }
+      ],
+      "default": "default"
+    },
   ],
   "presets": [{ "name": "t:general.collections_grid" }]
 }
