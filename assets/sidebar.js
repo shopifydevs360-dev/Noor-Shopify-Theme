@@ -180,32 +180,35 @@ function initColorControlObserver() {
   const colorControl = document.getElementById("color-control");
   if (!colorControl) return;
 
-  const sections = document.querySelectorAll(
-    ".section-dark, .section-light"
-  );
+  // Observe ALL sections, not only dark/light
+  const sections = document.querySelectorAll("section");
   if (!sections.length) return;
+
+  let activeSection = null;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        // Reset classes
+        activeSection = entry.target;
+
+        // Always reset first
         colorControl.classList.remove("color-light", "color-dark");
 
-        if (entry.target.classList.contains("section-dark")) {
+        // Apply only if section has defined color intent
+        if (activeSection.classList.contains("section-dark")) {
           colorControl.classList.add("color-light");
-        }
-
-        if (entry.target.classList.contains("section-light")) {
+        } 
+        else if (activeSection.classList.contains("section-light")) {
           colorControl.classList.add("color-dark");
         }
+        // else → no class added (clean state)
       });
     },
     {
       root: null,
-      // threshold: 0.9 // section is considered active when 50% visible
-      rootMargin: "-20% 0px -20% 0px"
+      threshold: 0.5
     }
   );
 
