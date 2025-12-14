@@ -53,18 +53,18 @@
               <strong class="text">Close</strong>
           </span>
       </a>
-            <!-- Search -->
+      <!-- Bag -->
       <a href="#" class="js-open-section nav-icon-text-wrap"
-          data-trigger-section="search-drawer" aria-label="Site search">
-          <span class="js-open-icon-text" data-open-item="search-drawer-open-item">
+          data-trigger-section="bag-drawer" aria-label="Site bag">
+          <span class="js-open-icon-text" data-open-item="bag-drawer-open-item">
               <span class="icon">
-                  <!-- icon search -->
-                {%- render 'theme-icon', icon: 'search' -%}
+                  <!-- icon bag -->
+                {%- render 'theme-icon', icon: 'bag' -%}
                 <span class="cart-count cart-count-icon">{{ cart.item_count }}</span>
               </span>
               <strong class="text">Bag <span class="cart-count">{{ cart.item_count }}</span></strong>
           </span>
-          <span class="js-close-icon-text hide" data-close-item="search-drawer-close-item">
+          <span class="js-close-icon-text hide" data-close-item="bag-drawer-close-item">
               <span class="icon">
               <!-- icon close -->
                 {%- render 'theme-icon', icon: 'close' -%}
@@ -81,6 +81,7 @@
 {% render 'nav-drawer' %}
 {% render 'search-drawer' %}
 {% render 'account-drawer' %}
+{% render 'bag-drawer' %}
 <script src="{{ 'sidebar.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
