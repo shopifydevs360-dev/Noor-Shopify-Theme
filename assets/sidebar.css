@@ -26,6 +26,7 @@
     transform: translateY(.2rem);
     transition: all .5s cubic-bezier(0,0,.002,1);
     overflow: hidden;
+    background: transparent;
 }
 .hamburger span {
     display: block;
