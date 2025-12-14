@@ -53,11 +53,11 @@
 .hamburger span:nth-of-type(2) {
     top: calc(50% - 1px);
     width: 1.8rem;
-    -webkit-animation-delay: 6s;
-    animation-delay: 6s;
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s;
 }
 .hamburger span:last-of-type {
     top: calc(100% - 2px);
-    -webkit-animation-delay: 7s;
-    animation-delay: 7s;
+    -webkit-animation-delay: .7s;
+    animation-delay: .7s;
 }
