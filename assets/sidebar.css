@@ -35,7 +35,7 @@
     position: absolute;
     height: 1px;
     transition: all .4s ease-in-out;
-    transform: translateX(-120%);
+    transform: translateX(-115%);
     -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
 }
