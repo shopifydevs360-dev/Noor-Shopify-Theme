@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 420px;
   color: #fff;
-  transition: transform .35s ease;
+  transition: all .8s cubic-bezier(0,0,.002,1);
   z-index: 90;
 }
 
