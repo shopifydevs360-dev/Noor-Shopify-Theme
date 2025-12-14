@@ -8,3 +8,22 @@
   z-index: 90;
 }
 
+
+.m-sidebar__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 32px;
+}
+/* Hamburger */
+.hamburger {
+    cursor: pointer;
+    width: 3rem;
+    height: calc(1.8rem + 2px);
+    padding-bottom: 2px;
+    position: relative;
+    z-index: 201;
+    transform: translateY(.2rem);
+    transition: all .5s cubic-bezier(0,0,.002,1);
+    overflow: hidden;
+}
