@@ -9,5 +9,7 @@
     transform: translateX(-100%);
 }
 .shopify-section-search.search-drawer-open {
-    transform: translateX(0);
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
