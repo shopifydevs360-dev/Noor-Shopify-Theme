@@ -182,7 +182,7 @@ function initColorControlObserver() {
 
   // Observe only content sections (exclude header/sidebar)
   const sections = document.querySelectorAll(
-    ".shopify-section.section-dark, .shopify-section.section-light, section.section-dark, section.section-light"
+    ".section-dark, .section-light"
   );
 
   if (!sections.length) return;
