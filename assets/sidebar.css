@@ -115,3 +115,7 @@ transform: rotate(45deg)!important;
 .color-light{
     color: #fff;
 }
+.expended-area-active .color-dark,
+.expended-area-active .color-dark{
+    color: #000;
+}
