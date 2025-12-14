@@ -109,7 +109,9 @@ transform: rotate(45deg)!important;
     z-index: 8;
     cursor: pointer;
 }
-
+.disable-scrollbars{
+    scrollbar-width: none;
+}
 /* Scrolling to color change */
 .color-dark{
     color: #231f20 !important;
