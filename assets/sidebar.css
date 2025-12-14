@@ -81,7 +81,7 @@ transform: rotate(45deg)!important;
 }
 .m-sidebar__nav a {
     display: block;
-    margin-bottom: 35px;
+    margin-bottom: 105px;
 }
 
 .expended .m-sidebar__nav a .js-open-icon-text .icon{
