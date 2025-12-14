@@ -36,8 +36,22 @@
           </span>
       </a>
       <!-- ACCOUNT LINKS -->
-      <a href="/account">
-        {% if customer %}My Account{% else %}Login / Signup{% endif %}
+      <a href="#" class="js-open-section nav-icon-text-wrap"
+          data-trigger-section="account-drawer" aria-label="Site account">
+          <span class="js-open-icon-text" data-open-item="account-drawer-open-item">
+              <span class="icon">
+                  <!-- icon account -->
+                {%- render 'theme-icon', icon: 'account' -%}
+              </span>
+              <strong class="text">Account</strong>
+          </span>
+          <span class="js-close-icon-text hide" data-close-item="account-drawer-close-item">
+              <span class="icon">
+              <!-- icon close -->
+                {%- render 'theme-icon', icon: 'close' -%}
+              </span>
+              <strong class="text">Close</strong>
+          </span>
       </a>
       <a href="/cart">Bag <span class="cart-count">{{ cart.item_count }}</span></a>
     </nav>
