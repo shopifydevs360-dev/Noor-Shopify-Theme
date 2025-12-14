@@ -85,7 +85,11 @@ transform: rotate(45deg)!important;
     display: block;
     margin-bottom: 50px;
 }
-
+/* Bag */
+.m-sidebar__content .cart-count-icon {
+    position: absolute;
+    top: 0;
+}
 .expended .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
 }
