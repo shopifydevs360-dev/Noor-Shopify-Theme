@@ -48,18 +48,38 @@ function initSidebarDrawers() {
   const overlay = document.getElementById("js-open-overlay");
   const expandedArea = document.getElementById("area-expended");
 
+  let isSwitching = false;
+
   triggers.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
       e.preventDefault();
+      if (isSwitching) return;
 
       const sectionName = trigger.dataset.triggerSection;
       const isActive = trigger.classList.contains("is-active");
+      const hasOpenDrawer = document.querySelector(
+        '[data-open-section][class*="-open"]'
+      );
 
+      // Close current drawer
       if (isActive) {
-        // 👉 CLOSE current drawer
         closeAllDrawers(overlay, expandedArea);
+        return;
+      }
+
+      // Switch drawer with delay
+      if (hasOpenDrawer) {
+        isSwitching = true;
+        closeAllDrawers(overlay, expandedArea);
+
+        setTimeout(() => {
+          openDrawer(sectionName, overlay, expandedArea);
+          toggleTriggerText(sectionName);
+          setActiveTrigger(trigger);
+          isSwitching = false;
+        }, DRAWER_CLOSE_DELAY);
       } else {
-        // 👉 OPEN drawer
+        // Open immediately
         openDrawer(sectionName, overlay, expandedArea);
         toggleTriggerText(sectionName);
         setActiveTrigger(trigger);
@@ -67,7 +87,6 @@ function initSidebarDrawers() {
     });
   });
 
-  // Overlay click closes everything
   overlay?.addEventListener("click", () => {
     closeAllDrawers(overlay, expandedArea);
   });
@@ -77,12 +96,9 @@ function initSidebarDrawers() {
    OPEN DRAWER
 ================================ */
 function openDrawer(sectionName, overlay, expandedArea) {
-  closeAllDrawers(overlay, expandedArea);
-
   const drawer = document.querySelector(
     `[data-open-section="${sectionName}"]`
   );
-
   if (!drawer) return;
 
   drawer.classList.add(`${sectionName}-open`);
@@ -122,7 +138,6 @@ function setActiveTrigger(activeTrigger) {
   document.querySelectorAll("[data-trigger-section]").forEach(trigger => {
     trigger.classList.remove("is-active");
   });
-
   activeTrigger.classList.add("is-active");
 }
 
