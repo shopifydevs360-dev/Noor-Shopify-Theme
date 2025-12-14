@@ -174,7 +174,7 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (MULTI ELEMENT)
+   COLOR CONTROL (SECTION-AWARE)
 ================================ */
 function initColorControlObserver() {
   const colorControls = document.querySelectorAll(".color-control");
@@ -191,7 +191,12 @@ function initColorControlObserver() {
         if (!entry.isIntersecting) return;
 
         colorControls.forEach(control => {
-          // Reset
+          // 🔹 If this section CONTAINS the control, ignore it
+          if (entry.target.contains(control)) {
+            return;
+          }
+
+          // Reset first
           control.classList.remove("color-light", "color-dark");
 
           if (entry.target.classList.contains("section-dark")) {
