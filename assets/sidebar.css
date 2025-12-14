@@ -75,4 +75,5 @@
     height: 100%;
     background: #321c0061;
     z-index: 8;
+    cursor: pointer;
 }
