@@ -16,6 +16,8 @@
   z-index: 1;
   height: 100%;
   padding: 32px;
+}
+.m-sidebar__content a{
   color: #000;
 }
 .m-sidebar__content .m-sidebar__logo {
@@ -110,10 +112,10 @@ transform: rotate(45deg)!important;
 
 /* Scrolling to color change */
 .color-dark{
-    color: #000;
+    color: #000 !important;
 }
 .color-light{
-    color: #fff;
+    color: #fff !important;
 }
 .expended-area-active .color-dark,
 .expended-area-active .color-light{
