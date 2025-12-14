@@ -43,7 +43,7 @@ function initSidebarDrawers() {
   const expandedArea = document.getElementById("area-expended");
 
   let isTransitioning = false;
-  const SWITCH_DELAY = 400;
+  const SWITCH_DELAY = 1000;
 
   triggers.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
