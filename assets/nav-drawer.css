@@ -5,6 +5,7 @@
     max-width: 700px;
     background: #fff;
     z-index: 9;
+    transition: all .4s ease-in-out;
     transform: translateX(-125%);
 }
 .shopify-section-nav.nav-drawer-open {
