@@ -7,3 +7,6 @@
     z-index: 9;
     transform: translateX(-125%);
 }
+.shopify-section-nav.search-drawer-open {
+    transform: translateX(0);
+}
