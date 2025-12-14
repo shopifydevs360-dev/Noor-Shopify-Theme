@@ -81,10 +81,10 @@
 .minimal .m-sidebar__nav a .js-open-icon-text .text{
     display: none;
 }
-.minimal.expended-area-active .m-sidebar__nav  a .js-open-icon-text .icon{
+.minimal .expended-area-active .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
 }
-.minimal.expended-area-active .m-sidebar__nav  a .js-open-icon-text .text{
+.minimal .expended-area-active .m-sidebar__nav a .js-open-icon-text .text{
     display: block !important; 
 }
 .sidebar-overlay {
