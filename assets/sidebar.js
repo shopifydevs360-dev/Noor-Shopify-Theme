@@ -88,7 +88,6 @@ function openDrawer(sectionName, overlay, expandedArea) {
 
   if (!drawer) return;
 
-  drawer.classList.remove("hide");
   drawer.classList.add(`${sectionName}-open`);
 
   overlay?.classList.remove("hide");
