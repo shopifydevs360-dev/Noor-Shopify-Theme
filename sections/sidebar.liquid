@@ -26,14 +26,14 @@
           <span class="js-open-icon-text">
               <span class="icon">
                   <!-- icon search -->
-                {{ 'icon-search.svg' | inline_asset_content }}
+                {%- render 'theme-icon', icon: 'search' -%}
               </span>
               <strong class="text hide-tablet-down">Search</strong>
           </span>
           <span class="js-close-icon-text hide">
               <span class="icon">
               <!-- icon close -->
-                {{ 'icon-close.svg' | inline_asset_content }}
+                {%- render 'theme-icon', icon: 'search' -%}
               </span>
               <strong class="text hide-tablet-down">Close</strong>
           </span>
