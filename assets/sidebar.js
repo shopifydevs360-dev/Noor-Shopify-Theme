@@ -174,47 +174,43 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (SECTION-AWARE)
+   COLOR CONTROL (PER ELEMENT)
 ================================ */
-function initColorControlObserver() {
-  const colorControls = document.querySelectorAll(".color-control");
-  if (!colorControls.length) return;
+function initColorControlByPosition() {
+  const controls = document.querySelectorAll(".color-control");
+  const sections = document.querySelectorAll(".section-dark, .section-light");
 
-  const sections = document.querySelectorAll(
-    ".section-dark, .section-light, section, .shopify-section"
-  );
-  if (!sections.length) return;
+  if (!controls.length || !sections.length) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+  function updateColors() {
+    controls.forEach(control => {
+      const rect = control.getBoundingClientRect();
+      const controlY = rect.top + rect.height / 2;
 
-        colorControls.forEach(control => {
-          // 🔹 If this section CONTAINS the control, ignore it
-          if (entry.target.contains(control)) {
-            return;
-          }
+      let matchedSection = null;
 
-          // Reset first
-          control.classList.remove("color-light", "color-dark");
-
-          if (entry.target.classList.contains("section-dark")) {
-            control.classList.add("color-light");
-          } 
-          else if (entry.target.classList.contains("section-light")) {
-            control.classList.add("color-dark");
-          }
-          // neutral section → no class
-        });
+      sections.forEach(section => {
+        const sRect = section.getBoundingClientRect();
+        if (controlY >= sRect.top && controlY <= sRect.bottom) {
+          matchedSection = section;
+        }
       });
-    },
-    {
-      root: null,
-      rootMargin: "-45% 0px -45% 0px",
-      threshold: 0
-    }
-  );
 
-  sections.forEach(section => observer.observe(section));
+      // Reset
+      control.classList.remove("color-light", "color-dark");
+
+      if (!matchedSection) return;
+
+      if (matchedSection.classList.contains("section-dark")) {
+        control.classList.add("color-light");
+      } else if (matchedSection.classList.contains("section-light")) {
+        control.classList.add("color-dark");
+      }
+    });
+  }
+
+  // Run on load + scroll
+  updateColors();
+  window.addEventListener("scroll", updateColors);
+  window.addEventListener("resize", updateColors);
 }
