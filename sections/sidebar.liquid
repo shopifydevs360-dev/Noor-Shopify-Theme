@@ -1,10 +1,8 @@
 {{ 'sidebar.css' | asset_url | stylesheet_tag: preload: true }}
 
-{% liquid
-  assign color_scheme = section.settings.color_scheme
-%}
 
-<div class="m-sidebar m-color-{{ settings.sidebar_color_scheme }}">
+
+<div class="m-sidebar">
 
   <div class="m-sidebar__content">
 
