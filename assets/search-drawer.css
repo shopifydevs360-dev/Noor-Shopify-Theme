@@ -6,7 +6,7 @@
     background: #fff;
     z-index: 9;
     transition: all .4s ease-in-out;
-    transform: translateX(-125%);
+    transform: translateX(-100%);
 }
 .shopify-section-search.search-drawer-open {
     transform: translateX(0);
