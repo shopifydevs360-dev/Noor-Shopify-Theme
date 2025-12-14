@@ -2,7 +2,6 @@
   position: fixed;
   inset: 0 auto 0 0;
   width: 100%;
-  color: #fff;
   transition: all .8s cubic-bezier(0,0,.002,1);
   z-index: 90;
 }
