@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSidebarScrollBehavior();
   initHamburgerAnimation();
   initSidebarDrawers();
-  initColorControlObserver();
+  initColorControlByPosition();
 });
 
 /* ===============================
