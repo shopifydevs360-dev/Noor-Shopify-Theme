@@ -75,6 +75,12 @@
 .expended .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
 }
+.expended .m-sidebar__nav a .js-open-icon-text .icon{
+    display: none;
+}
+.minimal .m-sidebar__nav a .js-open-icon-text .text{
+    display: none;
+}
 .sidebar-overlay {
     position: fixed;
     width: 100%;
