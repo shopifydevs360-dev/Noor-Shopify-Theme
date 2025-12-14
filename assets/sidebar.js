@@ -174,17 +174,15 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (CONTENT-DRIVEN)
+   COLOR CONTROL (SECTION-AWARE)
 ================================ */
 function initColorControlObserver() {
   const colorControls = document.querySelectorAll(".color-control");
   if (!colorControls.length) return;
 
-  // Only observe CONTENT sections (not header/sidebar)
   const sections = document.querySelectorAll(
-    ".shopify-section:not([data-section-type='header']), section"
+    ".section-dark, .section-light, section, .shopify-section"
   );
-
   if (!sections.length) return;
 
   const observer = new IntersectionObserver(
@@ -192,23 +190,23 @@ function initColorControlObserver() {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        // Reset all controls first
         colorControls.forEach(control => {
-          control.classList.remove("color-light", "color-dark");
-        });
+          // 🔹 If this section CONTAINS the control, ignore it
+          if (entry.target.contains(control)) {
+            return;
+          }
 
-        // Apply based on ACTIVE CONTENT section
-        if (entry.target.classList.contains("section-dark")) {
-          colorControls.forEach(control =>
-            control.classList.add("color-light")
-          );
-        } 
-        else if (entry.target.classList.contains("section-light")) {
-          colorControls.forEach(control =>
-            control.classList.add("color-dark")
-          );
-        }
-        // else → neutral section → keep clean
+          // Reset first
+          control.classList.remove("color-light", "color-dark");
+
+          if (entry.target.classList.contains("section-dark")) {
+            control.classList.add("color-light");
+          } 
+          else if (entry.target.classList.contains("section-light")) {
+            control.classList.add("color-dark");
+          }
+          // neutral section → no class
+        });
       });
     },
     {
