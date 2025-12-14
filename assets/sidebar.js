@@ -174,15 +174,17 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (SECTION AWARE)
+   COLOR CONTROL (ROBUST)
 ================================ */
 function initColorControlObserver() {
   const colorControl = document.getElementById("color-control");
   if (!colorControl) return;
 
+  // IMPORTANT: Shopify sections are often div.shopify-section
   const sections = document.querySelectorAll(
-    ".section-dark, .section-light"
+    ".section-dark, .section-light, section, .shopify-section"
   );
+
   if (!sections.length) return;
 
   const observer = new IntersectionObserver(
@@ -190,22 +192,25 @@ function initColorControlObserver() {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        // Reset classes
+        // Always reset first
         colorControl.classList.remove("color-light", "color-dark");
 
         if (entry.target.classList.contains("section-dark")) {
           colorControl.classList.add("color-light");
-        }
-
-        if (entry.target.classList.contains("section-light")) {
+        } 
+        else if (entry.target.classList.contains("section-light")) {
           colorControl.classList.add("color-dark");
         }
+        // else → neutral section → no class
       });
     },
     {
       root: null,
-      // threshold: 0.9 // section is considered active when 50% visible
-      rootMargin: "-20% 0px -20% 0px"
+
+      // 👇 THIS IS THE KEY FIX
+      // Trigger when section crosses viewport center
+      rootMargin: "-45% 0px -45% 0px",
+      threshold: 0
     }
   );
 
