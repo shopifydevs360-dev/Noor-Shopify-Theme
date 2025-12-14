@@ -15,6 +15,6 @@
   transform: translateX(0);
   visibility: visible;
   pointer-events: auto;
-transition: all 1s cubic-bezier(.32,.24,.15,1);
+transition: all 0.4s cubic-bezier(.32,.24,.15,1);
 }
 
