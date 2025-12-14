@@ -174,47 +174,48 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (SECTION-AWARE)
+   COLOR CONTROL (SECTION AWARE)
 ================================ */
 function initColorControlObserver() {
-  const colorControls = document.querySelectorAll(".color-control");
-  if (!colorControls.length) return;
+  const controls = document.querySelectorAll(".color-control");
+  const sections = document.querySelectorAll(".section-dark, .section-light");
 
-  const sections = document.querySelectorAll(
-    ".section-dark, .section-light, section, .shopify-section"
-  );
-  if (!sections.length) return;
+  if (!controls.length || !sections.length) return;
+
+  let activeSection = null;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        colorControls.forEach(control => {
-          // 🔹 If this section CONTAINS the control, ignore it
-          if (entry.target.contains(control)) {
-            return;
-          }
+        activeSection = entry.target;
 
-          // Reset first
-          control.classList.remove("color-light", "color-dark");
-
-          if (entry.target.classList.contains("section-dark")) {
-            control.classList.add("color-light");
-          } 
-          else if (entry.target.classList.contains("section-light")) {
-            control.classList.add("color-dark");
-          }
-          // neutral section → no class
-        });
+        updateColorControls(activeSection, controls);
       });
     },
     {
       root: null,
-      rootMargin: "-45% 0px -45% 0px",
+      rootMargin: "-40% 0px -40% 0px",
       threshold: 0
     }
   );
 
   sections.forEach(section => observer.observe(section));
+}
+
+/* ===============================
+   APPLY COLOR STATE
+================================ */
+function updateColorControls(section, controls) {
+  controls.forEach(control => {
+    control.classList.remove("color-light", "color-dark");
+
+    if (section.classList.contains("section-dark")) {
+      control.classList.add("color-light");
+    } 
+    else if (section.classList.contains("section-light")) {
+      control.classList.add("color-dark");
+    }
+  });
 }
