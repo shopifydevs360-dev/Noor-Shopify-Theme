@@ -204,7 +204,8 @@ function initColorControlObserver() {
     },
     {
       root: null,
-      threshold: 0.9 // section is considered active when 50% visible
+      // threshold: 0.9 // section is considered active when 50% visible
+      rootMargin: "-20% 0px -20% 0px"
     }
   );
 
