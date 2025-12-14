@@ -15,48 +15,44 @@
   height: 100%;
   padding: 32px;
 }
-/* Hamburger */
 .hamburger {
-    cursor: pointer;
-    width: 3rem;
-    height: calc(1.8rem + 2px);
-    padding-bottom: 2px;
-    position: relative;
-    z-index: 201;
-    transform: translateY(.2rem);
-    transition: all .5s cubic-bezier(0,0,.002,1);
-    overflow: hidden;
-    background: transparent;
+  cursor: pointer;
+  width: 3rem;
+  height: calc(1.8rem + 2px);
+  position: relative;
+  overflow: hidden;
+  background: transparent;
 }
+
 .hamburger span {
-    display: block;
-    border-bottom: 2px solid #231f20;
-    width: 100%;
-    position: absolute;
-    height: 1px;
-    transition: all .4s ease-in-out;
-    transform: translateX(-110%);
-    -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
-    animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
+  display: block;
+  border-bottom: 2px solid #231f20;
+  width: 100%;
+  position: absolute;
+  height: 1px;
+  transform: translateX(-110%);
+  animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
 }
+
+/* Stop animation after load */
 .hamburger.loaded span {
-    -webkit-animation: none;
-    animation: none;
-    transform: none;
+  animation: none;
+  transform: none;
 }
-.hamburger span:nth-child(1) {
-    top: 0;
-    -webkit-animation-delay: .5s;
-    animation-delay: .5s;
+
+/* Ordered animation */
+.hamburger span:nth-of-type(1) {
+  top: 0;
+  animation-delay: .5s;
 }
-.hamburger span:nth-child(2) {
-    top: calc(50% - 1px);
-    width: 2.2rem;
-    -webkit-animation-delay: .6s;
-    animation-delay: .6s;
+
+.hamburger span:nth-of-type(2) {
+  top: calc(50% - 1px);
+  width: 2.2rem;
+  animation-delay: .6s;
 }
-.hamburger span:nth-child(3) {
-    top: calc(100% - 2px);
-    -webkit-animation-delay: .7s;
-    animation-delay: .7s;
+
+.hamburger span:nth-of-type(3) {
+  top: calc(100% - 2px);
+  animation-delay: .7s;
 }
