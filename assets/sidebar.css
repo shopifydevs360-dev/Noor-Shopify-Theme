@@ -115,13 +115,13 @@ transform: rotate(45deg)!important;
     color: #231f20 !important;
 }
 .m-sidebar__content .hamburger.color-dark span {
-    border-bottom: 2px solid #231f20;
+    border-color: #231f20;
 }
 .color-light{
     color: #fff !important;
 }
 .m-sidebar__content .hamburger.color-light span {
-    border-bottom: 2px solid #fff;
+    border-color: #fff;
 }
 .expended-area-active .color-dark,
 .expended-area-active .color-light{
