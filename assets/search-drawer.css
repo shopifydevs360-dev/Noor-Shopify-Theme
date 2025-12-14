@@ -7,3 +7,12 @@
     z-index: 9;
     transform: translateX(-125%);
 }
+.shopify-section-search {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    z-index: 9;
+    transform: translateX(-125%);
+}
