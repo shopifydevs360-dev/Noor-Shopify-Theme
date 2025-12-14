@@ -43,7 +43,6 @@ function initSidebarDrawers() {
   const expandedArea = document.getElementById("area-expended");
 
   let isTransitioning = false;
-  const SWITCH_DELAY = 400; // must match CSS transition
 
   triggers.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
@@ -54,7 +53,7 @@ function initSidebarDrawers() {
       const isActive = trigger.classList.contains("is-active");
       const hasOpenDrawer = document.querySelector("[data-open-section].is-open");
 
-      // Close current drawer if clicking active trigger
+      // Close current drawer
       if (isActive) {
         closeAllDrawers(overlay, expandedArea);
         return;
@@ -70,7 +69,7 @@ function initSidebarDrawers() {
           toggleTriggerText(sectionName);
           setActiveTrigger(trigger);
           isTransitioning = false;
-        }, SWITCH_DELAY);
+        }, 400);
       } else {
         // Open immediately
         openDrawer(sectionName, overlay, expandedArea);
@@ -80,11 +79,9 @@ function initSidebarDrawers() {
     });
   });
 
-  // Overlay closes everything
+  // Overlay click closes everything
   overlay?.addEventListener("click", () => {
-    if (!isTransitioning) {
-      closeAllDrawers(overlay, expandedArea);
-    }
+    closeAllDrawers(overlay, expandedArea);
   });
 }
 
@@ -97,11 +94,9 @@ function openDrawer(sectionName, overlay, expandedArea) {
   );
   if (!drawer) return;
 
-  drawer.classList.add(`${sectionName}-open", "is-open`);
+  drawer.classList.add(`${sectionName}-open`, "is-open");
   overlay.classList.remove("hide");
   expandedArea.classList.add("expended-area-active");
-
-  addDrawerBodyState();
 }
 
 /* ===============================
@@ -110,7 +105,7 @@ function openDrawer(sectionName, overlay, expandedArea) {
 function closeAllDrawers(overlay, expandedArea) {
   document.querySelectorAll("[data-open-section]").forEach(drawer => {
     const sectionName = drawer.dataset.openSection;
-    drawer.classList.remove(`${sectionName}-open", "is-open`);
+    drawer.classList.remove(`${sectionName}-open`, "is-open");
   });
 
   document.querySelectorAll("[data-trigger-section]").forEach(trigger => {
@@ -127,8 +122,6 @@ function closeAllDrawers(overlay, expandedArea) {
 
   overlay.classList.add("hide");
   expandedArea.classList.remove("expended-area-active");
-
-  removeDrawerBodyState();
 }
 
 /* ===============================
@@ -160,15 +153,4 @@ function toggleTriggerText(sectionName) {
   document
     .querySelector(`[data-close-item="${sectionName}-close-item"]`)
     ?.classList.remove("hide");
-}
-
-/* ===============================
-   BODY STATE HELPERS
-================================ */
-function addDrawerBodyState() {
-  document.body.classList.add("drawer-flyout", "disable-scrollbars");
-}
-
-function removeDrawerBodyState() {
-  document.body.classList.remove("drawer-flyout", "disable-scrollbars");
 }
