@@ -174,17 +174,15 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (ROBUST)
+   COLOR CONTROL (MULTI ELEMENT)
 ================================ */
 function initColorControlObserver() {
-  const colorControl = document.getElementById("color-control");
-  if (!colorControl) return;
+  const colorControls = document.querySelectorAll(".color-control");
+  if (!colorControls.length) return;
 
-  // IMPORTANT: Shopify sections are often div.shopify-section
   const sections = document.querySelectorAll(
     ".section-dark, .section-light, section, .shopify-section"
   );
-
   if (!sections.length) return;
 
   const observer = new IntersectionObserver(
@@ -192,23 +190,22 @@ function initColorControlObserver() {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        // Always reset first
-        colorControl.classList.remove("color-light", "color-dark");
+        colorControls.forEach(control => {
+          // Reset
+          control.classList.remove("color-light", "color-dark");
 
-        if (entry.target.classList.contains("section-dark")) {
-          colorControl.classList.add("color-light");
-        } 
-        else if (entry.target.classList.contains("section-light")) {
-          colorControl.classList.add("color-dark");
-        }
-        // else → neutral section → no class
+          if (entry.target.classList.contains("section-dark")) {
+            control.classList.add("color-light");
+          } 
+          else if (entry.target.classList.contains("section-light")) {
+            control.classList.add("color-dark");
+          }
+          // neutral section → no class
+        });
       });
     },
     {
       root: null,
-
-      // 👇 THIS IS THE KEY FIX
-      // Trigger when section crosses viewport center
       rootMargin: "-45% 0px -45% 0px",
       threshold: 0
     }
