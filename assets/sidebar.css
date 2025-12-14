@@ -19,7 +19,7 @@
 .hamburger {
     cursor: pointer;
     width: 3rem;
-    height: calc(1.8rem + 2px);
+    height: calc(1.5rem + 2px);
     padding-bottom: 2px;
     position: relative;
     z-index: 201;
