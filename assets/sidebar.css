@@ -68,7 +68,10 @@
     -webkit-animation-delay: .7s;
     animation-delay: .7s;
 }
-
+.m-sidebar__nav a {
+    display: block;
+    margin-bottom: 35px;
+}
 .sidebar-overlay {
     position: fixed;
     width: 100%;
