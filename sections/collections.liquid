@@ -8,7 +8,7 @@
 <h1>{{ 'collections.title' | t }}</h1>
 
 <div
-  class="collections {{ section.settings.grid_item_width }}"
+  class="collections {{ section.settings.grid_item_width }} {{ section.settings.custom_class }}"
   style="--grid-gap: {{ section.settings.grid_gap }}px"
 >
   {% for collection in collections %}
@@ -56,7 +56,6 @@
 {% schema %}
 {
   "name": "t:general.collections_grid",
-  "class": "custom_class",
   "disabled_on": {"groups": ["header", "footer"]},
   "settings": [
     {
