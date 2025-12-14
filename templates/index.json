@@ -264,7 +264,7 @@
       "settings": {
         "grid_item_width": "collections--full",
         "grid_gap": 10,
-        "custom_class": "section-light"
+        "custom_class": "section-dark"
       }
     },
     "custom_section_bW8ENT": {
