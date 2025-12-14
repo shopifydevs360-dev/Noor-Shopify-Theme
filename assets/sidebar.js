@@ -43,8 +43,6 @@ function initHamburgerAnimation() {
 /* ===============================
    SIDEBAR DRAWER CONTROLLER
 ================================ */
-const DRAWER_SWITCH_DELAY = 400;
-
 function initSidebarDrawers() {
   const triggers = document.querySelectorAll("[data-trigger-section]");
   const overlay = document.getElementById("js-open-overlay");
@@ -56,27 +54,12 @@ function initSidebarDrawers() {
 
       const sectionName = trigger.dataset.triggerSection;
       const isActive = trigger.classList.contains("is-active");
-      const hasOpenDrawer = document.querySelector(
-        '[data-open-section][class*="-open"]'
-      );
 
-      // 🔹 Click active trigger → FULL CLOSE
       if (isActive) {
+        // 👉 CLOSE current drawer
         closeAllDrawers(overlay, expandedArea);
-        return;
-      }
-
-      // 🔹 Switching drawers → CLOSE FIRST, THEN OPEN
-      if (hasOpenDrawer) {
-        closeDrawersOnly(); // ❗ IMPORTANT (no overlay hide)
-
-        setTimeout(() => {
-          openDrawer(sectionName, overlay, expandedArea);
-          toggleTriggerText(sectionName);
-          setActiveTrigger(trigger);
-        }, DRAWER_SWITCH_DELAY);
       } else {
-        // 🔹 No drawer open → OPEN immediately
+        // 👉 OPEN drawer
         openDrawer(sectionName, overlay, expandedArea);
         toggleTriggerText(sectionName);
         setActiveTrigger(trigger);
@@ -84,12 +67,11 @@ function initSidebarDrawers() {
     });
   });
 
-  // Overlay click → FULL CLOSE
+  // Overlay click closes everything
   overlay?.addEventListener("click", () => {
     closeAllDrawers(overlay, expandedArea);
   });
 }
-
 
 /* ===============================
    OPEN DRAWER
