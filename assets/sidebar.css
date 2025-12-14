@@ -39,7 +39,7 @@
     -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
 }
-.hamburger.loaded span {
+.hamburger span {
     -webkit-animation: none;
     animation: none;
     transform: none;
