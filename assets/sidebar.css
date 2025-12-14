@@ -39,3 +39,19 @@
     -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
 }
+.hamburger span:first-of-type {
+    top: 0;
+    -webkit-animation-delay: .5s;
+    animation-delay: .5s;
+}
+.hamburger span:nth-of-type(2) {
+    top: calc(50% - 1px);
+    width: 2.2rem;
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s;
+}
+.hamburger span:last-of-type {
+    top: calc(100% - 2px);
+    -webkit-animation-delay: .7s;
+    animation-delay: .7s;
+}
