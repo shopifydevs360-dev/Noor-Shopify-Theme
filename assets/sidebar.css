@@ -28,4 +28,14 @@
     overflow: hidden;
     background: transparent;
 }
-
+.hamburger span {
+    display: block;
+    border-bottom: 2px solid #231f20;
+    width: 100%;
+    position: absolute;
+    height: 1px;
+    transition: all .4s ease-in-out;
+    transform: translateX(-110%);
+    -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
+    animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
+}
