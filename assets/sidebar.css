@@ -18,7 +18,7 @@
   padding: 32px;
 }
 .m-sidebar__content a{
-  color: #000;
+  color: #231f20;
 }
 .m-sidebar__content .m-sidebar__logo {
     margin-bottom: 50px;
@@ -112,12 +112,12 @@ transform: rotate(45deg)!important;
 
 /* Scrolling to color change */
 .color-dark{
-    color: #000 !important;
+    color: #231f20 !important;
 }
 .color-light{
     color: #fff !important;
 }
 .expended-area-active .color-dark,
 .expended-area-active .color-light{
-    color: #000 !important;
+    color: #231f20 !important;
 }
