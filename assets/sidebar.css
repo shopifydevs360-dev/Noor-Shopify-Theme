@@ -44,7 +44,7 @@
     animation: none;
     transform: none;
 }
-.hamburger span:first-of-type {
+/* .hamburger span:first-of-type {
     top: 0;
     -webkit-animation-delay: .5s;
     animation-delay: .5s;
@@ -59,4 +59,4 @@
     top: calc(100% - 2px);
     -webkit-animation-delay: .7s;
     animation-delay: .7s;
-}
+} */
