@@ -234,7 +234,9 @@
         "border_radius_bottom": 0,
         "padding_y": 40,
         "padding_x": 30,
-        "justify_content": "center"
+        "justify_content": "center",
+        "custom_class": "",
+        "color_control": "section-dark"
       }
     },
     "custom_section_YEaeWe": {
@@ -255,7 +257,9 @@
         "border_radius_bottom": 0,
         "padding_y": 60,
         "padding_x": 30,
-        "justify_content": "center"
+        "justify_content": "center",
+        "custom_class": "",
+        "color_control": "section-light"
       }
     },
     "collections_RQEPWp": {
@@ -286,7 +290,9 @@
         "border_radius_bottom": 0,
         "padding_y": 60,
         "padding_x": 30,
-        "justify_content": "center"
+        "justify_content": "center",
+        "custom_class": "",
+        "color_control": "section-dark"
       }
     }
   },
