@@ -174,38 +174,43 @@ function removeDrawerBodyState() {
 
 
 /* ===============================
-   COLOR CONTROL (SECTION-AWARE)
+   COLOR CONTROL (PER SECTION)
 ================================ */
 function initColorControlObserver() {
   const colorControls = document.querySelectorAll(".color-control");
   if (!colorControls.length) return;
 
-  const sections = document.querySelectorAll(
-    ".section-dark, .section-light, section, .shopify-section"
-  );
-  if (!sections.length) return;
+  // Map each control to its parent section
+  const controlMap = new Map();
+
+  colorControls.forEach(control => {
+    const parentSection = control.closest("section, .shopify-section");
+    if (parentSection) {
+      controlMap.set(control, parentSection);
+    }
+  });
+
+  if (!controlMap.size) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        colorControls.forEach(control => {
-          // 🔹 If this section CONTAINS the control, ignore it
-          if (entry.target.contains(control)) {
-            return;
-          }
+        controlMap.forEach((section, control) => {
+          // 🔹 Only react when THIS control's section is active
+          if (entry.target !== section) return;
 
           // Reset first
           control.classList.remove("color-light", "color-dark");
 
-          if (entry.target.classList.contains("section-dark")) {
+          if (section.classList.contains("section-dark")) {
             control.classList.add("color-light");
           } 
-          else if (entry.target.classList.contains("section-light")) {
+          else if (section.classList.contains("section-light")) {
             control.classList.add("color-dark");
           }
-          // neutral section → no class
+          // else → neutral section → no class
         });
       });
     },
@@ -216,5 +221,6 @@ function initColorControlObserver() {
     }
   );
 
-  sections.forEach(section => observer.observe(section));
+  // Observe only the sections that actually contain controls
+  new Set(controlMap.values()).forEach(section => observer.observe(section));
 }
