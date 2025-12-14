@@ -47,10 +47,15 @@ function initSidebarDrawers() {
   const triggers = document.querySelectorAll("[data-trigger-section]");
   const overlay = document.getElementById("js-open-overlay");
   const expandedArea = document.getElementById("area-expended");
+  
+  let isTransitioning = false; // Flag to prevent multiple simultaneous transitions
 
   triggers.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
       e.preventDefault();
+
+      // If already transitioning, ignore the click
+      if (isTransitioning) return;
 
       const sectionName = trigger.dataset.triggerSection;
       const isActive = trigger.classList.contains("is-active");
@@ -59,17 +64,37 @@ function initSidebarDrawers() {
         // 👉 CLOSE current drawer
         closeAllDrawers(overlay, expandedArea);
       } else {
-        // 👉 OPEN drawer
-        openDrawer(sectionName, overlay, expandedArea);
-        toggleTriggerText(sectionName);
-        setActiveTrigger(trigger);
+        // 👉 Check if any drawer is currently open
+        const isAnyDrawerOpen = document.querySelector('[data-open-section].is-open') || 
+                               document.querySelector('[data-trigger-section].is-active');
+        
+        if (isAnyDrawerOpen) {
+          // 👉 A drawer is open, close it first with delay
+          isTransitioning = true;
+          closeAllDrawers(overlay, expandedArea);
+          
+          // Wait 0.4s before opening new drawer
+          setTimeout(() => {
+            openDrawer(sectionName, overlay, expandedArea);
+            toggleTriggerText(sectionName);
+            setActiveTrigger(trigger);
+            isTransitioning = false;
+          }, 400);
+        } else {
+          // 👉 No drawer is open, open immediately
+          openDrawer(sectionName, overlay, expandedArea);
+          toggleTriggerText(sectionName);
+          setActiveTrigger(trigger);
+        }
       }
     });
   });
 
   // Overlay click closes everything
   overlay?.addEventListener("click", () => {
-    closeAllDrawers(overlay, expandedArea);
+    if (!isTransitioning) {
+      closeAllDrawers(overlay, expandedArea);
+    }
   });
 }
 
@@ -77,15 +102,14 @@ function initSidebarDrawers() {
    OPEN DRAWER
 ================================ */
 function openDrawer(sectionName, overlay, expandedArea) {
-  closeAllDrawers(overlay, expandedArea);
-
   const drawer = document.querySelector(
     `[data-open-section="${sectionName}"]`
   );
 
   if (!drawer) return;
 
-  drawer.classList.add(`${sectionName}-open`);
+  // Mark drawer as open
+  drawer.classList.add(`${sectionName}-open`, 'is-open');
   overlay?.classList.remove("hide");
   expandedArea?.classList.add("expended-area-active");
 }
@@ -94,9 +118,10 @@ function openDrawer(sectionName, overlay, expandedArea) {
    CLOSE ALL DRAWERS
 ================================ */
 function closeAllDrawers(overlay, expandedArea) {
+  // Remove is-open class from all drawers
   document.querySelectorAll("[data-open-section]").forEach(drawer => {
     const sectionName = drawer.dataset.openSection;
-    drawer.classList.remove(`${sectionName}-open`);
+    drawer.classList.remove(`${sectionName}-open`, 'is-open');
   });
 
   document.querySelectorAll("[data-trigger-section]").forEach(trigger => {
