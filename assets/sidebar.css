@@ -68,6 +68,15 @@
     -webkit-animation-delay: .7s;
     animation-delay: .7s;
 }
+.m-sidebar__content .hamburger.is-active span:first-of-type {
+
+}
+.m-sidebar__content .hamburger.is-active span:nth-of-type(2) {
+ display: none;
+}
+.m-sidebar__content .hamburger.is-active span:last-of-type {
+
+}
 .m-sidebar__nav a {
     display: block;
     margin-bottom: 35px;
