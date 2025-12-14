@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSidebarScrollBehavior();
   initHamburgerAnimation();
   initSidebarDrawers();
+  initColorControlObserver();
 });
 
 /* ===============================
@@ -169,4 +170,43 @@ function addDrawerBodyState() {
 
 function removeDrawerBodyState() {
   document.body.classList.remove("drawer-flyout", "disable-scrollbars");
+}
+
+
+/* ===============================
+   COLOR CONTROL (SECTION AWARE)
+================================ */
+function initColorControlObserver() {
+  const colorControl = document.getElementById("color-control");
+  if (!colorControl) return;
+
+  const sections = document.querySelectorAll(
+    ".section-dark, .section-light"
+  );
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        // Reset classes
+        colorControl.classList.remove("color-light", "color-dark");
+
+        if (entry.target.classList.contains("section-dark")) {
+          colorControl.classList.add("color-light");
+        }
+
+        if (entry.target.classList.contains("section-light")) {
+          colorControl.classList.add("color-dark");
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.5 // section is considered active when 50% visible
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
 }
