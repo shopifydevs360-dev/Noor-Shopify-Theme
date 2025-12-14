@@ -99,7 +99,6 @@ function openDrawer(sectionName, overlay, expandedArea) {
 ================================ */
 function closeAllDrawers(overlay, expandedArea) {
   document.querySelectorAll("[data-open-section]").forEach(drawer => {
-    drawer.classList.add("hide");
 
     // remove dynamic open class
     const sectionName = drawer.dataset.openSection;
