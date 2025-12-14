@@ -72,7 +72,7 @@
     display: block;
     margin-bottom: 35px;
 }
-.expended .m-sidebar__nav a .js-open-icon-text{
+.expended .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
 }
 .sidebar-overlay {
