@@ -21,6 +21,7 @@
 /* Hamburger */
 .m-sidebar__content .hamburger {
     cursor: pointer;
+    margin-bottom: 50px;
     width: 2.5rem;
     height: calc(1.5rem + 2px);
     padding-bottom: 2px;
