@@ -11,37 +11,29 @@ function initSidebarScrollBehavior() {
   const sidebar = document.getElementById("js-sidebar");
   if (!sidebar) return;
 
-  const TOGGLE_POINT = 100;
-
   window.addEventListener("scroll", () => {
-    toggleSidebarState(sidebar, TOGGLE_POINT);
+    if (window.scrollY > 100) {
+      sidebar.classList.remove("expended");
+      sidebar.classList.add("minimal");
+    } else {
+      sidebar.classList.remove("minimal");
+      sidebar.classList.add("expended");
+    }
   });
 }
 
-function toggleSidebarState(sidebar, togglePoint) {
-  if (window.scrollY > togglePoint) {
-    sidebar.classList.remove("expended");
-    sidebar.classList.add("minimal");
-  } else {
-    sidebar.classList.remove("minimal");
-    sidebar.classList.add("expended");
-  }
-}
-
 /* ===============================
-   HAMBURGER: LOAD ANIMATION
+   HAMBURGER ANIMATION
 ================================ */
 function initHamburgerAnimation() {
   const hamburger = document.querySelector(".hamburger");
   if (!hamburger) return;
 
-  setTimeout(() => {
-    hamburger.classList.add("loaded");
-  }, 200);
+  setTimeout(() => hamburger.classList.add("loaded"), 200);
 }
 
 /* ===============================
-   SIDEBAR DRAWER CONTROLLER
+   DRAWER CONTROLLER
 ================================ */
 function initSidebarDrawers() {
   const triggers = document.querySelectorAll("[data-trigger-section]");
@@ -57,20 +49,21 @@ function initSidebarDrawers() {
 
       const sectionName = trigger.dataset.triggerSection;
       const isActive = trigger.classList.contains("is-active");
-      const hasOpenDrawer = document.querySelector(
+      const openDrawerEl = document.querySelector(
         '[data-open-section][class*="-open"]'
       );
 
-      // Close current drawer
+      // CLOSE ONLY
       if (isActive) {
-        closeAllDrawers(overlay, expandedArea);
+        fullyCloseDrawers(overlay, expandedArea);
         return;
       }
 
-      // Switch drawer with delay
-      if (hasOpenDrawer) {
+      // SWITCH DRAWER
+      if (openDrawerEl) {
         isSwitching = true;
-        closeAllDrawers(overlay, expandedArea);
+
+        closeDrawerOnly(); // ❗ no overlay reset
 
         setTimeout(() => {
           openDrawer(sectionName, overlay, expandedArea);
@@ -79,7 +72,7 @@ function initSidebarDrawers() {
           isSwitching = false;
         }, DRAWER_CLOSE_DELAY);
       } else {
-        // Open immediately
+        // OPEN DIRECTLY
         openDrawer(sectionName, overlay, expandedArea);
         toggleTriggerText(sectionName);
         setActiveTrigger(trigger);
@@ -88,7 +81,7 @@ function initSidebarDrawers() {
   });
 
   overlay?.addEventListener("click", () => {
-    closeAllDrawers(overlay, expandedArea);
+    fullyCloseDrawers(overlay, expandedArea);
   });
 }
 
@@ -102,14 +95,14 @@ function openDrawer(sectionName, overlay, expandedArea) {
   if (!drawer) return;
 
   drawer.classList.add(`${sectionName}-open`);
-  overlay?.classList.remove("hide");
-  expandedArea?.classList.add("expended-area-active");
+  overlay.classList.remove("hide");
+  expandedArea.classList.add("expended-area-active");
 }
 
 /* ===============================
-   CLOSE ALL DRAWERS
+   CLOSE DRAWER (ANIMATION ONLY)
 ================================ */
-function closeAllDrawers(overlay, expandedArea) {
+function closeDrawerOnly() {
   document.querySelectorAll("[data-open-section]").forEach(drawer => {
     const sectionName = drawer.dataset.openSection;
     drawer.classList.remove(`${sectionName}-open`);
@@ -118,6 +111,13 @@ function closeAllDrawers(overlay, expandedArea) {
   document.querySelectorAll("[data-trigger-section]").forEach(trigger => {
     trigger.classList.remove("is-active");
   });
+}
+
+/* ===============================
+   FULL CLOSE (OVERLAY + UI)
+================================ */
+function fullyCloseDrawers(overlay, expandedArea) {
+  closeDrawerOnly();
 
   document.querySelectorAll("[data-open-item]").forEach(el => {
     el.classList.remove("hide");
@@ -127,8 +127,8 @@ function closeAllDrawers(overlay, expandedArea) {
     el.classList.add("hide");
   });
 
-  overlay?.classList.add("hide");
-  expandedArea?.classList.remove("expended-area-active");
+  overlay.classList.add("hide");
+  expandedArea.classList.remove("expended-area-active");
 }
 
 /* ===============================
@@ -142,7 +142,7 @@ function setActiveTrigger(activeTrigger) {
 }
 
 /* ===============================
-   TOGGLE OPEN / CLOSE TEXT
+   TOGGLE TEXT
 ================================ */
 function toggleTriggerText(sectionName) {
   document.querySelectorAll("[data-open-item]").forEach(el => {
