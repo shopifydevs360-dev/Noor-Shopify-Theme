@@ -55,28 +55,11 @@ function initSidebarDrawers() {
       const sectionName = trigger.dataset.triggerSection;
       const isActive = trigger.classList.contains("is-active");
 
-      // Check if any drawer is currently open
-      const hasOpenDrawer = document.querySelector(
-        '[data-open-section][class*="-open"]'
-      );
-
-      // If clicking active trigger → close immediately
       if (isActive) {
+        // 👉 CLOSE current drawer
         closeAllDrawers(overlay, expandedArea);
-        return;
-      }
-
-      // If another drawer is open → wait, then open new one
-      if (hasOpenDrawer) {
-        closeAllDrawers(overlay, expandedArea);
-
-        setTimeout(() => {
-          openDrawer(sectionName, overlay, expandedArea);
-          toggleTriggerText(sectionName);
-          setActiveTrigger(trigger);
-        }, DRAWER_SWITCH_DELAY);
       } else {
-        // No drawer open → open immediately
+        // 👉 OPEN drawer
         openDrawer(sectionName, overlay, expandedArea);
         toggleTriggerText(sectionName);
         setActiveTrigger(trigger);
@@ -89,7 +72,6 @@ function initSidebarDrawers() {
     closeAllDrawers(overlay, expandedArea);
   });
 }
-
 
 /* ===============================
    OPEN DRAWER
