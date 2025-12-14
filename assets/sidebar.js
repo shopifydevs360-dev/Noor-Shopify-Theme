@@ -1,27 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initSidebarScrollBehavior();
+  initHamburgerAnimation();
+});
+
+/* ===============================
+   SIDEBAR: SCROLL STATE
+================================ */
+function initSidebarScrollBehavior() {
   const sidebar = document.getElementById("js-sidebar");
   if (!sidebar) return;
 
-  const togglePoint = 100;
+  const TOGGLE_POINT = 100;
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > togglePoint) {
-      sidebar.classList.remove("expended");
-      sidebar.classList.add("minimal");
-    } else {
-      sidebar.classList.remove("minimal");
-      sidebar.classList.add("expended");
-    }
+    toggleSidebarState(sidebar, TOGGLE_POINT);
   });
-});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+function toggleSidebarState(sidebar, togglePoint) {
+  if (window.scrollY > togglePoint) {
+    sidebar.classList.remove("expended");
+    sidebar.classList.add("minimal");
+  } else {
+    sidebar.classList.remove("minimal");
+    sidebar.classList.add("expended");
+  }
+}
+
+/* ===============================
+   HAMBURGER: LOAD ANIMATION
+================================ */
+function initHamburgerAnimation() {
   const hamburger = document.querySelector(".hamburger");
   if (!hamburger) return;
 
-  // Delay slightly to allow initial animation to play
+  const ANIMATION_DELAY = 800;
+
   setTimeout(() => {
     hamburger.classList.add("loaded");
-  }, 800);
-});
-
+  }, ANIMATION_DELAY);
+}
