@@ -54,12 +54,27 @@ function initSidebarDrawers() {
 
       const sectionName = trigger.dataset.triggerSection;
       const isActive = trigger.classList.contains("is-active");
+      const hasAnyOpenDrawer = document.querySelector(
+        '[data-open-section][class*="-open"]'
+      );
 
+      // If clicking active trigger → CLOSE
       if (isActive) {
-        // 👉 CLOSE current drawer
         closeAllDrawers(overlay, expandedArea);
+        return;
+      }
+
+      // If another drawer is open → CLOSE first, then OPEN after delay
+      if (hasAnyOpenDrawer) {
+        closeAllDrawers(overlay, expandedArea);
+
+        setTimeout(() => {
+          openDrawer(sectionName, overlay, expandedArea);
+          toggleTriggerText(sectionName);
+          setActiveTrigger(trigger);
+        }, DRAWER_ANIMATION_DURATION);
       } else {
-        // 👉 OPEN drawer
+        // No drawer open → OPEN immediately
         openDrawer(sectionName, overlay, expandedArea);
         toggleTriggerText(sectionName);
         setActiveTrigger(trigger);
@@ -67,11 +82,12 @@ function initSidebarDrawers() {
     });
   });
 
-  // Overlay click closes everything
+  // Overlay closes everything
   overlay?.addEventListener("click", () => {
     closeAllDrawers(overlay, expandedArea);
   });
 }
+
 
 /* ===============================
    OPEN DRAWER
