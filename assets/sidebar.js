@@ -63,10 +63,17 @@ function initSidebarDrawers() {
       e.preventDefault();
 
       const sectionName = trigger.dataset.triggerSection;
+      const isActive = trigger.classList.contains("is-active");
 
-      openDrawer(sectionName, overlay, expandedArea);
-      toggleTriggerText(sectionName);
-      setActiveTrigger(trigger);
+      if (isActive) {
+        // Click active trigger → CLOSE
+        closeAllDrawers(overlay, expandedArea);
+      } else {
+        // Click inactive trigger → OPEN
+        openDrawer(sectionName, overlay, expandedArea);
+        toggleTriggerText(sectionName);
+        setActiveTrigger(trigger);
+      }
     });
   });
 
@@ -75,6 +82,7 @@ function initSidebarDrawers() {
     closeAllDrawers(overlay, expandedArea);
   });
 }
+
 
 /* ===============================
    OPEN DRAWER
