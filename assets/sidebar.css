@@ -15,8 +15,11 @@
   height: 100%;
   padding: 32px;
 }
+.m-sidebar__content .m-sidebar__logo {
+    margin-bottom: 50px;
+}
 /* Hamburger */
-.hamburger {
+.m-sidebar__content .hamburger {
     cursor: pointer;
     width: 2.5rem;
     height: calc(1.5rem + 2px);
@@ -28,7 +31,7 @@
     overflow: hidden;
     background: transparent;
 }
-.hamburger span {
+.m-sidebar__content .hamburger span {
     display: block;
     border-bottom: 2px solid #231f20;
     width: 100%;
@@ -40,23 +43,23 @@
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation-fill-mode: both;
 }
-.hamburger.loaded span {
+.m-sidebar__content .hamburger.loaded span {
     -webkit-animation: none;
     animation: none;
     transform: none;
 }
-.hamburger span:first-of-type {
+.m-sidebar__content .hamburger span:first-of-type {
     top: 0;
     -webkit-animation-delay: .5s;
     animation-delay: .5s;
 }
-.hamburger span:nth-of-type(2) {
+.m-sidebar__content .hamburger span:nth-of-type(2) {
     top: calc(50% - 1px);
     width: 1.8rem;
     -webkit-animation-delay: .6s;
     animation-delay: .6s;
 }
-.hamburger span:last-of-type {
+.m-sidebar__content .hamburger span:last-of-type {
     top: calc(100% - 2px);
     -webkit-animation-delay: .7s;
     animation-delay: .7s;
