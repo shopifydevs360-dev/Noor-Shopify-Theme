@@ -38,6 +38,7 @@
     transform: translateX(-125%);
     -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
+    animation-fill-mode: both;
 }
 .hamburger.loaded span {
     -webkit-animation: none;
