@@ -5,7 +5,7 @@
       <div class="sliding-img-wrapper large-image" data-swipe-dir="right" data-shape="square" data-slide-order="">
         <div class="img-slide-bg" style="background-color: #f3e3d3;"></div>
         <div class="cropped-image-wrapper">
-          <img class="lazyload" data-src="{{ section.settings.sidebar_image | img_url: 'master' }}" data-sizes="auto" alt="">
+          <img class="lazyload" data-src="{{ section.settings.sidebar_image | img_url: 'master' }}" data-sizes="auto" alt="{{ section.settings.sidebar_image.alt | escape }}" height="auto" width="auto" loading="lazy">
         </div>
       </div>
     </div>
