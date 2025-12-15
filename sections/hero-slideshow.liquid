@@ -1,130 +1,105 @@
 {{ 'hero-slideshow.css' | asset_url | stylesheet_tag: preload: true }}
 
-<div id="shopify-section-{{ section.id }}" class="shopify-section hero-slideshow">
-  <header class="hero-slideshow__inner full-screen-slideshow">
+<div id="shopify-section-{{ section.id }}" class="shopify-section hero-outer-wrap">
+  <header class="reverse-nav full-screen-slideshow sidebar-slideshow js-animate-on-load" data-trigger="scroll">
+    
+    <div class="sidebar-image">
+      <div class="sliding-img-wrapper large-image" data-swipe-dir="right" data-shape="square" data-slide-order="">
+        <div class="img-slide-bg" style="background-color: #f3e3d3;"></div>
+        <div class="cropped-image-wrapper">
+          <img class="lazyload" data-src="{{ section.settings.sidebar_image | img_url: 'master' }}" data-sizes="auto" alt="{{ section.settings.sidebar_image.alt | escape }}" height="auto" width="auto" loading="lazy">
+        </div>
+      </div>
+    </div>
 
-    <!-- LEFT SIDEBAR IMAGE -->
-    <aside class="hero-slideshow__sidebar">
-      {% if section.settings.sidebar_image != blank %}
-        <img
-          src="{{ section.settings.sidebar_image | image_url: width: 800 }}"
-          alt="{{ section.settings.sidebar_image.alt | escape }}"
-          loading="lazy"
-        >
-      {% endif %}
-    </aside>
-
-    <!-- RIGHT SLIDER -->
-    <div class="hero-slideshow__slider swiper myswiper-{{ section.id }}">
+    <div class="swiper-container swiper-container-hero myswiper-{{ section.id }}">
       <div class="swiper-wrapper">
 
         {% for block in section.blocks %}
-          <div class="swiper-slide hero-slideshow__slide" {{ block.shopify_attributes }}>
+          <div class="swiper-slide image-with-text-overlay"
+               style="color: {{ block.settings.text_color }}; background-color: {{ block.settings.background_color }};"
+               data-text-color="{{ block.settings.text_color }}">
 
-            <!-- MEDIA -->
-            <div class="hero-slideshow__media">
-              {% if block.type == 'image_slide' and block.settings.image_desktop != blank %}
-                <picture>
-                  {% if block.settings.image_mobile != blank %}
-                    <source media="(max-width: 767px)" srcset="{{ block.settings.image_mobile | image_url: width: 800 }}">
-                  {% endif %}
-                  <img
-                    src="{{ block.settings.image_desktop | image_url: width: 1800 }}"
-                    alt="{{ block.settings.image_desktop.alt | escape }}"
-                    loading="lazy"
-                  >
-                </picture>
+            {% if block.type == 'image_slide' %}
+              <a href="{{ block.settings.link }}">
+                <span class="overlay-bg"
+                      style="background-color: {{ block.settings.overlay_color }}; opacity: {{ block.settings.overlay_opacity }};"></span>
 
-              {% elsif block.type == 'video_slide' and block.settings.video_desktop != blank %}
-                <video autoplay muted loop playsinline>
-                  {% if block.settings.video_mobile != blank %}
-                    <source src="{{ block.settings.video_mobile }}" media="(max-width: 767px)">
+                <div class="cropped-image-wrapper">
+                  <img class="lazyload"
+                       src="{{ block.settings.image | img_url: 'master' }}"
+                       alt="{{ block.settings.image.alt | escape }}"
+                       data-sizes="auto"
+                       data-parent-fit="contain"
+                       data-optimumx="1.5" height="auto" width="auto" loading="lazy">
+                </div>
+
+                <div class="js-hero-swiper-text text-content text-content--bottom-left sh-container"
+                     style="background-color: transparent">
+                  {% if block.settings.subheading != blank %}
+                    <h2 class="hd-6" data-reveal="lines-masked-delayed" data-delay=".8">{{ block.settings.subheading }}</h2>
                   {% endif %}
-                  <source src="{{ block.settings.video_desktop }}">
+                  {% if block.settings.heading != blank %}
+                    <h2 class="hd-2" data-reveal="lines-masked-delayed" data-delay="1">{{ block.settings.heading }}</h2>
+                  {% endif %}
+                  {% if block.settings.cta_text != blank %}
+                    <p class="arrow-link" data-reveal="lines-masked-delayed" data-delay="1.5">
+                      <span>{{ block.settings.cta_text }}</span>
+                      <span class="icon">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+                    </p>
+                  {% endif %}
+                </div>
+              </a>
+
+            {% elsif block.type == 'video_slide' and block.settings.video_url_desktop != blank %}
+              <div class="video-wrapper cropped-image-wrapper">
+                <video autoplay muted loop playsinline
+                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                  <source src="{{ block.settings.video_url_desktop }}" type="video/mp4" media="(min-width: 768px)">
+                  <source src="{{ block.settings.video_url_mobile | default: block.settings.video_url_desktop }}" type="video/mp4" media="(max-width: 767px)">
+                  Your browser does not support the video tag.
                 </video>
-              {% endif %}
-            </div>
-
-            <!-- OVERLAY -->
-            <div
-              class="hero-slideshow__overlay"
-              style="
-                --overlay-color: {{ block.settings.overlay_color }};
-                --overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
-              ">
-            </div>
-
-            <!-- CONTENT -->
-            <div class="hero-slideshow__content-wrapper content-width-{{ block.settings.content_width }}
-                        align-x-{{ block.settings.horizontal_alignment }}
-                        align-y-{{ block.settings.vertical_alignment }}">
-
-              <div
-                class="hero-slideshow__content text-{{ block.settings.text_alignment }}"
-                style="
-                  --content-bg: {{ block.settings.background }};
-                  --content-blur: {{ block.settings.background_blur }}px;
-                "
-              >
-                {% if block.settings.subheading != blank %}
-                  <h4 class="{{ block.settings.subheading_size }}">
-                    {{ block.settings.subheading }}
-                  </h4>
-                {% endif %}
-
-                {% if block.settings.heading != blank %}
-                  <h2 class="{{ block.settings.heading_size }}">
-                    {{ block.settings.heading }}
-                  </h2>
-                {% endif %}
-
-                {% if block.settings.text != blank %}
-                  <div class="rte {{ block.settings.text_size }}">
-                    {{ block.settings.text }}
-                  </div>
-                {% endif %}
-
-                {% if block.settings.cta_text != blank %}
-                  <a href="{{ block.settings.link }}" class="arrow-link">
-                    {{ block.settings.cta_text }}
-                  </a>
-                {% endif %}
               </div>
-            </div>
-
+            {% endif %}
           </div>
         {% endfor %}
-      </div>
 
-      <!-- NAV -->
-      <div class="hero-slideshow__nav">
-        <button class="js-prev">Previous</button>
-        <button class="js-next">Next</button>
       </div>
+    </div>
+
+    <div class="swiper-nav-wrapper js-hero-swiper-nav">
+      <button type="button" class="js-prev swiper-prev-text text-only">
+        <span class="inner-text">Previous</span>
+      </button>
+      <button type="button" class="js-next swiper-next-text text-only">
+        <span class="line"></span>
+        <span class="inner-text">Next</span>
+      </button>
     </div>
   </header>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  new Swiper('.myswiper-{{ section.id }}', {
-    loop: true,
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-    {% if section.settings.enable_autoplay %}
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false
-    },
-    {% endif %}
-    navigation: {
-      nextEl: '.js-next',
-      prevEl: '.js-prev'
-    }
+  document.addEventListener('DOMContentLoaded', function () {
+    var heroSwiper = new Swiper('.myswiper-{{ section.id }}', {
+      allowTouchMove: true,
+      updateOnWindowResize: true,
+      loop: true,
+      {% if section.settings.enable_autoplay %}
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      {% endif %}
+      navigation: {
+        nextEl: '.js-next',
+        prevEl: '.js-prev',
+      },
+      effect: "fade",
+      fadeEffect: { crossFade: true }
+    });
   });
-});
 </script>
-
 
 {% schema %}
 {
