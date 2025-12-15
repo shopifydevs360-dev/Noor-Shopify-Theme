@@ -86,6 +86,9 @@ transform: rotate(45deg)!important;
     margin-bottom: 50px;
 }
 /* Bag */
+.m-sidebar__content .js-open-icon-text {
+    position: relative;
+}
 .m-sidebar__content .cart-count-icon {
     position: absolute;
     top: 0;
