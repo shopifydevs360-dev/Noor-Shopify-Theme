@@ -91,7 +91,16 @@ transform: rotate(45deg)!important;
 }
 .m-sidebar__content .cart-count-icon {
     position: absolute;
-    top: 0;
+    top: -13px;
+    left: 14px;
+    background: #000;
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
 .expended .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
