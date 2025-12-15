@@ -144,7 +144,7 @@ body.disable-scrollbars {
 .color-light{
     color: #fff !important;
 }
-.m-sidebar__content .color-dark .cart-count-icon {
+.m-sidebar__content .color-light .cart-count-icon {
     background: #fff !important;
     color: #231f20 !important;
 }
