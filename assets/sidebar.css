@@ -134,11 +134,19 @@ body.disable-scrollbars {
 .color-dark{
     color: #231f20 !important;
 }
+.m-sidebar__content .color-dark .cart-count-icon {
+    background: #231f20;
+    color: #fff;
+}
 .m-sidebar__content .hamburger.color-dark span {
     border-color: #231f20;
 }
 .color-light{
     color: #fff !important;
+}
+.m-sidebar__content .color-dark .cart-count-icon {
+    background: #fff;
+    color: #231f20;
 }
 .m-sidebar__content .hamburger.color-light span {
     border-color: #fff;
