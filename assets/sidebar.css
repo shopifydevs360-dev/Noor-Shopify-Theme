@@ -135,8 +135,8 @@ body.disable-scrollbars {
     color: #231f20 !important;
 }
 .m-sidebar__content .color-dark .cart-count-icon {
-    background: #231f20;
-    color: #fff;
+    background: #231f20 !important;
+    color: #fff !important;
 }
 .m-sidebar__content .hamburger.color-dark span {
     border-color: #231f20;
@@ -145,8 +145,8 @@ body.disable-scrollbars {
     color: #fff !important;
 }
 .m-sidebar__content .color-dark .cart-count-icon {
-    background: #fff;
-    color: #231f20;
+    background: #fff !important;
+    color: #231f20 !important;
 }
 .m-sidebar__content .hamburger.color-light span {
     border-color: #fff;
