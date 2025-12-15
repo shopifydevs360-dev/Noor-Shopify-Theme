@@ -9,6 +9,33 @@
  */
 {
   "sections": {
+    "hero_slideshow_DY9JwJ": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "image_slide_xNDwjP": {
+          "type": "image_slide",
+          "settings": {
+            "image": "shopify://shop_images/381420017835.jpg",
+            "subheading": "",
+            "heading": "",
+            "cta_text": "",
+            "link": "",
+            "background_color": "#f3e3d3",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "image_slide_xNDwjP"
+      ],
+      "name": "Hero Slideshow",
+      "settings": {
+        "sidebar_image": "shopify://shop_images/1423999928982.jpg",
+        "enable_autoplay": true
+      }
+    },
     "hero_slider_dRAtkV": {
       "type": "hero-slider",
       "blocks": {
@@ -25,7 +52,7 @@
             "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee. </p>",
             "button_label_1": "Shop Honey",
             "button_link_1": "",
-            "first_button_type": "btn--gradient",
+            "first_button_type": "btn--underline",
             "button_label_2": "",
             "button_link_2": "",
             "second_button_type": "btn--secondary",
@@ -297,6 +324,7 @@
     }
   },
   "order": [
+    "hero_slideshow_DY9JwJ",
     "hero_slider_dRAtkV",
     "custom_section_CWt6yq",
     "custom_section_YEaeWe",
