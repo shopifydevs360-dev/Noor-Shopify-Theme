@@ -189,6 +189,7 @@ body.has-promo-bar .sidebar-slideshow {
     font-weight: var(--font-heading-weight);
 }
 .text-content .btn.btn-arrow {
+    font-family: var(--font-body-family);
     color: rgb(var(--color-link));
     font-size: 22px;
     padding: 0;
