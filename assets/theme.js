@@ -1,18 +1,22 @@
-(function () {
+/* ======================================
+   THEME INITIALIZER
+====================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  initBodyScrollState();
+});
+
+/* ===============================
+   BODY: SCROLLED STATE
+================================ */
+function initBodyScrollState() {
   const SCROLL_THRESHOLD = 100;
   const body = document.body;
 
-  function handleScroll() {
-    if (window.scrollY > SCROLL_THRESHOLD) {
-      body.classList.add('scrolled');
-    } else {
-      body.classList.remove('scrolled');
-    }
+  function onScroll() {
+    body.classList.toggle("scrolled", window.scrollY > SCROLL_THRESHOLD);
   }
 
-  // Run once on load (important for page refresh mid-scroll)
-  handleScroll();
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
 
-  // Listen to scroll
-  window.addEventListener('scroll', handleScroll, { passive: true });
-})();
