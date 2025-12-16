@@ -147,7 +147,7 @@ body.disable-scrollbars {
     color: #fff !important;
 }
 .m-sidebar__content .hamburger.color-dark span {
-    border-color: #231f20;
+    border-color: #231f20 !important;
 }
 .color-light{
     color: #fff !important;
@@ -164,8 +164,6 @@ body.disable-scrollbars {
 .expended-area-active a{
     color: #231f20 !important;
 }
-.expended-area-active .color-darks,
-.expended-area-active .color-light,
 .expended-area-active .hamburger span {
     border-color: #231f20;
 }
