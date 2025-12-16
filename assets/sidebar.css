@@ -46,7 +46,8 @@
 }
 .m-sidebar__content .hamburger span {
     display: block;
-    border-bottom: 2px solid #231f20;
+    /* border-bottom: 2px solid #231f20; */
+    border-bottom: 2px solid #fff;
     width: 100%;
     position: absolute;
     height: 1px;
