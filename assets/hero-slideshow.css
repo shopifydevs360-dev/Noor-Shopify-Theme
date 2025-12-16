@@ -20,7 +20,7 @@ body.has-promo-bar .sidebar-slideshow {
   position: absolute;
   top: 0;
   left: 0;
-  width: 350px;
+  width: 320px;
   height: 100%;
   z-index: 3;
   overflow: hidden;
@@ -60,7 +60,7 @@ body.has-promo-bar .sidebar-slideshow {
 @media (min-width: 1025px) {
   .swiper-container-hero {
     width: 100%;
-    transform: translateX(350px);
+    transform: translateX(320px);
     will-change: transform;
     transition: transform 0.8s cubic-bezier(0, 0, 0.002, 1);
   }
