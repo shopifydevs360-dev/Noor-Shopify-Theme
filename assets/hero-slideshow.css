@@ -1,205 +1,179 @@
 /* =====================================
-   HERO SLIDESHOW – BASE
+   HERO SLIDESHOW ROOT
 ===================================== */
 .sidebar-slideshow {
   position: relative;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
+/* Promo bar height adjustment */
+body.has-promo-bar .sidebar-slideshow {
+  height: calc(100vh - 60px);
+}
+
 /* =====================================
-   SIDEBAR IMAGE (LEFT IMAGE)
+   SIDEBAR IMAGE (LEFT)
 ===================================== */
-.sidebar-slideshow .sidebar-image {
+.sidebar-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 350px;
   height: 100%;
-  z-index: 5;
-  transform: translateX(0);
-  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
-}
-
-.scrolled .sidebar-slideshow .sidebar-image {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-@media (max-width: 1024px) {
-  .sidebar-slideshow .sidebar-image {
-    display: none;
-  }
-}
-.sidebar-slideshow .media-wrapper img{
-    min-width: 100%;
-    min-height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    width: auto;
-    height: auto;
-}
-
-/* =====================================
-   SWIPER CONTAINER
-===================================== */
-.sidebar-slideshow .swiper-container-hero {
-  width: 100%;
-  margin-left: 350px;
-  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
-}
-
-.scrolled .sidebar-slideshow .swiper-container-hero {
-  margin-left: 0;
-}
-
-@media (max-width: 1024px) {
-  .sidebar-slideshow .swiper-container-hero {
-    margin-left: 0;
-  }
-}
-
-/* =====================================
-   SLIDES
-===================================== */
-.sidebar-slideshow .swiper-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  z-index: 3;
   overflow: hidden;
-  background: #f3f3f4;
+  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
 
-/* =====================================
-   MEDIA (IMAGE / VIDEO)
-===================================== */
-.sidebar-slideshow .cropped-image-wrapper,
-.sidebar-slideshow .video-wrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.scrolled .sidebar-image {
+  transform: translateX(-100%);
 }
 
-.sidebar-slideshow .cropped-image-wrapper img,
-.sidebar-slideshow video {
+.sidebar-image .cropped-image-wrapper,
+.sidebar-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Image zoom animation */
-.sidebar-slideshow .swiper-slide .cropped-image-wrapper {
-  transform: scale(1.08);
-  transition: transform 5s ease;
+/* Hide sidebar on tablet/mobile */
+@media (max-width: 1024px) {
+  .sidebar-image {
+    display: none;
+  }
 }
 
-.sidebar-slideshow .swiper-slide-active .cropped-image-wrapper {
-  transform: scale(1);
+/* =====================================
+   SWIPER CONTAINER
+===================================== */
+.swiper-container-hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Space for sidebar when visible */
+@media (min-width: 1025px) {
+  .swiper-container-hero {
+    margin-left: 350px;
+    width: calc(100% - 350px);
+    transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
+  }
+
+  .scrolled .swiper-container-hero {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.swiper-wrapper,
+.swiper-slide {
+  height: 100%;
+}
+
+/* =====================================
+   MEDIA (IMAGE / VIDEO)
+===================================== */
+.media-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.media-wrapper img,
+.media-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Video fade */
-.sidebar-slideshow video {
+.swiper-slide video {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
-.sidebar-slideshow .swiper-slide-active video {
+.swiper-slide-active video {
   opacity: 1;
 }
 
 /* =====================================
    OVERLAY
 ===================================== */
-.sidebar-slideshow .overlay-bg {
+.overlay-bg {
   position: absolute;
   inset: 0;
   z-index: 2;
+  pointer-events: none;
 }
 
 /* =====================================
    TEXT CONTENT (OVER MEDIA)
 ===================================== */
-.sidebar-slideshow .text-content {
+.text-content {
   position: absolute;
-  z-index: 3;
-  max-width: 700px;
-  padding: 25px;
-  backdrop-filter: blur(var(--content-blur, 0px));
+  z-index: 4;
+  max-width: 640px;
+  padding: 20px;
 }
 
-/* ---------- ALIGNMENTS ---------- */
-.text-content--bottom-left {
-  bottom: 60px;
-  left: 140px;
-  text-align: left;
+/* Vertical alignment */
+.text-content--top-left,
+.text-content--top-center,
+.text-content--top-right {
+  top: 10%;
 }
 
-.text-content--bottom-center {
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-.text-content--bottom-right {
-  bottom: 60px;
-  right: 140px;
-  text-align: right;
-}
-
-.text-content--center-left {
+.text-content--center-left,
+.text-content--center-center,
+.text-content--center-right {
   top: 50%;
-  left: 140px;
   transform: translateY(-50%);
+}
+
+.text-content--bottom-left,
+.text-content--bottom-center,
+.text-content--bottom-right {
+  bottom: 10%;
+}
+
+/* Horizontal alignment */
+.text-content--top-left,
+.text-content--center-left,
+.text-content--bottom-left {
+  left: 40px;
   text-align: left;
 }
 
-.text-content--center-center {
-  top: 50%;
+.text-content--top-center,
+.text-content--center-center,
+.text-content--bottom-center {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
-.text-content--center-right {
-  top: 50%;
-  right: 140px;
-  transform: translateY(-50%);
+.text-content--top-right,
+.text-content--center-right,
+.text-content--bottom-right {
+  right: 40px;
   text-align: right;
 }
 
-.text-content--top-left {
-  top: 60px;
-  left: 140px;
-}
-
-.text-content--top-center {
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.text-content--top-right {
-  top: 60px;
-  right: 140px;
-}
-
-/* =====================================
-   MOBILE FIXES
-===================================== */
+/* Mobile content centering */
 @media (max-width: 1024px) {
-  .sidebar-slideshow .text-content {
+  .text-content {
     left: 50%;
+    right: auto;
     transform: translateX(-50%);
-    bottom: 60px;
     text-align: center;
-    max-width: calc(100% - 40px);
-  }
-}
-
-@media (max-width: 767px) {
-  .sidebar-slideshow .text-content {
-    bottom: clamp(30px, 6vh, 60px);
-    padding: 20px;
+    bottom: 60px;
+    top: auto;
   }
 }
 
@@ -208,33 +182,30 @@
 ===================================== */
 .swiper-nav-wrapper {
   position: absolute;
-  bottom: 50px;
-  right: 140px;
-  z-index: 4;
+  right: 60px;
+  bottom: 60px;
+  z-index: 5;
 }
 
 @media (max-width: 1024px) {
   .swiper-nav-wrapper {
-    top: 50px;
     right: 50%;
     transform: translateX(50%);
-  }
-}
-
-@media (max-width: 767px) {
-  .swiper-nav-wrapper {
-    top: 10px;
+    bottom: auto;
+    top: 20px;
   }
 }
 
 .swiper-nav-wrapper button {
   background: none;
   border: 0;
+  padding: 0;
+  cursor: pointer;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
-  cursor: pointer;
+  text-transform: uppercase;
 }
 
 .swiper-nav-wrapper .inner-text {
@@ -243,36 +214,25 @@
 }
 
 .swiper-prev-text:hover .inner-text {
-  transform: translateX(-3px);
-}
-
-.swiper-next-text:hover .inner-text {
-  transform: translateX(3px);
+  transform: translateX(-4px);
 }
 
 .swiper-next-text {
-  margin-left: 70px;
-  padding-left: 23px;
+  margin-left: 60px;
+  padding-left: 24px;
   position: relative;
 }
 
 .swiper-next-text .line {
   position: absolute;
-  top: 50%;
   left: 0;
+  top: 50%;
   width: 50px;
   height: 1px;
   background: #fff;
-  transform: translateX(-100%);
+  transform: translateY(-50%);
 }
 
-/* =====================================
-   PRODUCT TEMPLATE OVERRIDE
-===================================== */
-.template-product .swiper-nav-wrapper button {
-  color: #231f20;
-}
-
-.template-product .swiper-next-text .line {
-  background: #231f20;
+.swiper-next-text:hover .inner-text {
+  transform: translateX(4px);
 }
