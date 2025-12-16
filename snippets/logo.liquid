@@ -43,9 +43,12 @@
 </a>
 
 <style>
+  :root {
+    --logod-desktop-width: {{ settings.logo_width_desktop }}px;
+  }
   .m-logo__image {
     width: 100%;
-    max-width: {{ settings.logo_width_desktop }}px;
+    max-width: ver(--logod-desktop-width);
     height: auto;
     display: block;
   }
