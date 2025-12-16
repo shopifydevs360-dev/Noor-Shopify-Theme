@@ -190,6 +190,7 @@ body.has-promo-bar .sidebar-slideshow {
 }
 .text-content .btn.btn-arrow {
     color: rgb(var(--color-link));
+    font-size: 22px;
 }
 .text-content .icon {
     margin-bottom: -8px;
