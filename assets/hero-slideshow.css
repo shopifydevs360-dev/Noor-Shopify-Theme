@@ -18,6 +18,9 @@
   z-index: 2;
   transform: translateX(-100%);
 }
+.scrolled .sidebar-slideshow .sidebar-image {
+  transform: translateX(0);
+}
 
 @media (max-width: 1024px) {
   .sidebar-slideshow .sidebar-image {
