@@ -21,10 +21,11 @@
     "type_base_size": 18,
     "type_base_line_height": 21,
     "type_header_font": "serif",
-    "h1_font_size": 36,
-    "h2_font_size": 90,
-    "type_header_base_size": 19,
-    "h4_font_size": 19,
+    "h1_font_size": 92,
+    "h2_font_size": 71,
+    "type_header_base_size": 49,
+    "h4_font_size": 33,
+    "h5_font_size": 22,
     "type_header_spacing": 0,
     "container_max_width": 1480,
     "container_fluid_width": 1620,
@@ -65,8 +66,8 @@
           "tooltip": "#222222",
           "tooltip_label": "#ffffff",
           "border": "#eeeeee",
-          "additional_color_1": "#FF0000",
-          "additional_color_2": "#00FF00"
+          "additional_color_1": "#ff0000",
+          "additional_color_2": "#00ff00"
         }
       },
       "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99": {
@@ -86,8 +87,8 @@
           "tooltip": "#222222",
           "tooltip_label": "#ffffff",
           "border": "#eeeeee",
-          "additional_color_1": "#FF0000",
-          "additional_color_2": "#00FF00"
+          "additional_color_1": "#ff0000",
+          "additional_color_2": "#00ff00"
         }
       }
     }
