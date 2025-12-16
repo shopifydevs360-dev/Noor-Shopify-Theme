@@ -12,7 +12,7 @@
     max-width: 220px;
 }
 .minimal .m-logo__image {
-    max-width: calc var(--logo-desktop-width) - 60px);
+    max-width: calc (var(--logo-desktop-width) - 60px);
 }
 .m-sidebar__content {
   position: relative;
