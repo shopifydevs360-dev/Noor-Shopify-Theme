@@ -63,6 +63,19 @@
     },
     "collection_tab_jigG9e": {
       "type": "collection-tab",
+      "blocks": {
+        "tab_Nq43z7": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "d",
+            "tab_link": "",
+            "collection": "automated-collection"
+          }
+        }
+      },
+      "block_order": [
+        "tab_Nq43z7"
+      ],
       "name": "Product Tabs Carousel",
       "settings": {
         "title": "Best Sellers",
