@@ -161,6 +161,6 @@ body.disable-scrollbars {
 }
 .expended-area-active .color-darks,
 .expended-area-active .color-light,
-.expended-area-active .m-sidebar__content a{
+.expended-area-active a{
     color: #231f20 !important;
 }
