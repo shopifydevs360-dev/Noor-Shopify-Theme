@@ -24,7 +24,8 @@ body.has-promo-bar .sidebar-slideshow {
   height: 100%;
   z-index: 3;
   overflow: hidden;
-  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
+  will-change: transform;
+  transition: transform 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
 
 .scrolled .sidebar-image {
