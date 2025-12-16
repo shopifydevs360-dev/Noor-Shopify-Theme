@@ -66,13 +66,13 @@
               style="color: {{ block.settings.text_color }};"
             >
               {% if block.settings.subheading != blank %}
-                <h3 class="{{ block.settings.subheading_size }}">
+                <h4 class="hero-slideshow-sub-heading {{ block.settings.sub_heading_font_size }}">
                   {{ block.settings.subheading }}
-                </h3>
+                </h4>
               {% endif %}
 
               {% if block.settings.heading != blank %}
-                <h2 class="{{ block.settings.heading_size }}">
+                <h2 class="hero-slideshow-heading {{ block.settings.heading_font_size }}">
                   {{ block.settings.heading }}
                 </h2>
               {% endif %}
