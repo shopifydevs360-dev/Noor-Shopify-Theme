@@ -159,7 +159,7 @@ body.disable-scrollbars {
 .m-sidebar__content .hamburger.color-light span {
     border-color: #fff;
 }
-.expended-area-active .color-dark,
-.expended-area-active .color-light{
+.expended-area-active .color-dark a,
+.expended-area-active .color-light a,{
     color: #231f20 !important;
 }
