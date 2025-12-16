@@ -16,10 +16,10 @@
   width: 30rem;
   height: 100%;
   z-index: 2;
-  transform: translateX(-100%);
+  transform: translateX(0);
 }
 .scrolled .sidebar-slideshow .sidebar-image {
-  transform: translateX(0);
+  transform: translateX(-100%);
 }
 
 @media (max-width: 1024px) {
