@@ -15,7 +15,7 @@
   transition: all .8s cubic-bezier(0,0,.002,1);
 }
 .minimal .m-logo__image {
-  max-width: calc(var(--logo-desktop-width) - 60px);
+  max-width: calc(var(--logo-desktop-width) - 30px);
 }
 .m-sidebar__content {
   position: relative;
