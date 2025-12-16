@@ -11,9 +11,11 @@
 .minimal{
     max-width: 220px;
 }
+.m-logo__image {
+  transition: all .8s cubic-bezier(0,0,.002,1);
+}
 .minimal .m-logo__image {
   max-width: calc(var(--logo-desktop-width) - 60px);
-  transition: all .8s cubic-bezier(0,0,.002,1);
 }
 .m-sidebar__content {
   position: relative;
