@@ -188,6 +188,9 @@ body.has-promo-bar .sidebar-slideshow {
     font-family: var(--font-heading-family);
     font-weight: var(--font-heading-weight);
 }
+.text-content .icon {
+    margin-bottom: -8px;
+}
 /* Mobile content centering */
 @media (max-width: 1024px) {
   .text-content {
