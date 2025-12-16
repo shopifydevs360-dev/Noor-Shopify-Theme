@@ -1,0 +1,213 @@
+<div class="shopify-section product-tabs-carousel">
+  <div class="js-product-carousel product-carousel padded ">
+    
+    <h2 class="sh-container show-tablet-down">
+      <a href="{{ section.settings.title_link }}" aria-label="Link to {{ section.settings.title_link }}">
+        <div data-reveal="lines-masked">{{ section.settings.title }}</div>
+      </a>
+    </h2>
+
+    <!-- Filter Tabs -->
+    <div class="swiper-container swiper-container-filter scroll-enter">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% assign collection_handle = block.settings.collection.handle %}
+          <div class="related-product-caps swiper-slide">
+            <a href="{{ block.settings.tab_link }}" aria-label="Link to {{ block.settings.tab_link }}"
+               class="js-slider-filter"
+               data-filter="{{ collection_handle }}">
+              {{ block.settings.tab_label }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Products Carousel -->
+    <div class="swiper-container swiper-container-product swiper-has-scrollbar js-animate">
+      <div class="swiper-wrapper">
+        <!-- Optional Lead Card -->
+        <div class="swiper-slide v-aligner hide-tablet-down">
+          <div class="collection-lead-info">
+            <h2 class="hd-3">
+              <a href="{{ section.settings.title_link }}" aria-label="Link to {{ section.settings.title_link }}">
+                <div data-reveal="lines-masked">{{ section.settings.title }}</div>
+              </a>
+            </h2>
+            <a href="{{ section.settings.title_link }}" class="arrow-link" data-anim="slide" data-anim-order="3">
+              SHOP NOW
+              <span class="icon">
+                <!-- Arrow SVG -->
+                <svg class="sh-icon icon-arrow-right" viewBox="0 0 39 27">
+                  <path d="M26.113 0l-1.7 1.985s7.122 7.147 10.174 9.926C23.882 11.8 0 11.912 0 11.912v2.382s23.89-.087 34.591 0c-3.052 3.176-10.174 10.324-10.174 10.324L26.113 27 39 13.1z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products from Each Collection -->
+        {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection.handle] %}
+          {% if collection.products_count > 0 %}
+            {% for product in collection.products limit: 6 %}
+              <div class="swiper-slide product-slide" data-collections="{{ collection.handle }}">
+                <div class="product-card">
+                  <div class="image-wrap">
+                    <a href="{{ product.url }}">
+                      <div class="cropped-image-wrapper">
+                        <img
+                          src="{{ product.featured_image | img_url: '600x' }}"
+                          alt="{{ product.title }}"
+                        >
+                        {% if product.images[1] %}
+                          <img
+                            class="hover-img"
+                            src="{{ product.images[1] | img_url: '600x' }}"
+                            alt="{{ product.title }} hover image"
+                          >
+                        {% endif %}
+                      </div>
+                    </a>
+
+                    <div class="ajax-quick-add-wrapper">
+                      {% if product.variants.size > 1 %}
+                        <div class="variants-outer-wrapper">
+                          <div class="variants-wrapper">
+                            {% for variant in product.variants %}
+                              <button type="button"
+                                      class="js-quick-add-to-cart text-only variant-btn split-aligner js-quick-add-to-cart--full-width{% unless variant.available %} disabled{% endunless %}"
+                                      data-action-detail="{{ variant.id }}"
+                                      data-variant-id="{{ variant.id }}"
+                                      aria-label="Add variant to cart"
+                                      {% unless variant.available %}disabled{% endunless %}>
+                                <div>{{ variant.title }}&nbsp; &nbsp;{{ variant.price | money }}</div>
+                              </button>
+                            {% endfor %}
+                          </div>
+                          <button type="button" class="text-only cta-btn" style="width: 100%; text-align: center;">
+                            Make Selection
+                          </button>
+                        </div>
+                      {% else %}
+                        <form method="post" action="/cart/add">
+                          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                          {% assign variant = product.variants.first %}
+                          <button
+                            data-action-detail="{{ variant.id }}"
+                            data-variant-id="{{ variant.id }}"
+                            type="submit"
+                            class="js-quick-add-to-cart event_buy_now_add_to_cart cta-btn text-only js-quick-add-to-cart--full-width"
+                            {% unless variant.available %}disabled{% endunless %}
+                          >
+                            {% if variant.available %}
+                              Add to bag
+                            {% else %}
+                              Out of stock
+                            {% endif %}
+                          </button>
+
+                        </form>
+                      {% endif %}
+                    </div>
+
+                  </div>
+
+                  <div class="product-info">
+                    <div class="split-aligner">
+                      <p class="title">
+                        <a href="{{ product.url }}">{{ product.title }}</a>
+                      </p>
+                      <p>{{ product.price | money }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+.variant-btn.disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.variant-btn.disabled::after {
+    content: "Out of stock";
+    position: absolute;
+    bottom: 70%;
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+.variant-btn.disabled:hover::after {
+  opacity: 1 !important;
+}
+
+
+</style>
+{% schema %}
+{
+  "name": "Collections Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "title_link",
+      "label": "Title Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab Label"
+        },
+        {
+          "type": "url",
+          "id": "tab_link",
+          "label": "Tab Collection Link"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Product Tabs Carousel",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
