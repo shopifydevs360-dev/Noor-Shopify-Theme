@@ -190,6 +190,7 @@ body.has-promo-bar .sidebar-slideshow {
 }
 .text-content .icon {
     margin-bottom: -8px;
+    margin-left: 30px;
 }
 /* Mobile content centering */
 @media (max-width: 1024px) {
