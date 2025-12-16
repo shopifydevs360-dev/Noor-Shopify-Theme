@@ -113,7 +113,9 @@
         "show_pagination": true,
         "pagination_position": "right",
         "show_navigation": true,
-        "navigation_position": "bottom-right"
+        "navigation_position": "bottom-right",
+        "custom_class": "",
+        "color_control": "default"
       }
     },
     "custom_section_CWt6yq": {
