@@ -124,6 +124,13 @@ body.rtl .container {
   text-align: right;
 }
 /* ------------------------------
+   Icon STYLES
+------------------------------- */
+.theme-icon {
+    display: inline-block;
+    width: 26px;
+}
+/* ------------------------------
    BUTTON STYLES
 ------------------------------- */
 button{
