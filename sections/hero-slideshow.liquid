@@ -77,7 +77,7 @@
               {% if block.settings.cta_text != blank %}
                 <a href="{{ block.settings.link }}" class="arrow-link">
                   <span>{{ block.settings.cta_text }}</span>
-                  <span class="icon">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+                  <span class="icon">{%- render 'theme-icon', icon: 'close' -%}</span>
                 </a>
               {% endif %}
             </div>
