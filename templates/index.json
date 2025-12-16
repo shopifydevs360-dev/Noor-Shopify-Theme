@@ -61,80 +61,12 @@
         "color_control": "section-dark"
       }
     },
-    "hero_slider_dRAtkV": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_atRg3f": {
-          "type": "slide",
-          "settings": {
-            "text_color_scheme": "default",
-            "container_width": "container-fluid",
-            "image": "shopify://shop_images/theme_cover_image.jpg",
-            "sub_heading": "Sub Heading",
-            "sub_heading_font_size": "h3",
-            "heading": "Heading",
-            "heading_font_size": "h2",
-            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee. </p>",
-            "button_label_1": "Shop Honey",
-            "button_link_1": "",
-            "first_button_type": "btn--underline",
-            "button_label_2": "",
-            "button_link_2": "",
-            "second_button_type": "btn--secondary",
-            "background": "radial-gradient(rgba(214, 214, 214, 0.19), rgba(209, 198, 199, 0.19) 100%)",
-            "background_blur": 3,
-            "text_alignment": "center",
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-end",
-            "content_width": "small",
-            "corner-radius": "style-two"
-          }
-        },
-        "slide_cLHMKG": {
-          "type": "slide",
-          "settings": {
-            "text_color_scheme": "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99",
-            "container_width": "full-width",
-            "image": "shopify://shop_images/56166258407242.jpg",
-            "sub_heading": "Sub Heading",
-            "sub_heading_font_size": "h4",
-            "heading": "Heading",
-            "heading_font_size": "h2",
-            "text": "<p>Discover our premium collection of organic honey, rich ghee, and aromatic coffee.</p>",
-            "button_label_1": "Shop Honey",
-            "button_link_1": "",
-            "first_button_type": "btn--primary",
-            "button_label_2": "Learn More",
-            "button_link_2": "",
-            "second_button_type": "btn--secondary",
-            "background": "rgba(0, 0, 0, 0.5)",
-            "background_blur": 5,
-            "text_alignment": "center",
-            "horizontal_alignment": "center",
-            "vertical_alignment": "center",
-            "content_width": "medium",
-            "corner-radius": "none"
-          }
-        }
-      },
-      "block_order": [
-        "slide_atRg3f",
-        "slide_cLHMKG"
-      ],
-      "name": "Hero Slider",
+    "collection_tab_jigG9e": {
+      "type": "collection-tab",
+      "name": "Product Tabs Carousel",
       "settings": {
-        "container_width": "full-width",
-        "slider_height": "medium",
-        "slider_height_mobile": "small",
-        "loop_sliders": true,
-        "auto_rotate_sliders": false,
-        "change_sliders_every": 3,
-        "show_pagination": true,
-        "pagination_position": "right",
-        "show_navigation": true,
-        "navigation_position": "bottom-right",
-        "custom_class": "",
-        "color_control": "section-light"
+        "title": "Best Sellers",
+        "title_link": ""
       }
     },
     "custom_section_CWt6yq": {
@@ -352,7 +284,7 @@
   },
   "order": [
     "hero_slideshow_DY9JwJ",
-    "hero_slider_dRAtkV",
+    "collection_tab_jigG9e",
     "custom_section_CWt6yq",
     "custom_section_YEaeWe",
     "collections_RQEPWp",
