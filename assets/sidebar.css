@@ -24,7 +24,8 @@
   padding: 32px;
 }
 .m-sidebar__content a{
-  color: #231f20;
+  /* color: #231f20; */
+  color: #fff;
 }
 .m-sidebar__content .m-sidebar__logo {
     margin-bottom: 50px;
