@@ -188,6 +188,9 @@ body.has-promo-bar .sidebar-slideshow {
     font-family: var(--font-heading-family);
     font-weight: var(--font-heading-weight);
 }
+.text-content .btn.btn-arrow {
+    color: var(--color-link);
+}
 .text-content .icon {
     margin-bottom: -8px;
     margin-left: 30px;
