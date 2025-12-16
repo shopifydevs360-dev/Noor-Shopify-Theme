@@ -189,7 +189,7 @@ body.has-promo-bar .sidebar-slideshow {
     font-weight: var(--font-heading-weight);
 }
 .text-content .btn.btn-arrow {
-    color: var(--color-link);
+    color: rgb(var(--color-link));
 }
 .text-content .icon {
     margin-bottom: -8px;
