@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/Noor_Logo.jpg",
-    "logo_width_desktop": 215,
+    "logo": "shopify://shop_images/Lgog_Halla_Hijab.png",
+    "logo_width_desktop": 155,
     "logo_width_tablet": 80,
     "logo_width_mobile": 50,
     "site_name": "Noor",
@@ -64,7 +64,9 @@
           "form_field_label": "#222222",
           "tooltip": "#222222",
           "tooltip_label": "#ffffff",
-          "border": "#eeeeee"
+          "border": "#eeeeee",
+          "additional_color_1": "#FF0000",
+          "additional_color_2": "#00FF00"
         }
       },
       "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99": {
@@ -83,7 +85,9 @@
           "form_field_label": "#222222",
           "tooltip": "#222222",
           "tooltip_label": "#ffffff",
-          "border": "#eeeeee"
+          "border": "#eeeeee",
+          "additional_color_1": "#FF0000",
+          "additional_color_2": "#00FF00"
         }
       }
     }
