@@ -59,16 +59,17 @@ body.has-promo-bar .sidebar-slideshow {
 /* Space for sidebar when visible */
 @media (min-width: 1025px) {
   .swiper-container-hero {
-    margin-left: 350px;
-    width: calc(100% - 350px);
-    transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
+    width: 100%;
+    transform: translateX(350px);
+    will-change: transform;
+    transition: transform 0.8s cubic-bezier(0, 0, 0.002, 1);
   }
 
   .scrolled .swiper-container-hero {
-    margin-left: 0;
-    width: 100%;
+    transform: translateX(0);
   }
 }
+
 
 .swiper-wrapper,
 .swiper-slide {
