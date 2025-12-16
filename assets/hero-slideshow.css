@@ -24,6 +24,7 @@
 .scrolled .sidebar-slideshow .sidebar-image {
   transform: translateX(-100%);
   opacity: 0;
+  transition-delay: .9s;
 }
 
 @media (max-width: 1024px) {
@@ -36,7 +37,6 @@
 @media (min-width: 1025px) {
   .sidebar-slideshow .sidebar-image img {
     animation: sidebarImageScale 2s cubic-bezier(0, 0, 0.002, 1) 1.7s forwards;
-    transition-delay: .9s;
   }
 }
 
