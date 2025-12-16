@@ -174,7 +174,13 @@ body.has-promo-bar .sidebar-slideshow {
   right: 40px;
   text-align: right;
 }
-
+.hero-slideshow-sub-heading {
+    margin: 0 0 1.5rem;
+    color: rgb(var(--color-subtext, var(--color-text)));
+    text-shadow: 1px 1px 3px rgba(0,0,0,.2);
+    font-family: var(--font-heading-family);
+    font-weight: var(--font-heading-weight);
+}
 /* Mobile content centering */
 @media (max-width: 1024px) {
   .text-content {
