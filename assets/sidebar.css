@@ -11,6 +11,9 @@
 .minimal{
     max-width: 220px;
 }
+.minimal .m-logo__image {
+    max-width: calc(ver(--logod-desktop-width) - 60px);
+}
 .m-sidebar__content {
   position: relative;
   z-index: 1;
