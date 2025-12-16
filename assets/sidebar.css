@@ -147,7 +147,7 @@ body.disable-scrollbars {
     color: #fff !important;
 }
 .m-sidebar__content .hamburger.color-dark span {
-    border-color: #231f20 !important;
+    border-color: #231f20;
 }
 .color-light{
     color: #fff !important;
