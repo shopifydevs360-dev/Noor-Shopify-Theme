@@ -17,8 +17,8 @@
           "settings": {
             "image": "shopify://shop_images/2149288938.jpg",
             "subheading": "hello",
-            "sub_heading_font_size": "h3",
-            "heading": "",
+            "sub_heading_font_size": "h4",
+            "heading": "Hi",
             "heading_size": "hd-2",
             "cta_text": "Shop Now",
             "link": "",
