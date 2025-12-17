@@ -128,37 +128,6 @@
   </div>
 </div>
 
-<style>
-.variant-btn.disabled {
-  opacity: 0.5 !important;
-  cursor: not-allowed;
-  position: relative;
-}
-
-.variant-btn.disabled::after {
-    content: "Out of stock";
-    position: absolute;
-    bottom: 70%;
-    left: 70%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 4px 8px;
-    font-size: 12px;
-    white-space: nowrap;
-    border-radius: 4px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-    z-index: 10;
-}
-
-.variant-btn.disabled:hover::after {
-  opacity: 1 !important;
-}
-
-
-</style>
 {% schema %}
 {
   "name": "Collections Tabs",
