@@ -12,11 +12,11 @@
     <div class="swiper-container swiper-container-filter scroll-enter">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          {% assign collection_handle = block.settings.collection.handle %}
+          {% assign collection = block.settings.collection %}
           <div class="related-product-caps swiper-slide">
             <a href="{{ block.settings.tab_link }}" aria-label="Link to {{ block.settings.tab_link }}"
                class="js-slider-filter"
-               data-filter="{{ collection_handle }}">
+               data-filter="{{ collection.handle }}">
               {{ block.settings.tab_label }}
             </a>
           </div>
@@ -153,11 +153,6 @@
           "type": "text",
           "id": "tab_label",
           "label": "Tab Label"
-        },
-        {
-          "type": "url",
-          "id": "tab_link",
-          "label": "Tab Collection Link"
         },
         {
           "type": "collection",
