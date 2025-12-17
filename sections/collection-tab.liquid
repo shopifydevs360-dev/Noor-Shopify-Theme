@@ -128,6 +128,32 @@
     </div>
   </div>
 </div>
+<script>
+      new Swiper(".swiper-container-filter", {
+        slidesPerView: "auto",
+        spaceBetween: 50,
+      }),
+      $(".js-slider-filter").on("click", function (e) {
+        e.preventDefault();
+        var t = $(this),
+          a = t.attr("data-filter"),
+          s = t.closest(".js-product-carousel");
+        s.find("li").removeClass("active"),
+          t.closest("li").addClass("active"),
+          s.find(".product-slide").hide(),
+          s.find(".product-slide img").addClass("animate-out"),
+          s.find('.product-slide[data-collections*="' + a + '"]').fadeIn(500),
+          s
+            .find('.product-slide[data-collections*="' + a + '"] img')
+            .removeClass("animate-out"),
+          x.updateSize(),
+          x.updateSlides(),
+          x.updateProgress(),
+          x.updateSlidesClasses(),
+          x.slideTo(0),
+          x.scrollbar.updateSize();
+      }),
+</script>
 
 {% schema %}
 {
