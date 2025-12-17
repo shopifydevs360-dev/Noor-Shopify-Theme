@@ -128,48 +128,6 @@
     </div>
   </div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-  /* ===============================
-     FILTER TABS SLIDER
-  ============================== */
-  const filterSwiper = new Swiper('.swiper-container-filter', {
-    slidesPerView: 'auto',
-    spaceBetween: 24,
-    freeMode: true,
-    watchSlidesProgress: true,
-    breakpoints: {
-      768: {
-        spaceBetween: 32
-      }
-    }
-  });
-
-  /* ===============================
-     PRODUCT CAROUSEL SLIDER
-  ============================== */
-  const productSwiper = new Swiper('.swiper-container-product', {
-    slidesPerView: 1.2,
-    spaceBetween: 24,
-    scrollbar: {
-      el: '.swiper-scrollbar',
-      draggable: true
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2.5,
-        spaceBetween: 32
-      },
-      1025: {
-        slidesPerView: 3.5,
-        spaceBetween: 40
-      }
-    }
-  });
-
-});
-</script>
 
 {% schema %}
 {
