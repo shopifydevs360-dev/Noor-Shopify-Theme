@@ -1,4 +1,3 @@
-{{ 'collection-tab.css' | asset_url | stylesheet_tag: preload: true }}
 <div class="shopify-section product-tabs-carousel">
   <div class="js-product-carousel product-carousel padded ">
     
@@ -12,11 +11,11 @@
     <div class="swiper-container swiper-container-filter scroll-enter">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          {% assign collection = block.settings.collection %}
+          {% assign collection_handle = block.settings.collection.handle %}
           <div class="related-product-caps swiper-slide">
             <a href="{{ block.settings.tab_link }}" aria-label="Link to {{ block.settings.tab_link }}"
                class="js-slider-filter"
-               data-filter="{{ collection.handle }}">
+               data-filter="{{ collection_handle }}">
               {{ block.settings.tab_label }}
             </a>
           </div>
@@ -37,7 +36,12 @@
             </h2>
             <a href="{{ section.settings.title_link }}" class="arrow-link" data-anim="slide" data-anim-order="3">
               SHOP NOW
-                <span class="icon">{%- render 'theme-icon', icon: 'right-arrow' -%}</span>
+              <span class="icon">
+                <!-- Arrow SVG -->
+                <svg class="sh-icon icon-arrow-right" viewBox="0 0 39 27">
+                  <path d="M26.113 0l-1.7 1.985s7.122 7.147 10.174 9.926C23.882 11.8 0 11.912 0 11.912v2.382s23.89-.087 34.591 0c-3.052 3.176-10.174 10.324-10.174 10.324L26.113 27 39 13.1z"/>
+                </svg>
+              </span>
             </a>
           </div>
         </div>
@@ -128,6 +132,37 @@
   </div>
 </div>
 
+<style>
+.variant-btn.disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.variant-btn.disabled::after {
+    content: "Out of stock";
+    position: absolute;
+    bottom: 70%;
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+.variant-btn.disabled:hover::after {
+  opacity: 1 !important;
+}
+
+
+</style>
 {% schema %}
 {
   "name": "Collections Tabs",
@@ -153,6 +188,11 @@
           "type": "text",
           "id": "tab_label",
           "label": "Tab Label"
+        },
+        {
+          "type": "url",
+          "id": "tab_link",
+          "label": "Tab Collection Link"
         },
         {
           "type": "collection",
