@@ -1,0 +1,5 @@
+.product-carousel .swiper-container-filter {
+    width: calc(73.6% - 8rem);
+    margin-left: auto;
+    margin-right: 0;
+}
