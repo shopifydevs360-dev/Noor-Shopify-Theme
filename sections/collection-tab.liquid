@@ -1,9 +1,9 @@
 {{ 'collection-tab.css' | asset_url | stylesheet_tag: preload: true }}
 
-<div class="product-tabs-carousel">
+<div class="product-tabs-carousel js-product-carousel">
   <div class="product-carousel">
 
-    <!-- Mobile Title -->
+    <!-- ================= MOBILE TITLE ================= -->
     <h2 class="container hide-desktop">
       <a href="{{ section.settings.title_link }}" aria-label="{{ section.settings.title }}">
         <div data-reveal="lines-masked">
@@ -13,15 +13,15 @@
     </h2>
 
     <!-- ================= FILTER TABS ================= -->
-    <div class="swiper-container swiper-container-filter scroll-enter">
+    <div class="swiper swiper-container-filter">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          {% assign collection_handle = block.settings.collection.handle %}
-          <div class="related-product-caps swiper-slide">
+          {% assign handle = block.settings.collection.handle %}
+          <div class="related-product-caps swiper-slide {% if forloop.first %}active{% endif %}">
             <a
-              href="{{ block.settings.tab_link }}"
+              href="#"
               class="js-slider-filter"
-              data-filter="{{ collection_handle }}"
+              data-filter="{{ handle }}"
               aria-label="{{ block.settings.tab_label }}"
             >
               {{ block.settings.tab_label }}
@@ -32,7 +32,7 @@
     </div>
 
     <!-- ================= PRODUCTS CAROUSEL ================= -->
-    <div class="swiper-container swiper-container-product swiper-has-scrollbar js-animate">
+    <div class="swiper swiper-container-product">
       <div class="swiper-wrapper">
 
         <!-- Desktop Lead Card -->
@@ -46,10 +46,10 @@
               </a>
             </h2>
 
-            <a href="{{ section.settings.title_link }}" class="arrow-link" data-anim="slide">
+            <a href="{{ section.settings.title_link }}" class="arrow-link">
               SHOP NOW
               <span class="icon">
-                {%- render 'theme-icon', icon: 'right-arrow' -%}
+                {% render 'theme-icon', icon: 'right-arrow' %}
               </span>
             </a>
           </div>
@@ -59,9 +59,13 @@
         {% for block in section.blocks %}
           {% assign collection = collections[block.settings.collection.handle] %}
 
-          {% if collection.products_count > 0 %}
+          {% if collection and collection.products_count > 0 %}
             {% for product in collection.products limit: 6 %}
-              <div class="swiper-slide product-slide" data-collections="{{ collection.handle }}">
+              <div
+                class="swiper-slide product-slide"
+                data-collection="{{ collection.handle }}"
+                {% unless forloop.parentloop.first %}hidden{% endunless %}
+              >
                 {% render 'product-card', product: product %}
               </div>
             {% endfor %}
@@ -76,19 +80,26 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.js-product-carousel');
+  if (!section) return;
 
-  const filterSwiper = new Swiper('.swiper-container-filter', {
+  const tabs = section.querySelectorAll('.js-slider-filter');
+  const slides = section.querySelectorAll('.product-slide');
+
+  /* ---------- FILTER TABS SWIPER ---------- */
+  new Swiper(section.querySelector('.swiper-container-filter'), {
     slidesPerView: 'auto',
-    spaceBetween: 50,
+    spaceBetween: 40,
     freeMode: true
   });
 
-  const productSwiper = new Swiper('.swiper-container-product', {
+  /* ---------- PRODUCT SWIPER ---------- */
+  const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
     slidesPerView: 1.2,
     spaceBetween: 24,
     scrollbar: {
-      el: '.swiper-scrollbar',
+      el: section.querySelector('.swiper-scrollbar'),
       draggable: true
     },
     breakpoints: {
@@ -97,52 +108,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  document.querySelectorAll('.js-slider-filter').forEach(trigger => {
-    trigger.addEventListener('click', e => {
+  /* ---------- FILTER LOGIC ---------- */
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
       e.preventDefault();
 
-      const filter = trigger.dataset.filter;
-      const section = trigger.closest('.js-product-carousel');
+      const filter = tab.dataset.filter;
 
-      section
-        .querySelectorAll('.related-product-caps')
-        .forEach(tab => tab.classList.remove('active'));
+      section.querySelectorAll('.related-product-caps')
+        .forEach(t => t.classList.remove('active'));
 
-      trigger.closest('.related-product-caps').classList.add('active');
-
-      const slides = section.querySelectorAll('.product-slide');
+      tab.closest('.related-product-caps').classList.add('active');
 
       slides.forEach(slide => {
-        slide.style.display = 'none';
-        slide.querySelectorAll('img').forEach(img =>
-          img.classList.add('animate-out')
-        );
-      });
-
-      const visibleSlides = section.querySelectorAll(
-        `.product-slide[data-collections*="${filter}"]`
-      );
-
-      visibleSlides.forEach(slide => {
-        slide.style.display = '';
-        slide.querySelectorAll('img').forEach(img =>
-          img.classList.remove('animate-out')
-        );
+        slide.hidden = slide.dataset.collection !== filter;
       });
 
       productSwiper.update();
       productSwiper.slideTo(0);
-      productSwiper.scrollbar.updateSize();
     });
   });
-
 });
 </script>
 
-
 {% schema %}
 {
-  "name": "Collections Tabs",
+  "name": "Product Tabs Carousel",
   "settings": [
     {
       "type": "text",
