@@ -14,18 +14,6 @@
           </div>
         {% endif %}
 
-        <!-- ================= AWARDS ================= -->
-        {% if product.metafields.custom.award_image %}
-          <div class="product-awards-wrapper">
-            <div class="product-award">
-              <img
-                src="{{ product.metafields.custom.award_image | image_url: width: 150 }}"
-                alt="{{ product.title }} award"
-                loading="lazy"
-              >
-            </div>
-          </div>
-        {% endif %}
 
         <!-- ================= PRIMARY IMAGE (FIRST LOAD) ================= -->
         {% if product.featured_image %}
