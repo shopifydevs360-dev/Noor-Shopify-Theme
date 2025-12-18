@@ -1,102 +1,77 @@
-{% comment %}
-  Renders a single product card for the collection grid.
-
-  Accepts:
-  - product: {Object} Product object.
-
-  Usage:
-  {% render 'product-card', product: product %}
-{% endcomment %}
-
-<div class="product-card border-radius-style-two" data-product-id="{{ product.id }}">
-  <div class="product-card__media">
-    <a href="{{ product.url }}" class="product-card__link" title="{{ product.title | escape }}">
-      {% if product.featured_image %}
-        <img
-          srcset="{%- if product.featured_image.width >= 165 -%}{{ product.featured_image | img_url: '165x' }} 165w,{%- endif -%}
-                  {%- if product.featured_image.width >= 360 -%}{{ product.featured_image | img_url: '360x' }} 360w,{%- endif -%}
-                  {%- if product.featured_image.width >= 533 -%}{{ product.featured_image | img_url: '533x' }} 533w,{%- endif -%}
-                  {%- if product.featured_image.width >= 720 -%}{{ product.featured_image | img_url: '720x' }} 720w,{%- endif -%}
-                  {%- if product.featured_image.width >= 940 -%}{{ product.featured_image | img_url: '940x' }} 940w,{%- endif -%}
-                  {%- if product.featured_image.width >= 1066 -%}{{ product.featured_image | img_url: '1066x' }} 1066w{%- endif -%}"
-          src="{{ product.featured_image | img_url: '533x' }}"
-          sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-          alt="{{ product.featured_image.alt | escape }}"
-          class="product-card__image"
-          loading="lazy"
-          width="{{ product.featured_image.width }}"
-          height="{{ product.featured_image.height }}"
-        >
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-card__image' }}
-      {% endif %}
-    </a>
-
-    {% if product.compare_at_price > product.price %}
-      <span class="product-card__badge product-card__badge--sale">Sale</span>
-    {% elsif product.available == false %}
-      <span class="product-card__badge product-card__badge--sold-out">Sold Out</span>
-    {% endif %}
-
-    <div class="product-card__actions">
-      {% if product.available %}
-        {% form 'product', product, id: "product-form-#{product.id}", class: "product-form", novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+<div class="product-card ">
+      <div class="image-wrap">
+        <a href="/products/detox-shampoo" aria-label="Detox Shampoo">
           
-          {% if settings.cart_behavior == 'redirect' %}
-            <!-- Traditional form submission -->
-            <button type="submit" class="action-btn" title="Add to Cart">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-            </button>
-          {% else %}
-            <!-- Ajax add to cart -->
-            <button type="submit" class="action-btn add-to-cart-js" title="Add to Cart">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-            </button>
-          {% endif %}
-        {% endform %}
-      {% endif %}
-      
-      <button class="action-btn wishlist-btn" title="Add to Wishlist">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-  
-  <div class="product-card__info">
-    {% if product.vendor %}
-      <div class="product-card__vendor">{{ product.vendor }}</div>
-    {% endif %}
-    
-    <h3 class="product-card__title h5">
-      <a href="{{ product.url }}">{{ product.title | truncate: 50 }}</a>
-    </h3>
-    
-    {% comment %}
-      Rating display - Integrate with your review app here.
-    {% endcomment %}
-    {%- if product.metafields.reviews.rating.value != blank -%}
-      <div class="product-card__rating">
-        <div class="stars" style="--rating: {{ product.metafields.reviews.rating.value }};">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <span class="rating-count">({{ product.metafields.reviews.count.value }})</span>
+            <div class="cropped-image-wrapper">
+              
+                <div class="product-badges-wrapper" style="--badge-text-color: #322a26; --badge-background-color: #d6cbc4;">
+                  
+                    <span>best seller</span>
+                  
+                </div>
+              
+
+              
+                <div class="product-awards-wrapper">
+                  
+
+<div class="product-award">
+                      <img class="lazyautosizes ls-is-cached lazyloaded animate-out" data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]" data-aspectratio="1.0002083333333334" data-sizes="auto" alt="Circular logo with 'BEAUTYINC' and 'The Greatest Hair Care 2025' text on a white background" data-srcset="//theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_360x.png?v=1762289360 360w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_540x.png?v=1762289360 540w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_720x.png?v=1762289360 720w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_900x.png?v=1762289360 900w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_1080x.png?v=1762289360 1080w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_1600x.png?v=1762289360 1600w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_2200x.png?v=1762289360 2200w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_2800x.png?v=1762289360 2800w" sizes="75px" srcset="//theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_360x.png?v=1762289360 360w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_540x.png?v=1762289360 540w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_720x.png?v=1762289360 720w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_900x.png?v=1762289360 900w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_1080x.png?v=1762289360 1080w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_1600x.png?v=1762289360 1600w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_2200x.png?v=1762289360 2200w, //theouai.com/cdn/shop/files/2025_PENSKE_BEAUTY-INC_THE-GREATEST-HAIR-CARE_LOGO_1_11_2800x.png?v=1762289360 2800w">
+                    </div>
+
+                    
+                  
+                </div>
+              
+
+              
+<img class="lazyautosizes ls-is-cached lazyloaded animate-out" data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]" data-aspectratio="0.8623853211009175" data-sizes="auto" alt="Detox Shampoo" data-srcset="https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_360 360w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_540 540w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_720 720w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_900 900w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_1080 1080w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_1600 1600w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_2200 2200w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_2800 2800w" sizes="456px" srcset="https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_360 360w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_540 540w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_720 720w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_900 900w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_1080 1080w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_1600 1600w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_2200 2200w, https://cld.accentuate.io/4439539646534/1612578976227/Updated_Detox_Site_Asset_PDP_Product_Thumbnail_1316x1526_Full_Size.jpg?v=1762289483146&amp;options=w_2800 2800w">
+                <img class="hover-img lazyautosizes ls-is-cached lazyloaded animate-out" data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]" data-aspectratio="0.8623853211009175" data-sizes="auto" alt="Detox Shampoo" data-srcset="https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_360 360w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_540 540w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_720 720w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_900 900w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_1080 1080w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_1600 1600w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_2200 2200w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_2800 2800w" sizes="456px" srcset="https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_360 360w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_540 540w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_720 720w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_900 900w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_1080 1080w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_1600 1600w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_2200 2200w, https://cld.accentuate.io/4439539646534/1612578976422/Product-Detox-Shampoo-1316x1526-Hover.jpeg?v=1688177168145&amp;options=w_2800 2800w">
+              
+            </div>
+          
+        </a>
+
+        <div class="ajax-quick-add-wrapper">
+
+		<!-- ====== NON-BUNDLES ======== --><div class="variants-outer-wrapper">
+						
+							<div class="variants-wrapper">
+								
+<button type="button" class="js-quick-add-to-cart event_buy_now_add_to_cart text-only variant-btn split-aligner js-quick-add-to-cart--full-width" data-action-detail="39726738407494" aria-label="Add variant to cart" data-variant-id="39726738407494">
+										<span>Full Size (10 fl oz)</span>
+										<span>$34
+</span>
+									</button>
+<button type="button" class="js-quick-add-to-cart event_buy_now_add_to_cart text-only variant-btn split-aligner js-quick-add-to-cart--full-width" data-action-detail="40213559214150" aria-label="Add variant to cart" data-variant-id="40213559214150">
+										<span>Travel Size (3 fl oz)</span>
+										<span>$16
+</span>
+									</button>
+						</div>
+							<button type="button" class="text-only cta-btn" style="width: 100%; text-align: center;">
+								Make Selection
+							</button>
+						
+					</div></div>
+
+        
+
       </div>
-    {%- endif -%}
     
-    <div class="product-card__price">
-      {% if product.compare_at_price > product.price %}
-        <span class="price-original">{{ product.compare_at_price | money }}</span>
-        <span class="price-current">{{ product.price | money }}</span>
-      {% else %}
-        <span class="price-current">{{ product.price | money }}</span>
-      {% endif %}
-    </div>
+
+    <div class="product-info">
+      <div class="split-aligner">
+        <!-- TITLE -->
+        <p class="title">
+          <a href="/products/detox-shampoo/">Detox Shampoo</a>
+        </p>
+        <!-- PRICE -->
+        <p>
+          $34
+
+        </p>
+      </div>
+
+      <!-- ====== STOCK TEXT ======== --></div>
   </div>
-</div>
