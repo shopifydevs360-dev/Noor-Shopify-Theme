@@ -75,68 +75,14 @@
   </div>
 </div>
 
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-
-  const filterSwiper = new Swiper('.swiper-container-filter', {
-    slidesPerView: 'auto',
-    spaceBetween: 50,
-    freeMode: true
-  });
-
-  const productSwiper = new Swiper('.swiper-container-product', {
-    slidesPerView: 1.2,
-    spaceBetween: 24,
+  var swiper = new Swiper(".swiper-container", {
     scrollbar: {
-      el: '.swiper-scrollbar',
-      draggable: true
+      el: ".swiper-scrollbar",
+      hide: true,
     },
-    breakpoints: {
-      768: { slidesPerView: 2.5 },
-      1025: { slidesPerView: 3.5 }
-    }
   });
-
-  document.querySelectorAll('.js-slider-filter').forEach(trigger => {
-    trigger.addEventListener('click', e => {
-      e.preventDefault();
-
-      const filter = trigger.dataset.filter;
-      const section = trigger.closest('.js-product-carousel');
-
-      section
-        .querySelectorAll('.related-product-caps')
-        .forEach(tab => tab.classList.remove('active'));
-
-      trigger.closest('.related-product-caps').classList.add('active');
-
-      const slides = section.querySelectorAll('.product-slide');
-
-      slides.forEach(slide => {
-        slide.style.display = 'none';
-        slide.querySelectorAll('img').forEach(img =>
-          img.classList.add('animate-out')
-        );
-      });
-
-      const visibleSlides = section.querySelectorAll(
-        `.product-slide[data-collections*="${filter}"]`
-      );
-
-      visibleSlides.forEach(slide => {
-        slide.style.display = '';
-        slide.querySelectorAll('img').forEach(img =>
-          img.classList.remove('animate-out')
-        );
-      });
-
-      productSwiper.update();
-      productSwiper.slideTo(0);
-      productSwiper.scrollbar.updateSize();
-    });
-  });
-
-});
 </script>
 
 
