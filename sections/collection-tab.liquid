@@ -34,6 +34,27 @@
     <!-- ================= PRODUCTS CAROUSEL ================= -->
     <div class="swiper-container swiper-container-product swiper-has-scrollbar js-animate">
       <div class="swiper-wrapper">
+
+        <!-- Desktop Lead Card -->
+        <div class="swiper-slide v-aligner hide-tablet-down">
+          <div class="collection-lead-info">
+            <h2 class="hd-3">
+              <a href="{{ section.settings.title_link }}">
+                <div data-reveal="lines-masked">
+                  {{ section.settings.title }}
+                </div>
+              </a>
+            </h2>
+
+            <a href="{{ section.settings.title_link }}" class="arrow-link" data-anim="slide">
+              SHOP NOW
+              <span class="icon">
+                {%- render 'theme-icon', icon: 'right-arrow' -%}
+              </span>
+            </a>
+          </div>
+        </div>
+
         <!-- Products -->
         {% for block in section.blocks %}
           {% assign collection = collections[block.settings.collection.handle] %}
