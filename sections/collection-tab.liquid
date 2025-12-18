@@ -1,10 +1,10 @@
 {{ 'collection-tab.css' | asset_url | stylesheet_tag: preload: true }}
 
-<div class="shopify-section product-tabs-carousel">
-  <div class="js-product-carousel product-carousel padded">
+<div class="product-tabs-carousel">
+  <div class="product-carousel">
 
     <!-- Mobile Title -->
-    <h2 class="sh-container show-tablet-down">
+    <h2 class="container show-tablet-down">
       <a href="{{ section.settings.title_link }}" aria-label="{{ section.settings.title }}">
         <div data-reveal="lines-masked">
           {{ section.settings.title }}
