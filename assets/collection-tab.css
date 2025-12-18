@@ -17,3 +17,6 @@
     width: auto;
     color: #525252;
 }
+.product-carousel .swiper-slide {
+    height: auto;
+}
