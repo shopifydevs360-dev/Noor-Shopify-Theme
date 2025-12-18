@@ -62,7 +62,7 @@
           {% if collection.products_count > 0 %}
             {% for product in collection.products limit: 6 %}
               <div class="swiper-slide product-slide" data-collections="{{ collection.handle }}">
-                {% render 'product-card', product: product %}
+                {% render 'product-card' %}
               </div>
             {% endfor %}
           {% endif %}
