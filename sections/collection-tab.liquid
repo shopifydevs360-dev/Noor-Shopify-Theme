@@ -91,15 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
   new Swiper(section.querySelector('.swiper-container-filter'), {
     slidesPerView: 'auto',
     freeMode: true,
-    spaceBetween: 40,
-      preventClicks: false,
-  preventClicksPropagation: false,
-  touchStartPreventDefault: false,
+    spaceBetween: 40
   });
 
   const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
     slidesPerView: 1.2,
     spaceBetween: 24,
+          preventClicks: false,
+  preventClicksPropagation: false,
+  touchStartPreventDefault: false,
     scrollbar: {
       el: section.querySelector('.swiper-scrollbar'),
       draggable: true
