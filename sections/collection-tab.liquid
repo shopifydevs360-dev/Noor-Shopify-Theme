@@ -84,43 +84,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const section = document.querySelector('.js-product-carousel');
   if (!section) return;
 
-  /* ---------------- ELEMENTS ---------------- */
   const tabs = section.querySelectorAll('.js-slider-filter');
   const slides = section.querySelectorAll('.product-slide');
-  const filterSwiperEl = section.querySelector('.swiper-container-filter');
-  const productSwiperEl = section.querySelector('.swiper-container-product');
-  const scrollbarEl = section.querySelector('.swiper-scrollbar');
 
-  /* ---------------- FILTER SWIPER ---------------- */
-  const filterSwiper = new Swiper(filterSwiperEl, {
+  /* ---------------- SWIPERS ---------------- */
+  new Swiper(section.querySelector('.swiper-container-filter'), {
     slidesPerView: 'auto',
     freeMode: true,
-    spaceBetween: 40,
-    watchSlidesProgress: true,
-
-    // 🔒 DO NOT BLOCK CLICKS
-    preventClicks: false,
-    preventClicksPropagation: false,
-    touchStartPreventDefault: false,
+    spaceBetween: 40
   });
 
-  /* ---------------- PRODUCT SWIPER ---------------- */
-  const productSwiper = new Swiper(productSwiperEl, {
+  const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
     slidesPerView: 1.2,
     spaceBetween: 24,
-    watchSlidesProgress: true,
-    resistanceRatio: 0.85,
-
-    // 🔥 CRITICAL FIX (BUTTONS WORK FIRST CLICK)
-    preventClicks: false,
-    preventClicksPropagation: false,
-    touchStartPreventDefault: false,
-
     scrollbar: {
-      el: scrollbarEl,
+      el: section.querySelector('.swiper-scrollbar'),
       draggable: true
     },
-
     breakpoints: {
       768: { slidesPerView: 2.5 },
       1025: { slidesPerView: 3.5 }
@@ -128,63 +108,49 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------------- INIT FIRST TAB ---------------- */
-  if (tabs.length) {
-    const firstTab = tabs[0];
-    const firstFilter = firstTab.dataset.filter;
+  const firstTab = tabs[0];
+  const firstFilter = firstTab.dataset.filter;
 
-    firstTab.closest('.related-product-caps')?.classList.add('active');
+  firstTab.closest('.related-product-caps').classList.add('active');
 
-    slides.forEach(slide => {
-      slide.style.display =
-        slide.dataset.collection === firstFilter ? 'block' : 'none';
-    });
+  slides.forEach(slide => {
+    if (slide.dataset.collection === firstFilter) {
+      slide.style.display = 'block';
+    }
+  });
 
-    productSwiper.update();
-    productSwiper.slideTo(0, 0);
-  }
+  productSwiper.update();
 
   /* ---------------- TAB CLICK ---------------- */
   tabs.forEach(tab => {
     tab.addEventListener('click', e => {
       e.preventDefault();
-      e.stopPropagation();
 
       const filter = tab.dataset.filter;
 
-      // active state
+      /* active tab */
       section.querySelectorAll('.related-product-caps')
         .forEach(el => el.classList.remove('active'));
-      tab.closest('.related-product-caps')?.classList.add('active');
+      tab.closest('.related-product-caps').classList.add('active');
 
-      // filter slides
+      /* reset slides */
       slides.forEach(slide => {
-        slide.style.display =
-          slide.dataset.collection === filter ? 'block' : 'none';
+        slide.style.display = '';
+      });
+
+      /* show matching slides */
+      slides.forEach(slide => {
+        if (slide.dataset.collection === filter) {
+          slide.style.display = 'block';
+        }
       });
 
       productSwiper.update();
-      productSwiper.slideTo(0, 0);
+      productSwiper.slideTo(0);
     });
   });
-
-  /* ---------------- STOP SWIPER ON BUTTONS ---------------- */
-  section.addEventListener('pointerdown', e => {
-    if (e.target.closest('button, a, form')) {
-      e.stopPropagation();
-    }
-  });
-
-  /* ---------------- ADD TO CART (REDIRECT MODE) ---------------- */
-  section.addEventListener('submit', e => {
-    const form = e.target.closest('.product-form');
-    if (!form) return;
-
-    e.stopPropagation(); // prevent swiper interference
-  });
-
 });
 </script>
-
 
 
 {% schema %}
