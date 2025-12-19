@@ -1,3 +1,32 @@
+.product-carousel .swiper-container-filter {
+    width: calc(73.6% - 8rem);
+    margin-left: auto;
+    margin-right: 0;
+}
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+.product-carousel .swiper-container-filter .swiper-slide {
+    display: inline-block;
+    width: auto;
+    color: #525252;
+}
+.product-carousel .swiper-slide {
+    height: auto;
+}
+.product-carousel .collection-lead-info {
+    width: 78%;
+    margin-left: auto;
+}
+.product-carousel .collection-lead-info {
+    padding-bottom: 5rem;
+}
 /* ===============================
    PRODUCT TABS CAROUSEL
 ================================ */
