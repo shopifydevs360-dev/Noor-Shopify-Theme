@@ -59,7 +59,6 @@
 
     <!-- ================= Add to cart button ================= -->
     <div class="cart-button-wrapper">
-
       {% if product.variants.size > 1 %}
 
         <div class="variants-outer-wrapper">
@@ -87,7 +86,7 @@
       {% else %}
 
         {% assign variant = product.variants.first %}
-        <form method="post" action="/cart/add" class="product-form">
+        <form method="post" action="{{ routes.cart_add_url }}" class="product-form">
           <input type="hidden" name="id" value="{{ variant.id }}">
 
           <button
@@ -102,9 +101,7 @@
             {% endif %}
           </button>
         </form>
-
       {% endif %}
-
     </div>
 
   </div>
