@@ -12,6 +12,11 @@
     transition-property: transform;
     box-sizing: content-box;
 }
+.product-carousel .swiper-container-filter {
+    width: calc(73.6% - 8rem);
+    margin-left: auto;
+    margin-right: 0;
+}
 .product-carousel .swiper-container-filter .swiper-slide {
     display: inline-block;
     width: auto;
