@@ -1,73 +1,78 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Get the cart behavior from the data attribute on the main section
-  const section = document.querySelector('.shopify-section[data-cart-behavior]');
-  const cartBehavior = section ? section.dataset.cartBehavior : 'redirect';
-
-  // AJAX Add to Cart
-  const addToCartForms = document.querySelectorAll('.product-form');
-  addToCartForms.forEach(form => {
-    form.addEventListener('submit', function(e) {
-      // Only process if it's an AJAX form (not redirect)
-      if (cartBehavior === 'redirect') return;
-
-      e.preventDefault();
-      const submitButton = form.querySelector('button[type="submit"]');
-      
-      // Show loading state
-      submitButton.classList.add('loading');
-      submitButton.disabled = true;
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        body: new FormData(form)
-      })
-      .then(response => response.json())
-      .then(data => {
-        // On success, update cart UI
-        console.log('Product added to cart:', data);
-        updateCartUI(data); 
-      })
-      .catch(error => {
-        console.error('Error adding to cart:', error);
-        alert(error.description || 'There was an error adding this product to your cart. Please try again.');
-      })
-      .finally(() => {
-        // Remove loading state
-        submitButton.classList.remove('loading');
-        submitButton.disabled = false;
-      });
-    });
-  });
-
-  // Placeholder for Wishlist functionality
-  const wishlistButtons = document.querySelectorAll('.wishlist-btn');
-  wishlistButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('Wishlist functionality is not implemented. This would typically require an app or custom logic.');
-    });
-  });
-
-  // Function to update the cart UI (e.g., cart drawer, cart count)
-  function updateCartUI(addedItem) {
-    // This is a placeholder. You would typically fetch the cart data
-    // and update the UI elements like the cart count or open a cart drawer.
-    fetch('/cart.js')
-      .then(response => response.json())
-      .then(cart => {
-        // Update cart count element if it exists
-        const cartCountElement = document.querySelector('.cart-count');
-        if (cartCountElement) {
-          cartCountElement.textContent = cart.item_count;
-        }
-        
-        // Example: show a notification
-        // showNotification(`${addedItem.title} has been added to your cart.`);
-        
-        // Example: open a cart drawer (you would need to implement this function)
-        // if (typeof openCartDrawer === 'function') {
-        //   openCartDrawer();
-        // }
-      });
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  initProductCardCartBehavior();
 });
+
+function initProductCardCartBehavior() {
+  document.addEventListener("click", (e) => {
+    const variantBtn = e.target.closest(".js-quick-add-to-cart");
+    if (!variantBtn) return;
+
+    const card = variantBtn.closest(".product-card");
+    if (!card) return;
+
+    const behavior = card.dataset.cartBehavior || "redirect";
+    const variantId = variantBtn.dataset.variantId;
+
+    if (behavior === "redirect") {
+      window.location.href = `/cart/${variantId}:1`;
+      return;
+    }
+
+    e.preventDefault();
+    ajaxAddToCart(variantId, behavior, variantBtn);
+  });
+
+  document.addEventListener("submit", (e) => {
+    const form = e.target.closest(".product-form");
+    if (!form) return;
+
+    const card = form.closest(".product-card");
+    if (!card) return;
+
+    const behavior = card.dataset.cartBehavior || "redirect";
+    if (behavior === "redirect") return;
+
+    e.preventDefault();
+    const variantId = form.querySelector("[name='id']").value;
+    const button = form.querySelector("button[type='submit']");
+    ajaxAddToCart(variantId, behavior, button);
+  });
+}
+
+function ajaxAddToCart(variantId, behavior, triggerEl) {
+  triggerEl.classList.add("loading");
+  triggerEl.disabled = true;
+
+  fetch("/cart/add.js", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: variantId, quantity: 1 })
+  })
+    .then((res) => res.json())
+    .then((item) => {
+      updateCartCount();
+
+      if (behavior === "ajax_drawer") {
+        if (typeof openCartDrawer === "function") {
+          openCartDrawer();
+        }
+      }
+    })
+    .catch((err) => {
+      console.error("Add to cart error:", err);
+    })
+    .finally(() => {
+      triggerEl.classList.remove("loading");
+      triggerEl.disabled = false;
+    });
+}
+
+function updateCartCount() {
+  fetch("/cart.js")
+    .then((res) => res.json())
+    .then((cart) => {
+      document.querySelectorAll(".cart-count").forEach((el) => {
+        el.textContent = cart.item_count;
+      });
+    });
+}
