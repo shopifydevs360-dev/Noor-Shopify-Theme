@@ -1,31 +1,30 @@
 {% if product %}
 
-<div class="product-card" data-product-id="{{ product.id }}">
+<div class="product-card">
 
-  <!-- ================= IMAGE WRAP ================= -->
   <div class="image-wrap">
-
     <a href="{{ product.url }}" aria-label="{{ product.title }}">
 
       <div class="cropped-image-wrapper">
 
-        <!-- ================= BADGE ================= -->
+        <!-- ================= BADGES ================= -->
         {% if product.tags contains 'best seller' %}
           <div class="product-badges-wrapper">
-            <span>Best Seller</span>
+            <span>best seller</span>
           </div>
         {% endif %}
 
-        <!-- ================= PRIMARY IMAGE ================= -->
+
+        <!-- ================= PRIMARY IMAGE (FIRST LOAD) ================= -->
         {% if product.featured_image %}
           <img
             srcset="
-              {{ product.featured_image | img_url: '165x' }} 165w,
-              {{ product.featured_image | img_url: '360x' }} 360w,
-              {{ product.featured_image | img_url: '533x' }} 533w,
-              {{ product.featured_image | img_url: '720x' }} 720w,
-              {{ product.featured_image | img_url: '940x' }} 940w,
-              {{ product.featured_image | img_url: '1066x' }} 1066w
+              {%- if product.featured_image.width >= 165 -%}{{ product.featured_image | img_url: '165x' }} 165w,{%- endif -%}
+              {%- if product.featured_image.width >= 360 -%}{{ product.featured_image | img_url: '360x' }} 360w,{%- endif -%}
+              {%- if product.featured_image.width >= 533 -%}{{ product.featured_image | img_url: '533x' }} 533w,{%- endif -%}
+              {%- if product.featured_image.width >= 720 -%}{{ product.featured_image | img_url: '720x' }} 720w,{%- endif -%}
+              {%- if product.featured_image.width >= 940 -%}{{ product.featured_image | img_url: '940x' }} 940w,{%- endif -%}
+              {%- if product.featured_image.width >= 1066 -%}{{ product.featured_image | img_url: '1066x' }} 1066w{%- endif -%}
             "
             src="{{ product.featured_image | img_url: '533x' }}"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
@@ -42,12 +41,12 @@
           {% assign hover_image = product.images[1] %}
           <img
             srcset="
-              {{ hover_image | img_url: '165x' }} 165w,
-              {{ hover_image | img_url: '360x' }} 360w,
-              {{ hover_image | img_url: '533x' }} 533w,
-              {{ hover_image | img_url: '720x' }} 720w,
-              {{ hover_image | img_url: '940x' }} 940w,
-              {{ hover_image | img_url: '1066x' }} 1066w
+              {%- if hover_image.width >= 165 -%}{{ hover_image | img_url: '165x' }} 165w,{%- endif -%}
+              {%- if hover_image.width >= 360 -%}{{ hover_image | img_url: '360x' }} 360w,{%- endif -%}
+              {%- if hover_image.width >= 533 -%}{{ hover_image | img_url: '533x' }} 533w,{%- endif -%}
+              {%- if hover_image.width >= 720 -%}{{ hover_image | img_url: '720x' }} 720w,{%- endif -%}
+              {%- if hover_image.width >= 940 -%}{{ hover_image | img_url: '940x' }} 940w,{%- endif -%}
+              {%- if hover_image.width >= 1066 -%}{{ hover_image | img_url: '1066x' }} 1066w{%- endif -%}
             "
             src="{{ hover_image | img_url: '533x' }}"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
@@ -65,51 +64,29 @@
     <!-- ================= QUICK ADD ================= -->
     <div class="ajax-quick-add-wrapper">
 
-      {% if product.variants.size > 1 %}
+      <div class="variants-outer-wrapper">
 
-        <div class="variants-outer-wrapper">
-          <div class="variants-wrapper">
-
-            {% for variant in product.variants %}
+        <div class="variants-wrapper">
+          {% for variant in product.variants %}
+            {% if variant.available %}
               <button
                 type="button"
-                class="js-quick-add-to-cart variant-btn text-only split-aligner{% unless variant.available %} disabled{% endunless %}"
+                class="js-quick-add-to-cart event_buy_now_add_to_cart text-only variant-btn split-aligner js-quick-add-to-cart--full-width"
                 data-variant-id="{{ variant.id }}"
-                {% unless variant.available %}disabled{% endunless %}
+                aria-label="Add {{ variant.title }} to cart"
               >
                 <span>{{ variant.title }}</span>
                 <span>{{ variant.price | money }}</span>
               </button>
-            {% endfor %}
-
-          </div>
-
-          <button type="button" class="text-only cta-btn">
-            Make Selection
-          </button>
+            {% endif %}
+          {% endfor %}
         </div>
 
-      {% else %}
+        <button type="button" class="text-only cta-btn" style="width: 100%; text-align: center;">
+          Make Selection
+        </button>
 
-        {% assign variant = product.variants.first %}
-        <form method="post" action="/cart/add" class="product-form">
-          <input type="hidden" name="id" value="{{ variant.id }}">
-
-          <button
-            type="submit"
-            class="js-quick-add-to-cart cta-btn text-only"
-            {% unless variant.available %}disabled{% endunless %}
-          >
-            {% if variant.available %}
-              Add to bag
-            {% else %}
-              Out of stock
-            {% endif %}
-          </button>
-        </form>
-
-      {% endif %}
-
+      </div>
     </div>
 
   </div>
