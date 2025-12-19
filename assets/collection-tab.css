@@ -38,6 +38,10 @@
     padding-left: 8rem;
     padding-right: 4rem;
 }
+.swiper-container-free-mode>.swiper-wrapper {
+    transition-timing-function: ease-out;
+    margin: 0 auto;
+}
 .product-carousel .collection-lead-info {
     width: 78%;
     margin-left: auto;
