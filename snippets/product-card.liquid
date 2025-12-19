@@ -58,7 +58,7 @@
     </a>
 
     <!-- ================= QUICK ADD ================= -->
-    <div class="ajax-quick-add-wrapper">
+    <div class="cart-button-wrapper">
 
       {% if product.variants.size > 1 %}
 
@@ -68,7 +68,7 @@
             {% for variant in product.variants %}
               <button
                 type="button"
-                class="js-quick-add-to-cart variant-btn text-only split-aligner{% unless variant.available %} disabled{% endunless %}"
+                class="variant-btn text-only split-aligner{% unless variant.available %} disabled{% endunless %}"
                 data-variant-id="{{ variant.id }}"
                 {% unless variant.available %}disabled{% endunless %}
               >
