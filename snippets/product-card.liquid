@@ -1,14 +1,9 @@
 {% if product %}
-
 <div class="product-card" data-product-id="{{ product.id }}">
-
   <!-- ================= IMAGE WRAP ================= -->
   <div class="image-wrap">
-
     <a href="{{ product.url }}" aria-label="{{ product.title }}">
-
       <div class="cropped-image-wrapper">
-
         <!-- ================= BADGE ================= -->
         {% if product.tags contains 'best seller' %}
           <div class="product-badges-wrapper">
@@ -121,7 +116,6 @@
       <p class="title">
         <a href="{{ product.url }}">{{ product.title }}</a>
       </p>
-
       <p class="price">
         {{ product.price | money }}
       </p>
