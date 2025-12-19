@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
     slidesPerView: 1.2,
     spaceBetween: 24,
-  touchStartPreventDefault: false,
+  preventClicksPropagation: false,
     scrollbar: {
       el: section.querySelector('.swiper-scrollbar'),
       draggable: true
