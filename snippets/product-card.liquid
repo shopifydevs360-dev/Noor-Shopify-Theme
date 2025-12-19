@@ -68,7 +68,7 @@
             {% for variant in product.variants %}
               <button
                 type="button"
-                class="variant-btn text-only split-aligner{% unless variant.available %} disabled{% endunless %}"
+                class="variant-btn btn{% unless variant.available %} disabled{% endunless %}"
                 data-variant-id="{{ variant.id }}"
                 {% unless variant.available %}disabled{% endunless %}
               >
@@ -92,7 +92,7 @@
 
           <button
             type="submit"
-            class="js-quick-add-to-cart cta-btn text-only"
+            class="single-btn btn"
             {% unless variant.available %}disabled{% endunless %}
           >
             {% if variant.available %}
