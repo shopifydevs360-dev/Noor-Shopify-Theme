@@ -27,3 +27,6 @@
 .product-carousel .collection-lead-info {
     padding-bottom: 5rem;
 }
+.swiper-slide.product-slide{
+    display: none;
+}
