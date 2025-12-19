@@ -34,6 +34,10 @@
 .product-carousel .swiper-slide {
     height: auto;
 }
+.product-carousel .swiper-container-product {
+    padding-left: 8rem;
+    padding-right: 4rem;
+}
 .product-carousel .collection-lead-info {
     width: 78%;
     margin-left: auto;
