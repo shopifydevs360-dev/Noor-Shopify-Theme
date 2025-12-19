@@ -42,6 +42,10 @@
     transition-timing-function: ease-out;
     margin: 0 auto;
 }
+.v-aligner{
+    display: flex;
+    align-items: center;
+}
 .product-carousel .collection-lead-info {
     width: 78%;
     margin-left: auto;
