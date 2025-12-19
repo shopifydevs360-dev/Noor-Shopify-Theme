@@ -85,17 +85,19 @@
         <form method="post" action="{{ routes.cart_add_url }}" class="product-form">
           <input type="hidden" name="id" value="{{ variant.id }}">
 
-          <button
-            type="submit"
-            class="single-btn btn"
-            {% unless variant.available %}disabled{% endunless %}
-          >
-            {% if variant.available %}
-              Add to bag
-            {% else %}
-              Out of stock
-            {% endif %}
-          </button>
+<button
+  type="button"
+  class="single-btn btn js-add-to-cart"
+  data-variant-id="{{ variant.id }}"
+  {% unless variant.available %}disabled{% endunless %}
+>
+  {% if variant.available %}
+    Add to bag
+  {% else %}
+    Out of stock
+  {% endif %}
+</button>
+
         </form>
       {% endif %}
     </div>
