@@ -81,22 +81,30 @@
 
       {% else %}
 
-        {% assign variant = product.variants.first %}
-        <form method="post" action="{{ routes.cart_add_url }}" class="product-form">
-          <input type="hidden" name="id" value="{{ variant.id }}">
+{% assign variant = product.variants.first %}
 
-          <button
-            type="submit"
-            class="single-btn btn"
-            {% unless variant.available %}disabled{% endunless %}
-          >
-            {% if variant.available %}
-              Add to bag
-            {% else %}
-              Out of stock
-            {% endif %}
-          </button>
-        </form>
+<form
+  method="post"
+  action="{{ routes.cart_add_url }}"
+  class="product-form"
+  onsubmit="event.stopPropagation();"
+>
+  <input type="hidden" name="id" value="{{ variant.id }}">
+
+  <button
+    type="submit"
+    class="single-btn btn"
+    onclick="event.stopPropagation();"
+    {% unless variant.available %}disabled{% endunless %}
+  >
+    {% if variant.available %}
+      Add to bag
+    {% else %}
+      Out of stock
+    {% endif %}
+  </button>
+</form>
+
       {% endif %}
     </div>
 
