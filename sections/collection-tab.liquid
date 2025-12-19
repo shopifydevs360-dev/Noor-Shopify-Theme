@@ -84,24 +84,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const section = document.querySelector('.js-product-carousel');
   if (!section) return;
 
+  /* ---------------- ELEMENTS ---------------- */
   const tabs = section.querySelectorAll('.js-slider-filter');
   const slides = section.querySelectorAll('.product-slide');
+  const filterSwiperEl = section.querySelector('.swiper-container-filter');
+  const productSwiperEl = section.querySelector('.swiper-container-product');
+  const scrollbarEl = section.querySelector('.swiper-scrollbar');
 
-  /* ---------------- SWIPERS ---------------- */
-  new Swiper(section.querySelector('.swiper-container-filter'), {
+  /* ---------------- FILTER SWIPER ---------------- */
+  const filterSwiper = new Swiper(filterSwiperEl, {
     slidesPerView: 'auto',
     freeMode: true,
-    spaceBetween: 40
+    spaceBetween: 40,
+    watchSlidesProgress: true,
+
+    // 🔒 DO NOT BLOCK CLICKS
+    preventClicks: false,
+    preventClicksPropagation: false,
+    touchStartPreventDefault: false,
   });
 
-  const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
+  /* ---------------- PRODUCT SWIPER ---------------- */
+  const productSwiper = new Swiper(productSwiperEl, {
     slidesPerView: 1.2,
     spaceBetween: 24,
-  preventClicksPropagation: false,
+    watchSlidesProgress: true,
+    resistanceRatio: 0.85,
+
+    // 🔥 CRITICAL FIX (BUTTONS WORK FIRST CLICK)
+    preventClicks: false,
+    preventClicksPropagation: false,
+    touchStartPreventDefault: false,
+
     scrollbar: {
-      el: section.querySelector('.swiper-scrollbar'),
+      el: scrollbarEl,
       draggable: true
     },
+
     breakpoints: {
       768: { slidesPerView: 2.5 },
       1025: { slidesPerView: 3.5 }
@@ -109,49 +128,63 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------------- INIT FIRST TAB ---------------- */
-  const firstTab = tabs[0];
-  const firstFilter = firstTab.dataset.filter;
+  if (tabs.length) {
+    const firstTab = tabs[0];
+    const firstFilter = firstTab.dataset.filter;
 
-  firstTab.closest('.related-product-caps').classList.add('active');
+    firstTab.closest('.related-product-caps')?.classList.add('active');
 
-  slides.forEach(slide => {
-    if (slide.dataset.collection === firstFilter) {
-      slide.style.display = 'block';
-    }
-  });
+    slides.forEach(slide => {
+      slide.style.display =
+        slide.dataset.collection === firstFilter ? 'block' : 'none';
+    });
 
-  productSwiper.update();
+    productSwiper.update();
+    productSwiper.slideTo(0, 0);
+  }
 
   /* ---------------- TAB CLICK ---------------- */
   tabs.forEach(tab => {
     tab.addEventListener('click', e => {
       e.preventDefault();
+      e.stopPropagation();
 
       const filter = tab.dataset.filter;
 
-      /* active tab */
+      // active state
       section.querySelectorAll('.related-product-caps')
         .forEach(el => el.classList.remove('active'));
-      tab.closest('.related-product-caps').classList.add('active');
+      tab.closest('.related-product-caps')?.classList.add('active');
 
-      /* reset slides */
+      // filter slides
       slides.forEach(slide => {
-        slide.style.display = '';
-      });
-
-      /* show matching slides */
-      slides.forEach(slide => {
-        if (slide.dataset.collection === filter) {
-          slide.style.display = 'block';
-        }
+        slide.style.display =
+          slide.dataset.collection === filter ? 'block' : 'none';
       });
 
       productSwiper.update();
-      productSwiper.slideTo(0);
+      productSwiper.slideTo(0, 0);
     });
   });
+
+  /* ---------------- STOP SWIPER ON BUTTONS ---------------- */
+  section.addEventListener('pointerdown', e => {
+    if (e.target.closest('button, a, form')) {
+      e.stopPropagation();
+    }
+  });
+
+  /* ---------------- ADD TO CART (REDIRECT MODE) ---------------- */
+  section.addEventListener('submit', e => {
+    const form = e.target.closest('.product-form');
+    if (!form) return;
+
+    e.stopPropagation(); // prevent swiper interference
+  });
+
 });
 </script>
+
 
 
 {% schema %}
