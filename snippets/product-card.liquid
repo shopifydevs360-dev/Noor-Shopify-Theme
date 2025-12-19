@@ -1,61 +1,31 @@
 {% if product %}
-
 <div class="product-card">
 
+  <!-- ================= IMAGE ================= -->
   <div class="image-wrap">
     <a href="{{ product.url }}" aria-label="{{ product.title }}">
-
       <div class="cropped-image-wrapper">
 
-        <!-- ================= BADGES ================= -->
         {% if product.tags contains 'best seller' %}
           <div class="product-badges-wrapper">
             <span>best seller</span>
           </div>
         {% endif %}
 
-
-        <!-- ================= PRIMARY IMAGE (FIRST LOAD) ================= -->
         {% if product.featured_image %}
           <img
-            srcset="
-              {%- if product.featured_image.width >= 165 -%}{{ product.featured_image | img_url: '165x' }} 165w,{%- endif -%}
-              {%- if product.featured_image.width >= 360 -%}{{ product.featured_image | img_url: '360x' }} 360w,{%- endif -%}
-              {%- if product.featured_image.width >= 533 -%}{{ product.featured_image | img_url: '533x' }} 533w,{%- endif -%}
-              {%- if product.featured_image.width >= 720 -%}{{ product.featured_image | img_url: '720x' }} 720w,{%- endif -%}
-              {%- if product.featured_image.width >= 940 -%}{{ product.featured_image | img_url: '940x' }} 940w,{%- endif -%}
-              {%- if product.featured_image.width >= 1066 -%}{{ product.featured_image | img_url: '1066x' }} 1066w{%- endif -%}
-            "
             src="{{ product.featured_image | img_url: '533x' }}"
-            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
             alt="{{ product.featured_image.alt | escape }}"
             class="product-card__image"
-            loading="lazy"
-            width="{{ product.featured_image.width }}"
-            height="{{ product.featured_image.height }}"
-          >
+            loading="lazy">
         {% endif %}
 
-        <!-- ================= HOVER IMAGE ================= -->
         {% if product.images.size > 1 %}
-          {% assign hover_image = product.images[1] %}
           <img
-            srcset="
-              {%- if hover_image.width >= 165 -%}{{ hover_image | img_url: '165x' }} 165w,{%- endif -%}
-              {%- if hover_image.width >= 360 -%}{{ hover_image | img_url: '360x' }} 360w,{%- endif -%}
-              {%- if hover_image.width >= 533 -%}{{ hover_image | img_url: '533x' }} 533w,{%- endif -%}
-              {%- if hover_image.width >= 720 -%}{{ hover_image | img_url: '720x' }} 720w,{%- endif -%}
-              {%- if hover_image.width >= 940 -%}{{ hover_image | img_url: '940x' }} 940w,{%- endif -%}
-              {%- if hover_image.width >= 1066 -%}{{ hover_image | img_url: '1066x' }} 1066w{%- endif -%}
-            "
-            src="{{ hover_image | img_url: '533x' }}"
-            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-            alt="{{ hover_image.alt | escape }}"
+            src="{{ product.images[1] | img_url: '533x' }}"
+            alt="{{ product.images[1].alt | escape }}"
             class="hover-img"
-            loading="lazy"
-            width="{{ hover_image.width }}"
-            height="{{ hover_image.height }}"
-          >
+            loading="lazy">
         {% endif %}
 
       </div>
@@ -64,48 +34,74 @@
     <!-- ================= QUICK ADD ================= -->
     <div class="ajax-quick-add-wrapper">
 
-      <div class="variants-outer-wrapper">
+      {% if product.variants.size > 1 %}
+        <!-- MULTI VARIANT -->
+        <div class="variants-outer-wrapper">
+          <div class="variants-wrapper">
 
-        <div class="variants-wrapper">
-          {% for variant in product.variants %}
-            {% if variant.available %}
-              <button
-                type="button"
-                class="js-quick-add-to-cart event_buy_now_add_to_cart text-only variant-btn split-aligner js-quick-add-to-cart--full-width"
-                data-variant-id="{{ variant.id }}"
-                aria-label="Add {{ variant.title }} to cart"
+            {% for variant in product.variants %}
+              <form
+                method="post"
+                action="/cart/add"
+                class="product-form"
+                data-product-id="{{ product.id }}"
               >
-                <span>{{ variant.title }}</span>
-                <span>{{ variant.price | money }}</span>
-              </button>
-            {% endif %}
-          {% endfor %}
+                <input type="hidden" name="id" value="{{ variant.id }}">
+
+                <button
+                  type="submit"
+                  class="text-only variant-btn split-aligner js-quick-add-to-cart--full-width{% unless variant.available %} disabled{% endunless %}"
+                  {% unless variant.available %}disabled{% endunless %}
+                >
+                  <span>{{ variant.title }}</span>
+                  <span>{{ variant.price | money }}</span>
+                </button>
+              </form>
+            {% endfor %}
+
+          </div>
+
+          <button type="button" class="text-only cta-btn">
+            Make Selection
+          </button>
         </div>
 
-        <button type="button" class="text-only cta-btn" style="width: 100%; text-align: center;">
-          Make Selection
-        </button>
+      {% else %}
+        <!-- SINGLE VARIANT -->
+        <form
+          method="post"
+          action="/cart/add"
+          class="product-form"
+          data-product-id="{{ product.id }}"
+        >
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
-      </div>
+          <button
+            type="submit"
+            class="cta-btn text-only js-quick-add-to-cart--full-width"
+            {% unless product.available %}disabled{% endunless %}
+          >
+            {% if product.available %}
+              Add to bag
+            {% else %}
+              Out of stock
+            {% endif %}
+          </button>
+        </form>
+      {% endif %}
+
     </div>
-
   </div>
 
   <!-- ================= PRODUCT INFO ================= -->
   <div class="product-info">
     <div class="split-aligner">
-
       <p class="title">
         <a href="{{ product.url }}">{{ product.title }}</a>
       </p>
-
-      <p class="price">
-        {{ product.price | money }}
-      </p>
-
+      <p class="price">{{ product.price | money }}</p>
     </div>
   </div>
 
 </div>
-
 {% endif %}
