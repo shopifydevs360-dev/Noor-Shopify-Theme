@@ -95,15 +95,11 @@
     type="submit"
     class="single-btn btn"
     onclick="event.stopPropagation();"
-    {% unless variant.available %}disabled{% endunless %}
   >
-    {% if variant.available %}
-      Add to bag
-    {% else %}
-      Out of stock
-    {% endif %}
+    Add to bag
   </button>
 </form>
+
 
       {% endif %}
     </div>
