@@ -130,6 +130,6 @@ text-decoration: underline;
     font-size: 22px;
     color: inherit;
 }
-.split-aligner .title a{
+.split-aligner .title h3{
   color: rgb(var(--color-heading, var(--color-text)));
 }
