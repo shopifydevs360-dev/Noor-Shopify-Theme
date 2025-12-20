@@ -91,6 +91,8 @@
     transition: all .6s ease;
     height: 0;
     overflow: hidden; */
+    border-bottom: 1px solid #e3c7bf;
+    
 }
 .product-card .cart-button-wrapper:hover .variants-wrapper {
     opacity: 1;
