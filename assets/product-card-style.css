@@ -1,237 +1,55 @@
-/* =========================================
-   PRODUCT CARD – BASE
-========================================= */
-
-.product-card {
-  position: relative;
-}
-
 .product-card .image-wrap {
-  position: relative;
-  display: block;
-  margin-bottom: 2.5rem;
-  overflow: hidden;
-}
-
-/* =========================================
-   IMAGE WRAPPER
-========================================= */
-
-.cropped-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 110%;
-  overflow: hidden;
-}
-
-.cropped-image-wrapper img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.6s ease,
-              transform 0.8s cubic-bezier(0,0,.002,1);
-}
-
-/* Hover image */
-.product-card .hover-img {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1.08);
-}
-
-.product-card:hover .hover-img {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.product-card:hover .product-card__image {
-  transform: translate(-50%, -50%) scale(1.04);
-}
-
-/* =========================================
-   BADGES
-========================================= */
-
-.product-badges-wrapper {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.product-badges-wrapper span {
-  padding: 2px 8px 3px;
-  background: var(--badge-background-color);
-  color: var(--badge-text-color);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 14px;
-  letter-spacing: 0.42px;
-  text-transform: uppercase;
-}
-
-/* =========================================
-   ADD TO CART OVERLAY
-========================================= */
-
-.cart-button-wrapper {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4;
-  padding: 14px;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0)
-  );
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(14px);
-  transition: opacity 0.35s ease,
-              transform 0.35s ease,
-              visibility 0.35s ease;
-}
-
-.product-card:hover .cart-button-wrapper {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Prevent Swiper drag on buttons */
-.swiper-no-swiping {
-  touch-action: manipulation;
-}
-
-/* =========================================
-   SINGLE VARIANT – ADD TO BAG
-========================================= */
-
-.single-btn {
-  width: 100%;
-  height: 44px;
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease,
-              color 0.3s ease;
-}
-
-.single-btn:hover {
-  background: #000000;
-  color: #ffffff;
-}
-
-.single-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* =========================================
-   MULTI VARIANT – MAKE SELECTION
-========================================= */
-
-.variants-outer-wrapper {
-  width: 100%;
-}
-
-.variants-wrapper {
-  display: none; /* hidden until selection UI is added */
-}
-
-.cart-button-wrapper .cta-btn {
-  width: 100%;
-  height: 44px;
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease,
-              color 0.3s ease;
-}
-
-.cart-button-wrapper .cta-btn:hover {
-  background: #000000;
-  color: #ffffff;
-}
-
-/* =========================================
-   VARIANT BUTTONS (FUTURE USE)
-========================================= */
-
-.variant-btn {
-  width: 100%;
-  padding: 10px 12px;
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #dddddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-
-.variant-btn:hover {
-  background: #f5f5f5;
-}
-
-.variant-btn.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* =========================================
-   PRODUCT INFO
-========================================= */
-
-.product-info {
-  margin-top: 0.5rem;
-}
-
-.product-info .title {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.product-info .price {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* =========================================
-   MOBILE BEHAVIOR
-========================================= */
-
-@media (max-width: 768px) {
-  .cart-button-wrapper {
+    display: block;
+    margin-bottom: 2.5rem;
     position: relative;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    background: none;
-    padding: 12px 0 0;
-  }
-
-  .product-card:hover .hover-img {
-    opacity: 0; /* disable hover image on mobile */
-  }
+}
+.cropped-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 110%;
+    overflow: hidden;
+}
+.product-card .cropped-image-wrapper .product-badges-wrapper {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 2;
+    gap: 10px;
+}
+.product-card .cropped-image-wrapper .product-badges-wrapper span {
+    padding: 2px 8px 3px;
+    background: var(--badge-background-color);
+    color: var(--badge-text-color);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: .42px;
+    text-transform: uppercase;
+}
+.product-card .image-wrap .cropped-image-wrapper img {
+    transition: all .8s cubic-bezier(0,0,.002,1);
+}
+.cropped-image-wrapper img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    transform: translate(-50%,-50%);
+    min-height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: auto;
+    height: auto;
+}
+.product-card .image-wrap .hover-img {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.08);
 }
