@@ -78,7 +78,7 @@
           "text": "#222222",
           "subtext": "#ffffff",
           "heading_text": "#ffffff",
-          "link_color": "#ffffff",
+          "link_color": "#222222",
           "link_hover_color": "#000000",
           "price_sale": "#cccccc",
           "price_regular": "#666666",
