@@ -130,7 +130,7 @@ text-decoration: underline;
     font-size: 22px;
     color: inherit;
 }
-.split-aligner .title h4{
+.split-aligner .title a{
   color: rgb(var(--color-heading, var(--color-text)));
       font-size: 22px;
 }
