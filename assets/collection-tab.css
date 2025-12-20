@@ -63,8 +63,13 @@
     margin-left: auto;
 }
 .product-carousel .collection-lead-info {
+    width: 78%;
+    margin-left: auto;
+}
+.product-carousel .collection-lead-info {
     padding-bottom: 5rem;
 }
+/* Slider Css */
 .swiper-slide.product-slide{
     display: none;
 }
