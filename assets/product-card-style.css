@@ -101,7 +101,7 @@
     height: auto;
 }
 
-button.variant-btn {
+.product-card .variant-btn {
     width: 100%;
     background: transparent;
     height: auto;
@@ -109,4 +109,7 @@ button.variant-btn {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+}
+.product-card .variant-btn:hover {
+text-decoration: underline;
 }
