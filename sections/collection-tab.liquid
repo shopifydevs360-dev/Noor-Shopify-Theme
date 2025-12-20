@@ -1,6 +1,6 @@
 {{ 'collection-tab.css' | asset_url | stylesheet_tag: preload: true }}
 {% render 'section-base-style' %}
-<div class="product-tabs-carousel js-product-carousel-{{ section.id }} {{ section.settings.color_control }} {{ section.settings.custom_class }}">
+<div class="product-tabs-carousel js-product-carousel {{ section.settings.color_control }} {{ section.settings.custom_class }}">
   <div class="product-carousel section-{{ section.id }}-padding">
     <!-- ================= MOBILE TITLE ================= -->
     <h2 class="container hide-desktop">
@@ -79,10 +79,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  initProductCarousel{{ section.id }}();
-});
-
-function initProductCarousel{{ section.id }}() {
   const section = document.querySelector('.js-product-carousel-{{ section.id }}');
   if (!section) return;
 
@@ -96,21 +92,18 @@ function initProductCarousel{{ section.id }}() {
     spaceBetween: 40
   });
 
-  const productSwiper = new Swiper(
-    section.querySelector('.swiper-container-product'),
-    {
-      slidesPerView: 1.2,
-      spaceBetween: 24,
-      scrollbar: {
-        el: section.querySelector('.swiper-scrollbar'),
-        draggable: true
-      },
-      breakpoints: {
-        768: { slidesPerView: 2.5 },
-        1025: { slidesPerView: 3.5 }
-      }
+  const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
+    slidesPerView: 1.2,
+    spaceBetween: 24,
+    scrollbar: {
+      el: section.querySelector('.swiper-scrollbar'),
+      draggable: true
+    },
+    breakpoints: {
+      768: { slidesPerView: 2.5 },
+      1025: { slidesPerView: 3.5 }
     }
-  );
+  });
 
   /* ---------------- INIT FIRST TAB ---------------- */
   const firstTab = tabs[0];
@@ -119,8 +112,9 @@ function initProductCarousel{{ section.id }}() {
   firstTab.closest('.related-product-caps').classList.add('active');
 
   slides.forEach(slide => {
-    slide.style.display =
-      slide.dataset.collection === firstFilter ? 'block' : 'none';
+    if (slide.dataset.collection === firstFilter) {
+      slide.style.display = 'block';
+    }
   });
 
   productSwiper.update();
@@ -132,22 +126,29 @@ function initProductCarousel{{ section.id }}() {
 
       const filter = tab.dataset.filter;
 
+      /* active tab */
       section.querySelectorAll('.related-product-caps')
         .forEach(el => el.classList.remove('active'));
       tab.closest('.related-product-caps').classList.add('active');
 
+      /* reset slides */
       slides.forEach(slide => {
-        slide.style.display =
-          slide.dataset.collection === filter ? 'block' : 'none';
+        slide.style.display = '';
+      });
+
+      /* show matching slides */
+      slides.forEach(slide => {
+        if (slide.dataset.collection === filter) {
+          slide.style.display = 'block';
+        }
       });
 
       productSwiper.update();
       productSwiper.slideTo(0);
     });
   });
-}
+});
 </script>
-
 
 
 {% schema %}
