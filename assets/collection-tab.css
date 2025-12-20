@@ -69,7 +69,7 @@
 .product-carousel .collection-lead-info {
     padding-bottom: 5rem;
 }
-.product-carousel .collection-lead-info a .lines-masked{
+.product-carousel .collection-lead-info a .info-title{
     color: rgb(var(--color-heading, var(--color-text)));
 }
 /* Slider Css */
