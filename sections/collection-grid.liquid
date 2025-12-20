@@ -25,12 +25,18 @@
 
               {% if block.settings.image %}
                 <div class="cropped-image-wrapper">
-                  <img
-                    class="lazyload"
-                    data-src="{{ block.settings.image | img_url: '1440x1482' }}"
-                    data-sizes="auto"
-                    alt="{{ block.settings.title }}"
-                  >
+<img
+  src="{{ block.settings.image | img_url: '720x' }}"
+  srcset="
+    {{ block.settings.image | img_url: '720x' }} 720w,
+    {{ block.settings.image | img_url: '1024x' }} 1024w,
+    {{ block.settings.image | img_url: '1440x' }} 1440w
+  "
+  sizes="(min-width: 1200px) 50vw, 100vw"
+  alt="{{ block.settings.title }}"
+  loading="eager"
+>
+
                 </div>
               {% endif %}
             </div>
