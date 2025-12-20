@@ -112,7 +112,7 @@
     justify-content: space-between;
     font-size: 18px;
 }
-.product-card .variant-btn:last-of-type{
+.product-card .variant-btn:last-child{
     padding-bottom: 20px;
 }
 .product-card .variant-btn:hover {
