@@ -49,3 +49,7 @@
     width: auto;
     height: auto;
 }
+.product-card .image-wrap .hover-img {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.08);
+}
