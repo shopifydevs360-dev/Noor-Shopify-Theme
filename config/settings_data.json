@@ -72,8 +72,8 @@
       },
       "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99": {
         "settings": {
-          "background": "#ffffff",
-          "background_secondary": "#f5f5f5",
+          "background": "#222222",
+          "background_secondary": "#222222",
           "background_gradient": "",
           "text": "#111111",
           "subtext": "#111111",
