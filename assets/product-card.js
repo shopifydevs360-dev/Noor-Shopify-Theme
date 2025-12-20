@@ -22,8 +22,8 @@ function initAjaxAddToCart() {
       })
         .then(res => res.json())
         .then(() => {
-          // success – cart updated
-          // drawer hook will go here later
+          updateCartCount();
+          // cart drawer hook later
         })
         .catch(error => {
           console.error('Add to cart error:', error);
@@ -56,12 +56,28 @@ function initVariantAjaxAddToCart() {
       })
         .then(res => res.json())
         .then(() => {
-          // success – cart updated
-          // drawer hook will go here later
+          updateCartCount();
+          // cart drawer hook later
         })
         .catch(error => {
           console.error('Add to cart error:', error);
         });
     });
   });
+}
+
+/* ---------------------------------
+   UPDATE CART COUNT
+---------------------------------- */
+function updateCartCount() {
+  fetch('/cart.js')
+    .then(res => res.json())
+    .then(cart => {
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = cart.item_count;
+      });
+    })
+    .catch(error => {
+      console.error('Cart count update error:', error);
+    });
 }
