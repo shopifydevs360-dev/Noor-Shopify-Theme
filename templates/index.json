@@ -96,6 +96,42 @@
         "color_control": "section-light"
       }
     },
+    "collection_grid_AYNN6K": {
+      "type": "collection-grid",
+      "blocks": {
+        "collection_tile_fp4ycX": {
+          "type": "collection_tile",
+          "settings": {
+            "title": "Collection Title",
+            "cta_text": "Shop Now",
+            "link": "",
+            "image": "shopify://shop_images/2149288938.jpg",
+            "text_color": "#000000",
+            "background_color": "#ffffff",
+            "image_background_color": "#F3F3F4"
+          }
+        },
+        "collection_tile_FBdLek": {
+          "type": "collection_tile",
+          "settings": {
+            "title": "Collection Title",
+            "cta_text": "Shop Now",
+            "link": "",
+            "text_color": "#000000",
+            "background_color": "#ffffff",
+            "image_background_color": "#F3F3F4"
+          }
+        }
+      },
+      "block_order": [
+        "collection_tile_fp4ycX",
+        "collection_tile_FBdLek"
+      ],
+      "name": "Collections Grid",
+      "settings": {
+        "columns": 2
+      }
+    },
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
@@ -312,6 +348,7 @@
   "order": [
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
+    "collection_grid_AYNN6K",
     "custom_section_CWt6yq",
     "custom_section_YEaeWe",
     "collections_RQEPWp",
