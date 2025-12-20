@@ -32,6 +32,8 @@
 .product-carousel .swiper-container-filter .swiper-slide {
     display: inline-block;
     width: auto;
+}
+.product-carousel .swiper-container-filter .swiper-slide a{
       color: rgb(var(--color-link));
 }
 .related-product-caps {
