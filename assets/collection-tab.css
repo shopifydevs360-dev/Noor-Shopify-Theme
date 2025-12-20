@@ -69,6 +69,9 @@
 .product-carousel .collection-lead-info {
     padding-bottom: 5rem;
 }
+.product-carousel .collection-lead-info a .lines-masked{
+    color: rgb(var(--color-heading, var(--color-text)));
+}
 /* Slider Css */
 .swiper-slide.product-slide{
     display: none;
