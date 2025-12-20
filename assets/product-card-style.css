@@ -71,7 +71,6 @@
     z-index: 3;
     text-align: left;
     transition: all .6s ease;
-    padding: 12px 24px;
 }
 .product-card .image-wrap:hover .cart-button-wrapper {
     opacity: 1;
@@ -84,6 +83,7 @@
     font-family: inherit;
     text-transform: inherit;
     color: inherit;
+        padding: 12px 24px;
 }
 
 .product-card .cart-button-wrapper .variants-wrapper {
