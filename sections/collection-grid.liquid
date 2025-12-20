@@ -1,33 +1,69 @@
-<div id="shopify-section-16082607149eb162e4" class="shopify-section" {{ section.shopify_attributes }}>
-  <div class="image-overlay-grid cols-2 no-gutters">
+<div id="shopify-section-{{ section.id }}"
+     class="shopify-section collections-grid-alt"
+     {{ section.shopify_attributes }}>
+
+  <div class="image-overlay-grid cols-{{ section.settings.columns }} no-gutters">
+
     {% for block in section.blocks %}
-      <div {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.link }}" aria-label="{{ block.settings.title }} Shop Now"
-          class="image-with-text-overlay js-animate" style="background-color: {{ block.settings.bg_color }};">
-          <div class='scaling-image-wrapper'>
-            <div class="sliding-img-wrapper large-image" data-swipe-dir="up" data-shape="square" data-slide-order="1">
-              <div class="img-slide-bg" style="background-color: #F3F3F4;"></div>
-              <div class="cropped-image-wrapper">
-                <img class="lazyload"
-                  data-src="{{ block.settings.image | img_url: '1440x1482' }}"
-                  data-sizes="auto" alt="{{ block.settings.title }}">
+      <div class="grid-item" {{ block.shopify_attributes }}>
+        <a
+          href="{{ block.settings.link }}"
+          aria-label="{{ block.settings.title }} Shop Now"
+          class="image-with-text-overlay js-animate"
+          style="background-color: {{ block.settings.background_color }};"
+        >
+
+          <!-- IMAGE -->
+          <div class="scaling-image-wrapper">
+            <div class="sliding-img-wrapper large-image"
+                 data-swipe-dir="up"
+                 data-shape="square">
+
+              <div class="img-slide-bg"
+                   style="background-color: {{ block.settings.image_background_color }};">
               </div>
+
+              {% if block.settings.image %}
+                <div class="cropped-image-wrapper">
+                  <img
+                    class="lazyload"
+                    data-src="{{ block.settings.image | img_url: '1440x1482' }}"
+                    data-sizes="auto"
+                    alt="{{ block.settings.title }}"
+                  >
+                </div>
+              {% endif %}
             </div>
           </div>
-          <div class="image-overlay-end-details split-aligner" style="color: {{ block.settings.text_color }};">
-            <p>{{ block.settings.title }}</p>
-            <p>{{ block.settings.cta_text }}</p>
+
+          <!-- TEXT -->
+          <div class="image-overlay-end-details split-aligner"
+               style="color: {{ block.settings.text_color }};">
+            <p class="title">{{ block.settings.title }}</p>
+            <p class="cta">{{ block.settings.cta_text }}</p>
           </div>
+
         </a>
       </div>
     {% endfor %}
+
   </div>
 </div>
 
 {% schema %}
 {
   "name": "Collections Grid",
-  "settings": [],
+  "settings": [
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    }
+  ],
   "blocks": [
     {
       "type": "collection_tile",
@@ -76,39 +112,13 @@
       ]
     }
   ],
-  "max_blocks": 4,
+  "max_blocks": 6,
   "presets": [
     {
       "name": "Collections Grid",
       "blocks": [
-        {
-          "type": "collection_tile",
-          "settings": {
-            "title": "Bestsellers",
-            "cta_text": "Shop Now"
-          }
-        },
-        {
-          "type": "collection_tile",
-          "settings": {
-            "title": "Body",
-            "cta_text": "Shop Now"
-          }
-        },
-        {
-          "type": "collection_tile",
-          "settings": {
-            "title": "Fragrance",
-            "cta_text": "Shop Now"
-          }
-        },
-        {
-          "type": "collection_tile",
-          "settings": {
-            "title": "Shampoos and Conditioners",
-            "cta_text": "Shop Now"
-          }
-        }
+        { "type": "collection_tile" },
+        { "type": "collection_tile" }
       ]
     }
   ]
