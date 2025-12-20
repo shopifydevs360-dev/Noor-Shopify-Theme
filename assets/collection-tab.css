@@ -32,7 +32,7 @@
 .product-carousel .swiper-container-filter .swiper-slide {
     display: inline-block;
     width: auto;
-    color: #525252;
+      color: rgb(var(--color-link));
 }
 .related-product-caps {
     letter-spacing: .02rem;
