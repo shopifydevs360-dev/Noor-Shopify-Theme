@@ -112,8 +112,11 @@
     justify-content: space-between;
     font-size: 18px;
 }
-.product-card .variant-btn:last-child{
-    padding-bottom: 20px;
+.product-card .variant-btn:first-of-type {
+    margin-top: 10px;
+}
+.product-card .variant-btn:last-of-type {
+    margin-bottom: 10px;
 }
 .product-card .variant-btn:hover {
 text-decoration: underline;
