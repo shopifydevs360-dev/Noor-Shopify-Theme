@@ -89,7 +89,6 @@
 .product-card .cart-button-wrapper .variants-wrapper {
     opacity: 0;
     transition: all .6s ease;
-    padding: 20px 6px;
     height: 0;
     overflow: hidden;
 }
@@ -105,6 +104,7 @@
     width: 100%;
     background: transparent;
     height: auto;
+    padding: 12px 4px;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
