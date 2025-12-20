@@ -65,7 +65,7 @@
             {% for variant in product.variants %}
               <button
                 type="button"
-                class="variant-btn btn{% unless variant.available %} disabled{% endunless %}"
+                class="variant-btn {% unless variant.available %} disabled{% endunless %}"
                 data-variant-id="{{ variant.id }}"
                 {% unless variant.available %}disabled{% endunless %}
               >
