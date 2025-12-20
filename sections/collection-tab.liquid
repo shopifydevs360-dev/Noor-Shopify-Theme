@@ -77,6 +77,85 @@
   </div>
 </div>
 
+{{ 'collection-tab.css' | asset_url | stylesheet_tag: preload: true }}
+{% render 'section-base-style' %}
+<div class="product-tabs-carousel js-product-carousel {{ section.settings.color_control }} {{ section.settings.custom_class }}">
+  <div class="product-carousel section-{{ section.id }}-padding">
+    <!-- ================= MOBILE TITLE ================= -->
+    <h2 class="container hide-desktop">
+      <a href="{{ section.settings.title_link }}" aria-label="{{ section.settings.title }}">
+        <div data-reveal="lines-masked">
+          {{ section.settings.title }}
+        </div>
+      </a>
+    </h2>
+
+    <!-- ================= FILTER TABS ================= -->
+    <div class="swiper swiper-container-filter">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% assign handle = block.settings.collection.handle %}
+          <div class="related-product-caps swiper-slide {% if forloop.first %}active{% endif %}">
+            <a
+              href="#"
+              class="js-slider-filter"
+              data-filter="{{ handle }}"
+              aria-label="{{ block.settings.tab_label }}"
+            >
+              {{ block.settings.tab_label }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- ================= PRODUCTS CAROUSEL ================= -->
+    <div class="swiper swiper-container-product">
+      <div class="swiper-wrapper">
+
+        <!-- Desktop Lead Card -->
+        <div class="swiper-slide v-aligner hide-tablet">
+          <div class="collection-lead-info">
+            <h2 class="hd-3">
+              <a href="{{ section.settings.title_link }}">
+                <div data-reveal="lines-masked">
+                  {{ section.settings.title }}
+                </div>
+              </a>
+            </h2>
+
+            <a href="{{ section.settings.title_link }}" class="arrow-link">
+              SHOP NOW
+              <span class="icon">
+                {% render 'theme-icon', icon: 'right-arrow' %}
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        {% for block in section.blocks %}
+          {% assign collection = collections[block.settings.collection.handle] %}
+
+          {% if collection and collection.products_count > 0 %}
+            {% for product in collection.products limit: 6 %}
+              <div
+                class="swiper-slide product-slide"
+                data-collection="{{ collection.handle }}"
+                {% unless forloop.parentloop.first %}hidden{% endunless %}
+              >
+                {% render 'product-card', product: product %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+
+      </div>
+
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const section = document.querySelector('.js-product-carousel');
