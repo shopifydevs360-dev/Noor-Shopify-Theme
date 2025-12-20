@@ -14,20 +14,19 @@ function initAjaxAddToCart() {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const formData = new FormData(this);
+      const wrapper = this.closest('.cart-button-wrapper');
+      const isDrawer = wrapper.classList.contains('btn-action--ajax_drawer');
 
       fetch('/cart/add.js', {
         method: 'POST',
-        body: formData
+        body: new FormData(this)
       })
         .then(res => res.json())
         .then(() => {
           updateCartCount();
-          // cart drawer hook later
+          if (isDrawer) openBagDrawer();
         })
-        .catch(error => {
-          console.error('Add to cart error:', error);
-        });
+        .catch(err => console.error(err));
     });
   });
 }
@@ -43,31 +42,29 @@ function initVariantAjaxAddToCart() {
     button.addEventListener('click', function () {
       if (this.disabled) return;
 
-      const variantId = this.dataset.variantId;
-      if (!variantId) return;
+      const wrapper = this.closest('.cart-button-wrapper');
+      const isDrawer = wrapper.classList.contains('btn-action--ajax_drawer');
 
       fetch('/cart/add.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id: variantId,
+          id: this.dataset.variantId,
           quantity: 1
         })
       })
         .then(res => res.json())
         .then(() => {
           updateCartCount();
-          // cart drawer hook later
+          if (isDrawer) openBagDrawer();
         })
-        .catch(error => {
-          console.error('Add to cart error:', error);
-        });
+        .catch(err => console.error(err));
     });
   });
 }
 
 /* ---------------------------------
-   UPDATE CART COUNT
+   CART COUNT UPDATE
 ---------------------------------- */
 function updateCartCount() {
   fetch('/cart.js')
@@ -76,8 +73,18 @@ function updateCartCount() {
       document.querySelectorAll('.cart-count').forEach(el => {
         el.textContent = cart.item_count;
       });
-    })
-    .catch(error => {
-      console.error('Cart count update error:', error);
     });
+}
+
+/* ---------------------------------
+   OPEN BAG DRAWER (EXISTING SYSTEM)
+---------------------------------- */
+function openBagDrawer() {
+  const trigger = document.querySelector(
+    '[data-trigger-section="bag-drawer"]'
+  );
+
+  if (trigger) {
+    trigger.click();
+  }
 }
