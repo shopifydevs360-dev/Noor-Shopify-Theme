@@ -70,7 +70,7 @@
     padding-bottom: 5rem;
 }
 .product-carousel .collection-lead-info a .info-title{
-    color: rgb(var(--color-heading, var(--color-text)));
+    color: rgb(var(--color-heading));
 }
 /* Slider Css */
 .swiper-slide.product-slide{
