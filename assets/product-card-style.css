@@ -71,8 +71,17 @@
     z-index: 3;
     text-align: left;
     transition: all .6s ease;
-    padding: 18px 22px;
+    padding: 12px 18px;
 }
 .product-card .image-wrap:hover .cart-button-wrapper {
     opacity: 1;
+}
+.product-card .add-to-cart-btn {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    font-size: 20px;
+    font-family: inherit;
+    text-transform: inherit;
+    color: inherit;
 }
