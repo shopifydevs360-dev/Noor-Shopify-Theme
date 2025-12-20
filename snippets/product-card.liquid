@@ -74,7 +74,7 @@
               </button>
             {% endfor %}
           </div>
-          <button type="button" class="text-only cta-btn">
+          <button type="button" class="add-to-cart-btn single-product">
             Make Selection
           </button>
         </div>
@@ -87,7 +87,7 @@
 
           <button
             type="submit"
-            class="add-to-cart-btn"
+            class="add-to-cart-btn single-product"
             {% unless variant.available %}disabled{% endunless %}
           >
             {% if variant.available %}
