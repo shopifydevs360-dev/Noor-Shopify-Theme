@@ -104,7 +104,7 @@ h6, .h6 { font-size: var(--font-h6-size, 16px); }
 a {
   color: var(--color-body-link);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
 }
 
 a:hover {
