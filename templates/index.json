@@ -93,6 +93,38 @@
         "padding_bottom": 100
       }
     },
+    "collection_tab_wwTYiH": {
+      "type": "collection-tab",
+      "blocks": {
+        "tab_kJnfRx": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Automated Collection",
+            "tab_link": "",
+            "collection": "automated-collection"
+          }
+        },
+        "tab_j999Ma": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Hydrogen",
+            "tab_link": "",
+            "collection": "hydrogen"
+          }
+        }
+      },
+      "block_order": [
+        "tab_kJnfRx",
+        "tab_j999Ma"
+      ],
+      "name": "Product Tabs Carousel",
+      "settings": {
+        "title": "Best Sellers",
+        "title_link": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "custom_section_CWt6yq": {
       "type": "custom-section",
       "blocks": {
@@ -309,6 +341,7 @@
   "order": [
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
+    "collection_tab_wwTYiH",
     "custom_section_CWt6yq",
     "custom_section_YEaeWe",
     "collections_RQEPWp",
