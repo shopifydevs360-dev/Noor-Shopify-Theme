@@ -67,7 +67,7 @@
         "tab_Nq43z7": {
           "type": "tab",
           "settings": {
-            "tab_label": "d",
+            "tab_label": "Automated Collection",
             "tab_link": "",
             "collection": "automated-collection"
           }
@@ -75,7 +75,7 @@
         "tab_CNPqei": {
           "type": "tab",
           "settings": {
-            "tab_label": "Go",
+            "tab_label": "Hydrogen",
             "tab_link": "",
             "collection": "hydrogen"
           }
