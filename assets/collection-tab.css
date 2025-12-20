@@ -26,6 +26,9 @@
     transition-property: transform;
     box-sizing: content-box;
 }
+.product-carousel .swiper-container-filter {
+    margin-bottom: 3.6rem;
+}
 .product-carousel .swiper-container-filter .swiper-slide {
     display: inline-block;
     width: auto;
