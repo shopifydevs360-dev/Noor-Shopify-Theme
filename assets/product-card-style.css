@@ -59,7 +59,18 @@
 }
 /* Button Style */
 .product-card .cart-button-wrapper {
+    font-weight: 400;
+    letter-spacing: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    margin-bottom: 0;
     width: 100%;
-    text-align: center;
-    background: white;
+    background: #fff;
+    z-index: 3;
+    text-align: left;
+    transition: all .6s ease;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
 }
