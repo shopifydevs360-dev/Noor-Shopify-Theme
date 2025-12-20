@@ -75,7 +75,7 @@
 .product-carousel .collection-lead-info a .info-title{
     color: rgb(var(--color-heading));
 }
-.product-carousel .collection-lead-info a .arrow-link{
+.product-carousel .collection-lead-info a.arrow-link{
     color: rgb(var(--color-link));
 }
 /* Slider Css */
