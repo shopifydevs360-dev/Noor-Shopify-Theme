@@ -96,7 +96,7 @@
     transform 1.5s cubic-bezier(0, 0, 0.002, 1);
 }
 
-.product-carousel .animate-in .product-card {
+.product-carousel .product-card {
   opacity: 1;
   transform: none;
 }
