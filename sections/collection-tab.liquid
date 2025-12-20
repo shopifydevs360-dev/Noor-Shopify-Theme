@@ -1,6 +1,6 @@
 {{ 'collection-tab.css' | asset_url | stylesheet_tag: preload: true }}
 {% render 'section-base-style' %}
-<div class="product-tabs-carousel js-product-carousel {{ section.settings.color_control }} {{ section.settings.custom_class }}">
+<div class="product-tabs-carousel js-product-carousel-{{ section.id }} {{ section.settings.color_control }} {{ section.settings.custom_class }}">
   <div class="product-carousel section-{{ section.id }}-padding">
     <!-- ================= MOBILE TITLE ================= -->
     <h2 class="container hide-desktop">
@@ -79,7 +79,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const section = document.querySelector('.js-product-carousel');
+  const section = document.querySelector('.js-product-carousel-{{ section.id }}');
   if (!section) return;
 
   const tabs = section.querySelectorAll('.js-slider-filter');
