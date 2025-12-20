@@ -34,6 +34,13 @@
     width: auto;
     color: #525252;
 }
+.related-product-caps {
+    letter-spacing: .02rem;
+    font-size: 1.3rem;
+    line-height: 1.53846;
+    font-weight: 300;
+    text-transform: uppercase;
+}
 .product-carousel .swiper-slide {
     height: auto;
 }
