@@ -3,3 +3,6 @@
     margin-bottom: 2.5rem;
     position: relative;
 }
+.product-card .image-wrap .cropped-image-wrapper {
+    padding-bottom: 114%;
+}
