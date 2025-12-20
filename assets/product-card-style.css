@@ -88,10 +88,10 @@
 }
 
 .product-card .cart-button-wrapper .variants-wrapper {
-    /* opacity: 0;
+    opacity: 0;
     transition: all .6s ease;
     height: 0;
-    overflow: hidden; */
+    overflow: hidden;
     border-bottom: 1px solid #e3c7bf;
     padding: 12px 4px;
     
