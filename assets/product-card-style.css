@@ -3,7 +3,7 @@
     margin-bottom: 2.5rem;
     position: relative;
 }
-.cropped-image-wrapper {
+.product-card .cropped-image-wrapper {
     position: relative;
     width: 100%;
     height: 0;
@@ -37,7 +37,7 @@
 .product-card .image-wrap .cropped-image-wrapper img {
     transition: all .8s cubic-bezier(0,0,.002,1);
 }
-.cropped-image-wrapper img {
+.product-card .cropped-image-wrapper img {
     position: absolute;
     top: 50%;
     left: 50%;
