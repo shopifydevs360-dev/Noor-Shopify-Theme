@@ -76,79 +76,79 @@
     </div>
   </div>
 </div>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  initProductCarousel_{{ section.id }}();
+});
+
+function initProductCarousel_{{ section.id }}() {
   const section = document.querySelector('.js-product-carousel-{{ section.id }}');
   if (!section) return;
 
   const tabs = section.querySelectorAll('.js-slider-filter');
   const slides = section.querySelectorAll('.product-slide');
 
-  /* ---------------- SWIPERS ---------------- */
+  /* ---------------- Swiper: Filters ---------------- */
   new Swiper(section.querySelector('.swiper-container-filter'), {
     slidesPerView: 'auto',
     freeMode: true,
     spaceBetween: 40
   });
 
-  const productSwiper = new Swiper(section.querySelector('.swiper-container-product'), {
-    slidesPerView: 1.2,
-    spaceBetween: 24,
-    scrollbar: {
-      el: section.querySelector('.swiper-scrollbar'),
-      draggable: true
-    },
-    breakpoints: {
-      768: { slidesPerView: 2.5 },
-      1025: { slidesPerView: 3.5 }
+  /* ---------------- Swiper: Products ---------------- */
+  const productSwiper = new Swiper(
+    section.querySelector('.swiper-container-product'),
+    {
+      slidesPerView: 1.2,
+      spaceBetween: 24,
+      scrollbar: {
+        el: section.querySelector('.swiper-scrollbar'),
+        draggable: true
+      },
+      breakpoints: {
+        768: { slidesPerView: 2.5 },
+        1025: { slidesPerView: 3.5 }
+      }
     }
-  });
+  );
 
-  /* ---------------- INIT FIRST TAB ---------------- */
+  /* ---------------- Initial State ---------------- */
   const firstTab = tabs[0];
-  const firstFilter = firstTab.dataset.filter;
+  if (!firstTab) return;
 
-  firstTab.closest('.related-product-caps').classList.add('active');
+  const firstFilter = firstTab.dataset.filter;
+  firstTab.closest('.related-product-caps')?.classList.add('active');
 
   slides.forEach(slide => {
-    if (slide.dataset.collection === firstFilter) {
-      slide.style.display = 'block';
-    }
+    slide.style.display =
+      slide.dataset.collection === firstFilter ? 'block' : 'none';
   });
 
   productSwiper.update();
 
-  /* ---------------- TAB CLICK ---------------- */
+  /* ---------------- Tab Switching ---------------- */
   tabs.forEach(tab => {
     tab.addEventListener('click', e => {
       e.preventDefault();
 
       const filter = tab.dataset.filter;
 
-      /* active tab */
       section.querySelectorAll('.related-product-caps')
         .forEach(el => el.classList.remove('active'));
-      tab.closest('.related-product-caps').classList.add('active');
+      tab.closest('.related-product-caps')?.classList.add('active');
 
-      /* reset slides */
       slides.forEach(slide => {
-        slide.style.display = '';
-      });
-
-      /* show matching slides */
-      slides.forEach(slide => {
-        if (slide.dataset.collection === filter) {
-          slide.style.display = 'block';
-        }
+        slide.style.display =
+          slide.dataset.collection === filter ? 'block' : 'none';
       });
 
       productSwiper.update();
       productSwiper.slideTo(0);
     });
   });
-});
+}
 </script>
+
 
 
 {% schema %}
