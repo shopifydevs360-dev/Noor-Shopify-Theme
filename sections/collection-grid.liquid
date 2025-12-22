@@ -25,17 +25,18 @@
 
               {% if block.settings.image %}
                 <div class="cropped-image-wrapper">
-<img
-  src="{{ block.settings.image | img_url: '720x' }}"
-  srcset="
-    {{ block.settings.image | img_url: '720x' }} 720w,
-    {{ block.settings.image | img_url: '1024x' }} 1024w,
-    {{ block.settings.image | img_url: '1440x' }} 1440w
-  "
-  sizes="(min-width: 1200px) 50vw, 100vw"
-  alt="{{ block.settings.title }}"
-  loading="eager"
->
+                    <img
+                    src="{{ block.settings.image | img_url: '720x' }}"
+                    srcset="
+                        {{ block.settings.image | img_url: '720x' }} 720w,
+                        {{ block.settings.image | img_url: '1024x' }} 1024w,
+                        {{ block.settings.image | img_url: '1440x' }} 1440w
+                    "
+                    sizes="(min-width: 1200px) 50vw, 100vw"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    >
 
                 </div>
               {% endif %}
@@ -43,7 +44,7 @@
           </div>
 
           <!-- TEXT -->
-          <div class="image-overlay-end-details split-aligner"
+          <div class="image-overlay-end-details"
                style="color: {{ block.settings.text_color }};">
             <p class="title">{{ block.settings.title }}</p>
             <p class="cta">{{ block.settings.cta_text }}</p>
