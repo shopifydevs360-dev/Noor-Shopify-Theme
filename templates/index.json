@@ -97,7 +97,7 @@
       }
     },
     "collection_grid_AYNN6K": {
-      "type": "collection-grid",
+      "type": "image-overlay-grid",
       "blocks": {
         "collection_tile_fp4ycX": {
           "type": "collection_tile",
