@@ -192,6 +192,19 @@
   --btn-gradient-font-size: {{ settings.gradient_button_font_size }}px;
   --btn-gradient-latter-space: {{ settings.gradient_button_latter_space }}px;
 
+  /* Animation Button */
+  {% if settings.animation_button_bg != blank %}
+    --btn-animation-bg: {{ settings.animation_button_bg }};
+  {% endif %}
+  {% if settings.animation_button_hover_bg != blank %}
+    --btn-animation-hover-bg: {{ settings.animation_button_hover_bg }};
+  {% endif %}
+  --btn-animation-label: {{ settings.animation_button_label }};
+  --btn-animation-hover-label: {{ settings.animation_button_hover_label }};
+  --btn-animation-font: {{ settings.animation_button_font.family }}, {{ settings.animation_button_font.fallback_families }};
+  --btn-animation-font-size: {{ settings.animation_button_font_size }}px;
+  --btn-animation-latter-space: {{ settings.animation_button_latter_space }}px;
+
   /* Content Card */
   --border-radius-style-one: {{ settings.corner-radius-style-one }}px;
   --border-radius-style-two: {{ settings.corner-radius-style-two }}px;
