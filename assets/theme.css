@@ -219,7 +219,6 @@ button{
 .btn--animation-underline {
   background: var(--btn-animation-bg, linear-gradient(to right, #000, #333));
   color: var(--btn-animation-label);
-  border: 1px solid var(--btn-animation-border);
   font-family: var(--btn-animation-font);
   font-size: var(--btn-animation-font-size);
   letter-spacing: ver(--btn-animation-latter-space);
@@ -227,7 +226,6 @@ button{
 .btn--animation-underline:hover {
   background: var(--btn-gradient-hover-bg, var(--btn-gradient-bg));
   color: var(--btn-gradient-hover-label);
-  border-color: var(--btn-animation-border-hover);
 }
 /* Next Button */
 /* .btn--animation- {
