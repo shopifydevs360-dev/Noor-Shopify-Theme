@@ -306,7 +306,75 @@ button:disabled,
   height: auto;
   transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
+/* =========================================
+   Image Aspect Ratio Modifiers
+   ========================================= */
 
+/* Square (1:1) */
+.cropped-image--square {
+  padding-bottom: 100%;
+}
+
+/* Portrait (4:5) */
+.cropped-image--portrait {
+  padding-bottom: 125%;
+}
+
+/* Tall Portrait (e.g. fashion) */
+.cropped-image--portrait-tall {
+  padding-bottom: 150%;
+}
+
+/* Your current design (110%) */
+.cropped-image--110 {
+  padding-bottom: 110%;
+}
+
+/* Landscape (4:3) */
+.cropped-image--landscape {
+  padding-bottom: 75%;
+}
+
+/* Wide (16:9) */
+.cropped-image--wide {
+  padding-bottom: 56.25%;
+}
+/* =========================================
+   Image Hover Effect
+   ========================================= */
+   /* Zoom (soft) */
+.cropped-image-wrapper.is-hover-zoom:hover img {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+/* Zoom strong */
+.cropped-image-wrapper.is-hover-zoom-lg:hover img {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+/* Zoom + slide up */
+.cropped-image-wrapper.is-hover-zoom-up:hover img {
+  transform: translate(-50%, -55%) scale(1.1);
+}
+/* Fade in (good for secondary images) */
+.cropped-image-wrapper.is-hover-fade img {
+  opacity: 0.85;
+}
+
+.cropped-image-wrapper.is-hover-fade:hover img {
+  opacity: 1;
+}
+/* Slow cinematic zoom (luxury feel) */
+.cropped-image-wrapper.is-hover-cinematic img {
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cropped-image-wrapper.is-hover-cinematic:hover img {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+/* Parallax-style drift */
+.cropped-image-wrapper.is-hover-drift:hover img {
+  transform: translate(-48%, -52%) scale(1.1);
+}
+/* Dark overlay on hover */
 /* ------------------------------
    Showing Display with width dimention
 ------------------------------- */
