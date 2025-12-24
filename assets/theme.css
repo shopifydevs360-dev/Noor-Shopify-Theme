@@ -280,7 +280,7 @@ button:disabled,
 
 
 /* ------------------------------
-   UTILITIES
+   Showing Display with width dimention
 ------------------------------- */
 .hide {
   display: none !important;
@@ -312,3 +312,4 @@ button:disabled,
   overflow: hidden;
   border-radius: var(--border-radius-style-two, 12px);
 }
+
