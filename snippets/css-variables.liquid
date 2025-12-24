@@ -199,6 +199,8 @@
   {% if settings.animation_button_hover_bg != blank %}
     --btn-animation-hover-bg: {{ settings.animation_button_hover_bg }};
   {% endif %}
+  --btn-secondary-border: {{ settings.animation_button_border }};
+  --btn-secondary-border: {{ settings.animation_button_hover_border }};
   --btn-animation-label: {{ settings.animation_button_label }};
   --btn-animation-hover-label: {{ settings.animation_button_hover_label }};
   --btn-animation-font: {{ settings.animation_button_font.family }}, {{ settings.animation_button_font.fallback_families }};
