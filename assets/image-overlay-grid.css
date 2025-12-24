@@ -2,6 +2,11 @@
     position: relative;
     max-width: 100%;
 }
+.image-overlay-grid .image-with-text-overlay {
+    position: relative;
+    width: 100%;
+    display: block;
+}
 .image-overlay-grid .image-overlay-end-details {
     position: absolute;
     bottom: 0;
