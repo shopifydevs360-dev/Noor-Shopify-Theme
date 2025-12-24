@@ -1,3 +1,6 @@
+.image-overlay-grid {
+    position: relative;
+}
 .image-overlay-grid .image-overlay-end-details {
     position: absolute;
     bottom: 0;
