@@ -238,6 +238,10 @@ button{
   transition: all .3s cubic-bezier(.34,.615,.4,.985);
   background: currentColor;
 }
+.btn--animation-underline:before{
+  transform: none;
+  transition-delay: .3s;
+}
 /* Next Button */
 /* .btn--animation- {
   background: var(--btn-animation-bg, linear-gradient(to right, #000, #333));
