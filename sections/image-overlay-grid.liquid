@@ -60,7 +60,7 @@
 
 {% schema %}
 {
-  "name": "Collections Grid",
+  "name": "Image Overlay Grid",
   "settings": [
     {
       "type": "range",
@@ -74,14 +74,14 @@
   ],
   "blocks": [
     {
-      "type": "collection_tile",
-      "name": "Collection Tile",
+      "type": "image",
+      "name": "Image",
       "settings": [
         {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Collection Title"
+          "default": "Title"
         },
         {
           "type": "text",
@@ -123,10 +123,10 @@
   "max_blocks": 6,
   "presets": [
     {
-      "name": "Collections Grid",
+      "name": "Image Overlay Grid",
       "blocks": [
-        { "type": "collection_tile" },
-        { "type": "collection_tile" }
+        { "type": "image" },
+        { "type": "image" }
       ]
     }
   ]
