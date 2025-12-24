@@ -1,7 +1,7 @@
 {{ 'image-overlay-grid.css' | asset_url | stylesheet_tag: preload: true }}
 {% render 'section-base-style' %}
 <div id="shopify-section-{{ section.id }}"
-     class="image-overlay-grid"
+     class="image-overlay-grid {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}"
      {{ section.shopify_attributes }}>
 
   <div class="image-overlay-grid cols-{{ section.settings.columns }} cols-2">
