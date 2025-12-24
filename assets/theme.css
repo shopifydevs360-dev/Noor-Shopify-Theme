@@ -303,7 +303,7 @@ button:disabled,
     display: none !important;
   }
 }
-
+/* Corner Radius of box */
 .border-radius-style-one{
   overflow: hidden;
   border-radius: var(--border-radius-style-one, 4px);
