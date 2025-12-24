@@ -238,7 +238,7 @@ button{
   transition: all .3s cubic-bezier(.34,.615,.4,.985);
   background: currentColor;
 }
-.btn--animation-underline:before{
+.active-underline:hover .btn--animation-underline:before{
   transform: none;
   transition-delay: .3s;
 }
