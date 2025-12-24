@@ -405,6 +405,9 @@ button:disabled,
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
 }
+.cols-2 {
+    grid-template-columns: repeat(2,1fr);
+}
 /* ------------------------------
    Showing Display with width dimention
 ------------------------------- */
