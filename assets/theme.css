@@ -346,9 +346,12 @@ button:disabled,
 .cropped-image-wrapper.is-hover-zoom-in:hover img {
   transform: translate(-50%, -50%) scale(1.08);
 }
-/* Zoom strong */
+/* Zoom Out */
+.cropped-image-wrapper.is-hover-zoom-out img {
+  transform: translate(-50%, -50%) scale(1.08);
+}
 .cropped-image-wrapper.is-hover-zoom-out:hover img {
-  transform: translate(-50%, -50%) scale(0.92);
+  transform: translate(-50%, -50%) scale(1);
 }
 /* Zoom + slide up */
 .cropped-image-wrapper.is-hover-zoom-up:hover img {
