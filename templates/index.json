@@ -96,13 +96,6 @@
         "color_control": "section-light"
       }
     },
-    "collection_grid_AYNN6K": {
-      "type": "image-overlay-grid",
-      "name": "Collections Grid",
-      "settings": {
-        "columns": 2
-      }
-    },
     "image_overlay_grid_Gz6VEw": {
       "type": "image-overlay-grid",
       "blocks": {
@@ -115,7 +108,7 @@
             "image": "shopify://shop_images/pexels-thirdman-8489273.jpg",
             "text_color": "#000000",
             "background_color": "#ffffff",
-            "image_background_color": "#F3F3F4"
+            "image_background_color": "#f3f3f4"
           }
         },
         "image_URLedE": {
@@ -127,7 +120,7 @@
             "image": "shopify://shop_images/16400328_v708-aum-24-b-diwali.jpg",
             "text_color": "#000000",
             "background_color": "#ffffff",
-            "image_background_color": "#F3F3F4"
+            "image_background_color": "#f3f3f4"
           }
         }
       },
@@ -137,14 +130,17 @@
       ],
       "name": "Image Overlay Grid",
       "settings": {
-        "columns": 2
+        "columns": 2,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "color_control": "section-light"
       }
     }
   },
   "order": [
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
-    "collection_grid_AYNN6K",
     "image_overlay_grid_Gz6VEw"
   ]
 }
