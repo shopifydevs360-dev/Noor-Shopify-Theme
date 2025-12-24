@@ -282,6 +282,34 @@ button:disabled,
 /* ------------------------------
    Showing Display with width dimention
 ------------------------------- */
+/* =========================================
+   Image style
+   ========================================= */
+
+.cropped-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Base image behavior */
+.cropped-image-wrapper img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  width: auto;
+  height: auto;
+  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
+}
+
+/* ------------------------------
+   Showing Display with width dimention
+------------------------------- */
 .hide {
   display: none !important;
 }
