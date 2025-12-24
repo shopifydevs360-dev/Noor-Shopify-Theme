@@ -278,20 +278,6 @@ button:disabled,
   max-width: var(--container-extra-narrow-width, 700px);
 }
 
-/* ------------------------------
-   SECTION SPACING
-------------------------------- */
-.shopify-section {
-  margin-top: var(--section-spacing-desktop, 60px);
-  margin-bottom: var(--section-spacing-desktop, 60px);
-}
-
-@media (max-width: 768px) {
-  .shopify-section {
-    margin-top: var(--section-spacing-mobile, 40px);
-    margin-bottom: var(--section-spacing-mobile, 40px);
-  }
-}
 
 /* ------------------------------
    UTILITIES
