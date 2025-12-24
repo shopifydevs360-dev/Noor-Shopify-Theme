@@ -343,16 +343,16 @@ button:disabled,
    Image Hover Effect
    ========================================= */
    /* Zoom (soft) */
-.cropped-image-wrapper.is-hover-zoom:hover img {
+.cropped-image-wrapper.is-hover-zoom-in:hover img {
   transform: translate(-50%, -50%) scale(1.08);
 }
 /* Zoom strong */
-.cropped-image-wrapper.is-hover-zoom-lg:hover img {
-  transform: translate(-50%, -50%) scale(1.15);
+.cropped-image-wrapper.is-hover-zoom-out:hover img {
+  transform: translate(-50%, -50%) scale(0.92);
 }
 /* Zoom + slide up */
 .cropped-image-wrapper.is-hover-zoom-up:hover img {
-  transform: translate(-50%, -55%) scale(1.1);
+  transform: translate(-50%, -55%) scale(1.08);
 }
 /* Fade in (good for secondary images) */
 .cropped-image-wrapper.is-hover-fade img {
