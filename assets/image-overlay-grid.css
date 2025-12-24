@@ -1,5 +1,6 @@
 .image-overlay-grid {
     position: relative;
+    max-width: 100%;
 }
 .image-overlay-grid .image-overlay-end-details {
     position: absolute;
