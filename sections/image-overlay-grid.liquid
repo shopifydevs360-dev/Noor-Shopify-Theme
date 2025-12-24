@@ -4,6 +4,7 @@
      class="image-overlay-grid {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}"
      {{ section.shopify_attributes }}>
 
+<div class="section-{{ section.id }}-padding">
   <div class="image-overlay-grid cols-{{ section.settings.columns }} cols-2">
 
     {% for block in section.blocks %}
@@ -57,6 +58,7 @@
     {% endfor %}
 
   </div>
+</div>
 </div>
 
 {% schema %}
