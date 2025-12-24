@@ -217,15 +217,26 @@ button{
 =========================*/
 /* Hover to underline */
 .btn--animation-underline {
-  background: var(--btn-animation-bg, linear-gradient(to right, #000, #333));
+  background: transparent;
   color: var(--btn-animation-label);
   font-family: var(--btn-animation-font);
   font-size: var(--btn-animation-font-size);
   letter-spacing: ver(--btn-animation-latter-space);
 }
 .btn--animation-underline:hover {
-  background: var(--btn-gradient-hover-bg, var(--btn-gradient-bg));
   color: var(--btn-gradient-hover-label);
+}
+.btn--animation-underline:before{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+  width: calc(100% - 4rem);
+  height: 1px;
+  transform: translate(-130%);
+  transition: all .3s cubic-bezier(.34,.615,.4,.985);
+  background: currentColor;
 }
 /* Next Button */
 /* .btn--animation- {
