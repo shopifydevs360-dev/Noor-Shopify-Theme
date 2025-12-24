@@ -158,6 +158,17 @@
           "default": "btn--primary"
         },
         {
+          "type": "select",
+          "id": "animation_type",
+          "label": "Animation type",
+          "visible_if": "{{ block.settings.button_type == 'btn--animation' }}",
+          "options": [
+            {"value": "underline", "label": "Primary"},
+            {"value": "upcomming", "label": "Upcomming"},
+          ],
+          "default": "underline"
+        },
+        {
           "type": "color",
           "id": "background_color",
           "label": "Background Color",
