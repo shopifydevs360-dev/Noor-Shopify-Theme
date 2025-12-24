@@ -216,17 +216,17 @@ button{
     Animation Button
 =========================*/
 /* Hover to underline */
-.btn--animation-underline {
+.btn--animation.underline {
   background: transparent;
   color: var(--btn-animation-label);
   font-family: var(--btn-animation-font);
   font-size: var(--btn-animation-font-size);
   letter-spacing: ver(--btn-animation-latter-space);
 }
-.btn--animation-underline:hover {
+.btn--animation.underline:hover {
   color: var(--btn-gradient-hover-label);
 }
-.btn--animation-underline:before{
+.btn--animation.underline:before{
   content: "";
   display: block;
   position: absolute;
@@ -238,7 +238,7 @@ button{
   transition: all .3s cubic-bezier(.34,.615,.4,.985);
   background: currentColor;
 }
-.active-underline:hover .btn--animation-underline:before{
+.active-underline:hover .btn--animation.underline:before{
   transform: none;
   transition-delay: .3s;
 }
