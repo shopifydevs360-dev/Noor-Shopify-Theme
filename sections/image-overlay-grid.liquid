@@ -12,7 +12,7 @@
         <a
           href="{{ block.settings.link }}"
           aria-label="{{ block.settings.title }} Shop Now"
-          class="image-with-text-overlay"
+          class="image-with-text-overlay {% if block.settings.button_type == 'btn--animation' %} btn{% endif %}"
         >
 
           <!-- IMAGE -->
