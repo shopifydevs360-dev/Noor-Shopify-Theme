@@ -1,4 +1,5 @@
 {{ 'image-overlay-grid.css' | asset_url | stylesheet_tag: preload: true }}
+{% render 'section-base-style' %}
 <div id="shopify-section-{{ section.id }}"
      class="image-overlay-grid"
      {{ section.shopify_attributes }}>
