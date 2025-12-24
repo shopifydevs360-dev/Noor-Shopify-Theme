@@ -30,9 +30,11 @@
 }
 .product-card .image-wrap .hover-img {
     opacity: 0;
+    transform: translate(-50%,-50%) scale(1.08);
 }
 .product-card .image-wrap:hover .hover-img {
     opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
 }
 /* Button Style */
 .product-card .cart-button-wrapper {
