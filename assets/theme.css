@@ -176,7 +176,7 @@ button{
   border: 1px solid var(--btn-secondary-border);
   font-family: var(--btn-secondary-font);
   font-size: var(--btn-secondary-font-size);
-  letter-spacing: ver(--btn-secondary-letter-space);
+  letter-spacing: var(--btn-secondary-letter-space);
 }
 .btn--secondary:hover {
   background-color: var(--btn-secondary-hover-bg);
@@ -192,7 +192,7 @@ button{
   font-family: var(--btn-underline-font);
   text-decoration: underline;
   font-size: var(--btn-underline-font-size);
-  letter-spacing: ver(--btn-underline-letter-space);
+  letter-spacing: var(--btn-underline-letter-space);
 }
 .btn--underline:hover {
   color: var(--btn-underline-hover-color);
@@ -208,7 +208,7 @@ button{
   color: var(--btn-animation-label);
   font-family: var(--btn-animation-font);
   font-size: var(--btn-animation-font-size);
-  letter-spacing: ver(--btn-animation-letter-space);
+  letter-spacing: var(--btn-animation-letter-space);
   position: relative;
   overflow: hidden;
 }
@@ -254,7 +254,7 @@ button{
   border: none;
   font-family: var(--btn-gradient-font);
   font-size: var(--btn-gradient-font-size);
-  letter-spacing: ver(--btn-gradient-letter-space);
+  letter-spacing: var(--btn-gradient-letter-space);
 }
 .btn--gradient:hover {
   background: var(--btn-gradient-hover-bg, var(--btn-gradient-bg));
