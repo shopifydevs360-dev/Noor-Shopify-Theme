@@ -180,6 +180,7 @@
       "type": "article-wrapper",
       "name": "Articles Wrapper",
       "settings": {
+        "wrapper_title": "Featured Articles",
         "blog": "news"
       }
     },
@@ -188,7 +189,7 @@
       "name": "Custom Section",
       "settings": {
         "container_width": "container",
-        "height_type": "content",
+        "height_type": "image",
         "height_desktop": 800,
         "height_tablet": 600,
         "height_mobile": 500,
