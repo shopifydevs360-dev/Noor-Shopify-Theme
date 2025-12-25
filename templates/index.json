@@ -180,8 +180,29 @@
       "type": "article-wrapper",
       "name": "Articles Wrapper",
       "settings": {
-        "wapper_title": "Featured Articles",
-        "blog": "news",
+        "title": "Featured Articles",
+        "blog": "news"
+      }
+    },
+    "custom_section_qLaH3T": {
+      "type": "custom-section",
+      "name": "Custom Section",
+      "settings": {
+        "container_width": "container",
+        "height_type": "content",
+        "height_desktop": 800,
+        "height_tablet": 600,
+        "height_mobile": 500,
+        "background_color": "#ffffff",
+        "background_image": "shopify://shop_images/2149288938.jpg",
+        "overlay_enable": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "border_radius_top": 0,
+        "border_radius_bottom": 0,
+        "padding_y": 60,
+        "padding_x": 30,
+        "justify_content": "center",
         "custom_class": "",
         "color_control": "section-light"
       }
@@ -192,6 +213,7 @@
     "collection_tab_jigG9e",
     "image_overlay_grid_Gz6VEw",
     "custom_section_pxbE8X",
-    "article_wrapper_tkFWde"
+    "article_wrapper_tkFWde",
+    "custom_section_qLaH3T"
   ]
 }
