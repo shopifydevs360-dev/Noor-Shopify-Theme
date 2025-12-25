@@ -8,7 +8,7 @@
   data-section-id="{{ section.id }}"
 >
   <div class="sh-container">
-    <h2 class="featured-posts__title hd-3" data-reveal="lines-masked">
+    <h2 class="featured-posts__title hd-3">
       {{ section.settings.wrapper_title }}
     </h2>
   </div>
@@ -27,14 +27,11 @@
             <div class="article-pin-card__image">
               <a href="{{ article.url }}">
                 {% if article.image %}
-                  <div class="image-wrapper">
-                    <img
-                      src="{{ article.image | image_url: width: 900 }}"
-                      alt="{{ article.title | escape }}"
-                      loading="lazy"
-                      class="lazyload"
-                    >
-                  </div>
+                  <img
+                    src="{{ article.image | image_url: width: 900 }}"
+                    alt="{{ article.title | escape }}"
+                    loading="lazy"
+                  >
                 {% endif %}
               </a>
             </div>
