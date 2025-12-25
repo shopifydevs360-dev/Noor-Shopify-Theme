@@ -1,111 +1,104 @@
-{{ 'articles-wrapper.css' | asset_url | stylesheet_tag: preload: true }}
-{% render 'section-base-style' %}
+{{ 'featured-articles-slider.css' | asset_url | stylesheet_tag }}
 
 {% assign blog_object = blogs[section.settings.blog] %}
 
 {% if blog_object != blank and blog_object.articles.size > 0 %}
-<div class="articles-wrapper sh-container-lg">
 
-  <div class="swiper featuredArticlesSwiper">
-    <div class="swiper-wrapper">
+<div
+  class="featured-articles-section"
+  {{ section.shopify_attributes }}
+>
+  <div class="featured-articles-inner">
 
-      {% for article in blog_object.articles limit: 2 %}
-        <div class="swiper-slide">
+    {% if section.settings.title != blank %}
+      <h2 class="featured-articles-heading">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
 
-          <div class="article-pin-card cols-2">
+    <div class="swiper featuredArticlesSwiper">
+      <div class="swiper-wrapper">
 
-            <!-- IMAGE -->
-            <div class="image-wrap v-aligner">
-              <a href="{{ article.url }}" aria-label="{{ article.title }}" class="image-item">
-                <div class="cropped-image-wrapper cropped-image--square">
-                  {% if article.image %}
-                    <img
-                      src="{{ article.image | image_url: width: 900 }}"
-                      alt="{{ article.title | escape }}"
-                      loading="lazy">
-                  {% endif %}
-                </div>
-              </a>
-            </div>
+        {% for article in blog_object.articles limit: 5 %}
+          <div class="swiper-slide">
 
-            <!-- TEXT -->
-            <div class="text-wrap v-aligner">
-              <a href="{{ article.url }}" aria-label="{{ article.title }}" class="text-item">
-                <h5>{{ article.title }}</h5>
-                <p class="underline-link">Explore</p>
-              </a>
-            </div>
+            <div class="featured-article">
 
-            <!-- COUNTER -->
-            <div class="featured-article-counter">
-              {{ forloop.index | prepend: '0' }}
+              <!-- IMAGE -->
+              <div class="featured-article-image">
+                {% if article.image %}
+                  <img
+                    src="{{ article.image | image_url: width: 1200 }}"
+                    alt="{{ article.title | escape }}"
+                    loading="lazy">
+                {% endif %}
+              </div>
+
+              <!-- CONTENT -->
+              <div class="featured-article-content">
+                <h3>{{ article.title }}</h3>
+
+                <a href="{{ article.url }}" class="featured-article-link">
+                  Explore
+                </a>
+              </div>
+
+              <!-- COUNTER -->
+              <div class="featured-article-counter">
+                {{ forloop.index | prepend: '0' }}
+              </div>
+
             </div>
 
           </div>
+        {% endfor %}
 
-        </div>
-      {% endfor %}
-
+      </div>
     </div>
-  </div>
 
+    <div class="featured-articles-footer">
+      <a href="{{ blog_object.url }}">All Features</a>
+    </div>
+
+  </div>
 </div>
 
-
-{% else %}
-  <p style="text-align: center;">No articles found in the selected blog.</p>
-{% endif %}
 <script>
-    new Swiper('.featuredArticlesSwiper', {
-  direction: 'vertical',
-  slidesPerView: 1,
-  speed: 900,
-  mousewheel: {
-    forceToAxis: true,
-    sensitivity: 1
-  },
-  allowTouchMove: false
+document.addEventListener('DOMContentLoaded', function () {
+  new Swiper('.featuredArticlesSwiper', {
+    direction: 'vertical',
+    slidesPerView: 1,
+    speed: 900,
+    mousewheel: {
+      forceToAxis: true,
+      sensitivity: 1
+    },
+    allowTouchMove: false
+  });
 });
-
 </script>
+
+{% endif %}
+
 {% schema %}
 {
-  "name": "Articles Wrapper",
+  "name": "Featured Articles Slider",
   "settings": [
     {
       "type": "text",
-      "id": "wapper_title",
-      "label": "Title",
+      "id": "title",
+      "label": "Heading",
       "default": "Featured Articles"
     },
     {
       "type": "blog",
       "id": "blog",
-      "label": "Choose a Blog"
-    },
-    {
-      "type": "header",
-      "content": "Dynamic Option"
-    },
-    {
-      "type": "text",
-      "id": "custom_class",
-      "label": "Custom class"
-    },
-    {
-      "type": "select",
-      "id": "color_control",
-      "label": "Color Control",
-      "options": [
-        { "value": "section-dark", "label": "Dark" },
-        { "value": "section-light", "label": "Light" }
-      ],
-      "default": "section-light"
+      "label": "Select blog"
     }
   ],
   "presets": [
     {
-      "name": "Articles Wrapper"
+      "name": "Featured Articles Slider"
     }
   ]
 }
