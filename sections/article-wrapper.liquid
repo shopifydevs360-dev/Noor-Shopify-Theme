@@ -82,21 +82,53 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <script>
-document.addEventListener('shopify:section:load', initFeaturedArticles);
-document.addEventListener('DOMContentLoaded', initFeaturedArticles);
+document.addEventListener('shopify:section:load', initFeaturedSwipe);
+document.addEventListener('DOMContentLoaded', initFeaturedSwipe);
 
-function initFeaturedArticles() {
+function initFeaturedSwipe() {
   if (typeof Swiper === 'undefined') return;
 
-  new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
+  const swiper = new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
     direction: 'vertical',
     slidesPerView: 1,
     speed: 900,
-    mousewheel: true,
+    mousewheel: false, // disabled because Leni/Locomotive blocks it
     allowTouchMove: false
   });
+
+  // Detect smooth scroll libs
+  let lastScroll = 0;
+  let scrollTimeout;
+
+  function handleWheel(e) {
+    const delta = e.deltaY || e.wheelDelta;
+
+    if (delta > 0) {
+      swiper.slideNext();
+    } else if (delta < 0) {
+      swiper.slidePrev();
+    }
+
+    // throttle
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      lastScroll = 0;
+    }, 100);
+  }
+
+  // Try native wheel
+  window.addEventListener('wheel', handleWheel);
+
+  // Optional: try Lenis if exists
+  if (window.lenis) {
+    window.lenis.on('scroll', ({ delta }) => {
+      if (delta > 0) swiper.slideNext();
+      if (delta < 0) swiper.slidePrev();
+    });
+  }
 }
 </script>
+
 
 {% endif %}
 
