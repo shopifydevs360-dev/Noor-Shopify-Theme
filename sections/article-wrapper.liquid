@@ -14,7 +14,7 @@
           <div class="pin-panel-wrap article-pin-card cols-2">
             <div class="pin-panel image-wrap image-wrap-0 v-aligner">
               <a href="{{ article.url }}" aria-label="{{ article.url }}" class="image-item">
-                <div class="cropped-image-wrapper" style="padding-bottom: 100%;">
+                <div class="cropped-image-wrapper cropped-image--square">
                   <picture>
                     <source data-src="{{ article.image | image_url: width: 600 }}" media="--medium">
                     <img class="lazyload" data-optimumx="auto" data-sizes="auto" data-parent-fit="contain" data-src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}">
