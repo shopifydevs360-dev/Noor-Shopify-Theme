@@ -55,7 +55,19 @@
 {% else %}
   <p style="text-align: center;">No articles found in the selected blog.</p>
 {% endif %}
+<script>
+    new Swiper('.featuredArticlesSwiper', {
+  direction: 'vertical',
+  slidesPerView: 1,
+  speed: 900,
+  mousewheel: {
+    forceToAxis: true,
+    sensitivity: 1
+  },
+  allowTouchMove: false
+});
 
+</script>
 {% schema %}
 {
   "name": "Articles Wrapper",
