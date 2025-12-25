@@ -96,44 +96,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const swiper = new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
     effect: 'fade',
     fadeEffect: { crossFade: true },
-    slidesPerView: 1,
-    speed: 600,
-    allowTouchMove: false
+    allowTouchMove: false,
+    speed: 600
   });
 
-  let isActive = false;
+  let isPinned = false;
   let isThrottled = false;
 
-  // Detect when section is centered
+  // Detect when section center hits viewport center
   const observer = new IntersectionObserver(
     ([entry]) => {
-      isActive = entry.intersectionRatio > 0.6;
+      isPinned = entry.intersectionRatio > 0.6;
     },
-    { threshold: [0, 0.6, 1] }
+    { threshold: [0.6] }
   );
 
   observer.observe(section);
 
   window.addEventListener('wheel', (e) => {
-    if (!isActive || isThrottled) return;
+    if (!isPinned || isThrottled) return;
 
-    const isScrollingDown = e.deltaY > 0;
-    const isFirstSlide = swiper.activeIndex === 0;
-    const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
+    const scrollingDown = e.deltaY > 0;
+    const atFirst = swiper.activeIndex === 0;
+    const atLast = swiper.activeIndex === swiper.slides.length - 1;
 
-    // 🚫 Allow normal scroll at edges
-    if (
-      (isScrollingDown && isLastSlide) ||
-      (!isScrollingDown && isFirstSlide)
-    ) {
-      return; // let page scroll naturally
+    // RELEASE scroll at edges
+    if ((scrollingDown && atLast) || (!scrollingDown && atFirst)) {
+      document.body.classList.remove('slider-locked');
+      return;
     }
 
-    // ✅ Intercept scroll only when sliding
+    // LOCK scroll
     e.preventDefault();
+    document.body.classList.add('slider-locked');
     isThrottled = true;
 
-    if (isScrollingDown) {
+    if (scrollingDown) {
       swiper.slideNext();
     } else {
       swiper.slidePrev();
@@ -145,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: false });
 });
 </script>
+
 
 
 
