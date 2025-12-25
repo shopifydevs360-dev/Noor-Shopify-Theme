@@ -1,66 +1,64 @@
 {{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
 
 {% assign blog_object = blogs[section.settings.blog] %}
-{% if blog_object and blog_object.articles.size > 0 %}
-<section class="featured-posts">
-  <h2 class="hd-3 container">
-    {{ section.settings.wrapper_title }}
-  </h2>
-
-  <div class="articles-wrapper article-wrapper">
-    <!-- Counter -->
-    <div class="featured-post-count">
-      {% for article in blog_object.articles limit: 2 %}
-        <button
-          class="counter-item {% if forloop.first %}active-counter{% endif %}"
-          data-slide="{{ forloop.index0 }}"
-        >
-          {{ forloop.index | prepend: '0' }}
-        </button>
-      {% endfor %}
-    </div>
-
-    <!-- Swiper -->
-    <div class="swiper article-swiper">
-      <div class="swiper-wrapper">
+{% if blog_object.articles.size > 0 %}
+  <section class="featured-posts">
+    <h2 class="hd-3 container">
+      {{ section.settings.wapper_title }}
+    </h2>
+    <div class="articles-wrapper article-wrapper">
+      <div class="featured-post-count">
         {% for article in blog_object.articles limit: 2 %}
-          <div class="swiper-slide">
-            <div class="article-pin-card">
-              <div class="image-wrap">
-                <a href="{{ article.url }}">
-                  {% if article.image %}
-                    <img
-                      src="{{ article.image | image_url: width: 600 }}"
-                      alt="{{ article.title }}"
-                      loading="lazy"
-                    >
-                  {% endif %}
-                </a>
-              </div>
-
-              <div class="text-wrap">
-                <a href="{{ article.url }}">
-                  <h5 class="article-count">
-                    {{ forloop.index | prepend: '0' }}
-                  </h5>
-                  <h5>{{ article.title }}</h5>
-                  <p class="underline-link">Explore</p>
-                </a>
-              </div>
-            </div>
-          </div>
+          <button
+            class="counter-item {% if forloop.first %}active-counter{% endif %}"
+            data-slide="{{ forloop.index0 }}"
+          >
+            {{ forloop.index | prepend: '0' }}
+          </button>
         {% endfor %}
       </div>
-    </div>
-  </div>
+      <!-- Swiper -->
+      <div class="swiper article-swiper">
+        <div class="swiper-wrapper">
+          {% for article in blog_object.articles limit: 2 %}
+            <div class="swiper-slide">
+              <div class="article-pin-card cols-2">
+                <div class="image-wrap">
+                  <a href="{{ article.url }}" class="image-item">
+                    <div class="cropped-image-wrapper cropped-image--square">
+                      <img
+                        src="{{ article.image | image_url: width: 600 }}"
+                        alt="{{ article.title }}"
+                        loading="lazy"
+                      >
+                    </div>
+                  </a>
+                </div>
+                <div class="text-wrap">
+                  <a href="{{ article.url }}" class="text-item">
+                    <h5 class="article-count">
+                      {{ forloop.index | prepend: '0' }}
+                    </h5>
+                    <h5>{{ article.title }}</h5>
+                    <p class="underline-link">Explore</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
 
-  <div class="container end-link">
-    <a href="{{ blog_object.url }}">All Features</a>
-  </div>
-</section>
+        </div>
+      </div>
+    </div>
+
+    <div class="container end-link">
+      <a href="{{ section.settings.blog.url }}">All Features</a>
+    </div>
+  </section>
 {% endif %}
 
 <script src="{{ 'article-wrapper.js' | asset_url }}" defer></script>
+
 
 {% schema %}
 {
