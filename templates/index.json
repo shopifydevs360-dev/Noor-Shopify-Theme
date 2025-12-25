@@ -186,6 +186,7 @@
     },
     "custom_section_qLaH3T": {
       "type": "custom-section",
+      "disabled": true,
       "name": "Custom Section",
       "settings": {
         "container_width": "container",
