@@ -77,57 +77,56 @@
   </div>
 </div>
 
-<!-- LOAD SWIPER LOCALLY (NO THEME DEPENDENCY) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 
 <script>
-document.addEventListener('shopify:section:load', initFeaturedSwipe);
-document.addEventListener('DOMContentLoaded', initFeaturedSwipe);
-
-function initFeaturedSwipe() {
-  if (typeof Swiper === 'undefined') return;
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.featured-articles-scroll');
+  if (!section || typeof Swiper === 'undefined') return;
 
   const swiper = new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
     direction: 'vertical',
     slidesPerView: 1,
-    speed: 900,
-    mousewheel: false, // disabled because Leni/Locomotive blocks it
-    allowTouchMove: false
+    speed: 600,
+    allowTouchMove: false,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    }
   });
 
-  // Detect smooth scroll libs
-  let lastScroll = 0;
-  let scrollTimeout;
+  let isActive = false;
+  let lock = false;
 
-  function handleWheel(e) {
-    const delta = e.deltaY || e.wheelDelta;
+  // Detect when section is centered
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      isActive = entry.intersectionRatio > 0.6;
+    },
+    { threshold: [0, 0.6, 1] }
+  );
 
-    if (delta > 0) {
+  observer.observe(section);
+
+  // Scroll control
+  window.addEventListener('wheel', (e) => {
+    if (!isActive || lock) return;
+
+    lock = true;
+
+    if (e.deltaY > 0) {
       swiper.slideNext();
-    } else if (delta < 0) {
+    } else {
       swiper.slidePrev();
     }
 
-    // throttle
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      lastScroll = 0;
-    }, 100);
-  }
-
-  // Try native wheel
-  window.addEventListener('wheel', handleWheel);
-
-  // Optional: try Lenis if exists
-  if (window.lenis) {
-    window.lenis.on('scroll', ({ delta }) => {
-      if (delta > 0) swiper.slideNext();
-      if (delta < 0) swiper.slidePrev();
-    });
-  }
-}
+    setTimeout(() => {
+      lock = false;
+    }, 700);
+  });
+});
 </script>
+
 
 
 {% endif %}
