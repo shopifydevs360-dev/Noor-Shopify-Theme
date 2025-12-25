@@ -175,7 +175,7 @@ button{
   color: var(--btn-secondary-label);
   border: 1px solid var(--btn-secondary-border);
   font-family: var(--btn-secondary-font);
-  font-size: var(-btn-secondary-font-size);
+  font-size: var(--btn-secondary-font-size);
   letter-spacing: ver(--btn-secondary-letter-space);
 }
 .btn--secondary:hover {
