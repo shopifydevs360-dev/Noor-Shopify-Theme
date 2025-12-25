@@ -47,8 +47,8 @@
 
           <!-- TEXT -->
           <div class="image-overlay-end-details">
-            <span class="title {{ block.settings.button_type }} {% if block.settings.button_type == 'btn--animation' %}{{ block.settings.animation_type }}{% endif %}{% unless block.settings.button_type == 'btn--animation' %} btn{% endunless %}">{{ block.settings.title }}</span>
-            <span class="cta {{ block.settings.button_type }} {% if block.settings.button_type == 'btn--animation' %}{{ block.settings.animation_type }}{% endif %}{% unless block.settings.button_type == 'btn--animation' %} btn{% endunless %}">{{ block.settings.cta_text }}</span>
+            <span class="title {{ block.settings.button_type }}{% if block.settings.button_type == 'btn--animation' %} {{ block.settings.animation_type }}{% endif %}{% unless block.settings.button_type == 'btn--animation' %} btn{% endunless %}">{{ block.settings.title }}</span>
+            <span class="cta {{ block.settings.button_type }}{% if block.settings.button_type == 'btn--animation' %} {{ block.settings.animation_type }}{% endif %}{% unless block.settings.button_type == 'btn--animation' %} btn{% endunless %}">{{ block.settings.cta_text }}</span>
           </div>
 
         </a>
