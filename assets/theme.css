@@ -216,9 +216,6 @@ button{
   position: relative;
   overflow: hidden;
 }
-.btn--animation.hover-underline:hover {
-  color: var(--btn-animation-hover-label);
-}
 .btn--animation.hover-underline:before{
   content: "";
   display: block;
@@ -234,7 +231,9 @@ button{
 .active-underline:hover .btn--animation.hover-underline:before{
   transform: none;
   transition-delay: .3s;
-
+}
+.active-underline:hover .btn--animation.hover-underline{
+  color: var(--btn-animation-hover-label);
 }
 /* Next Button */
 /* .btn--animation- {
