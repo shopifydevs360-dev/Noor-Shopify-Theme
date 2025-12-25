@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', initArticleWrapper);
+document.addEventListener('shopify:section:load', initArticleWrapper);
+
+function initArticleWrapper() {
   if (!window.gsap || !window.ScrollTrigger) return;
 
   gsap.registerPlugin(ScrollTrigger);
@@ -11,83 +14,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!panels.length) return;
 
-    const PANEL_DURATION = 1;
-    const TOTAL_DURATION = panels.length * PANEL_DURATION;
-
-    /* ----------------------------------
-      INITIAL STATE
-    ---------------------------------- */
-    gsap.set(panels, {
-      autoAlpha: 0,
-      y: 40,
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%'
+    /* Reset (important for section reload) */
+    ScrollTrigger.getAll().forEach(st => {
+      if (st.trigger === section) st.kill();
     });
 
+    gsap.set(panels, { autoAlpha: 0, y: 40 });
     gsap.set(panels[0], { autoAlpha: 1, y: 0 });
 
-    counters.forEach((c, i) => {
-      c.classList.toggle('is-active', i === 0);
-    });
-
-    /* ----------------------------------
-      TIMELINE
-    ---------------------------------- */
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: `+=${TOTAL_DURATION * 1000}`,
-        scrub: true,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      }
-    });
+    const totalScroll = panels.length * 1000;
+    const step = totalScroll / panels.length;
 
     panels.forEach((panel, index) => {
+      const isFirst = index === 0;
       const isLast = index === panels.length - 1;
 
-      tl.to(
-        panel,
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: PANEL_DURATION,
-          onStart: () => setActive(index),
-          onReverseComplete: () => setActive(index - 1)
+      ScrollTrigger.create({
+        trigger: section,
+        start: `top-=${step * index} top`,
+        end: `+=${step}`,
+
+        onEnter: () => activate(index),
+        onEnterBack: () => activate(index),
+
+        onLeave: () => {
+          if (!isLast) gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.6 });
         },
-        index * PANEL_DURATION
-      );
 
-      if (!isLast) {
-        tl.to(
-          panel,
-          {
-            autoAlpha: 0,
-            y: -20,
-            duration: PANEL_DURATION
-          },
-          index * PANEL_DURATION + PANEL_DURATION
-        );
-      }
+        onLeaveBack: () => {
+          if (!isFirst) gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.6 });
+        }
+      });
     });
 
-    /* ----------------------------------
-      COUNTER SYNC
-    ---------------------------------- */
-    function setActive(index) {
-      counters.forEach(c => c.classList.remove('is-active'));
-      if (counters[index]) counters[index].classList.add('is-active');
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: `+=${totalScroll}`,
+      pin: true,
+      scrub: true,
+      invalidateOnRefresh: true
+    });
+
+    function activate(index) {
+      panels.forEach((p, i) => {
+        gsap.to(p, {
+          autoAlpha: i === index ? 1 : 0,
+          y: i === index ? 0 : -20,
+          duration: 0.6
+        });
+      });
+
+      counters.forEach(c => c.classList.remove('active-counter'));
+      if (counters[index]) counters[index].classList.add('active-counter');
     }
-
-    /* ----------------------------------
-      CLEANUP ON RESIZE
-    ---------------------------------- */
-    ScrollTrigger.addEventListener('refreshInit', () => {
-      gsap.set(panels, { clearProps: 'all' });
-    });
   });
-});
+
+  ScrollTrigger.refresh();
+}
