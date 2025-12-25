@@ -6,10 +6,7 @@
     <h2 class="hd-3 container">
       {{ section.settings.wapper_title }}
     </h2>
-
     <div class="articles-wrapper article-wrapper">
-
-      <!-- Number navigation (RIGHT) -->
       <div class="featured-post-count">
         {% for article in blog_object.articles limit: 2 %}
           <button
@@ -20,15 +17,12 @@
           </button>
         {% endfor %}
       </div>
-
       <!-- Swiper -->
       <div class="swiper article-swiper">
         <div class="swiper-wrapper">
-
           {% for article in blog_object.articles limit: 2 %}
             <div class="swiper-slide">
               <div class="article-pin-card cols-2">
-
                 <div class="image-wrap">
                   <a href="{{ article.url }}" class="image-item">
                     <div class="cropped-image-wrapper cropped-image--square">
@@ -40,8 +34,7 @@
                     </div>
                   </a>
                 </div>
-
-                <div class="text-wrap v-aligner">
+                <div class="text-wrap">
                   <a href="{{ article.url }}" class="text-item">
                     <h5 class="article-count show-tablet-down">
                       {{ forloop.index | prepend: '0' }}
@@ -50,7 +43,6 @@
                     <p class="underline-link">Explore</p>
                   </a>
                 </div>
-
               </div>
             </div>
           {% endfor %}
