@@ -12,50 +12,58 @@
 
   <div class="featured-posts__inner sh-container-lg">
 
-    <!-- Swiper -->
-    <div class="swiper article-swiper">
-      <div class="swiper-wrapper">
+    <div class="article-wrapper">
 
+      <!-- Number navigation -->
+      <div class="article-pagination">
         {% for article in blog_object.articles limit: 5 %}
-          <div class="swiper-slide">
-            <div class="article-slide">
-
-              <!-- Image -->
-              <div class="article-slide__image">
-                <a href="{{ article.url }}">
-                  {% if article.image %}
-                    <img
-                      src="{{ article.image | image_url: width: 900 }}"
-                      alt="{{ article.title | escape }}"
-                      loading="lazy"
-                    >
-                  {% endif %}
-                </a>
-              </div>
-
-              <!-- Content -->
-              <div class="article-slide__content">
-                <a href="{{ article.url }}">
-                  <span class="article-index">
-                    {{ forloop.index | prepend: '0' }}
-                  </span>
-                  <h3 class="article-title">
-                    {{ article.title }}
-                  </h3>
-                  <span class="article-link">Explore</span>
-                </a>
-              </div>
-
-            </div>
-          </div>
+          <button
+            class="article-pagination__item {% if forloop.first %}is-active{% endif %}"
+            data-slide="{{ forloop.index0 }}"
+          >
+            {{ forloop.index | prepend: '0' }}
+          </button>
         {% endfor %}
-
       </div>
 
-      <!-- Pagination -->
-      <div class="swiper-pagination"></div>
-    </div>
+      <!-- Swiper -->
+      <div class="swiper article-swiper">
+        <div class="swiper-wrapper">
+          {% for article in blog_object.articles limit: 5 %}
+            <div class="swiper-slide">
+              <div class="article-slide">
 
+                <div class="article-slide__image">
+                  <a href="{{ article.url }}">
+                    {% if article.image %}
+                      <img
+                        src="{{ article.image | image_url: width: 900 }}"
+                        alt="{{ article.title | escape }}"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  </a>
+                </div>
+
+                <div class="article-slide__content">
+                  <a href="{{ article.url }}">
+                    <span class="article-index">
+                      {{ forloop.index | prepend: '0' }}
+                    </span>
+                    <h3 class="article-title">
+                      {{ article.title }}
+                    </h3>
+                    <span class="article-link">Explore</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="sh-container featured-posts__footer">
@@ -67,6 +75,7 @@
 {% endif %}
 
 <script src="{{ 'article-wrapper.js' | asset_url }}" defer></script>
+
 
 {% schema %}
 {
