@@ -85,18 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!section || typeof Swiper === 'undefined') return;
 
   const swiper = new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
-    direction: 'vertical',
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
     slidesPerView: 1,
     speed: 600,
-    allowTouchMove: false,
-    effect: 'fade',
-    fadeEffect: {
-      crossFade: true
-    }
+    allowTouchMove: false
   });
 
   let isActive = false;
-  let lock = false;
+  let isThrottled = false;
 
   // Detect when section is centered
   const observer = new IntersectionObserver(
@@ -108,24 +105,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(section);
 
-  // Scroll control
   window.addEventListener('wheel', (e) => {
-    if (!isActive || lock) return;
+    if (!isActive || isThrottled) return;
 
-    lock = true;
+    const isScrollingDown = e.deltaY > 0;
+    const isFirstSlide = swiper.activeIndex === 0;
+    const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
 
-    if (e.deltaY > 0) {
+    // 🚫 Allow normal scroll at edges
+    if (
+      (isScrollingDown && isLastSlide) ||
+      (!isScrollingDown && isFirstSlide)
+    ) {
+      return; // let page scroll naturally
+    }
+
+    // ✅ Intercept scroll only when sliding
+    e.preventDefault();
+    isThrottled = true;
+
+    if (isScrollingDown) {
       swiper.slideNext();
     } else {
       swiper.slidePrev();
     }
 
     setTimeout(() => {
-      lock = false;
+      isThrottled = false;
     }, 700);
-  });
+  }, { passive: false });
 });
 </script>
+
 
 
 
