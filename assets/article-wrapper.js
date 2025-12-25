@@ -1,59 +1,200 @@
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.error('GSAP or ScrollTrigger library not loaded');
-    return;
+// Modern Articles Wrapper
+class ModernArticles {
+  constructor() {
+    this.section = document.querySelector('.js-pinned-sections');
+    if (!this.section) return;
+
+    this.cards = Array.from(document.querySelectorAll('.js-pin-panel-wrap'));
+    this.dots = Array.from(document.querySelectorAll('.dot'));
+    this.arrows = {
+      prev: document.querySelector('.prev-arrow'),
+      next: document.querySelector('.next-arrow')
+    };
+
+    this.currentIndex = 0;
+    this.isAnimating = false;
+    this.animationDuration = 600;
+
+    this.init();
   }
 
-  const articleCards = document.querySelectorAll('.js-article-card');
-  const counterItems = document.querySelectorAll('.featured-posts__counter-item');
-  
-  if (articleCards.length === 0) return;
+  init() {
+    if (this.cards.length <= 1) return;
 
-  // Set initial state for all articles except the first one
-  gsap.set(Array.from(articleCards).slice(1), { autoAlpha: 0, y: 40 });
+    this.setupEventListeners();
+    this.setupScrollTrigger();
+    this.updateNavigation();
+  }
 
-  const totalHeight = 1000 * articleCards.length;
-  const sectionHeight = totalHeight / articleCards.length;
-
-  // Create scroll triggers for each article
-  articleCards.forEach((article, index) => {
-    const isFirst = index === 0;
-    const isLast = index === articleCards.length - 1;
-
-    ScrollTrigger.create({
-      trigger: ".featured-posts",
-      start: `top -=${sectionHeight * index}`,
-      end: `+=${sectionHeight}`,
-      onEnter: () => showArticle(index),
-      onEnterBack: () => showArticle(index),
-      onLeave: () => {
-        if (!isLast) {
-          gsap.to(article, { autoAlpha: 0, y: -20, duration: 0.6 });
-        }
-      },
-      onLeaveBack: () => {
-        if (!isFirst) {
-          gsap.to(article, { autoAlpha: 0, y: -20, duration: 0.6 });
-        }
-      },
+  setupEventListeners() {
+    // Dot navigation
+    this.dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index);
+        this.goToArticle(index);
+      });
     });
-  });
 
-  // Main pinning scroll trigger
-  ScrollTrigger.create({
-    trigger: ".featured-posts",
-    start: "top top",
-    end: `+=${totalHeight}`,
-    pin: true,
-    scrub: true,
-  });
+    // Arrow navigation
+    if (this.arrows.prev) {
+      this.arrows.prev.addEventListener('click', () => this.goToPrev());
+    }
 
-  function showArticle(index) {
-    // Animate the article
-    gsap.to(articleCards[index], { autoAlpha: 1, y: 0, duration: 0.6 });
-    
-    // Update counter
-    document.querySelector('.featured-posts__counter-item.is-active')?.classList.remove('is-active');
-    document.querySelector(`.featured-posts__counter-item[data-counter-index="${index}"]`)?.classList.add('is-active');
+    if (this.arrows.next) {
+      this.arrows.next.addEventListener('click', () => this.goToNext());
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.goToPrev();
+      if (e.key === 'ArrowRight') this.goToNext();
+    });
   }
+
+  setupScrollTrigger() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+
+    const cards = this.cards;
+    const totalHeight = 1000 * cards.length;
+    const sectionHeight = totalHeight / cards.length;
+
+    cards.forEach((card, index) => {
+      const isFirst = index === 0;
+      const isLast = index === cards.length - 1;
+
+      ScrollTrigger.create({
+        trigger: this.section,
+        start: `top -=${sectionHeight * index}`,
+        end: `+=${sectionHeight}`,
+        onEnter: () => this.activateCard(index),
+        onEnterBack: () => this.activateCard(index),
+        onLeave: () => {
+          if (!isLast) this.deactivateCard(index);
+        },
+        onLeaveBack: () => {
+          if (!isFirst) this.deactivateCard(index);
+        }
+      });
+    });
+
+    // Pin the section
+    ScrollTrigger.create({
+      trigger: this.section,
+      start: 'top top',
+      end: `+=${totalHeight}`,
+      pin: true,
+      scrub: 0.5,
+      markers: false
+    });
+  }
+
+  activateCard(index) {
+    if (this.isAnimating || index === this.currentIndex) return;
+
+    this.isAnimating = true;
+    this.currentIndex = index;
+
+    // Animate cards
+    gsap.to(this.cards, {
+      duration: this.animationDuration / 1000,
+      opacity: 0.3,
+      y: 20,
+      ease: 'power2.out'
+    });
+
+    gsap.to(this.cards[index], {
+      duration: this.animationDuration / 1000,
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+      onComplete: () => {
+        this.isAnimating = false;
+      }
+    });
+
+    this.updateNavigation();
+  }
+
+  deactivateCard(index) {
+    if (index === this.currentIndex) return;
+
+    gsap.to(this.cards[index], {
+      duration: this.animationDuration / 1000,
+      opacity: 0.3,
+      y: 20,
+      ease: 'power2.out'
+    });
+  }
+
+  goToArticle(index) {
+    if (this.isAnimating || index === this.currentIndex) return;
+
+    // Calculate scroll position
+    const sectionHeight = window.innerHeight;
+    const scrollTo = this.section.offsetTop + (sectionHeight * index);
+
+    window.scrollTo({
+      top: scrollTo,
+      behavior: 'smooth'
+    });
+
+    this.activateCard(index);
+  }
+
+  goToPrev() {
+    if (this.currentIndex > 0) {
+      this.goToArticle(this.currentIndex - 1);
+    }
+  }
+
+  goToNext() {
+    if (this.currentIndex < this.cards.length - 1) {
+      this.goToArticle(this.currentIndex + 1);
+    }
+  }
+
+  updateNavigation() {
+    // Update dots
+    this.dots.forEach((dot, index) => {
+      if (index === this.currentIndex) {
+        dot.classList.add('active');
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.classList.remove('active');
+        dot.removeAttribute('aria-current');
+      }
+    });
+
+    // Update arrows
+    if (this.arrows.prev) {
+      this.arrows.prev.disabled = this.currentIndex === 0;
+    }
+
+    if (this.arrows.next) {
+      this.arrows.next.disabled = this.currentIndex === this.cards.length - 1;
+    }
+
+    // Update cards
+    this.cards.forEach((card, index) => {
+      if (index === this.currentIndex) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+  }
+}
+
+// Initialize when document is ready
+document.addEventListener('DOMContentLoaded', () => {
+  new ModernArticles();
 });
+
+// Initialize on Shopify theme events
+if (typeof Shopify !== 'undefined') {
+  document.addEventListener('shopify:section:load', (e) => {
+    if (e.target.querySelector('.js-pinned-sections')) {
+      new ModernArticles();
+    }
+  });
+}
