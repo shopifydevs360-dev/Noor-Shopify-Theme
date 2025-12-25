@@ -6,33 +6,26 @@ function initFeaturedArticles() {
     const panels = section.querySelectorAll('.article-panel');
     if (panels.length < 2) return;
 
-    let activeIndex = 0;
-    let locked = false;
+    let index = 0;
+    let ticking = false;
 
-    panels[0].classList.add('is-active');
+    section.addEventListener('wheel', e => {
+      if (ticking) return;
 
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting || locked) return;
+      ticking = true;
 
-          locked = true;
+      setTimeout(() => {
+        panels[index].classList.remove('is-active');
 
-          setTimeout(() => {
-            panels[activeIndex].classList.remove('is-active');
-            activeIndex++;
+        if (e.deltaY > 0 && index < panels.length - 1) {
+          index++;
+        } else if (e.deltaY < 0 && index > 0) {
+          index--;
+        }
 
-            if (activeIndex < panels.length) {
-              panels[activeIndex].classList.add('is-active');
-            }
-
-            locked = false;
-          }, 300);
-        });
-      },
-      { threshold: 0.7 }
-    );
-
-    observer.observe(section);
+        panels[index].classList.add('is-active');
+        ticking = false;
+      }, 400);
+    }, { passive: true });
   });
 }
