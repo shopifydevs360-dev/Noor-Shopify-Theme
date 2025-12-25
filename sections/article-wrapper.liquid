@@ -1,4 +1,4 @@
-{{ 'articles-wrapper.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'article-wrapper.css' | asset_url | stylesheet_tag: preload: true }}
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
   <div id="shopify-section-160824560807dc1338" class="shopify-section">
