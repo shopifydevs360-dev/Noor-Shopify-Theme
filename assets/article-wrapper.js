@@ -5,19 +5,39 @@ function initArticleSwiper() {
   document.querySelectorAll('.article-swiper').forEach(swiperEl => {
     if (swiperEl.classList.contains('swiper-initialized')) return;
 
-    new Swiper(swiperEl, {
+    const paginationItems =
+      swiperEl.closest('.article-wrapper')
+        .querySelectorAll('.article-pagination__item');
+
+    const swiper = new Swiper(swiperEl, {
       direction: 'vertical',
       slidesPerView: 1,
-      spaceBetween: 30,
+      speed: 800,
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+
       mousewheel: {
         forceToAxis: true,
+        releaseOnEdges: true, // 🔥 KEY FIX
         sensitivity: 1,
       },
-      pagination: {
-        el: swiperEl.querySelector('.swiper-pagination'),
-        clickable: true,
-      },
-      speed: 700,
+    });
+
+    // Sync number pagination
+    swiper.on('slideChange', () => {
+      paginationItems.forEach(item =>
+        item.classList.remove('is-active')
+      );
+      if (paginationItems[swiper.activeIndex]) {
+        paginationItems[swiper.activeIndex].classList.add('is-active');
+      }
+    });
+
+    // Click number → go to slide
+    paginationItems.forEach(item => {
+      item.addEventListener('click', () => {
+        swiper.slideTo(parseInt(item.dataset.slide, 10));
+      });
     });
   });
 }
