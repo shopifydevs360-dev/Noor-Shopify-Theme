@@ -3,12 +3,6 @@
   padding-top: clamp(5rem, 10vh, 12rem);
 }
 
-.js-pinned-sections {
-  position: relative;
-  min-height: 100vh;
-  overflow: visible;
-}
-
 .featured-posts__inner {
   position: relative;
 }
@@ -16,18 +10,24 @@
 .articles-wrapper {
   position: relative;
   height: clamp(40rem, 60vh, 70rem);
+  overflow: hidden;
 }
 
 /* Panels */
-.js-pin-panel-wrap {
+.article-panel {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  opacity: 0;
+  transform: translateY(40px);
 }
 
-/* Card layout */
-.article-pin-card__grid {
+.article-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Layout */
+.article-panel__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8rem;
@@ -35,31 +35,48 @@
   height: 100%;
 }
 
-@media (max-width: 1024px) {
-  .article-pin-card__grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 4rem;
-  }
-
-  .featured-post-count {
-    display: none;
-  }
-}
-.js-pinned-sections {
-  position: relative;
-  min-height: 100vh;
-  overflow: visible; /* খুব গুরুত্বপূর্ণ */
-}
-
-.articles-wrapper {
-  position: relative;
-  height: clamp(40rem, 60vh, 70rem);
-}
-
-.js-pin-panel-wrap {
-  position: absolute;
-  inset: 0;
+.article-panel__image img {
   width: 100%;
-  height: 100%;
+  display: block;
+}
+
+.article-panel__content {
+  max-width: 36rem;
+}
+
+.article-index {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.article-title {
+  margin-bottom: 1.5rem;
+}
+
+.article-link {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  text-decoration: underline;
+  font-size: 1.3rem;
+}
+
+.featured-posts__footer {
+  margin-top: clamp(3rem, 6vh, 5.5rem);
+  text-align: center;
+}
+
+.featured-posts__all {
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .article-panel__grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    text-align: center;
+  }
 }
