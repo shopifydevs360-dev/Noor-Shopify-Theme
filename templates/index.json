@@ -99,15 +99,15 @@
     "image_overlay_grid_Gz6VEw": {
       "type": "image-overlay-grid",
       "blocks": {
-        "image_rBwmXK": {
+        "image_kECNVX": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/pexels-thirdman-8489273.jpg",
+            "image": "shopify://shop_images/2151983944.jpg",
             "title": "Title",
             "cta_text": "Shop Now",
             "link": "",
             "button_type": "btn--animation",
-            "animation_type": "underline",
+            "animation_type": "hover-underline",
             "background_color": "#ffffff",
             "image_background_color": "#f3f3f4"
           }
@@ -127,7 +127,7 @@
         }
       },
       "block_order": [
-        "image_rBwmXK",
+        "image_kECNVX",
         "image_URLedE"
       ],
       "name": "Image Overlay Grid",
