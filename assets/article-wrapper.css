@@ -11,13 +11,15 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(40px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
 }
 
 .article-panel.is-active {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .article-panel__grid {
@@ -28,24 +30,15 @@
   height: 100%;
 }
 
-.article-panel__image img {
-  width: 100%;
-  display: block;
-}
-
-.article-panel__content {
-  max-width: 36rem;
-}
-
-.article-link {
-  text-transform: uppercase;
-  text-decoration: underline;
-}
-
 @media (max-width: 1024px) {
   .article-panel__grid {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 4rem;
   }
+}
+
+/* Scroll lock helper */
+body.is-scroll-locked {
+  overflow: hidden;
 }
