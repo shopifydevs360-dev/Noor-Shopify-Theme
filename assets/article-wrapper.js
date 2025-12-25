@@ -5,19 +5,35 @@ function initArticleSwiper() {
   document.querySelectorAll('.article-swiper').forEach(swiperEl => {
     if (swiperEl.classList.contains('swiper-initialized')) return;
 
-    new Swiper(swiperEl, {
+    const wrapper = swiperEl.closest('.article-wrapper');
+    const counters = wrapper.querySelectorAll('.counter-item');
+
+    const swiper = new Swiper(swiperEl, {
       direction: 'vertical',
       slidesPerView: 1,
-      spaceBetween: 30,
+      speed: 700,
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+
       mousewheel: {
         forceToAxis: true,
-        sensitivity: 1,
+        releaseOnEdges: true, // IMPORTANT
       },
-      pagination: {
-        el: swiperEl.querySelector('.swiper-pagination'),
-        clickable: true,
-      },
-      speed: 700,
+    });
+
+    // Sync number navigation
+    swiper.on('slideChange', () => {
+      counters.forEach(c => c.classList.remove('active-counter'));
+      if (counters[swiper.activeIndex]) {
+        counters[swiper.activeIndex].classList.add('active-counter');
+      }
+    });
+
+    // Click number to slide
+    counters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        swiper.slideTo(parseInt(btn.dataset.slide, 10));
+      });
     });
   });
 }
