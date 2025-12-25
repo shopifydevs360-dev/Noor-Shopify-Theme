@@ -108,7 +108,6 @@
             "link": "",
             "button_type": "btn--animation",
             "animation_type": "hover-underline",
-            "background_color": "#ffffff",
             "image_background_color": "#f3f3f4"
           }
         },
@@ -121,7 +120,6 @@
             "link": "",
             "button_type": "btn--primary",
             "animation_type": "underline",
-            "background_color": "#ffffff",
             "image_background_color": "#f3f3f4"
           }
         }
@@ -177,12 +175,23 @@
         "custom_class": "",
         "color_control": "section-light"
       }
+    },
+    "article_wrapper_tkFWde": {
+      "type": "article-wrapper",
+      "name": "Articles Wrapper",
+      "settings": {
+        "wapper_title": "Featured Articles",
+        "blog": "news",
+        "custom_class": "",
+        "color_control": "section-light"
+      }
     }
   },
   "order": [
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
     "image_overlay_grid_Gz6VEw",
-    "custom_section_pxbE8X"
+    "custom_section_pxbE8X",
+    "article_wrapper_tkFWde"
   ]
 }
