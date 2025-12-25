@@ -1,3 +1,8 @@
 .featured-posts {
   height: 100vh;
 }
+.featured-posts .articles-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
