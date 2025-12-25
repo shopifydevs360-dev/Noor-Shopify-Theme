@@ -1,95 +1,109 @@
-{{ 'featured-articles-slider.css' | asset_url | stylesheet_tag }}
+<style>
+/* FORCE HEIGHT */
+.featured-articles-scroll {
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+
+.featured-articles-scroll .swiper {
+  height: 100%;
+}
+
+.featured-articles-scroll .swiper-slide {
+  display: flex;
+  align-items: center;
+}
+
+.featured-article {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 4vw;
+  padding: 0 6vw;
+  width: 100%;
+}
+
+.featured-article img {
+  width: 100%;
+  max-width: 520px;
+  display: block;
+}
+
+.featured-article h3 {
+  font-size: clamp(28px, 3vw, 46px);
+  line-height: 1.2;
+}
+
+.featured-counter {
+  font-size: 14px;
+  letter-spacing: 0.2em;
+}
+</style>
 
 {% assign blog_object = blogs[section.settings.blog] %}
 
-{% if blog_object != blank and blog_object.articles.size > 0 %}
+{% if blog_object and blog_object.articles.size > 0 %}
 
-<div
-  class="featured-articles-section"
-  {{ section.shopify_attributes }}
->
-  <div class="featured-articles-inner">
+<div class="featured-articles-scroll" {{ section.shopify_attributes }}>
+  <div class="swiper featuredArticlesSwiper-{{ section.id }}">
+    <div class="swiper-wrapper">
 
-    {% if section.settings.title != blank %}
-      <h2 class="featured-articles-heading">
-        {{ section.settings.title }}
-      </h2>
-    {% endif %}
+      {% for article in blog_object.articles limit: 5 %}
+        <div class="swiper-slide">
+          <div class="featured-article">
 
-    <div class="swiper featuredArticlesSwiper">
-      <div class="swiper-wrapper">
+            <div>
+              {% if article.image %}
+                <img
+                  src="{{ article.image | image_url: width: 1200 }}"
+                  alt="{{ article.title | escape }}">
+              {% endif %}
+            </div>
 
-        {% for article in blog_object.articles limit: 5 %}
-          <div class="swiper-slide">
+            <div>
+              <h3>{{ article.title }}</h3>
+              <a href="{{ article.url }}">Explore</a>
+            </div>
 
-            <div class="featured-article">
-
-              <!-- IMAGE -->
-              <div class="featured-article-image">
-                {% if article.image %}
-                  <img
-                    src="{{ article.image | image_url: width: 1200 }}"
-                    alt="{{ article.title | escape }}"
-                    loading="lazy">
-                {% endif %}
-              </div>
-
-              <!-- CONTENT -->
-              <div class="featured-article-content">
-                <h3>{{ article.title }}</h3>
-
-                <a href="{{ article.url }}" class="featured-article-link">
-                  Explore
-                </a>
-              </div>
-
-              <!-- COUNTER -->
-              <div class="featured-article-counter">
-                {{ forloop.index | prepend: '0' }}
-              </div>
-
+            <div class="featured-counter">
+              {{ forloop.index | prepend: '0' }}
             </div>
 
           </div>
-        {% endfor %}
+        </div>
+      {% endfor %}
 
-      </div>
     </div>
-
-    <div class="featured-articles-footer">
-      <a href="{{ blog_object.url }}">All Features</a>
-    </div>
-
   </div>
 </div>
 
+<!-- LOAD SWIPER LOCALLY (NO THEME DEPENDENCY) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  new Swiper('.featuredArticlesSwiper', {
+document.addEventListener('shopify:section:load', initFeaturedArticles);
+document.addEventListener('DOMContentLoaded', initFeaturedArticles);
+
+function initFeaturedArticles() {
+  if (typeof Swiper === 'undefined') return;
+
+  new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
     direction: 'vertical',
     slidesPerView: 1,
     speed: 900,
-    mousewheel: {
-      forceToAxis: true,
-      sensitivity: 1
-    },
+    mousewheel: true,
     allowTouchMove: false
   });
-});
+}
 </script>
 
 {% endif %}
 
 {% schema %}
 {
-  "name": "Featured Articles Slider",
+  "name": "Featured Articles Scroll",
   "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Featured Articles"
-    },
     {
       "type": "blog",
       "id": "blog",
@@ -98,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
   ],
   "presets": [
     {
-      "name": "Featured Articles Slider"
+      "name": "Featured Articles Scroll"
     }
   ]
 }
