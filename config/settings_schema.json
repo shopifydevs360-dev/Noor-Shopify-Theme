@@ -457,26 +457,25 @@
           { "type": "color", "id": "additional_color_2", "label": "Color 2", "default": "#00FF00" }
 
         ],
-"role": {
-  "text": "text",
+        "role": {
+          "text": "text",
 
-  "background": {
-    "solid": "background",
-    "gradient": "background_gradient"
-  },
+          "background": {
+            "solid": "background",
+            "gradient": "background_gradient"
+          },
 
-  "links": "text",
-  "icons": "text",
+          "links": "text",
+          "icons": "text",
 
-  "primary_button": "btn_bg",
-  "on_primary_button": "btn_text",
-  "primary_button_border": "btn_border",
+          "primary_button": "btn_bg",
+          "on_primary_button": "btn_text",
+          "primary_button_border": "btn_border",
 
-  "secondary_button": "background_secondary",
-  "on_secondary_button": "text",
-  "secondary_button_border": "border"
-}
-
+          "secondary_button": "background_secondary",
+          "on_secondary_button": "text",
+          "secondary_button_border": "border"
+        }
       },
       {
         "type": "header",
