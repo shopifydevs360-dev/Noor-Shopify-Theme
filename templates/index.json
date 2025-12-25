@@ -107,7 +107,7 @@
             "cta_text": "Shop Now",
             "link": "",
             "button_type": "btn--animation",
-            "text_color": "#000000",
+            "animation_type": "underline",
             "background_color": "#ffffff",
             "image_background_color": "#f3f3f4"
           }
@@ -120,7 +120,7 @@
             "cta_text": "Shop Now",
             "link": "",
             "button_type": "btn--primary",
-            "text_color": "#000000",
+            "animation_type": "underline",
             "background_color": "#ffffff",
             "image_background_color": "#f3f3f4"
           }
@@ -138,11 +138,34 @@
         "custom_class": "",
         "color_control": "section-dark"
       }
+    },
+    "custom_section_pxbE8X": {
+      "type": "custom-section",
+      "name": "Custom Section",
+      "settings": {
+        "container_width": "container",
+        "height_type": "content",
+        "height_desktop": 800,
+        "height_tablet": 600,
+        "height_mobile": 500,
+        "background_color": "#ffffff",
+        "overlay_enable": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 40,
+        "border_radius_top": 0,
+        "border_radius_bottom": 0,
+        "padding_y": 60,
+        "padding_x": 30,
+        "justify_content": "center",
+        "custom_class": "",
+        "color_control": "section-light"
+      }
     }
   },
   "order": [
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
-    "image_overlay_grid_Gz6VEw"
+    "image_overlay_grid_Gz6VEw",
+    "custom_section_pxbE8X"
   ]
 }
