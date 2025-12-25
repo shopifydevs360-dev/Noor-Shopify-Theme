@@ -212,7 +212,7 @@ button{
   overflow: hidden;
 }
 .btn--animation.hover-underline:hover {
-  color: var(--btn-gradient-hover-label);
+  color: var(--btn-animation-hover-label);
 }
 .btn--animation.hover-underline:before{
   content: "";
@@ -224,11 +224,12 @@ button{
   height: 1px;
   transform: translate(-130%);
   transition: all .3s cubic-bezier(.34,.615,.4,.985);
-  background: currentColor;
+  background: var(--btn-animation-label);
 }
 .active-underline:hover .btn--animation.hover-underline:before{
   transform: none;
   transition-delay: .3s;
+    background: var(--btn-animation-hover-label);
 }
 /* Next Button */
 /* .btn--animation- {
