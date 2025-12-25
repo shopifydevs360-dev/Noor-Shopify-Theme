@@ -2,7 +2,7 @@
 
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
-<section class="featured-posts">
+<section class="featured-posts" data-featured-articles>
   <h2 class="hd-3 container">
     {{ section.settings.wrapper_title }}
   </h2>
@@ -12,7 +12,7 @@
       {% for article in blog_object.articles limit: 2 %}
         <button
           class="counter-item {% if forloop.first %}active-counter{% endif %}"
-          data-slide="{{ forloop.index0 }}"
+          data-index="{{ forloop.index0 }}"
         >
           {{ forloop.index | prepend: '0' }}
         </button>
@@ -25,18 +25,22 @@
           <div class="swiper-slide">
             <div class="article-pin-card cols-2">
               <div class="image-wrap">
-                <a href="{{ article.url }}">
-                  <img
-                    src="{{ article.image | image_url: width: 600 }}"
-                    alt="{{ article.title }}"
-                    loading="lazy"
-                  >
+                <a href="{{ article.url }}" class="image-item">
+                  <div class="cropped-image-wrapper cropped-image--square">
+                    <img
+                      src="{{ article.image | image_url: width: 600 }}"
+                      alt="{{ article.title }}"
+                      loading="lazy"
+                    >
+                  </div>
                 </a>
               </div>
 
               <div class="text-wrap">
-                <a href="{{ article.url }}">
-                  <h5 class="article-count">{{ forloop.index | prepend: '0' }}</h5>
+                <a href="{{ article.url }}" class="text-item">
+                  <h5 class="article-count">
+                    {{ forloop.index | prepend: '0' }}
+                  </h5>
                   <h5>{{ article.title }}</h5>
                   <p class="underline-link">Explore</p>
                 </a>
@@ -53,6 +57,7 @@
   </div>
 </section>
 {% endif %}
+
 
 <script src="{{ 'article-wrapper.js' | asset_url }}" defer></script>
 
