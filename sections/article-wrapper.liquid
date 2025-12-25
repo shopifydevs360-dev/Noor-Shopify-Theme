@@ -3,10 +3,7 @@
 {% assign blog_object = blogs[section.settings.blog] %}
 
 {% if blog_object != blank and blog_object.articles_count > 0 %}
-<section
-  class="featured-posts js-pinned-sections"
-  data-section-id="{{ section.id }}"
->
+<section class="featured-posts js-featured-articles" data-section-id="{{ section.id }}">
   <div class="sh-container">
     <h2 class="featured-posts__title hd-3">
       {{ section.settings.wrapper_title }}
@@ -17,14 +14,10 @@
     <div class="articles-wrapper">
 
       {% for article in blog_object.articles limit: 2 %}
-        <article
-          class="article-pin-card js-pin-panel-wrap"
-          data-index="{{ forloop.index0 }}"
-        >
-          <div class="article-pin-card__grid">
+        <article class="article-panel">
+          <div class="article-panel__grid">
 
-            <!-- Image -->
-            <div class="article-pin-card__image">
+            <div class="article-panel__image">
               <a href="{{ article.url }}">
                 {% if article.image %}
                   <img
@@ -36,8 +29,7 @@
               </a>
             </div>
 
-            <!-- Content -->
-            <div class="article-pin-card__content">
+            <div class="article-panel__content">
               <a href="{{ article.url }}">
                 <span class="article-index">
                   {{ forloop.index | prepend: '0' }}
@@ -52,18 +44,6 @@
           </div>
         </article>
       {% endfor %}
-
-      <!-- Counter (desktop) -->
-      <div class="featured-post-count">
-        {% for article in blog_object.articles limit: 2 %}
-          <span
-            class="counter-item {% if forloop.first %}is-active{% endif %}"
-            data-counter-index="{{ forloop.index0 }}"
-          >
-            {{ forloop.index | prepend: '0' }}
-          </span>
-        {% endfor %}
-      </div>
 
     </div>
   </div>
@@ -80,7 +60,7 @@
 
 {% schema %}
 {
-  "name": "Articles Wrapper",
+  "name": "Featured Articles",
   "settings": [
     {
       "type": "text",
@@ -96,7 +76,7 @@
   ],
   "presets": [
     {
-      "name": "Articles Wrapper"
+      "name": "Featured Articles"
     }
   ]
 }
