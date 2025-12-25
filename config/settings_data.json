@@ -58,7 +58,7 @@
           "subtext": "#ffffff",
           "heading_text": "#eeeeee",
           "link_color": "#FFFFFF",
-          "link_hover_color": "#000000",
+          "link_hover_color": "#666666",
           "price_sale": "#e02b2b",
           "price_regular": "#666666",
           "form_field": "#ffffff",
