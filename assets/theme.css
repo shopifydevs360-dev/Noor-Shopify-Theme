@@ -135,6 +135,10 @@ body.rtl .container {
 /* ------------------------------
    BUTTON STYLES
 ------------------------------- */
+button:not(.btn) {
+  border: none;
+}
+
 button{
   border: none;
   cursor: pointer;
