@@ -431,10 +431,10 @@
           { "type": "header", "content": "Buttons" },
           { "type": "color", "id": "btn_bg", "label": "Background", "default": "#222222" },
           { "type": "color", "id": "btn_text", "label": "Text", "default": "#FFFFFF" },
-          { "type": "color", "id": "btn_border", "label": "Border", "default": "#222222" },
+          { "type": "color", "id": "btn_outline", "label": "Outline", "default": "#222222" },
 
           { "type": "header", "content": "Buttons Hover" },
-          { "type": "color", "id": "btn_bg_hover", "label": "Background & border", "default": "#000000" },
+          { "type": "color", "id": "btn_bg_outline_hover", "label": "Background & outline", "default": "#000000" },
           { "type": "color", "id": "btn_text_hover", "label": "text", "default": "#FFFFFF" },
 
           { "type": "header", "content": "Price" },
@@ -468,10 +468,12 @@
           "links": "text",
           "icons": "text",
 
+          /* Primary button */
           "primary_button": "btn_bg",
           "on_primary_button": "btn_text",
-          "primary_button_border": "btn_border",
+          "primary_button_border": "btn_outline",
 
+          /* Secondary button (fallback / outline style) */
           "secondary_button": "background_secondary",
           "on_secondary_button": "text",
           "secondary_button_border": "border"
