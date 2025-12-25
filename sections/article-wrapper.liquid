@@ -1,0 +1,131 @@
+{{ 'articles-wrapper.css' | asset_url | stylesheet_tag: preload: true }}
+{% render 'section-base-style' %}
+
+{% assign blog_object = blogs[section.settings.blog] %}
+
+{% if blog_object != blank and blog_object.articles.size > 0 %}
+
+<div
+  class="articles-wrapper-section {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="section-{{ section.id }}-padding">
+
+    <section class="js-pinned-sections featured-posts">
+
+      {% if section.settings.wapper_title != blank %}
+        <h2 class="hd-3 sh-container" data-reveal="lines-masked">
+          {{ section.settings.wapper_title }}
+        </h2>
+      {% endif %}
+
+      <div class="articles-wrapper sh-container-lg">
+        {% for article in blog_object.articles limit: 2 %}
+          <div class="js-pin-panel-wrap article-pin-card cols-2">
+
+            <!-- IMAGE -->
+            <div class="js-pin-panel image-wrap image-wrap-{{ forloop.index0 }} v-aligner">
+              <a href="{{ article.url }}" aria-label="{{ article.title }}" class="image-item">
+                <div class="cropped-image-wrapper" style="padding-bottom: 100%;">
+                  {% if article.image %}
+                    <picture>
+                      <source
+                        data-src="{{ article.image | image_url: width: 600 }}"
+                        media="(min-width: 768px)">
+                      <img
+                        class="lazyload"
+                        data-src="{{ article.image | image_url: width: 600 }}"
+                        data-sizes="auto"
+                        alt="{{ article.title | escape }}">
+                    </picture>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+
+            <!-- TEXT -->
+            <div class="js-pin-panel text-wrap v-aligner">
+              <a href="{{ article.url }}" aria-label="{{ article.title }}" class="text-item">
+                <h5 class="article-count show-tablet-down">
+                  {{ forloop.index | prepend: '0' }}
+                </h5>
+                <h5>{{ article.title }}</h5>
+                <p class="underline-link">Explore</p>
+              </a>
+            </div>
+
+          </div>
+        {% endfor %}
+
+        <!-- COUNTER (DESKTOP) -->
+        <div class="featured-post-count hide-tablet-down">
+          {% for article in blog_object.articles limit: 2 %}
+            <p
+              class="{% if forloop.first %}active-counter{% endif %}"
+              data-counter-index="{{ forloop.index0 }}"
+            >
+              {{ forloop.index | prepend: '0' }}
+            </p>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.blog != blank %}
+        <div class="sh-container end-link">
+          <a href="{{ blog_object.url }}" aria-label="Link to all articles">
+            All Features
+          </a>
+        </div>
+      {% endif %}
+
+    </section>
+
+  </div>
+</div>
+
+{% else %}
+  <p style="text-align: center;">No articles found in the selected blog.</p>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Articles Wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "wapper_title",
+      "label": "Title",
+      "default": "Featured Articles"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Choose a Blog"
+    },
+    {
+      "type": "header",
+      "content": "Dynamic Option"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "select",
+      "id": "color_control",
+      "label": "Color Control",
+      "options": [
+        { "value": "section-dark", "label": "Dark" },
+        { "value": "section-light", "label": "Light" }
+      ],
+      "default": "section-light"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Articles Wrapper"
+    }
+  ]
+}
+{% endschema %}
