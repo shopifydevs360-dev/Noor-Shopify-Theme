@@ -10,7 +10,6 @@
   height: clamp(40rem, 60vh, 70rem);
 }
 
-/* Keep your grid */
 .article-pin-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -19,7 +18,6 @@
   height: 100%;
 }
 
-/* Fade effect */
 .article-swiper .swiper-slide {
   opacity: 0;
 }
@@ -28,7 +26,7 @@
   opacity: 1;
 }
 
-/* RIGHT side number navigation */
+/* Right side counter */
 .featured-post-count {
   position: absolute;
   right: 0;
@@ -44,6 +42,7 @@
   border: none;
   cursor: pointer;
   opacity: 0.4;
+  font-size: 1.6rem;
 }
 
 .counter-item.active-counter {
@@ -51,11 +50,11 @@
   font-weight: 700;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
   .article-pin-card {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 4rem;
   }
 
   .featured-post-count {
