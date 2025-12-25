@@ -222,6 +222,8 @@ button{
   font-family: var(--btn-animation-font);
   font-size: var(--btn-animation-font-size);
   letter-spacing: ver(--btn-animation-latter-space);
+  position: relative;
+  overflow: hidden;
 }
 .btn--animation.hover-underline:hover {
   color: var(--btn-gradient-hover-label);
@@ -237,8 +239,6 @@ button{
   transform: translate(-130%);
   transition: all .3s cubic-bezier(.34,.615,.4,.985);
   background: currentColor;
-  position: relative;
-  overflow: hidden;
 }
 .active-underline:hover .btn--animation.hover-underline:before{
   transform: none;
