@@ -1,54 +1,82 @@
-{{ 'article-wrapper.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
+
 {% assign blog_object = blogs[section.settings.blog] %}
-{% if blog_object.articles.size > 0 %}
-  <div id="shopify-section-160824560807dc1338" class="shopify-section">
-    <section class="js-pinned-sections featured-posts">
-      <h2 class="hd-3 sh-container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
 
-      <div class="articles-wrapper sh-container-lg">
-        {% assign counter = 0 %}
-        {% for article in blog_object.articles limit: 2 %}
-          {% assign counter = forloop.index %}
-          <div class="js-pin-panel-wrap article-pin-card cols-2">
-            <div class="js-pin-panel image-wrap image-wrap-0 v-aligner">
-              <a href="{{ article.url }}" aria-label="{{ article.url }}" class="image-item">
-                <div class="cropped-image-wrapper" style="padding-bottom: 100%;">
-                  <picture>
-                    <source data-src="{{ article.image | image_url: width: 600 }}" media="--medium">
-                    <img class="lazyload" data-optimumx="auto" data-sizes="auto" data-parent-fit="contain" data-src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}">
-                  </picture>
-                </div>
-              </a>
-            </div>
-            <div class="js-pin-panel text-wrap v-aligner">
-              <a href="{{ article.url }}" aria-label="{{ article.url }}" class="text-item">
-                <h5 class="article-count show-tablet-down">{{ counter | prepend: '0' }}</h5>
-                <h5>{{ article.title }}</h5>
-                <p class="underline-link">Explore</p>
-              </a>
-            </div>
-          </div>
-        {% endfor %}
-
-        <div class="featured-post-count hide-tablet-down">
-          {% for article in blog_object.articles limit: 2 %}
-            <p class="{% if forloop.first %}active-counter{% endif %}" data-counter-index="{{ forloop.index0 }}">
-              {{ forloop.index | prepend: '0' }}
-            </p>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="sh-container end-link">
-        <a href="{{ section.settings.blog.url }}" aria-label="Link to All Features">All Features</a>
-      </div>
-    </section>
+{% if blog_object != blank and blog_object.articles_count > 0 %}
+<section
+  class="featured-posts js-pinned-sections"
+  data-section-id="{{ section.id }}"
+>
+  <div class="sh-container">
+    <h2 class="featured-posts__title hd-3">
+      {{ section.settings.wrapper_title }}
+    </h2>
   </div>
-{% else %}
-  <p style="text-align: center">No articles found in the selected blog.</p>
+
+  <div class="featured-posts__inner sh-container-lg">
+    <div class="articles-wrapper">
+
+      {% for article in blog_object.articles limit: 2 %}
+        <article
+          class="article-pin-card js-pin-panel-wrap"
+          data-index="{{ forloop.index0 }}"
+        >
+          <div class="article-pin-card__grid">
+
+            <!-- Image -->
+            <div class="article-pin-card__image">
+              <a href="{{ article.url }}">
+                {% if article.image %}
+                  <img
+                    src="{{ article.image | image_url: width: 900 }}"
+                    alt="{{ article.title | escape }}"
+                    loading="lazy"
+                  >
+                {% endif %}
+              </a>
+            </div>
+
+            <!-- Content -->
+            <div class="article-pin-card__content">
+              <a href="{{ article.url }}">
+                <span class="article-index">
+                  {{ forloop.index | prepend: '0' }}
+                </span>
+                <h3 class="article-title">
+                  {{ article.title }}
+                </h3>
+                <span class="article-link">Explore</span>
+              </a>
+            </div>
+
+          </div>
+        </article>
+      {% endfor %}
+
+      <!-- Counter (desktop) -->
+      <div class="featured-post-count">
+        {% for article in blog_object.articles limit: 2 %}
+          <span
+            class="counter-item {% if forloop.first %}is-active{% endif %}"
+            data-counter-index="{{ forloop.index0 }}"
+          >
+            {{ forloop.index | prepend: '0' }}
+          </span>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sh-container featured-posts__footer">
+    <a href="{{ section.settings.blog.url }}" class="featured-posts__all">
+      All Features
+    </a>
+  </div>
+</section>
 {% endif %}
 
-<script src="{{ 'article-wrapper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'article-wrapper.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
@@ -56,17 +84,16 @@
   "settings": [
     {
       "type": "text",
-      "id": "wapper_title",
-      "label": "Title",
+      "id": "wrapper_title",
+      "label": "Section title",
       "default": "Featured Articles"
     },
     {
       "type": "blog",
       "id": "blog",
-      "label": "Choose a Blog"
+      "label": "Select blog"
     }
   ],
-
   "presets": [
     {
       "name": "Articles Wrapper"
