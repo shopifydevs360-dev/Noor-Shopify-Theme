@@ -3,7 +3,7 @@
 {% assign blog_object = blogs[section.settings.blog] %}
 
 {% if blog_object != blank and blog_object.articles_count > 0 %}
-<section class="featured-posts js-featured-articles" data-section-id="{{ section.id }}">
+<section class="featured-posts">
   <div class="sh-container">
     <h2 class="featured-posts__title hd-3">
       {{ section.settings.wrapper_title }}
@@ -11,41 +11,51 @@
   </div>
 
   <div class="featured-posts__inner sh-container-lg">
-    <div class="articles-wrapper">
 
-      {% for article in blog_object.articles limit: 2 %}
-        <article class="article-panel">
-          <div class="article-panel__grid">
+    <!-- Swiper -->
+    <div class="swiper article-swiper">
+      <div class="swiper-wrapper">
 
-            <div class="article-panel__image">
-              <a href="{{ article.url }}">
-                {% if article.image %}
-                  <img
-                    src="{{ article.image | image_url: width: 900 }}"
-                    alt="{{ article.title | escape }}"
-                    loading="lazy"
-                  >
-                {% endif %}
-              </a>
+        {% for article in blog_object.articles limit: 5 %}
+          <div class="swiper-slide">
+            <div class="article-slide">
+
+              <!-- Image -->
+              <div class="article-slide__image">
+                <a href="{{ article.url }}">
+                  {% if article.image %}
+                    <img
+                      src="{{ article.image | image_url: width: 900 }}"
+                      alt="{{ article.title | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </a>
+              </div>
+
+              <!-- Content -->
+              <div class="article-slide__content">
+                <a href="{{ article.url }}">
+                  <span class="article-index">
+                    {{ forloop.index | prepend: '0' }}
+                  </span>
+                  <h3 class="article-title">
+                    {{ article.title }}
+                  </h3>
+                  <span class="article-link">Explore</span>
+                </a>
+              </div>
+
             </div>
-
-            <div class="article-panel__content">
-              <a href="{{ article.url }}">
-                <span class="article-index">
-                  {{ forloop.index | prepend: '0' }}
-                </span>
-                <h3 class="article-title">
-                  {{ article.title }}
-                </h3>
-                <span class="article-link">Explore</span>
-              </a>
-            </div>
-
           </div>
-        </article>
-      {% endfor %}
+        {% endfor %}
 
+      </div>
+
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
     </div>
+
   </div>
 
   <div class="sh-container featured-posts__footer">
