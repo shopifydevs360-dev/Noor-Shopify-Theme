@@ -1,62 +1,81 @@
 {{ 'image-overlay-grid.css' | asset_url | stylesheet_tag: preload: true }}
 {% render 'section-base-style' %}
+
 <div
-     class="image-overlay-grid {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}"
-     {{ section.shopify_attributes }}>
+  class="image-overlay-grid {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="section-{{ section.id }}-padding">
+    <div class="image-overlay-grid cols-{{ section.settings.columns }}">
 
-<div class="section-{{ section.id }}-padding">
-  <div class="image-overlay-grid cols-{{ section.settings.columns }}">
+      {% for block in section.blocks %}
 
-    {% for block in section.blocks %}
-      <div class="grid-item" {{ block.shopify_attributes }}>
-        <a
-          href="{{ block.settings.link }}"
-          aria-label="{{ block.settings.title }} Shop Now"
-          class="image-with-text-overlay{% if block.settings.button_type == 'btn--animation' and block.settings.animation_type == 'hover-underline' %} active-underline{% endif %}"
-        >
+        {% liquid
+          assign button_class = block.settings.button_type
 
-          <!-- IMAGE -->
-          <div class="scaling-image-wrapper">
-            <div class="sliding-img-wrapper large-image"
-                 data-swipe-dir="up"
-                 data-shape="square">
+          if block.settings.button_type == 'btn--animation'
+            assign button_class = button_class | append: ' ' | append: block.settings.animation_type
+          else
+            assign button_class = button_class | append: ' btn'
+          endif
+        %}
 
-              <div class="img-slide-bg"
-                   style="background-color: {{ block.settings.image_background_color }};">
-              </div>
+        <div class="grid-item" {{ block.shopify_attributes }}>
+          <a
+            href="{{ block.settings.link }}"
+            aria-label="{{ block.settings.title }} Shop Now"
+            class="image-with-text-overlay{% if block.settings.button_type == 'btn--animation' and block.settings.animation_type == 'hover-underline' %} active-underline{% endif %}"
+          >
 
-              {% if block.settings.image %}
-                <div class="cropped-image-wrapper cropped-image--square is-hover-zoom-in">
+            <!-- IMAGE -->
+            <div class="scaling-image-wrapper">
+              <div
+                class="sliding-img-wrapper large-image"
+                data-swipe-dir="up"
+                data-shape="square"
+              >
+                <div
+                  class="img-slide-bg"
+                  style="background-color: {{ block.settings.image_background_color }};"
+                ></div>
+
+                {% if block.settings.image %}
+                  <div class="cropped-image-wrapper cropped-image--square is-hover-zoom-in">
                     <img
-                    src="{{ block.settings.image | img_url: '720x' }}"
-                    srcset="
+                      src="{{ block.settings.image | img_url: '720x' }}"
+                      srcset="
                         {{ block.settings.image | img_url: '720x' }} 720w,
                         {{ block.settings.image | img_url: '1024x' }} 1024w,
                         {{ block.settings.image | img_url: '1440x' }} 1440w
-                    "
-                    sizes="(min-width: 1200px) 50vw, 100vw"
-                    alt="{{ block.settings.image.alt | escape }}"
-                    width="{{ block.settings.image.width }}"
-                    height="{{ block.settings.image.height }}"
+                      "
+                      sizes="(min-width: 1200px) 50vw, 100vw"
+                      alt="{{ block.settings.image.alt | escape }}"
+                      width="{{ block.settings.image.width }}"
+                      height="{{ block.settings.image.height }}"
                     >
-
-                </div>
-              {% endif %}
+                  </div>
+                {% endif %}
+              </div>
             </div>
-          </div>
 
-          <!-- TEXT -->
-          <div class="image-overlay-end-details">
-            <span class="title {{ block.settings.button_type }}{% if block.settings.button_type == 'btn--animation' %} {{ block.settings.animation_type }}{% endif %}{% unless block.settings.button_type == 'btn--animation' %} btn{% endunless %}">{{ block.settings.title }}</span>
-            <span class="cta {{ block.settings.button_type }}{% if block.settings.button_type == 'btn--animation' %} {{ block.settings.animation_type }}{% endif %}{% unless block.settings.button_type == 'btn--animation' %} btn{% endunless %}">{{ block.settings.cta_text }}</span>
-          </div>
+            <!-- TEXT -->
+            <div class="image-overlay-end-details">
+              <span class="title {{ button_class }}">
+                {{ block.settings.title }}
+              </span>
 
-        </a>
-      </div>
-    {% endfor %}
+              <span class="cta {{ button_class }}">
+                {{ block.settings.cta_text }}
+              </span>
+            </div>
 
+          </a>
+        </div>
+
+      {% endfor %}
+
+    </div>
   </div>
-</div>
 </div>
 
 {% schema %}
@@ -72,7 +91,7 @@
       "step": 1,
       "default": 2
     },
-        {
+    {
       "type": "header",
       "content": "Section padding"
     },
@@ -96,26 +115,25 @@
       "label": "Bottom padding",
       "default": 52
     },
-        {
+    {
       "type": "header",
       "content": "Dynamic Option"
     },
     {
       "type": "text",
       "id": "custom_class",
-      "label": "custom class"
+      "label": "Custom class"
     },
     {
       "type": "select",
       "id": "color_control",
       "label": "Color Control",
-      "info": "Color control for sidebar [Learn more](https://codecraftmehedi.com/)",      
       "options": [
         { "value": "section-dark", "label": "Dark" },
         { "value": "section-light", "label": "Light" }
       ],
       "default": "section-light"
-    },
+    }
   ],
   "blocks": [
     {
@@ -149,11 +167,11 @@
           "id": "button_type",
           "label": "Button type",
           "options": [
-            {"value": "btn--primary", "label": "Primary"},
-            {"value": "btn--secondary", "label": "Secondary"},
-            {"value": "btn--underline", "label": "Underline"},
-            {"value": "btn--gradient", "label": "Gradient"},
-            {"value": "btn--animation", "label": "Animation"},
+            { "value": "btn--primary", "label": "Primary" },
+            { "value": "btn--secondary", "label": "Secondary" },
+            { "value": "btn--underline", "label": "Underline" },
+            { "value": "btn--gradient", "label": "Gradient" },
+            { "value": "btn--animation", "label": "Animation" }
           ],
           "default": "btn--primary"
         },
@@ -161,18 +179,11 @@
           "type": "select",
           "id": "animation_type",
           "label": "Animation type",
-          "visible_if": "{{ block.settings.button_type == 'btn--animation' }}",
           "options": [
-            {"value": "hover-underline", "label": "Hover Underline"},
-            {"value": "upcomming", "label": "Upcomming"},
+            { "value": "hover-underline", "label": "Hover Underline" },
+            { "value": "upcomming", "label": "Upcoming" }
           ],
           "default": "hover-underline"
-        },
-        {
-          "type": "color",
-          "id": "background_color",
-          "label": "Background Color",
-          "default": "#ffffff"
         },
         {
           "type": "color",
