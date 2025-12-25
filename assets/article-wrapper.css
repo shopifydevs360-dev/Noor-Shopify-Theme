@@ -46,3 +46,20 @@
     display: none;
   }
 }
+.js-pinned-sections {
+  position: relative;
+  min-height: 100vh;
+  overflow: visible; /* খুব গুরুত্বপূর্ণ */
+}
+
+.articles-wrapper {
+  position: relative;
+  height: clamp(40rem, 60vh, 70rem);
+}
+
+.js-pin-panel-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

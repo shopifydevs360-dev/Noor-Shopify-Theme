@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', initArticleWrapper);
-document.addEventListener('shopify:section:load', initArticleWrapper);
+document.addEventListener('DOMContentLoaded', initFeaturedArticles);
+document.addEventListener('shopify:section:load', initFeaturedArticles);
 
-function initArticleWrapper() {
+function initFeaturedArticles() {
   if (!window.gsap || !window.ScrollTrigger) return;
 
   gsap.registerPlugin(ScrollTrigger);
@@ -12,12 +12,12 @@ function initArticleWrapper() {
 
     if (panels.length < 2) return;
 
-    /* Kill previous triggers (Shopify editor safety) */
+    // Shopify editor safety
     ScrollTrigger.getAll().forEach(st => {
       if (st.trigger === section) st.kill();
     });
 
-    /* Initial state */
+    // Initial state
     gsap.set(panels, { autoAlpha: 0, y: 40 });
     gsap.set(panels[0], { autoAlpha: 1, y: 0 });
 
@@ -25,20 +25,20 @@ function initArticleWrapper() {
       c.classList.toggle('is-active', i === 0)
     );
 
-    /* Timeline */
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: `+=${panels.length * 1000}`,
+        end: `+=${panels.length * 1000}`, // যত article, তত scroll
         scrub: true,
         pin: true,
+        anticipatePin: 1,
         invalidateOnRefresh: true
       }
     });
 
     panels.forEach((panel, index) => {
-      // show
+      // show panel
       tl.to(panel, {
         autoAlpha: 1,
         y: 0,
@@ -47,7 +47,7 @@ function initArticleWrapper() {
         onReverseComplete: () => activate(index - 1)
       });
 
-      // hide (except last)
+      // hide panel (last ছাড়া)
       if (index !== panels.length - 1) {
         tl.to(panel, {
           autoAlpha: 0,
