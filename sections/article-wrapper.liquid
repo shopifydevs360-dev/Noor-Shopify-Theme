@@ -14,7 +14,7 @@
     <div class="articles-wrapper">
 
       {% for article in blog_object.articles limit: 2 %}
-        <article class="article-panel">
+        <article class="article-panel {% if forloop.first %}is-active{% endif %}">
           <div class="article-panel__grid">
 
             <div class="article-panel__image">
@@ -34,9 +34,7 @@
                 <span class="article-index">
                   {{ forloop.index | prepend: '0' }}
                 </span>
-                <h3 class="article-title">
-                  {{ article.title }}
-                </h3>
+                <h3 class="article-title">{{ article.title }}</h3>
                 <span class="article-link">Explore</span>
               </a>
             </div>
@@ -60,7 +58,7 @@
 
 {% schema %}
 {
-  "name": "Featured Articles",
+  "name": "Featured Articles (Safe)",
   "settings": [
     {
       "type": "text",
@@ -76,7 +74,7 @@
   ],
   "presets": [
     {
-      "name": "Featured Articles"
+      "name": "Featured Articles (Safe)"
     }
   ]
 }
