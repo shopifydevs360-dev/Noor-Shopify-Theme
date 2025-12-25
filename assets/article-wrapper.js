@@ -1,59 +1,93 @@
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.error('GSAP or ScrollTrigger library not loaded');
-    return;
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window.gsap || !window.ScrollTrigger) return;
 
-  const articleCards = document.querySelectorAll('.js-article-card');
-  const counterItems = document.querySelectorAll('.featured-posts__counter-item');
-  
-  if (articleCards.length === 0) return;
+  gsap.registerPlugin(ScrollTrigger);
 
-  // Set initial state for all articles except the first one
-  gsap.set(Array.from(articleCards).slice(1), { autoAlpha: 0, y: 40 });
+  document.querySelectorAll('.js-pinned-sections').forEach(section => {
+    const panels = gsap.utils.toArray(
+      section.querySelectorAll('.js-pin-panel-wrap')
+    );
+    const counters = section.querySelectorAll('[data-counter-index]');
 
-  const totalHeight = 1000 * articleCards.length;
-  const sectionHeight = totalHeight / articleCards.length;
+    if (!panels.length) return;
 
-  // Create scroll triggers for each article
-  articleCards.forEach((article, index) => {
-    const isFirst = index === 0;
-    const isLast = index === articleCards.length - 1;
+    const PANEL_DURATION = 1;
+    const TOTAL_DURATION = panels.length * PANEL_DURATION;
 
-    ScrollTrigger.create({
-      trigger: ".featured-posts",
-      start: `top -=${sectionHeight * index}`,
-      end: `+=${sectionHeight}`,
-      onEnter: () => showArticle(index),
-      onEnterBack: () => showArticle(index),
-      onLeave: () => {
-        if (!isLast) {
-          gsap.to(article, { autoAlpha: 0, y: -20, duration: 0.6 });
-        }
-      },
-      onLeaveBack: () => {
-        if (!isFirst) {
-          gsap.to(article, { autoAlpha: 0, y: -20, duration: 0.6 });
-        }
-      },
+    /* ----------------------------------
+      INITIAL STATE
+    ---------------------------------- */
+    gsap.set(panels, {
+      autoAlpha: 0,
+      y: 40,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%'
+    });
+
+    gsap.set(panels[0], { autoAlpha: 1, y: 0 });
+
+    counters.forEach((c, i) => {
+      c.classList.toggle('is-active', i === 0);
+    });
+
+    /* ----------------------------------
+      TIMELINE
+    ---------------------------------- */
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: `+=${TOTAL_DURATION * 1000}`,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    panels.forEach((panel, index) => {
+      const isLast = index === panels.length - 1;
+
+      tl.to(
+        panel,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: PANEL_DURATION,
+          onStart: () => setActive(index),
+          onReverseComplete: () => setActive(index - 1)
+        },
+        index * PANEL_DURATION
+      );
+
+      if (!isLast) {
+        tl.to(
+          panel,
+          {
+            autoAlpha: 0,
+            y: -20,
+            duration: PANEL_DURATION
+          },
+          index * PANEL_DURATION + PANEL_DURATION
+        );
+      }
+    });
+
+    /* ----------------------------------
+      COUNTER SYNC
+    ---------------------------------- */
+    function setActive(index) {
+      counters.forEach(c => c.classList.remove('is-active'));
+      if (counters[index]) counters[index].classList.add('is-active');
+    }
+
+    /* ----------------------------------
+      CLEANUP ON RESIZE
+    ---------------------------------- */
+    ScrollTrigger.addEventListener('refreshInit', () => {
+      gsap.set(panels, { clearProps: 'all' });
     });
   });
-
-  // Main pinning scroll trigger
-  ScrollTrigger.create({
-    trigger: ".featured-posts",
-    start: "top top",
-    end: `+=${totalHeight}`,
-    pin: true,
-    scrub: true,
-  });
-
-  function showArticle(index) {
-    // Animate the article
-    gsap.to(articleCards[index], { autoAlpha: 1, y: 0, duration: 0.6 });
-    
-    // Update counter
-    document.querySelector('.featured-posts__counter-item.is-active')?.classList.remove('is-active');
-    document.querySelector(`.featured-posts__counter-item[data-counter-index="${index}"]`)?.classList.add('is-active');
-  }
 });
