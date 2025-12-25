@@ -12,13 +12,14 @@ function initArticleWrapper() {
     );
     const counters = section.querySelectorAll('[data-counter-index]');
 
-    if (!panels.length) return;
+    if (panels.length <= 1) return;
 
-    /* Reset (important for section reload) */
+    /* Kill old triggers (important in Shopify editor) */
     ScrollTrigger.getAll().forEach(st => {
       if (st.trigger === section) st.kill();
     });
 
+    /* Initial state */
     gsap.set(panels, { autoAlpha: 0, y: 40 });
     gsap.set(panels[0], { autoAlpha: 1, y: 0 });
 
@@ -31,22 +32,27 @@ function initArticleWrapper() {
 
       ScrollTrigger.create({
         trigger: section,
-        start: `top-=${step * index} top`,
+        start: `top-=${step * index}`,
         end: `+=${step}`,
 
         onEnter: () => activate(index),
         onEnterBack: () => activate(index),
 
         onLeave: () => {
-          if (!isLast) gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.6 });
+          if (!isLast) {
+            gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.6 });
+          }
         },
 
         onLeaveBack: () => {
-          if (!isFirst) gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.6 });
+          if (!isFirst) {
+            gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.6 });
+          }
         }
       });
     });
 
+    /* Pin the whole section */
     ScrollTrigger.create({
       trigger: section,
       start: 'top top',
@@ -57,16 +63,16 @@ function initArticleWrapper() {
     });
 
     function activate(index) {
-      panels.forEach((p, i) => {
-        gsap.to(p, {
+      panels.forEach((panel, i) => {
+        gsap.to(panel, {
           autoAlpha: i === index ? 1 : 0,
           y: i === index ? 0 : -20,
           duration: 0.6
         });
       });
 
-      counters.forEach(c => c.classList.remove('active-counter'));
-      if (counters[index]) counters[index].classList.add('active-counter');
+      counters.forEach(c => c.classList.remove('is-active'));
+      if (counters[index]) counters[index].classList.add('is-active');
     }
   });
 
