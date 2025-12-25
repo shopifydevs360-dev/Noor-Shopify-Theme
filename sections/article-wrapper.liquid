@@ -1,181 +1,73 @@
-<style>
-/* FORCE HEIGHT */
-.featured-articles-scroll {
-  height: 100vh;
-  overflow: hidden;
-  background: #fff;
-}
-
-.featured-articles-scroll .swiper {
-  height: 100%;
-}
-
-.featured-articles-scroll .swiper-slide {
-  display: flex;
-  align-items: center;
-}
-
-.featured-article {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 4vw;
-  padding: 0 6vw;
-  width: 100%;
-}
-
-.featured-article img {
-  width: 100%;
-  max-width: 520px;
-  display: block;
-}
-
-.featured-article h3 {
-  font-size: clamp(28px, 3vw, 46px);
-  line-height: 1.2;
-}
-
-.featured-counter {
-  font-size: 14px;
-  letter-spacing: 0.2em;
-}
-/* Pin behavior */
-.featured-articles-scroll {
-  height: 100vh;
-  position: relative;
-}
-
-/* Prevent page move while pinned */
-body.slider-locked {
-  overflow: hidden;
-}
-
-/* Fade only */
-.featuredArticlesSwiper .swiper-slide {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.featuredArticlesSwiper .swiper-slide-active {
-  opacity: 1;
-}
-
-
-</style>
-
 {% assign blog_object = blogs[section.settings.blog] %}
+{% if blog_object.articles.size > 0 %}
+  <div id="shopify-section-160824560807dc1338" class="shopify-section">
+    <section class="js-pinned-sections featured-posts">
+      <h2 class="hd-3 sh-container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
 
-{% if blog_object and blog_object.articles.size > 0 %}
-
-<div class="featured-articles-scroll" {{ section.shopify_attributes }}>
-  <div class="swiper featuredArticlesSwiper-{{ section.id }}">
-    <div class="swiper-wrapper">
-
-      {% for article in blog_object.articles limit: 5 %}
-        <div class="swiper-slide">
-          <div class="featured-article">
-
-            <div>
-              {% if article.image %}
-                <img
-                  src="{{ article.image | image_url: width: 1200 }}"
-                  alt="{{ article.title | escape }}">
-              {% endif %}
+      <div class="articles-wrapper sh-container-lg">
+        {% assign counter = 0 %}
+        {% for article in blog_object.articles limit: 2 %}
+          {% assign counter = forloop.index %}
+          <div class="js-pin-panel-wrap article-pin-card cols-2">
+            <div class="js-pin-panel image-wrap image-wrap-0 v-aligner">
+              <a href="{{ article.url }}" aria-label="{{ article.url }}" class="image-item">
+                <div class="cropped-image-wrapper" style="padding-bottom: 100%;">
+                  <picture>
+                    <source data-src="{{ article.image | image_url: width: 600 }}" media="--medium">
+                    <img class="lazyload" data-optimumx="auto" data-sizes="auto" data-parent-fit="contain" data-src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}">
+                  </picture>
+                </div>
+              </a>
             </div>
-
-            <div>
-              <h3>{{ article.title }}</h3>
-              <a href="{{ article.url }}">Explore</a>
+            <div class="js-pin-panel text-wrap v-aligner">
+              <a href="{{ article.url }}" aria-label="{{ article.url }}" class="text-item">
+                <h5 class="article-count show-tablet-down">{{ counter | prepend: '0' }}</h5>
+                <h5>{{ article.title }}</h5>
+                <p class="underline-link">Explore</p>
+              </a>
             </div>
-
-            <div class="featured-counter">
-              {{ forloop.index | prepend: '0' }}
-            </div>
-
           </div>
+        {% endfor %}
+
+        <div class="featured-post-count hide-tablet-down">
+          {% for article in blog_object.articles limit: 2 %}
+            <p class="{% if forloop.first %}active-counter{% endif %}" data-counter-index="{{ forloop.index0 }}">
+              {{ forloop.index | prepend: '0' }}
+            </p>
+          {% endfor %}
         </div>
-      {% endfor %}
+      </div>
 
-    </div>
+      <div class="sh-container end-link">
+        <a href="{{ section.settings.blog.url }}" aria-label="Link to All Features">All Features</a>
+      </div>
+    </section>
   </div>
-</div>
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const section = document.querySelector('.featured-articles-scroll');
-  if (!section || typeof Swiper === 'undefined') return;
-
-  const swiper = new Swiper('.featuredArticlesSwiper-{{ section.id }}', {
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-    allowTouchMove: false,
-    speed: 600
-  });
-
-  let isPinned = false;
-  let isThrottled = false;
-
-  // Detect when section center hits viewport center
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      isPinned = entry.intersectionRatio > 0.6;
-    },
-    { threshold: [0.6] }
-  );
-
-  observer.observe(section);
-
-  window.addEventListener('wheel', (e) => {
-    if (!isPinned || isThrottled) return;
-
-    const scrollingDown = e.deltaY > 0;
-    const atFirst = swiper.activeIndex === 0;
-    const atLast = swiper.activeIndex === swiper.slides.length - 1;
-
-    // RELEASE scroll at edges
-    if ((scrollingDown && atLast) || (!scrollingDown && atFirst)) {
-      document.body.classList.remove('slider-locked');
-      return;
-    }
-
-    // LOCK scroll
-    e.preventDefault();
-    document.body.classList.add('slider-locked');
-    isThrottled = true;
-
-    if (scrollingDown) {
-      swiper.slideNext();
-    } else {
-      swiper.slidePrev();
-    }
-
-    setTimeout(() => {
-      isThrottled = false;
-    }, 700);
-  }, { passive: false });
-});
-</script>
-
-
-
-
-
+{% else %}
+  <p style="text-align: center">No articles found in the selected blog.</p>
 {% endif %}
+
 
 {% schema %}
 {
-  "name": "Featured Articles Scroll",
+  "name": "Articles Wrapper",
   "settings": [
+    {
+      "type": "text",
+      "id": "wapper_title",
+      "label": "Title",
+      "default": "Featured Articles"
+    },
     {
       "type": "blog",
       "id": "blog",
-      "label": "Select blog"
+      "label": "Choose a Blog"
     }
   ],
+
   "presets": [
     {
-      "name": "Featured Articles Scroll"
+      "name": "Articles Wrapper"
     }
   ]
 }
