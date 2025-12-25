@@ -7,25 +7,57 @@ function initFeaturedArticles() {
     if (panels.length < 2) return;
 
     let index = 0;
-    let ticking = false;
+    let isActive = false;
+    let isAnimating = false;
 
-    section.addEventListener('wheel', e => {
-      if (ticking) return;
+    panels[0].classList.add('is-active');
 
-      ticking = true;
+    function isSectionCentered() {
+      const rect = section.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      return Math.abs(center - viewportCenter) < 60;
+    }
+
+    function onWheel(e) {
+      if (!isActive || isAnimating) return;
+
+      e.preventDefault(); // ⛔ stop page scroll BUT scrollbar remains
+
+      isAnimating = true;
+      panels[index].classList.remove('is-active');
+
+      if (e.deltaY > 0) {
+        if (index < panels.length - 1) {
+          index++;
+        } else {
+          isActive = false; // release scroll
+          isAnimating = false;
+          return;
+        }
+      } else {
+        if (index > 0) {
+          index--;
+        } else {
+          isActive = false; // release scroll
+          isAnimating = false;
+          return;
+        }
+      }
+
+      panels[index].classList.add('is-active');
 
       setTimeout(() => {
-        panels[index].classList.remove('is-active');
+        isAnimating = false;
+      }, 500);
+    }
 
-        if (e.deltaY > 0 && index < panels.length - 1) {
-          index++;
-        } else if (e.deltaY < 0 && index > 0) {
-          index--;
-        }
+    window.addEventListener('scroll', () => {
+      if (isSectionCentered()) {
+        isActive = true;
+      }
+    });
 
-        panels[index].classList.add('is-active');
-        ticking = false;
-      }, 400);
-    }, { passive: true });
+    window.addEventListener('wheel', onWheel, { passive: false });
   });
 }
