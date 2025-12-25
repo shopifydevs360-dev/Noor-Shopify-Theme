@@ -106,7 +106,7 @@
             "title": "Title",
             "cta_text": "Shop Now",
             "link": "",
-            "button_type": "btn--primary",
+            "button_type": "btn--animation",
             "animation_type": "hover-underline",
             "background_color": "#ffffff",
             "image_background_color": "#f3f3f4"
