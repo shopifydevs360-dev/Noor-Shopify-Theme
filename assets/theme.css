@@ -237,6 +237,8 @@ button{
   transform: translate(-130%);
   transition: all .3s cubic-bezier(.34,.615,.4,.985);
   background: currentColor;
+  position: relative;
+  overflow: hidden;
 }
 .active-underline:hover .btn--animation.hover-underline:before{
   transform: none;
