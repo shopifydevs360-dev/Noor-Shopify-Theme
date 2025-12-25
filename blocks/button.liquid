@@ -5,7 +5,7 @@
 
 <div
   class="
-    m-color-{{ section.settings.text_color_scheme }}
+    m-color-{{ block.settings.text_color_scheme | default: section.settings.text_color_scheme }}
     button-block-wrapper
   "
 >
