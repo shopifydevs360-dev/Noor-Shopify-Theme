@@ -141,6 +141,23 @@
     },
     "custom_section_pxbE8X": {
       "type": "custom-section",
+      "blocks": {
+        "button_TDy7rB": {
+          "type": "button",
+          "name": "Button",
+          "settings": {
+            "button_label": "Test Button",
+            "button_link": "",
+            "text_color_scheme": "default",
+            "button_type": "btn--primary",
+            "animation_type": "hover-underline"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "button_TDy7rB"
+      ],
       "name": "Custom Section",
       "settings": {
         "container_width": "container",
