@@ -223,7 +223,6 @@ button{
   font-size: var(--btn-animation-font-size);
   letter-spacing: ver(--btn-animation-latter-space);
   position: relative;
-  overflow: hidden;
 }
 .btn--animation.hover-underline:hover {
   color: var(--btn-gradient-hover-label);
