@@ -1,6 +1,5 @@
 .featured-posts {
   padding: 10vh 0;
-  position: relative;
 }
 
 .article-wrapper {
@@ -11,6 +10,7 @@
   height: clamp(40rem, 60vh, 70rem);
 }
 
+/* Keep your grid */
 .article-pin-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -19,14 +19,16 @@
   height: 100%;
 }
 
-.swiper-slide {
+/* Fade effect */
+.article-swiper .swiper-slide {
   opacity: 0;
 }
 
-.swiper-slide-active {
+.article-swiper .swiper-slide-active {
   opacity: 1;
 }
 
+/* RIGHT side number navigation */
 .featured-post-count {
   position: absolute;
   right: 0;
@@ -47,11 +49,6 @@
 .counter-item.active-counter {
   opacity: 1;
   font-weight: 700;
-}
-
-/* Prevent page scrolling while slider is active */
-body.scroll-locked {
-  overflow: hidden;
 }
 
 /* Responsive */
