@@ -1,12 +1,11 @@
 {{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
 
-{% assign blog_object = blogs[section.settings.blog] %}
 
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
-  <div class="shopify-section">
+  <div class="outer-section">
     <section class="pinned-sections featured-posts">
-      <h2 class="hd-3 sh-container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
+      <h2 class="hd-3 container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
 
       <div class="articles-wrapper">
         {% assign counter = 0 %}
