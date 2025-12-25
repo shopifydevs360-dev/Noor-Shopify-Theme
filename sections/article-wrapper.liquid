@@ -17,7 +17,7 @@
             <!-- IMAGE -->
             <div class="image-wrap v-aligner">
               <a href="{{ article.url }}" aria-label="{{ article.title }}" class="image-item">
-                <div class="cropped-image-wrapper " style="padding-bottom: 100%;">
+                <div class="cropped-image-wrapper cropped-image--square">
                   {% if article.image %}
                     <img
                       src="{{ article.image | image_url: width: 900 }}"
