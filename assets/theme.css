@@ -213,6 +213,7 @@ button{
   font-family: var(--btn-animation-font);
   font-size: var(--btn-animation-font-size);
   letter-spacing: var(--btn-animation-letter-space);
+  padding-bottom: 8px;
   position: relative;
   overflow: hidden;
 }
