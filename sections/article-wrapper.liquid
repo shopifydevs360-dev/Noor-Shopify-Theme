@@ -1,73 +1,80 @@
+{{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
+
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
-  <div class="shopify-section">
-    <section class="js-pinned-sections featured-posts">
-      <h2 class="hd-3 sh-container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
+<section class="featured-posts">
+  <h2 class="hd-3 container">
+    {{ section.settings.wrapper_title }}
+  </h2>
 
-      <div class="articles-wrapper sh-container-lg">
-        {% assign counter = 0 %}
+  <div class="articles-wrapper article-wrapper">
+    <div class="featured-post-count">
+      {% for article in blog_object.articles limit: 2 %}
+        <button
+          class="counter-item {% if forloop.first %}active-counter{% endif %}"
+          data-slide="{{ forloop.index0 }}"
+        >
+          {{ forloop.index | prepend: '0' }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <div class="swiper article-swiper">
+      <div class="swiper-wrapper">
         {% for article in blog_object.articles limit: 2 %}
-          {% assign counter = forloop.index %}
-          <div class="js-pin-panel-wrap article-pin-card cols-2">
-            <div class="js-pin-panel image-wrap image-wrap-0 v-aligner">
-              <a href="{{ article.url }}" aria-label="{{ article.url }}" class="image-item">
-                <div class="cropped-image-wrapper" style="padding-bottom: 100%;">
-                  <picture>
-                    <source data-src="{{ article.image | image_url: width: 600 }}" media="--medium">
-                    <img class="lazyload" data-optimumx="auto" data-sizes="auto" data-parent-fit="contain" data-src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}">
-                  </picture>
-                </div>
-              </a>
-            </div>
-            <div class="js-pin-panel text-wrap v-aligner">
-              <a href="{{ article.url }}" aria-label="{{ article.url }}" class="text-item">
-                <h5 class="article-count show-tablet-down">{{ counter | prepend: '0' }}</h5>
-                <h5>{{ article.title }}</h5>
-                <p class="underline-link">Explore</p>
-              </a>
+          <div class="swiper-slide">
+            <div class="article-pin-card cols-2">
+              <div class="image-wrap">
+                <a href="{{ article.url }}">
+                  <img
+                    src="{{ article.image | image_url: width: 600 }}"
+                    alt="{{ article.title }}"
+                    loading="lazy"
+                  >
+                </a>
+              </div>
+
+              <div class="text-wrap">
+                <a href="{{ article.url }}">
+                  <h5 class="article-count">{{ forloop.index | prepend: '0' }}</h5>
+                  <h5>{{ article.title }}</h5>
+                  <p class="underline-link">Explore</p>
+                </a>
+              </div>
             </div>
           </div>
         {% endfor %}
-
-        <div class="featured-post-count hide-tablet-down">
-          {% for article in blog_object.articles limit: 2 %}
-            <p class="{% if forloop.first %}active-counter{% endif %}" data-counter-index="{{ forloop.index0 }}">
-              {{ forloop.index | prepend: '0' }}
-            </p>
-          {% endfor %}
-        </div>
       </div>
-
-      <div class="sh-container end-link">
-        <a href="{{ section.settings.blog.url }}" aria-label="Link to All Features">All Features</a>
-      </div>
-    </section>
+    </div>
   </div>
-{% else %}
-  <p style="text-align: center">No articles found in the selected blog.</p>
+
+  <div class="container end-link">
+    <a href="{{ section.settings.blog.url }}">All Features</a>
+  </div>
+</section>
 {% endif %}
 
+<script src="{{ 'article-wrapper.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
-  "name": "Articles Wrapper",
+  "name": "Featured Articles",
   "settings": [
     {
       "type": "text",
-      "id": "wapper_title",
-      "label": "Title",
+      "id": "wrapper_title",
+      "label": "Section title",
       "default": "Featured Articles"
     },
     {
       "type": "blog",
       "id": "blog",
-      "label": "Choose a Blog"
+      "label": "Select blog"
     }
   ],
-
   "presets": [
     {
-      "name": "Articles Wrapper"
+      "name": "Featured Articles"
     }
   ]
 }
