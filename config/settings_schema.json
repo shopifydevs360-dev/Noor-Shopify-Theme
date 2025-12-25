@@ -428,9 +428,14 @@
           { "type": "color", "id": "subtext", "label": "Subtext", "default": "#666666" },
           { "type": "color", "id": "heading_text", "label": "Heading text", "default": "#222222" },
 
-          { "type": "header", "content": "Links" },
-          { "type": "color", "id": "link_color", "label": "Link color", "default": "#222222" },
-          { "type": "color", "id": "link_hover_color", "label": "Link hover color", "default": "#000000" },
+          { "type": "header", "content": "Buttons" },
+          { "type": "color", "id": "btn_bg", "label": "Background", "default": "#222222" },
+          { "type": "color", "id": "btn_text", "label": "Text", "default": "#FFFFFF" },
+          { "type": "color", "id": "btn_border", "label": "Border", "default": "#222222" },
+
+          { "type": "header", "content": "Buttons Hover" },
+          { "type": "color", "id": "btn_bg_hover", "label": "Background & border", "default": "#000000" },
+          { "type": "color", "id": "btn_text_hover", "label": "text", "default": "#FFFFFF" },
 
           { "type": "header", "content": "Price" },
           { "type": "color", "id": "price_sale", "label": "Price sale", "default": "#E02B2B" },
@@ -452,18 +457,26 @@
           { "type": "color", "id": "additional_color_2", "label": "Color 2", "default": "#00FF00" }
 
         ],
-        "role": {
-          "text": "text",
-          "background": { "solid": "background", "gradient": "background_gradient" },
-          "links": "link_color",
-          "icons": "text",
-          "primary_button": "background",
-          "on_primary_button": "text",
-          "primary_button_border": "border",
-          "secondary_button": "background_secondary",
-          "on_secondary_button": "text",
-          "secondary_button_border": "border"
-        }
+"role": {
+  "text": "text",
+
+  "background": {
+    "solid": "background",
+    "gradient": "background_gradient"
+  },
+
+  "links": "text",
+  "icons": "text",
+
+  "primary_button": "btn_bg",
+  "on_primary_button": "btn_text",
+  "primary_button_border": "btn_border",
+
+  "secondary_button": "background_secondary",
+  "on_secondary_button": "text",
+  "secondary_button_border": "border"
+}
+
       },
       {
         "type": "header",
