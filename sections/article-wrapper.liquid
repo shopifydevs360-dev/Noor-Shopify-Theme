@@ -2,7 +2,7 @@
 
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
-  <div id="shopify-section-160824560807dc1338" class="shopify-section">
+  <div class="shopify-section">
     <section class="js-pinned-sections featured-posts">
       <h2 class="hd-3 sh-container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
 
@@ -11,9 +11,9 @@
         {% for article in blog_object.articles limit: 2 %}
           {% assign counter = forloop.index %}
           <div class="js-pin-panel-wrap article-pin-card cols-2">
-            <div class="js-pin-panel image-wrap image-wrap-0 v-aligner">
+            <div class="js-pin-panel image-wrap">
               <a href="{{ article.url }}" aria-label="{{ article.url }}" class="image-item">
-                <div class="cropped-image-wrapper" style="padding-bottom: 100%;">
+                <div class="cropped-image-wrapper cropped-image--square">
                   <picture>
                     <source data-src="{{ article.image | image_url: width: 600 }}" media="--medium">
                     <img class="lazyload" data-optimumx="auto" data-sizes="auto" data-parent-fit="contain" data-src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}">
@@ -21,7 +21,7 @@
                 </div>
               </a>
             </div>
-            <div class="js-pin-panel text-wrap v-aligner">
+            <div class="js-pin-panel text-wra">
               <a href="{{ article.url }}" aria-label="{{ article.url }}" class="text-item">
                 <h5 class="article-count show-tablet-down">{{ counter | prepend: '0' }}</h5>
                 <h5>{{ article.title }}</h5>
