@@ -180,13 +180,11 @@
       "type": "article-wrapper",
       "name": "Articles Wrapper",
       "settings": {
-        "title": "Featured Articles",
         "blog": "news"
       }
     },
     "custom_section_qLaH3T": {
       "type": "custom-section",
-      "disabled": true,
       "name": "Custom Section",
       "settings": {
         "container_width": "container",
