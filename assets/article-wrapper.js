@@ -2,66 +2,37 @@ document.addEventListener('DOMContentLoaded', initFeaturedArticles);
 document.addEventListener('shopify:section:load', initFeaturedArticles);
 
 function initFeaturedArticles() {
-  if (!window.gsap || !window.ScrollTrigger) return;
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  document.querySelectorAll('.js-pinned-sections').forEach(section => {
-    const panels = section.querySelectorAll('.js-pin-panel-wrap');
-    const counters = section.querySelectorAll('[data-counter-index]');
-
+  document.querySelectorAll('.js-featured-articles').forEach(section => {
+    const panels = section.querySelectorAll('.article-panel');
     if (panels.length < 2) return;
 
-    // Shopify editor safety
-    ScrollTrigger.getAll().forEach(st => {
-      if (st.trigger === section) st.kill();
-    });
+    let activeIndex = 0;
+    let locked = false;
 
-    // Initial state
-    gsap.set(panels, { autoAlpha: 0, y: 40 });
-    gsap.set(panels[0], { autoAlpha: 1, y: 0 });
+    panels[0].classList.add('is-active');
 
-    counters.forEach((c, i) =>
-      c.classList.toggle('is-active', i === 0)
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting || locked) return;
+
+          locked = true;
+
+          setTimeout(() => {
+            panels[activeIndex].classList.remove('is-active');
+            activeIndex++;
+
+            if (activeIndex < panels.length) {
+              panels[activeIndex].classList.add('is-active');
+            }
+
+            locked = false;
+          }, 300);
+        });
+      },
+      { threshold: 0.7 }
     );
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: `+=${panels.length * 1000}`, // যত article, তত scroll
-        scrub: true,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      }
-    });
-
-    panels.forEach((panel, index) => {
-      // show panel
-      tl.to(panel, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.5,
-        onStart: () => activate(index),
-        onReverseComplete: () => activate(index - 1)
-      });
-
-      // hide panel (last ছাড়া)
-      if (index !== panels.length - 1) {
-        tl.to(panel, {
-          autoAlpha: 0,
-          y: -20,
-          duration: 0.5
-        });
-      }
-    });
-
-    function activate(index) {
-      counters.forEach(c => c.classList.remove('is-active'));
-      if (counters[index]) counters[index].classList.add('is-active');
-    }
+    observer.observe(section);
   });
-
-  ScrollTrigger.refresh();
 }
