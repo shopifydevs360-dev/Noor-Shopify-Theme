@@ -1,7 +1,9 @@
 {{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
 
+
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
+  <div id="shopify-section-160824560807dc1338" class="shopify-section">
     <section class="js-pinned-sections featured-posts">
       <h2 class="hd-3 sh-container" data-reveal="lines-masked">{{ section.settings.wapper_title }}</h2>
 
@@ -43,6 +45,7 @@
         <a href="{{ section.settings.blog.url }}" aria-label="Link to All Features">All Features</a>
       </div>
     </section>
+  </div>
 {% else %}
   <p style="text-align: center">No articles found in the selected blog.</p>
 {% endif %}
