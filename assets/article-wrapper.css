@@ -1,68 +1,66 @@
-.featured-posts {
-  padding: 10vh 0;
-}
+if ($(".featured-posts.js-pinned-sections").length > 0) {
+  const panels = gsap.utils.toArray(
+    ".featured-posts .js-pin-panel-wrap"
+  );
 
-.article-wrapper {
-  position: relative;
-}
+  const totalScroll = panels.length * 1000;
+  const step = totalScroll / panels.length;
 
-.article-swiper {
-  height: clamp(40rem, 60vh, 70rem);
-}
+  // Initial state
+  gsap.set(panels.slice(1), { autoAlpha: 0, y: 40 });
 
-/* Keep your grid */
-.article-pin-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8rem;
-  align-items: center;
-  height: 100%;
-}
+  panels.forEach((panel, index) => {
+    const isFirst = index === 0;
+    const isLast = index === panels.length - 1;
 
-/* Fade effect */
-.article-swiper .swiper-slide {
-  opacity: 0;
-}
+    ScrollTrigger.create({
+      trigger: ".featured-posts.js-pinned-sections",
+      start: "top -=" + step * index,
+      end: "+=" + step,
 
-.article-swiper .swiper-slide-active {
-  opacity: 1;
-}
+      onEnter: () => {
+        gsap.to(panel, { autoAlpha: 1, y: 0, duration: 0.6 });
 
-/* RIGHT side number navigation */
-.featured-post-count {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
+        $(".featured-post-count .active-counter").removeClass(
+          "active-counter"
+        );
+        $(
+          `.featured-post-count [data-counter-index="${index}"]`
+        ).addClass("active-counter");
+      },
 
-.counter-item {
-  background: none;
-  border: none;
-  cursor: pointer;
-  opacity: 0.4;
-}
+      onEnterBack: () => {
+        gsap.to(panel, { autoAlpha: 1, y: 0, duration: 0.6 });
 
-.counter-item.active-counter {
-  opacity: 1;
-  font-weight: 700;
-}
+        $(".featured-post-count .active-counter").removeClass(
+          "active-counter"
+        );
+        $(
+          `.featured-post-count [data-counter-index="${index}"]`
+        ).addClass("active-counter");
+      },
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .article-pin-card {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+      onLeave: () => {
+        if (!isLast) {
+          gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.4 });
+        }
+      },
 
-  .featured-post-count {
-    position: static;
-    transform: none;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
+      onLeaveBack: () => {
+        if (!isFirst) {
+          gsap.to(panel, { autoAlpha: 0, y: -20, duration: 0.4 });
+        }
+      }
+    });
+  });
+
+  // Pin the entire section
+  ScrollTrigger.create({
+    trigger: ".featured-posts.js-pinned-sections",
+    start: "top center",
+    end: "+=" + totalScroll,
+    pin: true,
+    scrub: true,
+    markers: false
+  });
 }
