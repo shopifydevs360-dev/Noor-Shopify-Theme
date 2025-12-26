@@ -8,7 +8,9 @@
 }
 
 
-
+.article-swiper .swiper-slide {
+  opacity: 0;
+}
 
 .article-swiper .swiper-slide-active {
   opacity: 1;
