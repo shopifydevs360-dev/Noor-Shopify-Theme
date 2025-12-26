@@ -16,7 +16,16 @@
   opacity: 1;
 }
 
-
+/* Right side counter */
+.featured-post-count {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
 
 .counter-item {
   background: none;
