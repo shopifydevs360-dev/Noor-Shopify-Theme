@@ -20,6 +20,10 @@
   opacity: 1;
   pointer-events: auto;
 }
+.featured-posts {
+  position: relative;
+  z-index: 2;
+}
 
 /* Counter */
 .featured-post-count {
