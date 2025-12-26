@@ -1,3 +1,6 @@
+.featured-posts-spacer {
+  height: 100vh; /* same as pinned section */
+}
 .articles-wrapper {
   position: relative;
   overflow: hidden;
