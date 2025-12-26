@@ -6,7 +6,6 @@
   <h2 class="hd-3 container">
     {{ section.settings.wrapper_title }}
   </h2>
-
   <div class="articles-wrapper article-wrapper">
     <div class="featured-post-count">
       {% for article in blog_object.articles limit: 2 %}
@@ -18,7 +17,6 @@
         </button>
       {% endfor %}
     </div>
-
     <div class="swiper article-swiper">
       <div class="swiper-wrapper">
         {% for article in blog_object.articles limit: 2 %}
