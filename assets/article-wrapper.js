@@ -30,20 +30,18 @@ function initPinnedArticles() {
       });
     });
 
-ScrollTrigger.create({
-  trigger: section,
-  start: 'top top',
-  end: `+=${slidesCount * SCROLL_STEP}`,
-  pin: true,
-  pinSpacing: false,
-  scrub: true,
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: `+=${slidesCount * SCROLL_STEP}`,
+      pin: true,
+      scrub: true,
 
-  onUpdate(self) {
-    const index = Math.round(self.progress * (slidesCount - 1));
-    activateSlide(index);
-  }
-});
-
+      onUpdate(self) {
+        const index = Math.round(self.progress * (slidesCount - 1));
+        activateSlide(index);
+      }
+    });
     
   });
 }
