@@ -2,15 +2,21 @@
 {% render 'section-base-style' %}
 
 {%- assign blog_object = blogs[section.settings.blog] -%}
+{%- liquid
+  assign classes = ''
+  assign classes = classes | append: 'section-' | append: section.id | append: '-padding'
+  assign classes = classes | append: '' | append: section.settings.slider_height_mobile
+  assign classes = classes | append: '' | append: section.settings.pagination_position
+  assign classes = classes | append: '' | append: section.settings.navigation_position
+-%}
 
-{%- assign section_padding_class = 'section-' | append: section.id | append: '-padding' -%}
 {%- assign section_color_class = section.settings.color_control -%}
 {%- assign section_custom_class = section.settings.custom_class | default: '' -%}
 {%- assign section_scheme_class = 'm-color-' | append: section.settings.color_scheme -%}
 
 {% if blog_object.articles.size > 0 %}
 <section
-  class="featured-posts {{ section_padding_class }} {{ section_color_class }} {{ section_custom_class }} {{ section_scheme_class }}"
+  class="featured-posts {{ classes }} {{ section_color_class }} {{ section_custom_class }} {{ section_scheme_class }}"
   data-featured-articles
 >
   <h2 class="hd-3 container">
