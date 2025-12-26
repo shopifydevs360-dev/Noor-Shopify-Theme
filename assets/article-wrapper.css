@@ -1,22 +1,27 @@
-
 .articles-wrapper {
   position: relative;
+  overflow: hidden;
 }
 
-.article-swiper {
+.article-track {
+  position: relative;
   height: clamp(40rem, 60vh, 70rem);
 }
 
-
-.article-swiper .swiper-slide {
+.article-slide {
+  position: absolute;
+  inset: 0;
   opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
 }
 
-.article-swiper .swiper-slide-active {
+.article-slide.is-active {
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* Right side counter */
+/* Counter */
 .featured-post-count {
   position: absolute;
   right: 0;
@@ -40,6 +45,7 @@
   font-weight: 700;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
   .article-pin-card {
     grid-template-columns: 1fr;
