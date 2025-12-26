@@ -2,7 +2,7 @@
 {% render 'section-base-style' %}
 {% assign blog_object = blogs[section.settings.blog] %}
 {% if blog_object.articles.size > 0 %}
-<section class="featured-posts {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}" data-featured-articles>
+<section class="featured-posts section-{{ section.id }}-padding {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}" data-featured-articles>
   <h2 class="hd-3 container">
     {{ section.settings.wrapper_title }}
   </h2>
