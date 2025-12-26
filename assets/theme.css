@@ -516,3 +516,10 @@ button:disabled,
   border-radius: var(--border-radius-style-two, 12px);
 }
 
+.section-x-padding{
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.sidebar-space{
+
+}
