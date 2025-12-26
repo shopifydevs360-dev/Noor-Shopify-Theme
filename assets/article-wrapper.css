@@ -3,15 +3,10 @@
   position: relative;
 }
 
-
-
-.article-pin-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8rem;
-  align-items: center;
-  height: 100%;
+.article-swiper {
+  height: clamp(40rem, 60vh, 70rem);
 }
+
 
 .article-swiper .swiper-slide {
   opacity: 0;
