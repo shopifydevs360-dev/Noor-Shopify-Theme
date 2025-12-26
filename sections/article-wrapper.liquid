@@ -64,7 +64,7 @@
                   </h5>
                   <h5 class="article-title">{{ article.title }}</h5>
 
-                  <div class="article-meta">
+                  {% comment %} <div class="article-meta">
                     <span class="article-date">
                       {{ article.published_at | date: "%b %d, %Y" }}
                     </span>
@@ -74,7 +74,7 @@
                         · {{ article.author }}
                       </span>
                     {% endif %}
-                  </div>
+                  </div> {% endcomment %}
 
                   {% if article.excerpt != blank %}
                     <p class="article-excerpt">
