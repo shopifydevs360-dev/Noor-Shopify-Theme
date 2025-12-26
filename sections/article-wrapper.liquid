@@ -1,11 +1,18 @@
 {{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
+
 {% assign blog_object = blogs[section.settings.blog] %}
+{% assign featured_posts_class = section.settings.custom_class | default: '' %}
+
 {% if blog_object.articles.size > 0 %}
-<section class="featured-posts section-{{ section.id }}-padding {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}" data-featured-articles>
+<section
+  class="featured-posts section-{{ section.id }}-padding {{ section.settings.color_control }} {{ featured_posts_class }} m-color-{{ section.settings.color_scheme }}"
+  data-featured-articles
+>
   <h2 class="hd-3 container">
     {{ section.settings.wrapper_title }}
   </h2>
+
   <div class="articles-wrapper article-wrapper">
     <div class="featured-post-count">
       {% for article in blog_object.articles limit: 2 %}
@@ -17,6 +24,7 @@
         </button>
       {% endfor %}
     </div>
+
     <div class="swiper article-swiper">
       <div class="swiper-wrapper">
         {% for article in blog_object.articles limit: 2 %}
@@ -25,11 +33,19 @@
               <div class="image-wrap">
                 <a href="{{ article.url }}" class="image-item">
                   <div class="cropped-image-wrapper cropped-image--square">
-                    <img
-                      src="{{ article.image | image_url: width: 600 }}"
-                      alt="{{ article.title }}"
-                      loading="lazy"
-                    >
+                    {% if article.image %}
+                      <img
+                        srcset="
+                          {{ article.image | image_url: width: 900 }} 1x,
+                          {{ article.image | image_url: width: 900, scale: 2 }} 2x
+                        "
+                        src="{{ article.image | image_url: width: 900 }}"
+                        alt="{{ article.image.alt | escape | default: article.title }}"
+                        loading="lazy"
+                        width="{{ article.image.width }}"
+                        height="{{ article.image.height }}"
+                      >
+                    {% endif %}
                   </div>
                 </a>
               </div>
@@ -55,7 +71,6 @@
   </div>
 </section>
 {% endif %}
-
 
 <script src="{{ 'article-wrapper.js' | asset_url }}" defer></script>
 
