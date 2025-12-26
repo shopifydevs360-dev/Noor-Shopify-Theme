@@ -2,17 +2,17 @@
 {% render 'section-base-style' %}
 
 {%- assign blog_object = blogs[section.settings.blog] -%}
+
 {%- liquid
-  assign classes = 'featured-posts section-x-padding'
-  assign classes = classes | append: ' ' | append: 'section-' | append: section.id | append: '-padding'
+  assign classes = 'featured-posts'
+  assign classes = classes | append: ' section-' | append: section.id | append: '-padding'
   assign classes = classes | append: ' ' | append: section.settings.color_control
-  assign classes = classes | append: ' ' | append: 'm-color-' | append: section.settings.color_scheme
+  assign classes = classes | append: ' m-color-' | append: section.settings.color_scheme
   assign classes = classes | append: ' ' | append: section.settings.custom_class | default: ''
 -%}
 
-
 {% if blog_object.articles.size > 0 %}
-<section class="{{ classes }}"data-featured-articles>
+<section class="{{ classes }}" data-featured-articles>
   <h2 class="hd-3 container">
     {{ section.settings.wrapper_title }}
   </h2>
@@ -29,67 +29,57 @@
       {% endfor %}
     </div>
 
-    <div class="swiper article-swiper">
-      <div class="swiper-wrapper">
-        {% for article in blog_object.articles limit: 2 %}
-          <div class="swiper-slide">
-            <div class="article-pin-card cols-2">
-              <div class="image-wrap">
-                <a href="{{ article.url }}" class="image-item">
-                  <div class="cropped-image-wrapper cropped-image--square">
-                    {% if article.image %}
-                      <img
-                        srcset="
-                          {{ article.image | image_url: width: 900 }} 1x,
-                          {{ article.image | image_url: width: 900, scale: 2 }} 2x
-                        "
-                        src="{{ article.image | image_url: width: 900 }}"
-                        alt="{{ article.image.alt | escape | default: article.title }}"
-                        loading="lazy"
-                        width="{{ article.image.width }}"
-                        height="{{ article.image.height }}"
-                      >
-                    {% endif %}
-                  </div>
-                </a>
-              </div>
-
-              <div class="text-wrap">
-                <a href="{{ article.url }}" class="text-item">
-                  <h5 class="article-count">
-                    {{ forloop.index | prepend: '0' }}
-                  </h5>
-                  <h5 class="article-title">{{ article.title }}</h5>
-
-                  {% comment %} <div class="article-meta">
-                    <span class="article-date">
-                      {{ article.published_at | date: "%b %d, %Y" }}
-                    </span>
-
-                    {% if article.author %}
-                      <span class="article-author">
-                        · {{ article.author }}
-                      </span>
-                    {% endif %}
-                  </div> {% endcomment %}
-
-                  {% if article.excerpt != blank %}
-                    <p class="article-excerpt">
-                      {{ article.excerpt | strip_html | truncate: 120 }}
-                    </p>
-                  {% else %}
-                    <p class="article-excerpt">
-                      {{ article.content | strip_html | truncate: 120 }}
-                    </p>
+    <div class="article-track">
+      {% for article in blog_object.articles limit: 2 %}
+        <article
+          class="article-slide {% if forloop.first %}is-active{% endif %}"
+          data-slide="{{ forloop.index0 }}"
+        >
+          <div class="article-pin-card cols-2">
+            <div class="image-wrap">
+              <a href="{{ article.url }}" class="image-item">
+                <div class="cropped-image-wrapper cropped-image--square">
+                  {% if article.image %}
+                    <img
+                      srcset="
+                        {{ article.image | image_url: width: 900 }} 1x,
+                        {{ article.image | image_url: width: 900, scale: 2 }} 2x
+                      "
+                      src="{{ article.image | image_url: width: 900 }}"
+                      alt="{{ article.image.alt | escape | default: article.title }}"
+                      loading="lazy"
+                      width="{{ article.image.width }}"
+                      height="{{ article.image.height }}"
+                    >
                   {% endif %}
+                </div>
+              </a>
+            </div>
 
-                  <p class="underline-link">Explore</p>
-                </a>
-              </div>
+            <div class="text-wrap">
+              <a href="{{ article.url }}" class="text-item">
+                <h5 class="article-count">
+                  {{ forloop.index | prepend: '0' }}
+                </h5>
+
+                <h5 class="article-title">{{ article.title }}</h5>
+
+                {% if article.excerpt != blank %}
+                  <p class="article-excerpt">
+                    {{ article.excerpt | strip_html | truncate: 120 }}
+                  </p>
+                {% else %}
+                  <p class="article-excerpt">
+                    {{ article.content | strip_html | truncate: 120 }}
+                  </p>
+                {% endif %}
+
+                <p class="underline-link">Explore</p>
+              </a>
             </div>
           </div>
-        {% endfor %}
-      </div>
+        </article>
+      {% endfor %}
     </div>
   </div>
 
