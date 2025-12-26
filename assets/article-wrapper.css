@@ -26,6 +26,7 @@
     font-weight: 400;
     font-size: 3.4rem;
     line-height: 1.18421;
+color: rgb(var(--color-heading));
 }
 /* Counter */
 .featured-post-count {
