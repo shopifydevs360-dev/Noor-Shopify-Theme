@@ -3,9 +3,7 @@
   position: relative;
 }
 
-.article-swiper {
-  height: clamp(40rem, 60vh, 70rem);
-}
+
 
 .article-pin-card {
   display: grid;
