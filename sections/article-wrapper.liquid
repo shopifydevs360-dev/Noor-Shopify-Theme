@@ -1,12 +1,16 @@
 {{ 'article-wrapper.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
 
-{% assign blog_object = blogs[section.settings.blog] %}
-{% assign featured_posts_class = section.settings.custom_class | default: '' %}
+{%- assign blog_object = blogs[section.settings.blog] -%}
+
+{%- assign section_padding_class = 'section-' | append: section.id | append: '-padding' -%}
+{%- assign section_color_class = section.settings.color_control -%}
+{%- assign section_custom_class = section.settings.custom_class | default: '' -%}
+{%- assign section_scheme_class = 'm-color-' | append: section.settings.color_scheme -%}
 
 {% if blog_object.articles.size > 0 %}
 <section
-  class="featured-posts section-{{ section.id }}-padding {{ section.settings.color_control }} {{ featured_posts_class }} m-color-{{ section.settings.color_scheme }}"
+  class="featured-posts {{ section_padding_class }} {{ section_color_class }} {{ section_custom_class }} {{ section_scheme_class }}"
   data-featured-articles
 >
   <h2 class="hd-3 container">
