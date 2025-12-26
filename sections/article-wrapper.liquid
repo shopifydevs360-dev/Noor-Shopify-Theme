@@ -3,7 +3,7 @@
 
 {%- assign blog_object = blogs[section.settings.blog] -%}
 {%- liquid
-  assign classes = 'featured-posts '
+  assign classes = 'featured-posts section-x-padding'
   assign classes = classes | append: 'section-' | append: section.id | append: '-padding'
   assign classes = classes | append: ' ' | append: section.settings.color_control
   assign classes = classes | append: ' ' | append: 'm-color-' | append: section.settings.color_scheme
@@ -12,10 +12,7 @@
 
 
 {% if blog_object.articles.size > 0 %}
-<section
-  class="{{ classes }}"
-  data-featured-articles
->
+<section class="{{ classes }}"data-featured-articles>
   <h2 class="hd-3 container">
     {{ section.settings.wrapper_title }}
   </h2>
