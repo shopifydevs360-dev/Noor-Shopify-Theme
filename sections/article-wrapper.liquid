@@ -59,7 +59,30 @@
                   <h5 class="article-count">
                     {{ forloop.index | prepend: '0' }}
                   </h5>
-                  <h5>{{ article.title }}</h5>
+                  <h5 class="article-title">{{ article.title }}</h5>
+
+                  <div class="article-meta">
+                    <span class="article-date">
+                      {{ article.published_at | date: "%b %d, %Y" }}
+                    </span>
+
+                    {% if article.author %}
+                      <span class="article-author">
+                        · {{ article.author }}
+                      </span>
+                    {% endif %}
+                  </div>
+
+                  {% if article.excerpt != blank %}
+                    <p class="article-excerpt">
+                      {{ article.excerpt | strip_html | truncate: 120 }}
+                    </p>
+                  {% else %}
+                    <p class="article-excerpt">
+                      {{ article.content | strip_html | truncate: 120 }}
+                    </p>
+                  {% endif %}
+
                   <p class="underline-link">Explore</p>
                 </a>
               </div>
