@@ -1,4 +1,3 @@
-
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.querySelector('#hero-intro-{{ section.id }}');
     if (!section) return;
