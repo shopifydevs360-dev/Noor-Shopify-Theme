@@ -1,4 +1,7 @@
- <section class="intro image-with-text-overlay">
+{{ 'home-intro.css' | asset_url | stylesheet_tag }}
+{% render 'section-base-style' %}
+
+<section class="home-intro image-with-text-overlay">
     <div class="text-content container text-dark">
       <h2 class="hd-2-sf">
         <a href="{{ section.settings.link }}" aria-label="Link Info">
@@ -10,7 +13,7 @@
     </div>
 
     <div class="scaling-mask">
-      <div class="text-content sh-container">
+      <div class="text-content container">
         <h2 class="hd-2-sf">
           <a href="{{ section.settings.link }}" aria-label="Link Info">
             <div data-reveal="lines-masked-slow">
@@ -47,7 +50,7 @@
       </a>
     </div>
   </section>
-
+<script src="{{ 'home-intro.js' | asset_url }}" defer></script>
 {% schema %}
 {
   "name": "Hero Intro",
