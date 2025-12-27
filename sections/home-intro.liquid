@@ -1,19 +1,13 @@
 {{ 'home-intro.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
 
-<section
-  id="hero-intro-{{ section.id }}"
-  class="hero-intro"
-  data-section-id="{{ section.id }}"
->
-  <!-- TEXT LAYER -->
+<section class="hero-intro">
   <div class="hero-intro__text">
     <h2 class="hero-intro__heading">
       {{ section.settings.heading_text }}
     </h2>
   </div>
 
-  <!-- IMAGE LAYER -->
   <div class="hero-intro__image-wrap">
     <picture>
       {% if section.settings.mobile_image %}
@@ -25,11 +19,11 @@
       <img
         src="{{ section.settings.desktop_image | image_url: width: 1800 }}"
         alt="{{ section.settings.image_alt | escape }}"
-        loading="lazy"
       >
     </picture>
   </div>
 </section>
+
 <script src="{{ 'home-intro.js' | asset_url }}" defer></script>
 
 {% schema %}
