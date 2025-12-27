@@ -674,6 +674,10 @@
         "default": "redirect"
       },
       {
+        "type": "header",
+        "content": "Image"
+      },
+      {
         "type": "select",
         "id": "image_ratio",
         "label": "Action",
