@@ -202,7 +202,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
     margin-left: 30px;
 }
 .hero-slideshow .text-content .btn-arrow:hover .hero-slideshow .text-content .icon{
-margin-left: 35px !important;
+  transform: translate(-4px);
 }
 /* Mobile content centering */
 @media (max-width: 1024px) {
