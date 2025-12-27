@@ -49,7 +49,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 
 /* Hide sidebar on tablet/mobile */
 @media (max-width: 1024px) {
-.sidebar-image {
+.hero-slideshow .sidebar-image {
     display: none;
   }
 }
