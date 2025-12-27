@@ -19,9 +19,29 @@
         "color_scheme": "",
         "brand_text": "Noor"
       }
+    },
+    "announcement_bar_4TgJrq": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_EcXpME": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_EcXpME"
+      ],
+      "name": "Announcement bar",
+      "settings": {
+        "marquee_speed": 5
+      }
     }
   },
   "order": [
+    "announcement_bar_4TgJrq",
     "sidebar_j78B4r"
   ]
 }
