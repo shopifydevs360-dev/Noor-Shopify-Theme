@@ -46,7 +46,7 @@
     "search_type": "drawer",
     "search_color_scheme": "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99",
     "cart_behavior": "ajax_drawer",
-    "aspect_ratio": "cropped-image--portrait-tall",
+    "aspect_ratio": "cropped-image--portrait",
     "type_header_base_size": 49,
     "type_header_spacing": 0,
     "background_color": "#222222",
