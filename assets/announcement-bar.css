@@ -1,4 +1,4 @@
- .sticky-promo-wrap {
+ .announcement-bar.sticky-promo-wrap {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
