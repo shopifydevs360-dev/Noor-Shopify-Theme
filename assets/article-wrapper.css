@@ -86,9 +86,10 @@
 .featured-posts .end-link {
     margin-top: clamp(3rem,6vh,5.5rem);
 }
-.featured-posts .end-link a{
+.featured-posts .end-link .btn--animation{
   color: rgb(var(--color-link));
   width: fit-content;
+  font-size: calc(var(--font-h1-size, 36px) * 0.8);
 }
 .featured-posts .end-link:hover .btn--animation{
   color: rgb(var(--color-link-hover));
