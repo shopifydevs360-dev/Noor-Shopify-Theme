@@ -1,9 +1,12 @@
 {{ 'hero-slideshow.css' | asset_url | stylesheet_tag: preload: true }}
 
-<div id="shopify-section-{{ section.id }}" class="hero-slideshow hero-outer-wrap {{ section.settings.color_control }} {{ section.settings.custom_class }}">
+<div
+  id="shopify-section-{{ section.id }}"
+  class="hero-slideshow hero-outer-wrap {{ section.settings.color_control }} {{ section.settings.custom_class }}"
+>
   <header class="reverse-nav full-screen-slideshow sidebar-slideshow js-animate-on-load">
 
-    {%- if section.settings.sidebar_image != blank -%}
+    {% if section.settings.sidebar_image != blank %}
       <div class="sidebar-image">
         <div class="cropped-image-wrapper">
           <img
@@ -11,52 +14,68 @@
             alt="{{ section.settings.sidebar_image.alt | escape }}"
             width="{{ section.settings.sidebar_image.width }}"
             height="{{ section.settings.sidebar_image.height }}"
-            loading="lazy">
+            loading="lazy"
+          >
         </div>
       </div>
-    {%- endif -%}
+    {% endif %}
 
     <div class="swiper swiper-container-hero myswiper-{{ section.id }}">
       <div class="swiper-wrapper">
 
         {% for block in section.blocks %}
-          <div class="swiper-slide" style="background-color: {{ block.settings.background_color }};">
-            {%- if block.type == 'image_slide' and block.settings.image != blank -%}
+          <div
+            class="swiper-slide"
+            style="background-color: {{ block.settings.background_color }};"
+            {{ block.shopify_attributes }}
+          >
+
+            {% if block.type == 'image_slide' and block.settings.image != blank %}
               <div class="media-wrapper">
                 <picture>
                   {% if block.settings.mobile_image != blank %}
                     <source
                       media="(max-width: 767px)"
-                      srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
+                      srcset="{{ block.settings.mobile_image | image_url: width: 900 }}"
+                    >
                   {% endif %}
                   <img
                     src="{{ block.settings.image | image_url: width: 2000 }}"
                     alt="{{ block.settings.image.alt | escape }}"
                     width="{{ block.settings.image.width }}"
                     height="{{ block.settings.image.height }}"
-                    loading="lazy">
+                    loading="lazy"
+                  >
                 </picture>
               </div>
-            {%- endif -%}
+            {% endif %}
 
-            {%- if block.type == 'video_slide' and block.settings.video_url_desktop != blank -%}
+            {% if block.type == 'video_slide' and block.settings.video_url_desktop != blank %}
               <div class="media-wrapper">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata">
                   <source src="{{ block.settings.video_url_desktop }}" media="(min-width: 768px)">
                   {% if block.settings.video_url_mobile != blank %}
                     <source src="{{ block.settings.video_url_mobile }}" media="(max-width: 767px)">
                   {% endif %}
                 </video>
               </div>
-            {%- endif -%}
+            {% endif %}
 
             <span
               class="overlay-bg"
-              style="background-color: {{ block.settings.overlay_color }};
-                     opacity: {{ block.settings.overlay_opacity }};">
-            </span>
+              style="
+                background-color: {{ block.settings.overlay_color }};
+                opacity: {{ block.settings.overlay_opacity }};
+              "
+            ></span>
 
-            <div class="text-content text-content--{{ block.settings.vertical_alignment }}-{{ block.settings.horizontal_alignment }} m-color-{{ block.settings.text_color_scheme }}">
+            <div
+              class="
+                text-content
+                text-content--{{ block.settings.vertical_alignment }}-{{ block.settings.horizontal_alignment }}
+                m-color-{{ block.settings.text_color_scheme }}
+              "
+            >
               {% if block.settings.subheading != blank %}
                 <h4 class="hero-slideshow-sub-heading {{ block.settings.sub_heading_font_size }}">
                   {{ block.settings.subheading }}
@@ -64,7 +83,7 @@
               {% endif %}
 
               {% if block.settings.heading != blank %}
-                <h2 class="hero-slideshow-heading {{ block.settings.heading_font_size }}">
+                <h2 class="hero-slideshow-heading {{ block.settings.heading_size }}">
                   {{ block.settings.heading }}
                 </h2>
               {% endif %}
@@ -72,7 +91,9 @@
               {% if block.settings.cta_text != blank %}
                 <a href="{{ block.settings.link }}" class="btn btn-arrow">
                   <span>{{ block.settings.cta_text }}</span>
-                  <span class="icon">{%- render 'theme-icon', icon: 'right-arrow' -%}</span>
+                  <span class="icon">
+                    {% render 'theme-icon', icon: 'right-arrow' %}
+                  </span>
                 </a>
               {% endif %}
             </div>
@@ -84,10 +105,17 @@
     </div>
 
     <div class="swiper-nav-wrapper">
-      <button class="js-prev swiper-prev-text">
+      <button
+        class="swiper-prev-text js-prev-{{ section.id }}"
+        aria-label="Previous slide"
+      >
         <span class="inner-text">Previous</span>
       </button>
-      <button class="js-next swiper-next-text">
+
+      <button
+        class="swiper-next-text js-next-{{ section.id }}"
+        aria-label="Next slide"
+      >
         <span class="line"></span>
         <span class="inner-text">Next</span>
       </button>
@@ -97,14 +125,16 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.myswiper-{{ section.id }}', {
       loop: true,
       effect: 'fade',
-      fadeEffect: { crossFade: true },
+      fadeEffect: {
+        crossFade: true
+      },
       navigation: {
-        nextEl: '.js-next',
-        prevEl: '.js-prev'
+        nextEl: '.js-next-{{ section.id }}',
+        prevEl: '.js-prev-{{ section.id }}'
       },
       {% if section.settings.enable_autoplay %}
       autoplay: {
@@ -115,7 +145,6 @@
     });
   });
 </script>
-
 
 {% schema %}
 {
@@ -137,20 +166,18 @@
     {
       "type": "text",
       "id": "custom_class",
-      "label": "custom class"
-
+      "label": "Custom class"
     },
     {
       "type": "select",
       "id": "color_control",
       "label": "Color Control",
-      "info": "These settings control the color of the sidebar text. If you select Dark, it will be a light shade of the sidebar text/icon color, and if you select Light, it will be a dark shade of the sidebar text/icon color.",
       "options": [
         { "value": "section-dark", "label": "Dark" },
         { "value": "section-light", "label": "Light" }
       ],
       "default": "section-light"
-    },
+    }
   ],
   "blocks": [
     {
@@ -161,34 +188,64 @@
         { "type": "image_picker", "id": "image", "label": "Desktop image" },
         { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
         { "type": "text", "id": "subheading", "label": "Subheading" },
-        { "type": "select", "id": "sub_heading_font_size", "label": "Font Size", "info": "Change variable font size form typography settings [Learn more](https://codecraftmehedi.com/)",
+        {
+          "type": "select",
+          "id": "sub_heading_font_size",
+          "label": "Subheading font size",
           "options": [
             { "value": "h3", "label": "h3" },
             { "value": "h4", "label": "h4" },
             { "value": "h5", "label": "h5" },
-            { "value": "h6", "label": "h6" },
+            { "value": "h6", "label": "h6" }
           ],
-          "default": "h4" },
+          "default": "h4"
+        },
         { "type": "text", "id": "heading", "label": "Heading" },
-        { "type": "select", "id": "heading_size", "label": "Heading size", "options": [
-          { "value": "hd-2", "label": "Large" },
-          { "value": "hd-1", "label": "Extra Large" }
-        ], "default": "hd-2" },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            { "value": "hd-2", "label": "Large" },
+            { "value": "hd-1", "label": "Extra Large" }
+          ],
+          "default": "hd-2"
+        },
         { "type": "text", "id": "cta_text", "label": "CTA text" },
         { "type": "url", "id": "link", "label": "Link" },
         { "type": "color", "id": "background_color", "label": "Background color", "default": "#f3e3d3" },
         { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
-        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 1, "step": 0.1, "default": 0 },
-        { "type": "select", "id": "horizontal_alignment", "label": "Horizontal alignment", "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "center", "label": "Center" },
-          { "value": "right", "label": "Right" }
-        ], "default": "left" },
-        { "type": "select", "id": "vertical_alignment", "label": "Vertical alignment", "options": [
-          { "value": "top", "label": "Top" },
-          { "value": "center", "label": "Center" },
-          { "value": "bottom", "label": "Bottom" }
-        ], "default": "bottom" }
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "min": 0,
+          "max": 1,
+          "step": 0.1,
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "horizontal_alignment",
+          "label": "Horizontal alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "vertical_alignment",
+          "label": "Vertical alignment",
+          "options": [
+            { "value": "top", "label": "Top" },
+            { "value": "center", "label": "Center" },
+            { "value": "bottom", "label": "Bottom" }
+          ],
+          "default": "bottom"
+        }
       ]
     },
     {
@@ -199,34 +256,64 @@
         { "type": "text", "id": "video_url_desktop", "label": "Desktop video URL (mp4)" },
         { "type": "text", "id": "video_url_mobile", "label": "Mobile video URL (mp4)" },
         { "type": "text", "id": "subheading", "label": "Subheading" },
-        { "type": "select", "id": "sub_heading_font_size", "label": "Font Size", "info": "Change variable font size form typography settings [Learn more](https://codecraftmehedi.com/)",
+        {
+          "type": "select",
+          "id": "sub_heading_font_size",
+          "label": "Subheading font size",
           "options": [
             { "value": "h3", "label": "h3" },
             { "value": "h4", "label": "h4" },
             { "value": "h5", "label": "h5" },
-            { "value": "h6", "label": "h6" },
+            { "value": "h6", "label": "h6" }
           ],
-          "default": "h4" },
+          "default": "h4"
+        },
         { "type": "text", "id": "heading", "label": "Heading" },
-        { "type": "select", "id": "heading_size", "label": "Heading size", "options": [
-          { "value": "hd-2", "label": "Large" },
-          { "value": "hd-1", "label": "Extra Large" }
-        ], "default": "hd-2" },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            { "value": "hd-2", "label": "Large" },
+            { "value": "hd-1", "label": "Extra Large" }
+          ],
+          "default": "hd-2"
+        },
         { "type": "text", "id": "cta_text", "label": "CTA text" },
         { "type": "url", "id": "link", "label": "Link" },
         { "type": "color", "id": "background_color", "label": "Background color", "default": "#f3e3d3" },
         { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
-        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 1, "step": 0.1, "default": 0 },
-        { "type": "select", "id": "horizontal_alignment", "label": "Horizontal alignment", "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "center", "label": "Center" },
-          { "value": "right", "label": "Right" }
-        ], "default": "left" },
-        { "type": "select", "id": "vertical_alignment", "label": "Vertical alignment", "options": [
-          { "value": "top", "label": "Top" },
-          { "value": "center", "label": "Center" },
-          { "value": "bottom", "label": "Bottom" }
-        ], "default": "bottom" }
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "min": 0,
+          "max": 1,
+          "step": 0.1,
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "horizontal_alignment",
+          "label": "Horizontal alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "vertical_alignment",
+          "label": "Vertical alignment",
+          "options": [
+            { "value": "top", "label": "Top" },
+            { "value": "center", "label": "Center" },
+            { "value": "bottom", "label": "Bottom" }
+          ],
+          "default": "bottom"
+        }
       ]
     }
   ],
@@ -240,5 +327,4 @@
     }
   ]
 }
-
 {% endschema %}
