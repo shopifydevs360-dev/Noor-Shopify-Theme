@@ -29,7 +29,12 @@
     -webkit-animation: fadeInMarquee .4s cubic-bezier(.49,.025,.65,.65);
     animation: fadeInMarquee .4s cubic-bezier(.49,.025,.65,.65);
 }
- .marquee__inner {
-  -webkit-animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
-  animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
+
+.marquee__inner {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    position: relative;
+    transform: translateZ(0);
 }
