@@ -28,7 +28,9 @@
     line-height: 1.18421;
 color: rgb(var(--color-heading));
 }
-.article-pin-card
+.article-pin-card{
+  
+}
 /* Counter */
 .featured-post-count {
   position: absolute;
