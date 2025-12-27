@@ -1,14 +1,12 @@
 /* Sticky wrapper */
 .announcement-bar.sticky-promo-wrap {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 340;
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text));
 }
-
 
 /* Container */
 .promo-bar-wrap {
