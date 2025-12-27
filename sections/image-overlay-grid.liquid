@@ -178,6 +178,7 @@
           "type": "select",
           "id": "animation_type",
           "label": "Animation type",
+          "visible_if": "{{ block.settings.button_type == 'btn--animation' }}",
           "options": [
             { "value": "hover-underline", "label": "Hover Underline" },
             { "value": "upcomming", "label": "Upcoming" }
