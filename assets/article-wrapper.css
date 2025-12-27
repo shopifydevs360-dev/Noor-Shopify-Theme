@@ -29,12 +29,17 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  width: 60%;
+  max-width: 34rem;
 }
 .article-pin-card {
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 4rem;
-  justify-items: stretch;
+    display: flex;
+    column-gap: 4rem;
+    width: 100%;
+    justify-content: space-between;
+}
+.image-wrap {
+    width: 40%;
 }
 .featured-posts .article-pin-card h2 {
   margin-bottom: clamp(2rem,3.8vh,2.8rem);
