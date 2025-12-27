@@ -9,26 +9,33 @@ function initPinnedArticles() {
     section.dataset.init = 'true';
 
     const slides = section.querySelectorAll('.article-slide');
-    const counters = section.querySelectorAll('.counter-item');
-
+    const counterGroups = section.querySelectorAll('.featured-post-count');
+    
     const slidesCount = slides.length;
     const SCROLL_STEP = 400;
+
 
     function activateSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.toggle('is-active', i === index);
       });
 
-      counters.forEach((btn, i) => {
-        btn.classList.toggle('active-counter', i === index);
+      counterGroups.forEach(group => {
+        const buttons = group.querySelectorAll('.counter-item');
+        buttons.forEach((btn, i) => {
+          btn.classList.toggle('active-counter', i === index);
+        });
       });
     }
 
-    counters.forEach(btn => {
-      btn.addEventListener('click', () => {
-        activateSlide(+btn.dataset.index);
-      });
+counterGroups.forEach(group => {
+  group.querySelectorAll('.counter-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activateSlide(+btn.dataset.index);
     });
+  });
+});
+
 
     ScrollTrigger.create({
       trigger: section,
