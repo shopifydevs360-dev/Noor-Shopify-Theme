@@ -160,17 +160,17 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   text-align: left;
 }
 
-.text-content--top-center,
-.text-content--center-center,
-.text-content--bottom-center {
+.hero-slideshow .text-content--top-center,
+.hero-slideshow .text-content--center-center,
+.hero-slideshow .text-content--bottom-center {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
-.text-content--top-right,
-.text-content--center-right,
-.text-content--bottom-right {
+.hero-slideshow .text-content--top-right,
+.hero-slideshow .text-content--center-right,
+.hero-slideshow .text-content--bottom-right {
   right: 40px;
   text-align: right;
 }
