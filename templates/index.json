@@ -167,21 +167,33 @@
     "custom_section_pxbE8X": {
       "type": "custom-section",
       "blocks": {
-        "button_TDy7rB": {
-          "type": "button",
-          "name": "Button",
+        "grid_mey9xx": {
+          "type": "grid",
+          "name": "Grid Layout",
           "settings": {
-            "button_label": "Test Button",
-            "button_link": "",
-            "text_color_scheme": "default",
-            "button_type": "btn--primary",
-            "animation_type": "hover-underline"
+            "columns": 4,
+            "gap": 20,
+            "padding": 0
           },
-          "blocks": {}
+          "blocks": {
+            "content_area_ndyejc": {
+              "type": "content-area",
+              "name": "Content Area",
+              "settings": {
+                "max_width": 1200,
+                "padding": 26,
+                "text_align": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "content_area_ndyejc"
+          ]
         }
       },
       "block_order": [
-        "button_TDy7rB"
+        "grid_mey9xx"
       ],
       "name": "Custom Section",
       "settings": {
