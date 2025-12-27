@@ -679,23 +679,16 @@
       },
       {
         "type": "select",
-        "id": "image_ratio",
-        "label": "Action",
+        "id": "aspect_ratio",
+        "label": "Aspect Ratio",
         "options": [
-          {
-            "value": "redirect",
-            "label": "Redirect to Cart Page"
-          },
-          {
-            "value": "ajax",
-            "label": "Ajax - No Redirect"
-          },
-          {
-            "value": "ajax_drawer",
-            "label": "Ajax + Open Cart Drawer"
-          }
+          { "value": "cropped-image--square", "label": "square" },
+          { "value": "cropped-image--portrait", "label": "portrait" },
+          { "value": "cropped-image--portrait-tall", "label": "portrait-tall" },
+          { "value": "cropped-image--landscape", "label": "landscape" },
+          { "value": "cropped-image--wide", "label": "wide" }
         ],
-        "default": "redirect"
+        "default": "cropped-image--square"
       },
     ]
   },
