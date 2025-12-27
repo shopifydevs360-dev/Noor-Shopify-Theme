@@ -20,17 +20,6 @@
   </h1>
 
   <div class="articles-wrapper sidebar-space">
-    <div class="featured-post-count">
-      {% for article in blog_object.articles limit: 2 %}
-        <button
-          class="counter-item {% if forloop.first %}active-counter{% endif %}"
-          data-index="{{ forloop.index0 }}"
-        >
-          {{ forloop.index | prepend: '0' }}
-        </button>
-      {% endfor %}
-    </div>
-
     <div class="article-track">
       {% for article in blog_object.articles limit: 2 %}
         <article
@@ -75,6 +64,16 @@
 
                 <p class="underline-link">Explore</p>
               </a>
+              <div class="featured-post-count">
+                {% for article in blog_object.articles limit: 2 %}
+                  <button
+                    class="counter-item {% if forloop.first %}active-counter{% endif %}"
+                    data-index="{{ forloop.index0 }}"
+                  >
+                    {{ forloop.index | prepend: '0' }}
+                  </button>
+                {% endfor %}
+              </div>
             </div>
           </div>
         </article>
