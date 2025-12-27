@@ -25,16 +25,16 @@
   color: rgb(var(--color-heading));
 }
 .featured-posts .article-pin-card .text-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 .article-pin-card {
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 4rem;
-    justify-items: stretch;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 4rem;
+  justify-items: stretch;
 }
 .featured-posts .article-pin-card h2 {
   margin-bottom: clamp(2rem,3.8vh,2.8rem);
