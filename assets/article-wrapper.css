@@ -24,6 +24,11 @@
   margin-bottom: clamp(3rem,5vh,4.3rem);
   color: rgb(var(--color-heading));
 }
+.featured-posts .article-pin-card .text-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .featured-posts .article-pin-card .article-excerpt {
   margin-bottom: clamp(1rem,2vh,1.8rem);
   color: rgb(var(--color-text));
@@ -32,7 +37,6 @@
   margin-bottom: clamp(2rem,3.8vh,2.8rem);
   color: rgb(var(--color-heading));
 }
-
 /* Counter */
 .featured-post-count {
   position: absolute;
