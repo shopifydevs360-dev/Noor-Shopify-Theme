@@ -36,13 +36,13 @@
     column-gap: 4rem;
     justify-items: stretch;
 }
-.featured-posts .article-pin-card .article-excerpt {
-  margin-bottom: clamp(1rem,2vh,1.8rem);
-  color: rgb(var(--color-text));
-}
 .featured-posts .article-pin-card h2 {
   margin-bottom: clamp(2rem,3.8vh,2.8rem);
   color: rgb(var(--color-heading));
+}
+.featured-posts .article-pin-card .article-excerpt {
+  margin-bottom: clamp(1rem,2vh,1.8rem);
+  color: rgb(var(--color-text));
 }
 /* Counter */
 .featured-post-count {
