@@ -1,10 +1,27 @@
+/* ===============================
+   HERO INTRO BASE
+================================ */
 .home-intro {
   position: relative;
   min-height: 200vh; /* REQUIRED for scroll */
   overflow: hidden;
 }
 
-/* Sticky image + mask */
+/* ===============================
+   BLACK TEXT (OUTSIDE IMAGE)
+================================ */
+.home-intro > .text-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+}
+
+/* ===============================
+   STICKY MASK
+================================ */
 .home-intro .scaling-mask {
   position: sticky;
   top: 50%;
@@ -16,33 +33,59 @@
   overflow: hidden;
 }
 
-/* IMAGE WRAPPER — START STATE */
+/* ===============================
+   IMAGE WRAPPER
+================================ */
 .home-intro .scaling-image-wrapper {
-  width: 50%;
+  width: 50%; /* START STATE */
   height: 100%;
   overflow: hidden;
   will-change: width;
 }
 
-/* Image fill */
 .home-intro .scaling-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* White text over image */
+/* ===============================
+   WHITE TEXT (OVER IMAGE)
+================================ */
 .home-intro .scaling-mask .text-content {
   position: absolute;
   z-index: 2;
+  text-align: center;
   color: #fff;
 }
 
-/* Black text outside image */
-.home-intro > .text-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+/* ===============================
+   MOBILE FALLBACK
+================================ */
+@media (max-width: 1024px) {
+  .home-intro {
+    min-height: auto;
+  }
+
+  .home-intro .scaling-mask {
+    position: relative;
+    transform: none;
+    height: auto;
+  }
+
+  .home-intro .scaling-image-wrapper {
+    width: 100%;
+    height: 60vh;
+  }
+
+  .home-intro > .text-content {
+    position: relative;
+    transform: none;
+    margin-bottom: 24px;
+  }
+
+  .home-intro .scaling-mask .text-content {
+    color: #fff;
+  }
 }

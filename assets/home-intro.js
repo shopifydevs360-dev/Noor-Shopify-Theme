@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
   if (!window.gsap || !window.ScrollTrigger) {
-    console.warn('GSAP or ScrollTrigger not loaded');
+    console.error('GSAP or ScrollTrigger not loaded');
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
 
   const section = document.querySelector('.home-intro');
-  const imageWrap = section.querySelector('.scaling-image-wrapper');
+  const imageWrap = section?.querySelector('.scaling-image-wrapper');
+  const image = imageWrap?.querySelector('img');
 
   if (!section || !imageWrap) return;
 
-  /* IMAGE WIDTH ANIMATION */
+  /* IMAGE WIDTH SCROLL */
   gsap.fromTo(
     imageWrap,
     { width: '50%' },
@@ -23,14 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         start: 'top bottom',
         end: 'bottom center',
         scrub: true,
-        markers: false // set true if debugging
+        markers: false
       }
     }
   );
 
-  /* OPTIONAL: IMAGE SCALE (you already prepared data attrs) */
-  const image = imageWrap.querySelector('img');
-
+  /* IMAGE SCALE SCROLL */
   if (image) {
     gsap.fromTo(
       image,
