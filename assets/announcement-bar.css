@@ -15,21 +15,23 @@ body.has-promo-bar {
 }
 
 /* Container */
-.promo-bar-wrap {
-  height: 3.2rem;
-  overflow: hidden;
-  position: relative;
+.announcement-bar .promo-bar-wrap {
+    height: 3.2rem;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Marquee area */
-.marquee-text {
+.announcement-bar .marquee-text {
   overflow: hidden;
-  padding: 0.8rem 0;
-  line-height: 1;
 }
 
 /* Marquee animation */
-.marquee__inner {
+.announcement-bar .marquee__inner {
   display: flex;
   width: fit-content;
   white-space: nowrap;
@@ -38,14 +40,14 @@ body.has-promo-bar {
 }
 
 /* Items */
-.marquee__inner span {
+.announcement-bar .marquee__inner span {
   padding: 0 2.5rem;
   white-space: nowrap;
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .marquee__inner {
+ .announcement-bar .marquee__inner {
     animation: none;
   }
 }
