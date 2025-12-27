@@ -8,7 +8,7 @@
 
     {% if section.settings.sidebar_image != blank %}
       <div class="sidebar-image">
-        <div class="cropped-image-wrapper">
+        <div class="sidebar-image-wrapper">
           <img
             src="{{ section.settings.sidebar_image | image_url: width: 800 }}"
             alt="{{ section.settings.sidebar_image.alt | escape }}"
