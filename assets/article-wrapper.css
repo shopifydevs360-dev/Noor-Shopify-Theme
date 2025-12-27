@@ -91,8 +91,7 @@
   width: fit-content;
 }
 .featured-posts .end-link:hover a{
-  color: rgb(var(--color-link));
-  width: fit-content;
+  color: rgb(var(--color-link-hover));
 }
 /* Responsive */
 @media (max-width: 1024px) {
