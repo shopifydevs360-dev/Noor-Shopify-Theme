@@ -21,7 +21,7 @@
   pointer-events: auto;
 }
 .featured-posts h1 {
-  margin-bottom: clamp(3rem,5vh,4.3rem);
+  margin-bottom: clamp(8rem,13vh,10.3rem);
   color: rgb(var(--color-heading));
 }
 .featured-posts .article-excerpt {
