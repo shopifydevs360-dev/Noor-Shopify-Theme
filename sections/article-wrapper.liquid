@@ -61,8 +61,8 @@
                     {{ article.content | strip_html | truncate: 120 }}
                   </p>
                 {% endif %}
-
-                <p class="btn--animation hover-underline active-underline">Explore</p>
+                <span class="btn-wrapper active-underline"></span>
+                <p class="btn--animation hover-underline ">Explore</p>
               </a>
               <div class="featured-post-count">
                 {% for article in blog_object.articles limit: 2 %}
