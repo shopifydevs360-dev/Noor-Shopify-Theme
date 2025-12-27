@@ -1,52 +1,33 @@
- <section class="intro image-with-text-overlay">
-    <div class="text-content container text-dark">
-      <h2 class="hd-2-sf">
-        <a href="{{ section.settings.link }}" aria-label="Link Info">
-          <div data-reveal="lines-masked-slow">
-            {{ section.settings.heading_text }}
-          </div>
-        </a>
-      </h2>
-    </div>
+<section
+  id="hero-intro-{{ section.id }}"
+  class="hero-intro"
+  data-section-id="{{ section.id }}"
+>
+  <!-- TEXT LAYER -->
+  <div class="hero-intro__text">
+    <h2 class="hero-intro__heading">
+      {{ section.settings.heading_text }}
+    </h2>
+  </div>
 
-    <div class="scaling-mask">
-      <div class="text-content sh-container">
-        <h2 class="hd-2-sf">
-          <a href="{{ section.settings.link }}" aria-label="Link Info">
-            <div data-reveal="lines-masked-slow">
-              {{ section.settings.heading_text }}
-            </div>
-          </a>
-        </h2>
-      </div>
+  <!-- IMAGE LAYER -->
+  <div class="hero-intro__image-wrap">
+    <picture>
+      {% if section.settings.mobile_image %}
+        <source
+          media="(max-width: 1024px)"
+          srcset="{{ section.settings.mobile_image | image_url: width: 1080 }}"
+        >
+      {% endif %}
+      <img
+        src="{{ section.settings.desktop_image | image_url: width: 1800 }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        loading="lazy"
+      >
+    </picture>
+  </div>
+</section>
 
-      <a href="{{ section.settings.link }}" aria-label="Link Info">
-        <div class="cropped-image-wrapper scaling-image-wrapper">
-          <picture>
-            {% if section.settings.mobile_image %}
-              <source
-                media="(max-width: 1024px)"
-                srcset="{{ section.settings.mobile_image | image_url: width: 1080 }}"
-              >
-            {% endif %}
-
-            {% if section.settings.desktop_image %}
-              <img
-                class="lazyload"
-                data-sizes="auto"
-                src="{{ section.settings.desktop_image | image_url: width: 1440 }}"
-                alt="{{ section.settings.image_alt | escape }}"
-                data-from='{"scale": "1.4"}'
-                data-to='{"scale": "1"}'
-                data-start="top bottom"
-                data-end="bottom center"
-              >
-            {% endif %}
-          </picture>
-        </div>
-      </a>
-    </div>
-  </section>
 
 {% schema %}
 {
