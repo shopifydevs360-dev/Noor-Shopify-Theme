@@ -29,6 +29,12 @@
     flex-direction: column;
     justify-content: center;
 }
+.article-pin-card {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 4rem;
+    justify-items: stretch;
+}
 .featured-posts .article-pin-card .article-excerpt {
   margin-bottom: clamp(1rem,2vh,1.8rem);
   color: rgb(var(--color-text));
