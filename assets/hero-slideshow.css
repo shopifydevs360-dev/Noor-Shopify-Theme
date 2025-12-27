@@ -10,7 +10,7 @@
 
 /* Promo bar height adjustment */
 body.has-promo-bar .sidebar-slideshow {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.2rem);
 }
 
 /* =====================================
