@@ -21,16 +21,18 @@
   pointer-events: auto;
 }
 .featured-posts h1 {
-  margin-bottom: clamp(8rem,13vh,10.3rem);
+  margin-bottom: clamp(3rem,5vh,4.3rem);
   color: rgb(var(--color-heading));
 }
-.featured-posts .article-excerpt {
+.featured-posts .article-pin-card .article-excerpt {
   margin-bottom: clamp(3rem,5vh,4.3rem);
   color: rgb(var(--color-text));
 }
-.article-pin-card{
-
+.featured-posts .article-pin-card h2 {
+  margin-bottom: clamp(2rem,3.8vh,2.8rem);
+  color: rgb(var(--color-heading));
 }
+
 /* Counter */
 .featured-post-count {
   position: absolute;
