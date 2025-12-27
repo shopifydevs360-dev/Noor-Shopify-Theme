@@ -200,9 +200,10 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 .hero-slideshow .text-content .icon {
     margin-bottom: -4px;
     margin-left: 30px;
+    transition: transform 0.3s ease;
 }
-.hero-slideshow .text-content .btn-arrow:hover .hero-slideshow .text-content .icon{
-  transform: translate(-4px);
+.hero-slideshow .text-content .btn-arrow:hover .icon {
+  transform: translateX(-4px);
 }
 /* Mobile content centering */
 @media (max-width: 1024px) {
