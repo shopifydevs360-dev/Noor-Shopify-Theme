@@ -53,13 +53,13 @@
   color: var(--color-link);
 }
 .featured-posts .btn-wrapper .btn--animation:before{
- background: var(--color-link);
+ background: rgb(var(--color-link));
 }
 .featured-posts .btn-wrapper:hover .btn--animation{
   color: var(--color-link-hover);
 }
 .featured-posts .btn-wrapper:hover .btn--animation:before{
- background: var(--color-link-hover);
+ background: rgb(var(--color-link));
 }
 /* Counter */
 .featured-post-count {
