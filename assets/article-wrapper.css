@@ -24,6 +24,10 @@
   margin-bottom: clamp(3rem,5vh,4.3rem);
   color: rgb(var(--color-heading));
 }
+.featured-posts .article-excerpt {
+  margin-bottom: clamp(3rem,5vh,4.3rem);
+  color: rgb(var(--color-text));
+}
 .article-pin-card{
 
 }
