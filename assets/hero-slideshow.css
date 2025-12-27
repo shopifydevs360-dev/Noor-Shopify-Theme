@@ -101,7 +101,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   object-fit: cover;
   display: block;
 }
-.hero-slideshow .media-wrapper img{
+.hero-slideshow .media-wrapper picture{
   height: 100%;
 }
 
