@@ -83,7 +83,9 @@
   opacity: 1;
   font-weight: 700;
 }
-
+.featured-posts .end-link {
+    margin-top: clamp(3rem,6vh,5.5rem);
+}
 /* Responsive */
 @media (max-width: 1024px) {
   .article-pin-card {
