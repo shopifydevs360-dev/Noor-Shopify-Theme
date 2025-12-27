@@ -1,56 +1,37 @@
 {{ 'home-intro.css' | asset_url | stylesheet_tag }}
 
-<div id="shopify-section-{{ section.id }}" class="shopify-section">
-  <section class="home-intro image-with-text-overlay">
-    <div class="text-content sh-container text-dark">
-      <h2 class="hd-2-sf">
-        <a href="{{ section.settings.link }}" aria-label="Link Info">
-          <div data-reveal="lines-masked-slow">
-            {{ section.settings.heading_text }}
-          </div>
-        </a>
+<section class="home-intro">
+
+  <!-- BLACK TEXT (BACKGROUND) -->
+  <div class="home-intro__text home-intro__text--black">
+    <h2 class="home-intro__heading">
+      {{ section.settings.heading_text }}
+    </h2>
+  </div>
+
+  <!-- MASK (IMAGE + WHITE TEXT) -->
+  <div class="home-intro__mask">
+
+    <!-- WHITE TEXT (ONLY VISIBLE OVER IMAGE) -->
+    <div class="home-intro__text home-intro__text--white">
+      <h2 class="home-intro__heading">
+        {{ section.settings.heading_text }}
       </h2>
     </div>
 
-    <div class="scaling-mask">
-      <div class="text-content sh-container">
-        <h2 class="hd-2-sf">
-          <a href="{{ section.settings.link }}" aria-label="Link Info">
-            <div data-reveal="lines-masked-slow">
-              {{ section.settings.heading_text }}
-            </div>
-          </a>
-        </h2>
-      </div>
-
-      <a href="{{ section.settings.link }}" aria-label="Link Info">
-        <div class="cropped-image-wrapper scaling-image-wrapper">
-          <picture>
-            {% if section.settings.mobile_image %}
-              <source
-                media="(max-width: 1024px)"
-                srcset="{{ section.settings.mobile_image | image_url: width: 1080 }}"
-              >
-            {% endif %}
-
-            {% if section.settings.desktop_image %}
-              <img
-                class="lazyload"
-                data-sizes="auto"
-                src="{{ section.settings.desktop_image | image_url: width: 1440 }}"
-                alt="{{ section.settings.image_alt | escape }}"
-                data-from='{"scale": "1.4"}'
-                data-to='{"scale": "1"}'
-                data-start="top bottom"
-                data-end="bottom center"
-              >
-            {% endif %}
-          </picture>
-        </div>
-      </a>
+    <!-- IMAGE -->
+    <div class="home-intro__image">
+      {% if section.settings.image %}
+        <img
+          src="{{ section.settings.image | image_url: width: 2000 }}"
+          alt=""
+          loading="eager"
+        >
+      {% endif %}
     </div>
-  </section>
-</div>
+
+  </div>
+</section>
 
 <script src="{{ 'home-intro.js' | asset_url }}" defer></script>
 
