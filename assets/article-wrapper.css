@@ -20,16 +20,12 @@
   opacity: 1;
   pointer-events: auto;
 }
-.featured-posts h2 {
-    margin-bottom: clamp(3rem,5vh,4.3rem);
-    letter-spacing: .07rem;
-    font-weight: 400;
-    font-size: 3.4rem;
-    line-height: 1.18421;
-color: rgb(var(--color-heading));
+.featured-posts h1 {
+  margin-bottom: clamp(3rem,5vh,4.3rem);
+  color: rgb(var(--color-heading));
 }
 .article-pin-card{
-  
+
 }
 /* Counter */
 .featured-post-count {
