@@ -213,6 +213,16 @@
         "custom_class": "",
         "color_control": "section-light"
       }
+    },
+    "home_intro_LaEWrV": {
+      "type": "home-intro",
+      "name": "Hero Intro",
+      "settings": {
+        "heading_text": "<p>Meet the base you'll build every outfit on.</p>",
+        "link": "",
+        "desktop_image": "shopify://shop_images/Gemini_Generated_Image_sskctbsskctbsskc.png",
+        "image_alt": "Woman with curly hair"
+      }
     }
   },
   "order": [
@@ -220,6 +230,7 @@
     "collection_tab_jigG9e",
     "collection_tab_HFCJgQ",
     "image_overlay_grid_Gz6VEw",
-    "article_wrapper_tkFWde"
+    "article_wrapper_tkFWde",
+    "home_intro_LaEWrV"
   ]
 }
