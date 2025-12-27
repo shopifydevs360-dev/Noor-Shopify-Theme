@@ -58,7 +58,7 @@
     color: var(--color-link-hover);
 }
 .featured-posts .btn-wrapper:hover .btn--animation:before{
- background: rgb(var(--color-link));
+ background: rgb(var(--color-link-hover));
 }
 /* Counter */
 .featured-post-count {
