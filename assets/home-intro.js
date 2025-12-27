@@ -1,27 +1,26 @@
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const section = document.querySelector('#hero-intro-{{ section.id }}');
-    if (!section) return;
 
-    const imageWrap = section.querySelector('.hero-intro__image-wrap');
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.gsap || !window.ScrollTrigger) {
+      console.error('GSAP or ScrollTrigger not loaded');
+      return;
+    }
 
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
-      imageWrap,
-      {
-        width: '50%'
-      },
+      '.hero-intro__image-wrap',
+      { width: '50%' },
       {
         width: '100%',
         ease: 'none',
         scrollTrigger: {
-          trigger: section,
+          trigger: '.hero-intro',
           start: 'top bottom',
           end: 'bottom center',
-          scrub: true
+          scrub: true,
+          markers: true // REMOVE after testing
         }
       }
     );
   });
-</script>
+
