@@ -20,14 +20,30 @@
             "text": "Free shipping on orders over $50",
             "link": ""
           }
+        },
+        "announcement_zjie7X": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50",
+            "link": ""
+          }
+        },
+        "announcement_7w4jW9": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over $50",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement_EcXpME"
+        "announcement_EcXpME",
+        "announcement_zjie7X",
+        "announcement_7w4jW9"
       ],
       "name": "Announcement bar",
       "settings": {
-        "marquee_speed": 24,
+        "marquee_speed": 9,
         "font_size": 18,
         "font_weight": "500",
         "text_color_scheme": ""
