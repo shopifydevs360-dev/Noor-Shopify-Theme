@@ -1,4 +1,12 @@
-  .marquee__inner {
+ .sticky-promo-wrap {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 340;
+}
+ .marquee__inner {
   -webkit-animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
   animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
 }
