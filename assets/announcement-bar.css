@@ -1,0 +1,4 @@
+  .marquee__inner {
+  -webkit-animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
+  animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
+}
