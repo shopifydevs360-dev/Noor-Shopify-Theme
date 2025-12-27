@@ -74,6 +74,14 @@
   color: #fff;
   z-index: 2;
 }
+.scaling-mask {
+  -webkit-clip-path: inset(22rem 34rem 22rem 34rem);
+  clip-path: inset(22rem 34rem 22rem 34rem);
+}
+.scaling-mask {
+  overflow: hidden;
+  will-change: clip-path;
+}
 
 /* =====================================
    MOBILE FALLBACK
