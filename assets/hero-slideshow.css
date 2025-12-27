@@ -16,7 +16,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 /* =====================================
    SIDEBAR IMAGE (LEFT)
 ===================================== */
-.hero-slideshow .sidebar-image {
+.sidebar-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   will-change: transform;
   transition: transform 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
-.hero-slideshow .sidebar-image .cropped-image-wrapper:after {
+.sidebar-image .cropped-image-wrapper:after {
     content: "";
     width: 100%;
     height: 100%;
@@ -36,12 +36,12 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
     top: 0;
     left: 0;
 }
-.hero-slideshow .scrolled .sidebar-image {
+.scrolled .sidebar-image {
   transform: translateX(-100%);
 }
 
-.hero-slideshow .sidebar-image .cropped-image-wrapper,
-.hero-slideshow .sidebar-image img {
+.sidebar-image .cropped-image-wrapper,
+.sidebar-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -49,7 +49,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 
 /* Hide sidebar on tablet/mobile */
 @media (max-width: 1024px) {
- .hero-slideshow .sidebar-image {
+.sidebar-image {
     display: none;
   }
 }
@@ -57,7 +57,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 /* =====================================
    SWIPER CONTAINER
 ===================================== */
-.hero-slideshow .swiper-container-hero {
+.swiper-container-hero {
   position: relative;
   width: 100%;
   height: 100%;
@@ -66,36 +66,36 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 
 /* Space for sidebar when visible */
 @media (min-width: 1025px) {
- .hero-slideshow .swiper-container-hero {
+ .swiper-container-hero {
     width: 100%;
     transform: translateX(320px);
     will-change: transform;
     transition: transform 0.8s cubic-bezier(0, 0, 0.002, 1);
   }
 
- .hero-slideshow .scrolled .swiper-container-hero {
+.scrolled .swiper-container-hero {
     transform: translateX(0);
   }
 }
 
 
-.hero-slideshow .swiper-wrapper,
-.hero-slideshow .swiper-slide {
+.swiper-wrapper,
+.swiper-slide {
   height: 100%;
 }
 
 /* =====================================
    MEDIA (IMAGE / VIDEO)
 ===================================== */
-.hero-slideshow .media-wrapper {
+.media-wrapper {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-.hero-slideshow .media-wrapper img,
-.hero-slideshow .media-wrapper video {
+.media-wrapper img,
+.media-wrapper video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -103,19 +103,19 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 }
 
 /* Video fade */
-.hero-slideshow .swiper-slide video {
+.swiper-slide video {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
-.hero-slideshow .swiper-slide-active video {
+.swiper-slide-active video {
   opacity: 1;
 }
 
 /* =====================================
    OVERLAY
 ===================================== */
-.hero-slideshow .overlay-bg {
+.overlay-bg {
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -125,7 +125,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 /* =====================================
    TEXT CONTENT (OVER MEDIA)
 ===================================== */
-.hero-slideshow .text-content {
+.text-content {
   position: absolute;
   z-index: 4;
   max-width: 749px;
@@ -133,7 +133,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 }
 
 /* Vertical alignment */
-.hero-slideshow .text-content--top-left,
+.text-content--top-left,
 .hero-slideshow .text-content--top-center,
 .hero-slideshow .text-content--top-right {
   top: 10%;
