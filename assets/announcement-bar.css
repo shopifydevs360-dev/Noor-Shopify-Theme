@@ -1,44 +1,64 @@
- .announcement-bar.sticky-promo-wrap {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 340;
-}
- .announcement-bar .promo-bar-wrap {
-    height: 3.2rem;
-    overflow: hidden;
-    position: relative;
-}
-.promo-bar-wrap .promo-carousel-message {
-    transition: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-.marquee-text {
-    position: relative;
-    overflow: hidden;
-    padding-top: .8rem;
-    padding-bottom: .8rem;
-    line-height: 1;
-    -webkit-animation: fadeInMarquee .4s cubic-bezier(.49,.025,.65,.65);
-    animation: fadeInMarquee .4s cubic-bezier(.49,.025,.65,.65);
+/* Sticky wrapper */
+.announcement-bar.sticky-promo-wrap {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 340;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-text));
 }
 
-.marquee__inner {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    display: flex;
-    position: relative;
-    transform: translateZ(0);
+/* Container */
+.promo-bar-wrap {
+  height: 3.2rem;
+  overflow: hidden;
+  position: relative;
 }
-.marquee-text span {
-    padding: 0 2.5rem;
-    white-space: nowrap;
+
+/* Clickable layer */
+.promo-carousel-message {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Marquee area */
+.marquee-text {
+  overflow: hidden;
+  padding: 0.8rem 0;
+  line-height: 1;
+}
+
+/* Marquee animation */
+.marquee__inner {
+  display: flex;
+  width: fit-content;
+  white-space: nowrap;
+  transform: translateZ(0);
+  color: rgb(var(--color-text));
+}
+
+/* Individual items */
+.marquee__inner span {
+  padding: 0 2.5rem;
+  white-space: nowrap;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__inner {
+    animation: none;
+  }
+}
+
+/* Keyframes */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
