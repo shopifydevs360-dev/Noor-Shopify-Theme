@@ -43,7 +43,7 @@
       ],
       "name": "Announcement bar",
       "settings": {
-        "marquee_speed": 30,
+        "marquee_speed": 60,
         "font_size": 18,
         "font_weight": "500",
         "text_color_scheme": ""
