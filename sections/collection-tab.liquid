@@ -57,7 +57,7 @@
         {% for block in section.blocks %}
           {% assign collection = collections[block.settings.collection.handle] %}
 
-          {% if collection and collection.products_count > 0 %}
+            {% if collection and collection.products != blank %}
             {% for product in collection.products limit: 6 %}
               <div
                 class="swiper-slide product-slide"
