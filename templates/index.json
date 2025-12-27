@@ -164,57 +164,6 @@
         "color_control": "section-dark"
       }
     },
-    "custom_section_pxbE8X": {
-      "type": "custom-section",
-      "blocks": {
-        "grid_mey9xx": {
-          "type": "grid",
-          "name": "Grid Layout",
-          "settings": {
-            "columns": 4,
-            "gap": 20,
-            "padding": 0
-          },
-          "blocks": {
-            "content_area_ndyejc": {
-              "type": "content-area",
-              "name": "Content Area",
-              "settings": {
-                "max_width": 1200,
-                "padding": 26,
-                "text_align": "left"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "content_area_ndyejc"
-          ]
-        }
-      },
-      "block_order": [
-        "grid_mey9xx"
-      ],
-      "name": "Custom Section",
-      "settings": {
-        "container_width": "container",
-        "height_type": "content",
-        "height_desktop": 800,
-        "height_tablet": 600,
-        "height_mobile": 500,
-        "background_color": "#ffffff",
-        "overlay_enable": false,
-        "overlay_color": "#000000",
-        "overlay_opacity": 40,
-        "border_radius_top": 0,
-        "border_radius_bottom": 0,
-        "padding_y": 60,
-        "padding_x": 30,
-        "justify_content": "center",
-        "custom_class": "",
-        "color_control": "section-light"
-      }
-    },
     "article_wrapper_tkFWde": {
       "type": "article-wrapper",
       "name": "Articles Wrapper",
@@ -224,8 +173,8 @@
         "wrapper_title_font_size": "h2",
         "blog": "journal",
         "post_title_font": "h2",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 64,
+        "padding_bottom": 68,
         "custom_class": "",
         "color_control": "section-light"
       }
@@ -235,7 +184,6 @@
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
     "image_overlay_grid_Gz6VEw",
-    "custom_section_pxbE8X",
     "article_wrapper_tkFWde"
   ]
 }
