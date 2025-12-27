@@ -9,26 +9,30 @@
 </style>
 
 {% if section.blocks.size > 0 %}
-<div 
-    id="announcement-bar"
+<div
+  id="announcement-bar"
   class="announcement-bar sticky-promo-wrap section-{{ section.id }} color-{{ section.settings.text_color_scheme }}"
   role="region"
   aria-label="Announcement bar"
 >
   <div class="promo-bar-wrap" role="toolbar">
-    <a href="#" class="promo-carousel-message" aria-label="Announcement">
-      <div class="marquee-text">
-        <p class="marquee__inner">
-          {% for i in (1..8) %}
-            {% for block in section.blocks %}
-              <span {% unless forloop.parentloop.first %}aria-hidden="true"{% endunless %}>
+    <div class="marquee-text">
+      <p class="marquee__inner">
+        {% for i in (1..8) %}
+          {% for block in section.blocks %}
+            <span {% unless forloop.parentloop.first %}aria-hidden="true"{% endunless %}>
+              {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}" aria-label="{{ block.settings.text }}">
+                  {{ block.settings.text }}
+                </a>
+              {% else %}
                 {{ block.settings.text }}
-              </span>
-            {% endfor %}
+              {% endif %}
+            </span>
           {% endfor %}
-        </p>
-      </div>
-    </a>
+        {% endfor %}
+      </p>
+    </div>
   </div>
 </div>
 {% endif %}
