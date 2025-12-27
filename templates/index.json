@@ -104,8 +104,8 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/ABAYAS_15cc78c0-b1eb-41af-88c6-2.jpg",
-            "title": "Title",
-            "cta_text": "Shop Now",
+            "title": "ABAYAS",
+            "cta_text": "SHOP NOW",
             "link": "",
             "button_type": "btn--animation",
             "animation_type": "hover-underline",
@@ -116,8 +116,8 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/MAXIS_2_81740592-609c-471a-96f9.jpg",
-            "title": "Title",
-            "cta_text": "Shop Now",
+            "title": "MAXI DRESSES",
+            "cta_text": "SHOP NOW",
             "link": "",
             "button_type": "btn--animation",
             "animation_type": "hover-underline",
@@ -128,8 +128,8 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Co-Ords_1_4ac1d864-feb8-4340-a9f.jpg",
-            "title": "Title",
-            "cta_text": "Shop Now",
+            "title": "HIJABS",
+            "cta_text": "SHOP NOW",
             "link": "",
             "button_type": "btn--animation",
             "animation_type": "hover-underline",
@@ -140,8 +140,8 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/HIJABS_1_2b0fca8a-4c36-4dcd-b998.jpg",
-            "title": "Title",
-            "cta_text": "Shop Now",
+            "title": "CO-ORDS",
+            "cta_text": "SHOP NOW",
             "link": "",
             "button_type": "btn--animation",
             "animation_type": "hover-underline",
