@@ -101,6 +101,9 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   object-fit: cover;
   display: block;
 }
+.hero-slideshow .media-wrapper img{
+  height: 100%;
+}
 
 /* Video fade */
 .hero-slideshow .swiper-slide video {
