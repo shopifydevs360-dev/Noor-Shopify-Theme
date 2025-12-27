@@ -30,6 +30,7 @@
   justify-content: center;
   position: relative;
   width: 60%;
+  padding-right: 100px;
 }
 .featured-posts .article-pin-card {
     display: flex;
