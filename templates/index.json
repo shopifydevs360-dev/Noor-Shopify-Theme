@@ -16,7 +16,6 @@
           "type": "image_slide",
           "settings": {
             "text_color_scheme": "default",
-            "image": "shopify://shop_images/2149288938.jpg",
             "subheading": "NEW HAIR & BODY MISTS",
             "sub_heading_font_size": "h4",
             "heading": "SANTORINI & IBIZA",
@@ -34,7 +33,6 @@
           "type": "image_slide",
           "settings": {
             "text_color_scheme": "",
-            "image": "shopify://shop_images/5536.jpg",
             "subheading": "hello",
             "sub_heading_font_size": "h4",
             "heading": "",
@@ -102,7 +100,6 @@
         "image_kECNVX": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2151983944.jpg",
             "title": "Title",
             "cta_text": "Shop Now",
             "link": "",
@@ -114,7 +111,6 @@
         "image_URLedE": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/16400328_v708-aum-24-b-diwali.jpg",
             "title": "Title",
             "cta_text": "Shop Now",
             "link": "",
@@ -201,7 +197,6 @@
         "height_tablet": 600,
         "height_mobile": 500,
         "background_color": "#ffffff",
-        "background_image": "shopify://shop_images/1423999928982.jpg",
         "overlay_enable": false,
         "overlay_color": "#000000",
         "overlay_opacity": 40,
