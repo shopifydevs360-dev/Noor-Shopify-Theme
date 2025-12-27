@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
   if (!window.gsap || !window.ScrollTrigger) {
-    console.error('GSAP or ScrollTrigger not found');
+    console.error('GSAP or ScrollTrigger not loaded');
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const maskImage = document.querySelector('.hero-reveal__image');
-  const section = document.querySelector('.hero-reveal');
+  const section = document.querySelector('.home-intro');
+  const imageWrap = document.querySelector('.home-intro__image');
 
-  if (!maskImage || !section) return;
+  if (!section || !imageWrap) return;
 
   gsap.fromTo(
-    maskImage,
+    imageWrap,
     { width: '50%' },
     {
       width: '100%',
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         start: 'top bottom',
         end: 'bottom center',
         scrub: true
-        // markers: true
+        // markers: true // enable if debugging
       }
     }
   );
