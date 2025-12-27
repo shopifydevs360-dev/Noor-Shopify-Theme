@@ -68,9 +68,9 @@
         "tab_Nq43z7": {
           "type": "tab",
           "settings": {
-            "tab_label": "Automated Collection",
+            "tab_label": "Hijab",
             "tab_link": "",
-            "collection": "frontpage"
+            "collection": "hijabs"
           }
         },
         "tab_CNPqei": {
@@ -85,6 +85,41 @@
       "block_order": [
         "tab_Nq43z7",
         "tab_CNPqei"
+      ],
+      "name": "Product Tabs Carousel",
+      "settings": {
+        "color_scheme": "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99",
+        "title": "Best Sellers",
+        "title_link": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "custom_class": "",
+        "color_control": "section-light"
+      }
+    },
+    "collection_tab_HFCJgQ": {
+      "type": "collection-tab",
+      "blocks": {
+        "tab_YkmqyG": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Abayas",
+            "tab_link": "",
+            "collection": "abayas"
+          }
+        },
+        "tab_xa3MVn": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Co-ord Sets",
+            "tab_link": "",
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "tab_YkmqyG",
+        "tab_xa3MVn"
       ],
       "name": "Product Tabs Carousel",
       "settings": {
@@ -183,6 +218,7 @@
   "order": [
     "hero_slideshow_DY9JwJ",
     "collection_tab_jigG9e",
+    "collection_tab_HFCJgQ",
     "image_overlay_grid_Gz6VEw",
     "article_wrapper_tkFWde"
   ]
