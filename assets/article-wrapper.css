@@ -50,12 +50,12 @@
   font-size: var();
 }
 .featured-posts .btn-wrapper .btn--animation {
-    color: var(--color-link);
+    color: rgb(var(--color-link));
     width: fit-content;
 }
 
 .featured-posts .btn-wrapper:hover .btn--animation {
-    color: var(--color-link-hover);
+    color: rgb(var(--color-link-hover));
 }
 .featured-posts .btn-wrapper:hover .btn--animation:before{
  background: rgb(var(--color-link-hover));
