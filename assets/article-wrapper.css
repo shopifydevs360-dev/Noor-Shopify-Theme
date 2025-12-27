@@ -49,6 +49,12 @@
   color: rgb(var(--color-text));
   font-size: var();
 }
+.featured-posts .btn-wrapper .btn--animation{
+  color: var(--color-link);
+}
+.featured-posts .btn-wrapper .btn--animation:before{
+ background: var(--color-link);
+}
 /* Counter */
 .featured-post-count {
   position: absolute;
