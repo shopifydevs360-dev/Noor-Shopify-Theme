@@ -11,15 +11,6 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "sidebar_j78B4r": {
-      "type": "sidebar",
-      "name": "Sidebar",
-      "settings": {
-        "white_logo": "shopify://shop_images/Lgog_Halla_Hijab_white.png",
-        "color_scheme": "",
-        "brand_text": "Noor"
-      }
-    },
     "announcement_bar_4TgJrq": {
       "type": "announcement-bar",
       "blocks": {
@@ -36,7 +27,19 @@
       ],
       "name": "Announcement bar",
       "settings": {
-        "marquee_speed": 5
+        "marquee_speed": 24,
+        "font_size": 18,
+        "font_weight": "500",
+        "text_color_scheme": ""
+      }
+    },
+    "sidebar_j78B4r": {
+      "type": "sidebar",
+      "name": "Sidebar",
+      "settings": {
+        "white_logo": "shopify://shop_images/Lgog_Halla_Hijab_white.png",
+        "color_scheme": "",
+        "brand_text": "Noor"
       }
     }
   },
