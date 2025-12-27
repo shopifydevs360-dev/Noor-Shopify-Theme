@@ -93,6 +93,9 @@
 .featured-posts .end-link:hover a{
   color: rgb(var(--color-link-hover));
 }
+.featured-posts ..end-link:hover .btn--animation:before{
+ background: rgb(var(--color-link-hover));
+}
 /* Responsive */
 @media (max-width: 1024px) {
   .article-pin-card {
