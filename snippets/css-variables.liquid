@@ -75,13 +75,31 @@
     --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
     --font-heading-weight: {{ settings.type_header_font.weight }};
   {% endif %}
-  --font-heading-spacing: {{ settings.type_header_spacing }}px;
+/* Heading style variable */
   --font-h1-size: {{ settings.h1_font_size }}px;
+  --font-h1-weight: {{ settings.h1_font_weight }};
+  --font-h1-letter-spacing: {{ settings.h1_letter_spacing }}px;
+
   --font-h2-size: {{ settings.h2_font_size }}px;
-  --font-h3-size: {{ settings.type_header_base_size }}px;
+  --font-h2-weight: {{ settings.h2_font_weight }};
+  --font-h2-letter-spacing: {{ settings.h2_letter_spacing }}px;
+
+  --font-h3-size: {{ settings.h3_font_size }}px;
+  --font-h3-weight: {{ settings.h3_font_weight }};
+  --font-h3-letter-spacing: {{ settings.h3_letter_spacing }}px;
+
   --font-h4-size: {{ settings.h4_font_size }}px;
+  --font-h4-weight: {{ settings.h4_font_weight }};
+  --font-h4-letter-spacing: {{ settings.h4_letter_spacing }}px;
+
   --font-h5-size: {{ settings.h5_font_size }}px;
+  --font-h5-weight: {{ settings.h5_font_weight }};
+  --font-h5-letter-spacing: {{ settings.h5_letter_spacing }}px;
+
   --font-h6-size: {{ settings.h6_font_size }}px;
+  --font-h6-weight: {{ settings.h6_font_weight }};
+  --font-h6-letter-spacing: {{ settings.h6_letter_spacing }}px;
+
 
   /* Layout */
   --page-margin: {{ settings.min_page_margin }}px;
