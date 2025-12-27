@@ -219,9 +219,7 @@
       "name": "Hero Intro",
       "settings": {
         "heading_text": "<p>Meet the base you'll build every outfit on.</p>",
-        "link": "",
-        "desktop_image": "shopify://shop_images/Gemini_Generated_Image_sskctbsskctbsskc.png",
-        "image_alt": "Woman with curly hair"
+        "image": "shopify://shop_images/Gemini_Generated_Image_sskctbsskctbsskc.png"
       }
     }
   },
