@@ -79,15 +79,15 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 }
 
 
-.swiper-wrapper,
-.swiper-slide {
+.hero-slideshow .swiper-wrapper,
+.hero-slideshow .swiper-slide {
   height: 100%;
 }
 
 /* =====================================
    MEDIA (IMAGE / VIDEO)
 ===================================== */
-.media-wrapper {
+.hero-slideshow .media-wrapper {
   position: absolute;
   inset: 0;
   width: 100%;
