@@ -43,6 +43,7 @@
 .featured-posts .article-pin-card .article-excerpt {
   margin-bottom: clamp(1rem,2vh,1.8rem);
   color: rgb(var(--color-text));
+  font-size: var();
 }
 /* Counter */
 .featured-post-count {
