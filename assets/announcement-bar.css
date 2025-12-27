@@ -38,3 +38,7 @@
     position: relative;
     transform: translateZ(0);
 }
+.marquee-text span {
+    padding: 0 2.5rem;
+    white-space: nowrap;
+}
