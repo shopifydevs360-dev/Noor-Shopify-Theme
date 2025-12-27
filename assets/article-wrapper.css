@@ -86,6 +86,14 @@
 .featured-posts .end-link {
     margin-top: clamp(3rem,6vh,5.5rem);
 }
+.featured-posts .end-link a{
+  color: rgb(var(--color-link));
+  width: fit-content;
+}
+.featured-posts .end-link:hover a{
+  color: rgb(var(--color-link));
+  width: fit-content;
+}
 /* Responsive */
 @media (max-width: 1024px) {
   .article-pin-card {
