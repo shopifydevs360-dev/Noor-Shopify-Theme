@@ -23,6 +23,9 @@
   height: 100%;
   padding: 32px;
 }
+body.has-promo-bar .m-sidebar__content {
+top: 3.2rem;
+}
 .m-sidebar__content a{
   /* color: #231f20; */
   color: #fff;
