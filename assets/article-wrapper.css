@@ -93,7 +93,7 @@
 .featured-posts .end-link:hover a{
   color: rgb(var(--color-link-hover));
 }
-.featured-posts ..end-link:hover .btn--animation:before{
+.featured-posts .end-link:hover .btn--animation:before{
  background: rgb(var(--color-link-hover));
 }
 /* Responsive */
