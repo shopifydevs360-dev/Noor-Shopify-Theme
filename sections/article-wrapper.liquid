@@ -10,6 +10,7 @@
   assign classes = classes | append: ' m-color-' | append: section.settings.text_color_scheme
   assign classes = classes | append: ' ' | append: section.settings.custom_class | default: ''
   assign wrapper_title_size = '' | append: section.settings.wrapper_title_font_size | default: ''
+  assign post_title_font = '' | append: section.settings.post_title_font | default: ''
 -%}
 
 {% if blog_object.articles.size > 0 %}
@@ -60,7 +61,7 @@
             <div class="text-wrap">
               <a href="{{ article.url }}" class="text-item">
 
-                <h2 class="article-title h3">{{ article.title }}</h2>
+                <h2 class="article-title {{ post_title_font }}">{{ article.title }}</h2>
 
                 {% if article.excerpt != blank %}
                   <p class="article-excerpt">
