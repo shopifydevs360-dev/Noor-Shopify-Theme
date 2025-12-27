@@ -1,16 +1,23 @@
 {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+
 <style>
-     .marquee__inner {
-  -webkit-animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
-  animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
-}
+  .section-{{ section.id }} .marquee__inner {
+    animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+  }
 </style>
-<div class="announcement-bar sticky-promo-wrap">
-  {% if section.blocks.size > 0 %}
-  <div class="js-promo-bar-wrap promo-bar-wrap" style="background-color: #f3f3f4; color: #231f20;" role="toolbar">
-    <a href="#" class="promo-carousel-message" aria-label="Announcement Bar">
+
+{% if section.blocks.size > 0 %}
+<div
+  class="announcement-bar sticky-promo-wrap section-{{ section.id }} color-{{ section.settings.text_color_scheme }}"
+  role="region"
+  aria-label="Announcement bar"
+>
+  <div class="promo-bar-wrap" role="toolbar">
+    <a href="#" class="promo-carousel-message" aria-label="Announcement">
       <div class="marquee-text">
-        <p class="marquee-caps marquee__inner">
+        <p class="marquee__inner">
           {% for i in (1..8) %}
             {% for block in section.blocks %}
               <span {% unless forloop.parentloop.first %}aria-hidden="true"{% endunless %}>
@@ -22,8 +29,8 @@
       </div>
     </a>
   </div>
-  {% endif %}
 </div>
+{% endif %}
 
 {% schema %}
 {
@@ -36,12 +43,39 @@
     {
       "type": "range",
       "id": "marquee_speed",
+      "label": "Marquee speed",
       "min": 1,
       "max": 30,
       "step": 1,
       "unit": "s",
-      "label": "Slider Speed",
-      "default": 5
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "text_color_scheme",
+      "label": "Color scheme"
     }
   ],
   "blocks": [
@@ -52,8 +86,8 @@
         {
           "type": "text",
           "id": "text",
-          "default": "Free shipping on orders over $50",
-          "label": "Text"
+          "label": "Text",
+          "default": "Free shipping on orders over $50"
         },
         {
           "type": "url",
@@ -67,9 +101,7 @@
     {
       "name": "Announcement bar",
       "blocks": [
-        {
-          "type": "announcement"
-        }
+        { "type": "announcement" }
       ]
     }
   ]
