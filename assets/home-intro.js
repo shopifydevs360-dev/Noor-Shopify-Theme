@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
   if (!window.gsap || !window.ScrollTrigger) {
-    console.error('GSAP or ScrollTrigger not loaded');
+    console.error('GSAP or ScrollTrigger not found');
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const section = document.querySelector('.home-intro');
-  const imageWrap = section?.querySelector('.scaling-image-wrapper');
-  const image = imageWrap?.querySelector('img');
+  const maskImage = document.querySelector('.hero-reveal__image');
+  const section = document.querySelector('.hero-reveal');
 
-  if (!section || !imageWrap) return;
+  if (!maskImage || !section) return;
 
-  /* IMAGE WIDTH SCROLL */
   gsap.fromTo(
-    imageWrap,
+    maskImage,
     { width: '50%' },
     {
       width: '100%',
@@ -23,27 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger: section,
         start: 'top bottom',
         end: 'bottom center',
-        scrub: true,
-        markers: false
+        scrub: true
+        // markers: true
       }
     }
   );
-
-  /* IMAGE SCALE SCROLL */
-  if (image) {
-    gsap.fromTo(
-      image,
-      { scale: 1.4 },
-      {
-        scale: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom',
-          end: 'bottom center',
-          scrub: true
-        }
-      }
-    );
-  }
 });
