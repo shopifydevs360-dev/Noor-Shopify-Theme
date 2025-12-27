@@ -3,6 +3,11 @@
 ====================================== */
 document.addEventListener("DOMContentLoaded", () => {
   initBodyScrollState();
+  initPromoBarState();
+});
+
+document.addEventListener("shopify:section:load", () => {
+  initPromoBarState();
 });
 
 /* ===============================
@@ -20,3 +25,12 @@ function initBodyScrollState() {
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
+/* ===============================
+   BODY: PROMO BAR STATE
+================================ */
+function initPromoBarState() {
+  const body = document.body;
+  const promoBar = document.getElementById("announcement-bar");
+
+  body.classList.toggle("has-promo-bar", !!promoBar);
+}
