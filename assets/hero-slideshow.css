@@ -201,7 +201,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
     margin-bottom: -4px;
     margin-left: 30px;
 }
-.hero-slideshow .text-content .btn-arrow:hover .hero-slideshow .icon{
+.hero-slideshow .text-content .btn-arrow:hover{
 margin-left: 35px;
 }
 /* Mobile content centering */
