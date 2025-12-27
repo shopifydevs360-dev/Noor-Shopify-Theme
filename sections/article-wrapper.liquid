@@ -54,11 +54,11 @@
 
                 {% if article.excerpt != blank %}
                   <p class="article-excerpt">
-                    {{ article.excerpt | strip_html | truncate: 120 }}
+                    {{ article.excerpt | strip_html | truncate: 200 }}
                   </p>
                 {% else %}
                   <p class="article-excerpt">
-                    {{ article.content | strip_html | truncate: 120 }}
+                    {{ article.content | strip_html | truncate: 200 }}
                   </p>
                 {% endif %}
                 <span class="btn-wrapper active-underline">
