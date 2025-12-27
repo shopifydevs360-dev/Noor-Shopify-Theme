@@ -1,0 +1,77 @@
+<style>
+  .marquee__inner {
+  -webkit-animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
+  animation: marquee {{ section.settings.marquee_speed }}s linear infinite;
+}
+</style>
+<div id="shopify-section-announcement-bar" class="shopify-section sticky-promo-wrap">
+  {% if section.blocks.size > 0 %}
+  <div class="js-promo-bar-wrap promo-bar-wrap" style="background-color: #f3f3f4; color: #231f20;" role="toolbar">
+    <a href="#" class="promo-carousel-message" aria-label="Announcement Bar">
+      <div class="marquee-text">
+        <p class="marquee-caps marquee__inner">
+          {% for i in (1..8) %}
+            {% for block in section.blocks %}
+              <span {% unless forloop.parentloop.first %}aria-hidden="true"{% endunless %}>
+                {{ block.settings.text }}
+              </span>
+            {% endfor %}
+          {% endfor %}
+        </p>
+      </div>
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "max_blocks": 12,
+  "class": "sticky-promo-wrap",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "label": "Slider Speed",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Free shipping on orders over $50",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
