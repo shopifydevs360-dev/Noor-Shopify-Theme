@@ -86,6 +86,7 @@
 .featured-posts .end-link {
     margin-top: clamp(3rem,6vh,5.5rem);
       overflow: hidden;
+      padding-bottom: 20px;
 }
 .featured-posts .end-link .btn--animation{
   color: rgb(var(--color-link));
