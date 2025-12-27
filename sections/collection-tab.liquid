@@ -67,6 +67,8 @@
                 {% render 'product-card', product: product %}
               </div>
             {% endfor %}
+          {% else %}
+            <p>Please select a collection</p>
           {% endif %}
         {% endfor %}
 
