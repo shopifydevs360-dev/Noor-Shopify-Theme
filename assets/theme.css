@@ -378,11 +378,6 @@ button:disabled,
   padding-bottom: 150%;
 }
 
-/* Your current design (110%) */
-.cropped-image--110 {
-  padding-bottom: 110%;
-}
-
 /* Landscape (4:3) */
 .cropped-image--landscape {
   padding-bottom: 75%;
