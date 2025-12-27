@@ -30,7 +30,6 @@
   justify-content: center;
   position: relative;
   width: 60%;
-  max-width: 34rem;
 }
 .article-pin-card {
     display: flex;
