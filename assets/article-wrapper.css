@@ -25,7 +25,7 @@
   color: rgb(var(--color-heading));
 }
 .featured-posts .article-pin-card .article-excerpt {
-  margin-bottom: clamp(3rem,5vh,4.3rem);
+  margin-bottom: clamp(1rem,2vh,1.8rem);
   color: rgb(var(--color-text));
 }
 .featured-posts .article-pin-card h2 {
