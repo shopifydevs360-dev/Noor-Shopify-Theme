@@ -20,7 +20,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   position: absolute;
   top: 0;
   left: 0;
-  width: 320px;
+  width: 10rem;
   height: 100%;
   z-index: 3;
   overflow: hidden;
