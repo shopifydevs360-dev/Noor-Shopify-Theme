@@ -1,7 +1,7 @@
 /* =====================================
    HERO SLIDESHOW ROOT
 ===================================== */
-.sidebar-slideshow {
+.hero-slideshow .sidebar-slideshow {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -9,7 +9,7 @@
 }
 
 /* Promo bar height adjustment */
-body.has-promo-bar .sidebar-slideshow {
+body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   height: calc(100vh - 3.2rem);
 }
 
