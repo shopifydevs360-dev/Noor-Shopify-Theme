@@ -16,7 +16,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 /* =====================================
    SIDEBAR IMAGE (LEFT)
 ===================================== */
-.sidebar-image {
+.hero-slideshow .sidebar-image {
   position: absolute;
   top: 0;
   left: 0;
