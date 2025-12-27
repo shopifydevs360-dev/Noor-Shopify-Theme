@@ -6,10 +6,10 @@
   z-index: 90;
 }
 .expended{
-    max-width: 320px;
+    max-width: 32rem;
 }
 .minimal{
-    max-width: 220px;
+    max-width: 22rem;
 }
 .m-logo__image {
   transition: all .8s cubic-bezier(0,0,.002,1);
