@@ -1,6 +1,6 @@
 {{ 'hero-slideshow.css' | asset_url | stylesheet_tag: preload: true }}
 
-<div id="shopify-section-{{ section.id }}" class="hero-outer-wrap {{ section.settings.color_control }} {{ section.settings.custom_class }}">
+<div id="shopify-section-{{ section.id }}" class="hero-slideshow hero-outer-wrap {{ section.settings.color_control }} {{ section.settings.custom_class }}">
   <header class="reverse-nav full-screen-slideshow sidebar-slideshow js-animate-on-load">
 
     {%- if section.settings.sidebar_image != blank -%}
