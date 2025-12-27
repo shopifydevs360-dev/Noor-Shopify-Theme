@@ -191,19 +191,19 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
     font-family: var(--font-heading-family);
     font-weight: var(--font-heading-weight);
 }
-.text-content .btn.btn-arrow {
+.hero-slideshow .text-content .btn.btn-arrow {
     font-family: var(--font-body-family);
     color: rgb(var(--color-link));
     font-size: 22px;
     padding: 0;
 }
-.text-content .icon {
+.hero-slideshow .text-content .icon {
     margin-bottom: -8px;
     margin-left: 30px;
 }
 /* Mobile content centering */
 @media (max-width: 1024px) {
-.text-content {
+.hero-slideshow .text-content {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
@@ -216,7 +216,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 /* =====================================
    NAVIGATION
 ===================================== */
-.swiper-nav-wrapper {
+.hero-slideshow .swiper-nav-wrapper {
   position: absolute;
   right: 60px;
   bottom: 60px;
@@ -224,7 +224,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 }
 
 @media (max-width: 1024px) {
-.swiper-nav-wrapper {
+.hero-slideshow .swiper-nav-wrapper {
     right: 50%;
     transform: translateX(50%);
     bottom: auto;
@@ -232,7 +232,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   }
 }
 
-.swiper-nav-wrapper button {
+.hero-slideshow .swiper-nav-wrapper button {
   background: none;
   border: 0;
   padding: 0;
@@ -244,21 +244,21 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   text-transform: uppercase;
 }
 
-.swiper-nav-wrapper .inner-text {
+.hero-slideshow .swiper-nav-wrapper .inner-text {
   display: inline-block;
   transition: transform 0.6s cubic-bezier(0, 0, 0.002, 1);
 }
 
-.swiper-prev-text:hover .inner-text {
+.hero-slideshow .swiper-prev-text:hover .inner-text {
   transform: translateX(-4px);
 }
 
-.swiper-next-text {
+.hero-slideshow .swiper-next-text {
     margin-left: 72px;
     padding-left: 34px !important;
     position: relative;
 }
-.swiper-next-text .line {
+.hero-slideshow .swiper-next-text .line {
     position: absolute;
     left: 0;
     top: 50%;
@@ -269,6 +269,6 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
     display: block;
 }
 
-.swiper-next-text:hover .inner-text {
+.hero-slideshow .swiper-next-text:hover .inner-text {
   transform: translateX(4px);
 }
