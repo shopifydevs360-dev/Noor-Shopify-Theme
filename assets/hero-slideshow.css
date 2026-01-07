@@ -161,11 +161,13 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 .hero-slideshow .text-content--bottom-left {
   left: 2.8rem;
   text-align: left;
+  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
 .scrolled .hero-slideshow .text-content--top-left,
 .scrolled .hero-slideshow .text-content--center-left,
 .scrolled .hero-slideshow .text-content--bottom-left {
-  left: 4.8rem;
+  left: 8.8rem;
+  transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
 
 .hero-slideshow .text-content--top-center,
