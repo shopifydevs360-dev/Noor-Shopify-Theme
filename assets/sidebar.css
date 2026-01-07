@@ -187,6 +187,12 @@ body.disable-scrollbars {
     background: rgba(243, 243, 244, 0.3);
     backdrop-filter: blur(2px);
 }
+.drawer-flyout .m-mobile-header {
+    top: 0;
+    height: 5.2rem;
+    background: #f0eee8;
+    backdrop-filter: none;
+}
 .m-mobile-header .m-mobile-header__content {
     display: flex;
     justify-content: space-between;
