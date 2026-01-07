@@ -230,3 +230,6 @@ body.disable-scrollbars {
         padding-right: 2rem;
     }
 }
+.theme-icon.icon-close{
+    width: 1.7rem;
+}
