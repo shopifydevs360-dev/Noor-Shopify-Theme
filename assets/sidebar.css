@@ -218,4 +218,5 @@ body.disable-scrollbars {
     margin-left: auto;
     display: flex;
     column-gap: 1rem;
+    margin-bottom: -1rem;
 }
