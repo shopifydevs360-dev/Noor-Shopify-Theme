@@ -163,12 +163,14 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   text-align: left;
   transition: all 0.8s cubic-bezier(0, 0, 0.002, 1);
 }
-.scrolled .hero-slideshow .text-content--top-left,
-.scrolled .hero-slideshow .text-content--center-left,
-.scrolled .hero-slideshow .text-content--bottom-left {
-  left: 9rem;
-}
 
+@media (min-width: 991px) {
+  .scrolled .hero-slideshow .text-content--top-left,
+  .scrolled .hero-slideshow .text-content--center-left,
+  .scrolled .hero-slideshow .text-content--bottom-left {
+    left: 9rem;
+  }
+}
 .hero-slideshow .text-content--top-center,
 .hero-slideshow .text-content--center-center,
 .hero-slideshow .text-content--bottom-center {
