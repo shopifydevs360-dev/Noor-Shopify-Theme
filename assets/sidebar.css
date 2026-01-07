@@ -36,7 +36,6 @@ top: 3.2rem;
 /* Hamburger */
 .hamburger {
     cursor: pointer;
-    margin-bottom: 50px;
     width: 2.5rem;
     height: calc(1.5rem + 2px);
     padding-bottom: 2px;
@@ -60,6 +59,9 @@ top: 3.2rem;
     animation-fill-mode: both;
 }
 @media (min-width: 991px) {
+.hamburger{
+    margin-bottom: 50px;
+}
 .hamburger span {
     transform: translateX(-125%);
 }
