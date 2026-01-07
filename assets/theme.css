@@ -58,13 +58,13 @@ dialog {
 body {
   font-family: var(--font-body-family, sans-serif);
   font-weight: var(--font-body-weight, 400);
-  font-size: var(--font-body-size, 16px);
+  font-size: calc(var(--font-body-size, 16px) * 0.95);
   background-color: var(--color-body-background);
   color: var(--color-body-text);
 }
 @media (max-width: 767px) {
     body {
-    font-size: calc(var(--font-body-size, 16px) * 0.95);
+  font-size: var(--font-body-size, 16px);
   }
 }
 
