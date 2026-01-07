@@ -117,7 +117,7 @@ body.has-promo-bar .m-sidebar__content {
 .m-sidebar__content .js-open-icon-text {
     position: relative;
 }
-.navigation .cart-count-icon {
+.m-sidebar__content .cart-count-icon {
     position: absolute;
     top: -13px;
     left: 14px;
