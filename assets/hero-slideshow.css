@@ -48,7 +48,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 }
 
 /* Hide sidebar on tablet/mobile */
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
 .hero-slideshow .sidebar-image {
     display: none;
   }
