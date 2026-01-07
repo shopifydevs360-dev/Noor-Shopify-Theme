@@ -11,8 +11,8 @@
   "current": {
     "logo": "shopify://shop_images/Halla_Hijab_Color.png",
     "logo_width_desktop": 170,
-    "logo_width_tablet": 80,
-    "logo_width_mobile": 50,
+    "logo_width_tablet": 120,
+    "logo_width_mobile": 100,
     "site_name": "Halla Hijab",
     "favicon": "shopify://shop_images/Fav_icon_halla_hijab_1.png",
     "enable_rtl": false,
