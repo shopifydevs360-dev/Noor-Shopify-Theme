@@ -34,7 +34,7 @@ top: 3.2rem;
     margin-bottom: 50px;
 }
 /* Hamburger */
-.m-sidebar__content .hamburger {
+.hamburger {
     cursor: pointer;
     margin-bottom: 50px;
     width: 2.5rem;
@@ -47,7 +47,7 @@ top: 3.2rem;
     overflow: hidden;
     background: transparent;
 }
-.m-sidebar__content .hamburger span {
+.hamburger span {
     display: block;
     /* border-bottom: 2px solid #231f20; */
     border-bottom: 2px solid #fff;
@@ -60,35 +60,35 @@ top: 3.2rem;
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation-fill-mode: both;
 }
-.m-sidebar__content .hamburger.loaded span {
+.hamburger.loaded span {
     -webkit-animation: none;
     animation: none;
     transform: none;
 }
-.m-sidebar__content .hamburger span:first-of-type {
+.hamburger span:first-of-type {
     top: 0;
     -webkit-animation-delay: .5s;
     animation-delay: .5s;
 }
-.m-sidebar__content .hamburger span:nth-of-type(2) {
+.hamburger span:nth-of-type(2) {
     top: calc(50% - 1px);
     width: 1.8rem;
     -webkit-animation-delay: .6s;
     animation-delay: .6s;
 }
-.m-sidebar__content .hamburger span:last-of-type {
+.hamburger span:last-of-type {
     top: calc(100% - 2px);
     -webkit-animation-delay: .7s;
     animation-delay: .7s;
 }
-.m-sidebar__content .hamburger.is-active span:first-of-type {
+.hamburger.is-active span:first-of-type {
 top: calc(50% - 1px);
 transform: rotate(-45deg)!important;
 }
-.m-sidebar__content .hamburger.is-active span:nth-of-type(2) {
+.hamburger.is-active span:nth-of-type(2) {
  display: none;
 }
-.m-sidebar__content .hamburger.is-active span:last-of-type {
+.hamburger.is-active span:last-of-type {
 top: calc(50% - 1px);
 transform: rotate(45deg)!important;
 }
