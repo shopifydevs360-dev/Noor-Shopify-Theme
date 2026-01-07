@@ -73,32 +73,21 @@
 </style>
 {% if section.settings.white_logo != blank %}
 <style>
-  .m-header__logo{
-    position: relative;
-  }
-  .m-header__logo img{
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
   .color-control.color-dark .light-logo,
   .color-control.color-light .dark-logo
   {
-    {% comment %} display: none; {% endcomment %}
-     opacity: 0;
+    display: none;
   }
   .drawer-flyout .navigation .light-logo,
   .drawer-flyout .navigation .color-dark .light-logo,
   .drawer-flyout .navigation .color-light .light-logo
   {
-    {% comment %} display: none; {% endcomment %}
-     opacity: 0;
+    display: none;
   }
   .drawer-flyout .navigation .color-dark .dark-logo,
   .drawer-flyout .navigation .color-light .dark-logo
   {
-    {% comment %} display: block !important; {% endcomment %}
-     opacity: 1 !important;
+    display: block !important;
   }
 </style>
 {% endif %}
