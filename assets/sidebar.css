@@ -119,19 +119,19 @@ transform: rotate(45deg)!important;
     align-items: center;
     border-radius: 50%;
 }
-.expended .m-sidebar__nav a .js-open-icon-text .icon{
+.expended .navigation a .js-open-icon-text .icon{
     display: none;
 }
-.expended .m-sidebar__nav a .js-open-icon-text .icon{
+.expended .navigation a .js-open-icon-text .icon{
     display: none;
 }
-.minimal .m-sidebar__nav a .js-open-icon-text .text{
+.minimal .navigation a .js-open-icon-text .text{
     display: none;
 }
-.minimal .drawer-flyout .m-sidebar__nav a .js-open-icon-text .icon{
+.minimal .drawer-flyout .navigation a .js-open-icon-text .icon{
     display: none;
 }
-.minimal .drawer-flyout .m-sidebar__nav a .js-open-icon-text .text{
+.minimal .drawer-flyout .navigation a .js-open-icon-text .text{
     display: block !important; 
 }
 .sidebar-overlay {
@@ -168,12 +168,12 @@ body.disable-scrollbars {
 .m-sidebar__content .hamburger.color-light span {
     border-color: #fff;
 }
-.drawer-flyout .color-darks,
-.drawer-flyout .color-light,
-.drawer-flyout a{
+.drawer-flyout .navigation .color-darks,
+.drawer-flyout .navigation .color-light,
+.drawer-flyout .navigation a{
     color: #231f20 !important;
 }
-.drawer-flyout .hamburger span {
+.drawer-flyout .navigation .hamburger span {
     border-color: #231f20 !important;
 }
 
