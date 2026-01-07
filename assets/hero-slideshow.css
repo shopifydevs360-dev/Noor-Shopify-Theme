@@ -129,22 +129,11 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
    TEXT CONTENT (OVER MEDIA)
 ===================================== */
 .hero-slideshow .text-content {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    text-align: center;
-    bottom: 60px;
-    top: auto;
-  }
-.hero-slideshow .text-content {
   position: absolute;
   z-index: 4;
   max-width: 749px;
   padding: 20px;
 }
-
-/* Mobile content centering */
-@media (min-width: 991px) {
 
 /* Vertical alignment */
 .hero-slideshow .text-content--top-left,
@@ -222,6 +211,16 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 .hero-slideshow .text-content .btn-arrow:hover .icon {
   transform: translateX(4px);
 }
+/* Mobile content centering */
+@media (max-width: 991px) {
+.hero-slideshow .text-content {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    text-align: center;
+    bottom: 60px;
+    top: auto;
+  }
 }
 
 /* =====================================
