@@ -204,7 +204,7 @@ body.disable-scrollbars {
     transition: all .4s ease-in-out;
     transition-delay: 0.4s;
 }
-@media (min-width: 441px) {
+@media (min-width: 441px) and (max-width: 991px) {
     .m-mobile-header {
         height: 5.2rem;
     }
