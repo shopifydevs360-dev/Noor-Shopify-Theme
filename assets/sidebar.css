@@ -122,10 +122,10 @@ transform: rotate(45deg)!important;
 .minimal .m-sidebar__nav a .js-open-icon-text .text{
     display: none;
 }
-.minimal .expended-area-active .m-sidebar__nav a .js-open-icon-text .icon{
+.minimal .drawer-flyout .m-sidebar__nav a .js-open-icon-text .icon{
     display: none;
 }
-.minimal .expended-area-active .m-sidebar__nav a .js-open-icon-text .text{
+.minimal .drawer-flyout .m-sidebar__nav a .js-open-icon-text .text{
     display: block !important; 
 }
 .sidebar-overlay {
@@ -162,12 +162,12 @@ body.disable-scrollbars {
 .m-sidebar__content .hamburger.color-light span {
     border-color: #fff;
 }
-.expended-area-active .color-darks,
-.expended-area-active .color-light,
-.expended-area-active a{
+.drawer-flyout .color-darks,
+.drawer-flyout .color-light,
+.drawer-flyout a{
     color: #231f20 !important;
 }
-.expended-area-active .hamburger span {
+.drawer-flyout .hamburger span {
     border-color: #231f20 !important;
 }
 
