@@ -201,6 +201,7 @@
     },
     "article_wrapper_tkFWde": {
       "type": "article-wrapper",
+      "disabled": true,
       "name": "Articles Wrapper",
       "settings": {
         "text_color_scheme": "scheme-1e6195d5-cb89-4a9c-a4a6-d3205814ce99",
@@ -216,6 +217,7 @@
     },
     "home_intro_LaEWrV": {
       "type": "home-intro",
+      "disabled": true,
       "name": "Hero Intro",
       "settings": {
         "heading_text": "<p>Meet the base you'll build every outfit on.</p>",
