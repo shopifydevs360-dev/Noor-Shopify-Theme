@@ -56,18 +56,18 @@
 
 <style>
   .m-logo__image {
-    width: var(--logo-desktop-width);
+    width: var(--logo-mobile-width);
   }
 
-  @media (max-width: 991px) {
+  @media (min-width: 991px) {
     .m-logo__image {
-      width: var(--logo-tablet-width);
+      width: var(--logo-desktop-width);
     }
   }
 
-  @media (max-width: 440px) {
+  @media (min-width: 440px) {
     .m-logo__image {
-      width: var(--logo-mobile-width);
+      width: var(--logo-tablet-width);
     }
   }
 </style>
