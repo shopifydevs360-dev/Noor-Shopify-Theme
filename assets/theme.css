@@ -483,29 +483,46 @@ button:disabled,
   grid-template-columns: repeat(9,1fr);
 }
 /* ------------------------------
-   Showing Display with width dimention
+  Hide elements by viewport width
 ------------------------------- */
 .hide {
   display: none !important;
 }
-
-@media (min-width: 991px) {
-  .hide-desktop {
+/* Mobile */
+@media (max-width: 440px) {
+  .hide-mobile {
     display: none !important;
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+/* Tablet (portrait) */
+@media (min-width: 441px) and (max-width: 768px) {
   .hide-tablet {
     display: none !important;
   }
 }
 
-@media (max-width: 767px) {
-  .hide-mobile {
+/* Tablet (landscape) */
+@media (min-width: 769px) and (max-width: 991px) {
+  .hide-tablet-landscape {
     display: none !important;
   }
 }
+
+/* Desktop / Laptop */
+@media (min-width: 992px) and (max-width: 1320px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1321px) {
+  .hide-large-screens {
+    display: none !important;
+  }
+}
+
 /* ------------------------------
      Corner Radius of box 
 ------------------------------- */
