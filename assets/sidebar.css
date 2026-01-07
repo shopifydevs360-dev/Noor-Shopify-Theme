@@ -59,7 +59,7 @@ body.has-promo-bar .m-sidebar__content {
     width: 100%;
     position: absolute;
     height: 1px;
-    transition: all .4s ease-in-out;
+    transition: transform .4s ease-in-out;
     -webkit-animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation: slide-in-hamburger .5s cubic-bezier(0,0,.002,1) forwards;
     animation-fill-mode: both;
