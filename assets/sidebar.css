@@ -119,13 +119,13 @@ transform: rotate(45deg)!important;
     align-items: center;
     border-radius: 50%;
 }
-.expended.navigation a .js-open-icon-text .icon{
+.expended .navigation a .js-open-icon-text .icon{
     display: none;
 }
-.expended.navigation a .js-open-icon-text .icon{
+.expended .navigation a .js-open-icon-text .icon{
     display: none;
 }
-.minimal.navigation a .js-open-icon-text .text{
+.minimal .navigation a .js-open-icon-text .text{
     display: none;
 }
 .minimal.drawer-flyout .navigation a .js-open-icon-text .icon{
