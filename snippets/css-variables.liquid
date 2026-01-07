@@ -57,6 +57,10 @@
   Root variables
 {%- endcomment -%}
 :root {
+  /* Logo Size */
+    --logo-desktop-width: {{ settings.logo_width_desktop }}px;
+    --logo-tablet-width: {{ settings.logo_width_tablet }}px;
+    --logo-mobile-width: {{ settings.logo_width_mobile }}px;
   /* Typography */
   {% if settings.use_custom_font_body %}
     --font-body-family: 'CustomBodyFont', sans-serif;

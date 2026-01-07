@@ -55,22 +55,19 @@
 </a>
 
 <style>
-  :root {
-    --logo-desktop-width: {{ settings.logo_width_desktop }}px;
-  }
   .m-logo__image {
     width: var(--logo-desktop-width);
   }
 
   @media (max-width: 991px) {
     .m-logo__image {
-      width: {{ settings.logo_width_tablet }}px;
+      width: var(--logo-tablet-width);
     }
   }
 
   @media (max-width: 440px) {
     .m-logo__image {
-      width: {{ settings.logo_width_mobile }}px;
+      width: var(--logo-mobile-width);
     }
   }
 </style>
