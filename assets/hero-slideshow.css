@@ -159,7 +159,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 .hero-slideshow .text-content--top-left,
 .hero-slideshow .text-content--center-left,
 .hero-slideshow .text-content--bottom-left {
-  left: 40px;
+  left: 2.8rem;
   text-align: left;
 }
 
@@ -174,7 +174,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 .hero-slideshow .text-content--top-right,
 .hero-slideshow .text-content--center-right,
 .hero-slideshow .text-content--bottom-right {
-  right: 40px;
+  right: 2.8rem;
   text-align: right;
 }
 .hero-slideshow-sub-heading {
@@ -227,7 +227,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   z-index: 5;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
 .hero-slideshow .swiper-nav-wrapper {
     right: 50%;
     transform: translateX(50%);
