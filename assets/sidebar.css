@@ -182,7 +182,7 @@ body.disable-scrollbars {
     position: fixed;
     top: 3.2rem;
     height: 5.2rem;
-    z-index: 10;
+    z-index: 350;
     width: 100%;
     background: rgba(243, 243, 244, 0.3);
     backdrop-filter: blur(2px);
