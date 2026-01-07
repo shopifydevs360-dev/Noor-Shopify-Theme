@@ -1,3 +1,4 @@
+{% style %}
 {%- comment -%}
   Load Shopify fonts (if not using custom)
 {%- endcomment -%}
@@ -18,7 +19,6 @@
   Load custom fonts if enabled
 {%- endcomment -%}
 {% if settings.use_custom_font_body and settings.custom_body_font != blank %}
-  <style>
     {% assign body_fonts = settings.custom_body_font | split: '\n' %}
     {% for font_item in body_fonts %}
       {% assign font_url = font_item | split: '@' | first %}
@@ -31,11 +31,9 @@
         font-display: swap;
       }
     {% endfor %}
-  </style>
 {% endif %}
 
 {% if settings.use_custom_font_heading and settings.custom_heading_font != blank %}
-  <style>
     {% assign heading_fonts = settings.custom_heading_font | split: '\n' %}
     {% for font_item in heading_fonts %}
       {% assign font_url = font_item | split: '@' | first %}
@@ -48,10 +46,9 @@
         font-display: swap;
       }
     {% endfor %}
-  </style>
 {% endif %}
 
-{% style %}
+
 {%- comment -%}
   Root variables
 {%- endcomment -%}
