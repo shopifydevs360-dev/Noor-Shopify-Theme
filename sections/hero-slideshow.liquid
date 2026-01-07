@@ -61,13 +61,7 @@
               </div>
             {% endif %}
 
-            <span
-              class="overlay-bg"
-              style="
-                background-color: {{ block.settings.overlay_color }};
-                opacity: {{ block.settings.overlay_opacity }};
-              "
-            ></span>
+            <span class="overlay-bg" style=" background-color: {{ block.settings.overlay_color }}; opacity: {{ block.settings.overlay_opacity }};"></span>
 
             <div class="text-content text-content--{{ block.settings.vertical_alignment }}-{{ block.settings.horizontal_alignment }} m-color-{{ block.settings.text_color_scheme }}">
               {% if block.settings.subheading != blank %}
