@@ -144,6 +144,11 @@ function setActiveTrigger(activeTrigger) {
    TOGGLE OPEN / CLOSE TEXT
 ================================ */
 function toggleTriggerText(sectionName) {
+  const scope = document.querySelectorAll(
+    `[data-trigger-section="${sectionName}"]`
+  );
+
+  // Reset ALL
   document.querySelectorAll("[data-open-item]").forEach(el => {
     el.classList.remove("hide");
   });
@@ -152,14 +157,18 @@ function toggleTriggerText(sectionName) {
     el.classList.add("hide");
   });
 
-  document
-    .querySelector(`[data-open-item="${sectionName}-open-item"]`)
-    ?.classList.add("hide");
+  // Toggle ONLY within this section
+  scope.forEach(trigger => {
+    trigger
+      .querySelector(`[data-open-item="${sectionName}-open-item"]`)
+      ?.classList.add("hide");
 
-  document
-    .querySelector(`[data-close-item="${sectionName}-close-item"]`)
-    ?.classList.remove("hide");
+    trigger
+      .querySelector(`[data-close-item="${sectionName}-close-item"]`)
+      ?.classList.remove("hide");
+  });
 }
+
 
 /* ===============================
    BODY STATE HELPERS
