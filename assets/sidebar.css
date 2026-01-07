@@ -183,8 +183,6 @@ body.disable-scrollbars {
 .drawer-flyout .navigation .color-light,
 .drawer-flyout .navigation a{
     color: #231f20 !important;
-        transition: all .4s ease-in-out;
-    transition-delay: 0.4s;
 }
 .drawer-flyout .navigation .hamburger span {
     border-color: #231f20 !important;
