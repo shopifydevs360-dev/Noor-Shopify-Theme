@@ -180,6 +180,9 @@ body.disable-scrollbars {
     width: 100%;
     height: 5.2rem;
 }
-.m-mobile-header .m-mobile-header__content{
-
+.m-mobile-header .m-mobile-header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
 }
