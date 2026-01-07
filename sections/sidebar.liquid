@@ -99,6 +99,7 @@
               </span>
           </span>
           <span class="js-close-icon-text hide" data-close-item="search-drawer-close-item">
+            {%- render 'theme-icon', icon: 'close' -%}
           </span>
       </a>
       <!-- ACCOUNT LINKS -->
@@ -111,6 +112,7 @@
               </span>
           </span>
           <span class="js-close-icon-text hide" data-close-item="account-drawer-close-item">
+            {%- render 'theme-icon', icon: 'close' -%}
           </span>
       </a>
       <!-- Bag -->
@@ -122,9 +124,9 @@
                 {%- render 'theme-icon', icon: 'bag' -%}
                 <span class="cart-count cart-count-icon">{{ cart.item_count }}</span>
               </span>
-              <strong class="text">Bag (<span class="cart-count">{{ cart.item_count }}</span>)</strong>
           </span>
           <span class="js-close-icon-text hide" data-close-item="bag-drawer-close-item">
+            {%- render 'theme-icon', icon: 'close' -%}
           </span>
       </a>
     </nav>
