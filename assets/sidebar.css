@@ -172,13 +172,14 @@ body.disable-scrollbars {
 }
 
 /* Mobile Header Style */
-.m-mobile-header{
+.m-mobile-header {
     position: fixed;
     top: 3.2rem;
-    z-index: 10;
-    background: #fff;
-    width: 100%;
     height: 5.2rem;
+    z-index: 10;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
 }
 .m-mobile-header .m-mobile-header__content {
     display: flex;
