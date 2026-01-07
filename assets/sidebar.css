@@ -114,10 +114,10 @@ body.has-promo-bar .m-sidebar__content {
     margin-bottom: 50px;
 }
 /* Bag */
-.m-sidebar__content .js-open-icon-text {
+.navigation .js-open-icon-text {
     position: relative;
 }
-.m-sidebar__content .cart-count-icon {
+.navigation .cart-count-icon {
     position: absolute;
     top: -13px;
     left: 14px;
