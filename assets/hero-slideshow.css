@@ -206,7 +206,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   transform: translateX(4px);
 }
 /* Mobile content centering */
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
 .hero-slideshow .text-content {
     left: 50%;
     right: auto;
