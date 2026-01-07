@@ -84,9 +84,14 @@ top: 3.2rem;
 }
 .hamburger span:nth-of-type(2) {
     top: calc(50% - 1px);
-    width: 1.8rem;
+    width: 1.6rem;
     -webkit-animation-delay: .6s;
     animation-delay: .6s;
+}
+@media (min-width: 440px) {
+    .hamburger span:nth-of-type(2) {
+        width: 1.8rem;
+    }
 }
 .hamburger span:last-of-type {
     top: calc(100% - 2px);
