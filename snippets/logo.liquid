@@ -59,18 +59,18 @@
     --logo-desktop-width: {{ settings.logo_width_desktop }}px;
   }
   .m-logo__image {
-    max-width: var(--logo-desktop-width);
+    width: var(--logo-desktop-width);
   }
 
   @media (max-width: 768px) {
     .m-logo__image {
-      max-width: {{ settings.logo_width_tablet }}px;
+      width: {{ settings.logo_width_tablet }}px;
     }
   }
 
   @media (max-width: 480px) {
     .m-logo__image {
-      max-width: {{ settings.logo_width_mobile }}px;
+      width: {{ settings.logo_width_mobile }}px;
     }
   }
 </style>
