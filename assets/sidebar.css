@@ -168,12 +168,12 @@ body.disable-scrollbars {
 .m-sidebar__content .hamburger.color-light span {
     border-color: #fff;
 }
-.drawer-flyout .color-darks,
-.drawer-flyout .color-light,
-.drawer-flyout a{
+.drawer-flyout .navigation .color-darks,
+.drawer-flyout .navigation .color-light,
+.drawer-flyout .navigation a{
     color: #231f20 !important;
 }
-.drawer-flyout .hamburger span {
+.drawer-flyout .navigation .hamburger span {
     border-color: #231f20 !important;
 }
 
