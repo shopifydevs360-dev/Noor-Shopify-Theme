@@ -196,13 +196,18 @@ body.disable-scrollbars {
 .m-mobile-header {
     position: fixed;
     top: 3.2rem;
-    height: 5.2rem;
+    height: 5rem;
     z-index: 350;
     width: 100%;
     background: rgba(243, 243, 244, 0.3);
     backdrop-filter: blur(2px);
     transition: all .4s ease-in-out;
     transition-delay: 0.4s;
+}
+@media (min-width: 441px) {
+    .m-mobile-header {
+        height: 5.2rem;
+    }
 }
 .drawer-flyout .m-mobile-header {
     top: 0;
