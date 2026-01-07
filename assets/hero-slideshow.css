@@ -162,6 +162,11 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   left: 2.8rem;
   text-align: left;
 }
+.scrolled .hero-slideshow .text-content--top-left,
+.scrolled .hero-slideshow .text-content--center-left,
+.scrolled .hero-slideshow .text-content--bottom-left {
+  left: 4.8rem;
+}
 
 .hero-slideshow .text-content--top-center,
 .hero-slideshow .text-content--center-center,
