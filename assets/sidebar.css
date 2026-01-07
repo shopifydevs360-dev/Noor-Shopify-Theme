@@ -186,7 +186,7 @@ body.disable-scrollbars {
     width: 100%;
     background: rgba(243, 243, 244, 0.3);
     backdrop-filter: blur(2px);
-    transition: all .4s ease-in-out;
+    transition: top .4s ease-in-out;
 }
 .drawer-flyout .m-mobile-header {
     top: 0;
