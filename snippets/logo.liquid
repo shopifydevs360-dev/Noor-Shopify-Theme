@@ -78,16 +78,34 @@
   {
     display: none;
   }
-  .drawer-flyout .navigation .light-logo,
-  .drawer-flyout .navigation .color-dark .light-logo,
-  .drawer-flyout .navigation .color-light .light-logo
-  {
-    display: none;
-  }
-  .drawer-flyout .navigation .color-dark .dark-logo,
-  .drawer-flyout .navigation .color-light .dark-logo
-  {
-    display: block !important;
-  }
+.drawer-flyout .navigation .light-logo,
+.drawer-flyout .navigation .color-dark .light-logo,
+.drawer-flyout .navigation .color-light .light-logo {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.drawer-flyout .navigation .color-dark .dark-logo,
+.drawer-flyout .navigation .color-light .dark-logo {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* ACTIVE STATE */
+.drawer-flyout.active .navigation .light-logo,
+.drawer-flyout.active .navigation .color-dark .light-logo,
+.drawer-flyout.active .navigation .color-light .light-logo {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer-flyout.active .navigation .color-dark .dark-logo,
+.drawer-flyout.active .navigation .color-light .dark-logo {
+  opacity: 1;
+  visibility: visible;
+}
+
 </style>
 {% endif %}
