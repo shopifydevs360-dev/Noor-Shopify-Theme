@@ -200,6 +200,7 @@ body.disable-scrollbars {
     background: rgba(243, 243, 244, 0.3);
     backdrop-filter: blur(2px);
     transition: all .4s ease-in-out;
+    transition-delay: 0.4s;
 }
 .drawer-flyout .m-mobile-header {
     top: 0;
