@@ -221,3 +221,9 @@ body.disable-scrollbars {
     margin-bottom: -1rem;
     padding-right: 1rem;
 }
+@media (min-width: 441px) and (max-width: 991px) {
+    .m-mobile-header__nav {
+        column-gap: 2rem;
+        padding-right: 2rem;
+    }
+}
