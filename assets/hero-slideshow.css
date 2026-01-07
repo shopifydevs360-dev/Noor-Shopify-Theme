@@ -65,7 +65,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 }
 
 /* Space for sidebar when visible */
-@media (min-width: 1025px) {
+@media (min-width: 991px) {
  .hero-slideshow .swiper-container-hero {
     width: 100%;
     transform: translateX(320px);
