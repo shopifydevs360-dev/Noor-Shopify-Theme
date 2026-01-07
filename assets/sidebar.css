@@ -36,8 +36,8 @@ top: 3.2rem;
 /* Hamburger */
 .hamburger {
     cursor: pointer;
-    width: 2.5rem;
-    height: calc(1.5rem + 2px);
+    width: 2.3rem;
+    height: 1.5rem;
     padding-bottom: 2px;
     position: relative;
     z-index: 201;
@@ -45,6 +45,12 @@ top: 3.2rem;
     transition: all .5s cubic-bezier(0,0,.002,1);
     overflow: hidden;
     background: transparent;
+}
+@media (min-width: 440px) {
+  .hamburger {
+    width: 2.5rem;
+    height: calc(1.5rem + 2px);
+  }
 }
 .hamburger span {
     display: block;
