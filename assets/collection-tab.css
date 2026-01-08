@@ -8,7 +8,7 @@
     box-sizing: content-box;
 }
 .product-carousel .swiper-container-filter {
-    width: calc(100% - 2.4rem);
+    width: calc(100% - 1.2rem);
     padding-top: 1.2rem;
     margin-left: 1.2rem;
     margin-right: 1.2rem;
