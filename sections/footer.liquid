@@ -6,7 +6,7 @@
   assign f-outer-classes = f-outer-classes | append: ' m-color-' | append: section.settings.text_color_scheme
   assign f-outer-classes = f-outer-classes | append: ' ' | append: section.settings.color_control
 -%}
-<footer class="{{ outer-classes }}">
+<footer class="{{ f-outer-classes }}">
   <div class="footer__inner">
 
     {% for block in section.blocks %}
