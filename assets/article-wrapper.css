@@ -46,7 +46,7 @@
 @media (min-width: 992px) and (max-width: 1320px) {
   .featured-posts .article-pin-card .text-wrap {
     padding-right: 3rem;
-    padding-left: 2rem;
+    padding-left: 1rem;
   }
 }
 
