@@ -106,10 +106,8 @@ text-decoration: underline;
     justify-content: space-between;
     border-top: 1px solid #e3c7bf;
     padding: 6px;
-    font-size: 22px;
     color: inherit;
 }
 .split-aligner .title a{
   color: rgb(var(--color-heading, var(--color-text)));
-      font-size: 22px;
 }
