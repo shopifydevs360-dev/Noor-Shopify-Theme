@@ -13,10 +13,28 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "settings": {
-        "menu": "",
-        "show_payment_icons": true
-      }
+      "blocks": {
+        "newsletter_CFVLR3": {
+          "type": "newsletter",
+          "settings": {
+            "text": "<p>sdfsdf</p>",
+            "checkbox_text": "Yes, send me your newsletter",
+            "button_text": "Subscribe"
+          }
+        },
+        "menu_VQ7rpJ": {
+          "type": "menu",
+          "settings": {
+            "title": "Footer menu",
+            "menu": "main-menu"
+          }
+        }
+      },
+      "block_order": [
+        "newsletter_CFVLR3",
+        "menu_VQ7rpJ"
+      ],
+      "settings": {}
     }
   },
   "order": [
