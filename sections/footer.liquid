@@ -30,20 +30,11 @@
             </div>
 
             <!-- Newsletter Form -->
-            <form method="post"
-                  action="/contact#footer-newsletter"
-                  accept-charset="UTF-8"
-                  class="footer__form">
+            {% form 'customer', class: 'footer__form' %}
 
-              <input type="hidden" name="form_type" value="customer">
               <input type="hidden" name="contact[tags]" value="newsletter">
 
-              <input
-                type="email"
-                name="contact[email]"
-                placeholder="Email address"
-                required
-              >
+              <input type="email" name="contact[email]" placeholder="Email address" required >
 
               {% if block.settings.text != blank %}
                 <div class="newsletter__text">
@@ -60,8 +51,7 @@
               <button type="submit" class="newsletter__submit">
                 {{ block.settings.button_text }}
               </button>
-
-            </form>
+            {% endform %}
           </div>
 
         <!-- =====================
