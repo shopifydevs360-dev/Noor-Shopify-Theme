@@ -1,6 +1,11 @@
 {{ 'footer.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
-<footer class="footer container-fluid">
+{%- liquid
+  assign outer-classes = 'footer container-fluid'
+  assign outer-classes = outer-classes | append: ' section-' | append: section.id | append: '-padding'
+  assign outer-classes = outer-classes | append: ' ' | append: section.settings.color_control
+-%}
+<footer class="{{ outer-classes }}">
   <div class="footer__inner">
 
     {% for block in section.blocks %}
