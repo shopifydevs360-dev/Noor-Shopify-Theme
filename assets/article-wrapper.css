@@ -123,12 +123,8 @@
 }
 /* Responsive */
 @media (max-width: 991px) {
-  .featured-post-count {
-    position: static;
-    transform: none;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 2rem;
+ .featured-posts .featured-post-count {
+    top: 36%;
   }
   .featured-posts h1{
       padding-top: 3rem;
