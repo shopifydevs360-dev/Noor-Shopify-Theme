@@ -138,6 +138,9 @@
   }
   .featured-posts .article-track {
     height: clamp(26rem,45vh,55rem);
+  }
+  .featured-posts .end-link {
+    margin-top: clamp(2rem,3vh,3.5rem);
 }
 }
 
