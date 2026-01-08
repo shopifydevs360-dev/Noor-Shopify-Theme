@@ -252,7 +252,6 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   padding: 0;
   cursor: pointer;
   color: rgb(var(--color-link));
-  font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
