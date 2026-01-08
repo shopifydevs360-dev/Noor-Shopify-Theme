@@ -234,6 +234,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
   right: 60px;
   bottom: 60px;
   z-index: 5;
+  width: max-content;
 }
 
 @media (max-width: 991px) {
