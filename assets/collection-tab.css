@@ -231,3 +231,8 @@
 .swiper-slide.product-slide{
     display: none;
 }
+
+/* Scrollbar style */
+.swiper-scrollbar{
+  padding: 0 1.2rem;
+}
