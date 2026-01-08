@@ -30,14 +30,14 @@
 /* Tablet (landscape) */
 @media (min-width: 769px) and (max-width: 991px) {
     .image-overlay-grid .image-overlay-end-details {
-        padding: 0 1rem 0.5rem;
+        padding: 0 1.5rem 1rem;
     }
 }
 
 /* Desktop / Laptop */
 @media (min-width: 992px) and (max-width: 1320px) {
     .image-overlay-grid .image-overlay-end-details {
-        padding: 0 9rem 3rem;
+        padding: 0 3.2rem 2rem;
     }
 }
 
