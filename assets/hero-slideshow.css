@@ -131,8 +131,9 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
 .hero-slideshow .text-content {
   position: absolute;
   z-index: 4;
-  max-width: 749px;
+  max-width: 46.875rem;
   padding: 20px;
+  width: 100%;
 }
 
 /* Vertical alignment */
