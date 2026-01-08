@@ -10,7 +10,7 @@
 
 .featured-posts .article-track {
   position: relative;
-  height: clamp(35rem, 60vh, 70rem);
+  height: clamp(30rem,50vh,66rem);
 }
 
 .featured-posts .article-slide {
