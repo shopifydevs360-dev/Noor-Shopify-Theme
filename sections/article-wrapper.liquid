@@ -62,15 +62,17 @@
 
                 <h2 class="article-title {{ post_title_font }}">{{ article.title }}</h2>
 
-                {% if article.excerpt != blank %}
-                  <p class="article-excerpt">
-                    {{ article.excerpt | strip_html | truncate: 200 }}
-                  </p>
-                {% else %}
-                  <p class="article-excerpt">
-                    {{ article.content | strip_html | truncate: 200 }}
-                  </p>
-                {% endif %}
+                <span class="hide-tablet hide-mobile hide-tablet-landscape">
+                  {% if article.excerpt != blank %}
+                    <p class="article-excerpt ">
+                      {{ article.excerpt | strip_html | truncate: 200 }}
+                    </p>
+                  {% else %}
+                    <p class="article-excerpt">
+                      {{ article.content | strip_html | truncate: 200 }}
+                    </p>
+                  {% endif %}
+                </span>
                 <span class="btn-wrapper active-underline">
                   <p class="btn--animation hover-underline">Explore</p>
                 </span>
