@@ -1,13 +1,14 @@
 {{ 'footer.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
 {%- liquid
-  assign f-outer-classes = 'footer container-fluid'
-  assign f-outer-classes = f-outer-classes | append: ' section-' | append: section.id | append: '-padding'
-  assign f-outer-classes = f-outer-classes | append: ' m-color-' | append: section.settings.footer_color_scheme
-  assign f-outer-classes = f-outer-classes | append: ' ' | append: section.settings.custom_class
-  assign f-outer-classes = f-outer-classes | append: ' ' | append: section.settings.color_control
+  assign f_outer_classes = 'footer container-fluid'
+  assign f_outer_classes = f_outer_classes | append: ' section-' | append: section.id | append: '-padding'
+  assign f_outer_classes = f_outer_classes | append: ' m-color-' | append: section.settings.footer_color_scheme
+  assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.custom_class
+  assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
-<footer class="{{ f-outer-classes }}">
+
+<footer class="{{ f_outer_classes }}">
   <div class="footer__inner">
 
     {% for block in section.blocks %}
