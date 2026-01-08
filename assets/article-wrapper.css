@@ -123,6 +123,10 @@
 }
 /* Responsive */
 @media (max-width: 991px) {
+  .featured-posts.section-x-padding{
+    padding-left: 0;
+    padding-right: 0;
+  }
  .featured-posts .featured-post-count {
     top: 36%;
   }
@@ -143,6 +147,8 @@
   }
   .featured-posts .text-wrap {
     padding-top: 1rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
   }
 }
 
