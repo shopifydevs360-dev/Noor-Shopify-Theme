@@ -1,8 +1,4 @@
-.featured-posts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+
 .featured-posts .articles-wrapper {
   position: relative;
   overflow: hidden;
