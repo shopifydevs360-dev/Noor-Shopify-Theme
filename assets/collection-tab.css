@@ -39,6 +39,7 @@
 }
 .product-carousel .swiper-container-filter .swiper-slide a{
       color: rgb(var(--color-link));
+      position: relative;
 }
 .product-carousel .swiper-container-filter .swiper-slide a:after {
     content: "";
