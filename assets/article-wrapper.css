@@ -26,7 +26,7 @@
   margin-bottom: clamp(3rem,5vh,4.3rem);
   color: rgb(var(--color-heading));
 }
-@media (min-width: 991px) {
+@media (min-width: 992px) {
   .featured-posts .article-pin-card .text-wrap {
     position: relative;
     width: 60%;
