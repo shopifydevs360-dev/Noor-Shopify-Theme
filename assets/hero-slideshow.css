@@ -221,7 +221,7 @@ body.has-promo-bar .hero-slideshow .sidebar-slideshow {
     right: auto;
     transform: translateX(-50%);
     text-align: center;
-    bottom: 60px;
+    bottom: 20%;
     top: auto;
   }
 }
