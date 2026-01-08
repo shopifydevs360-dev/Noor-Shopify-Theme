@@ -99,8 +99,13 @@
     padding-left: 5rem;
   }
 }
-@media (min-width: 991px) and (max-width: 991px) {
-  .full-width .footer-sidebar-space{
+@media (min-width: 991px) and (max-width: var(--tablet-max)) {
+  .container .footer-sidebar-space{
+    padding-left: 5rem;
+  }
+}
+@media (min-width: var(--tablet-max)) {
+  .container .footer-sidebar-space{
     padding-left: 5rem;
   }
 }
