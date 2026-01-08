@@ -99,7 +99,12 @@
     padding-left: 5rem;
   }
 }
-@media (min-width: 991px) and (max-width: 1700px) {
+@media (min-width: 991px) and (max-width: 1199px) {
+  .container .footer-sidebar-space{
+    padding-left: 7rem;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1700px) {
   .container .footer-sidebar-space{
     padding-left: 5rem;
   }
