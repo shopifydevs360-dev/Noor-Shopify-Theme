@@ -130,8 +130,11 @@
     justify-content: center;
     margin-bottom: 2rem;
   }
+  .featured-posts h1{
+      padding-top: 3rem;
+  }
   .featured-posts .cropped-image--square {
-      padding-bottom: 60%;
+      padding-bottom: 80%;
   }
 }
 
