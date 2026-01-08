@@ -24,23 +24,25 @@
   margin-bottom: clamp(3rem,5vh,4.3rem);
   color: rgb(var(--color-heading));
 }
-.featured-posts .article-pin-card .text-wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  width: 60%;
-  padding-right: 150px;
-  padding-left: 180px;
-}
-.featured-posts .article-pin-card {
+@media (min-width: 991px) {
+  .featured-posts .article-pin-card .text-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 60%;
+    padding-right: 150px;
+    padding-left: 180px;
+  }
+  .featured-posts .article-pin-card {
     display: flex;
     column-gap: 4rem;
     width: 100%;
     justify-content: space-between;
-}
-.featured-posts .image-wrap {
+  }
+  .featured-posts .image-wrap {
     width: 40%;
+  }
 }
 .featured-posts .article-pin-card h2 {
   margin-bottom: clamp(2rem,3.8vh,2.8rem);
@@ -52,12 +54,12 @@
   font-size: var();
 }
 .featured-posts .btn-wrapper .btn--animation {
-    color: rgb(var(--color-link));
-    width: fit-content;
+  color: rgb(var(--color-link));
+  width: fit-content;
 }
 
 .featured-posts .btn-wrapper:hover .btn--animation {
-    color: rgb(var(--color-link-hover));
+  color: rgb(var(--color-link-hover));
 }
 .featured-posts .btn-wrapper:hover .btn--animation:before{
  background: rgb(var(--color-link-hover));
@@ -86,9 +88,9 @@
   font-weight: 700;
 }
 .featured-posts .end-link {
-    margin-top: clamp(3rem,6vh,5.5rem);
-      overflow: hidden;
-      padding-bottom: 20px;
+  margin-top: clamp(3rem,6vh,5.5rem);
+  overflow: hidden;
+  padding-bottom: 20px;
 }
 .featured-posts .end-link .btn--animation{
   color: rgb(var(--color-link));
