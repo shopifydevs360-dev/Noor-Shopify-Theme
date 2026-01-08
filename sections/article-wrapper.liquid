@@ -48,6 +48,16 @@
             </div>
 
             <div class="text-wrap">
+              <div class="featured-post-count">
+                {% for article in blog_object.articles limit: 2 %}
+                  <button
+                    class="counter-item {% if forloop.first %}active-counter{% endif %}"
+                    data-index="{{ forloop.index0 }}"
+                  >
+                    {{ forloop.index | prepend: '0' }}
+                  </button>
+                {% endfor %}
+              </div>
               <a href="{{ article.url }}" class="text-item">
 
                 <h2 class="article-title {{ post_title_font }}">{{ article.title }}</h2>
@@ -65,16 +75,6 @@
                   <p class="btn--animation hover-underline">Explore</p>
                 </span>
               </a>
-              <div class="featured-post-count">
-                {% for article in blog_object.articles limit: 2 %}
-                  <button
-                    class="counter-item {% if forloop.first %}active-counter{% endif %}"
-                    data-index="{{ forloop.index0 }}"
-                  >
-                    {{ forloop.index | prepend: '0' }}
-                  </button>
-                {% endfor %}
-              </div>
             </div>
           </div>
         </article>
@@ -82,7 +82,7 @@
     </div>
   </div>
 
-  <div class="container end-link active-underline">
+  <div class="container sidebar-space end-link active-underline">
     <a class="btn--animation hover-underline" href="{{ section.settings.blog.url }}">All Features</a>
   </div>
 </section>
