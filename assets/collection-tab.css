@@ -40,6 +40,15 @@
 .product-carousel .swiper-container-filter .swiper-slide a{
       color: rgb(var(--color-link));
 }
+.product-carousel .swiper-container-filter .swiper-slide a:after {
+    content: "";
+    background:rgb(var(--color-link));
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
 .related-product-caps {
     letter-spacing: .02rem;
     font-size: 1.3rem;
