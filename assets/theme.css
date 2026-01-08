@@ -695,6 +695,9 @@ button:disabled,
   padding-left: 4rem;
   padding-right: 4rem;
 }
-.sidebar-space{
-  padding-left: 4rem;
+
+@media (min-width: 991px) {
+  .sidebar-space{
+    padding-left: 4rem;
+  }
 }
