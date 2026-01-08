@@ -126,6 +126,9 @@
  .featured-posts .featured-post-count {
     top: 36%;
   }
+ .featured-posts .featured-post-count .counter-item{
+    color: #fff;
+  }
   .featured-posts h1{
       padding-top: 3rem;
   }
