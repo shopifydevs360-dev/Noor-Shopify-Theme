@@ -90,3 +90,12 @@
     display: flex;
   }
 }
+
+/* =====================
+   Sidebar Spaceing
+===================== */
+@media (max-width: 991px) {
+  .full-width {
+    padding-left: 8rem;
+  }
+}
