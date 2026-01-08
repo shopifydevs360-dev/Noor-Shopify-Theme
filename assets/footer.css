@@ -3,9 +3,8 @@
 }
 
 .footer__inner {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 4rem;
+  display: flex;
+  gap: 2rem;
 }
 
 /* Newsletter */
