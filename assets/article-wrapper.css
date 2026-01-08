@@ -136,5 +136,8 @@
   .featured-posts .cropped-image--square {
       padding-bottom: 80%;
   }
+  .featured-posts .article-track {
+    height: clamp(26rem,45vh,55rem);
+}
 }
 
