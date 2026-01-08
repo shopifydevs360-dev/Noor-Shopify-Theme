@@ -10,74 +10,76 @@
 -%}
 
 <footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
-  <div class="footer__inner {% if section.settings.container_width == 'full-width' %} section-x-padding{% endif %}">
+  <div class="sidebar-space">
+    <div class="footer__inner {% if section.settings.container_width == 'full-width' %} section-x-padding{% endif %}">
 
-    {% for block in section.blocks %}
-      {% case block.type %}
+      {% for block in section.blocks %}
+        {% case block.type %}
 
-        <!-- =====================
-             NEWSLETTER BLOCK
-        ====================== -->
-        {% when 'newsletter' %}
-          <div class="footer__newsletter width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
+          <!-- =====================
+              NEWSLETTER BLOCK
+          ====================== -->
+          {% when 'newsletter' %}
+            <div class="footer__newsletter width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
-            <!-- Logo -->
-            <div class="footer__logo">
-              {% if block.settings.logo != blank %}
-                {{ block.settings.logo | image_url: width: 300 | image_tag }}
-              {% else %}
-                {% render 'logo' %}
-              {% endif %}
+              <!-- Logo -->
+              <div class="footer__logo">
+                {% if block.settings.logo != blank %}
+                  {{ block.settings.logo | image_url: width: 300 | image_tag }}
+                {% else %}
+                  {% render 'logo' %}
+                {% endif %}
+              </div>
+
+              <!-- Newsletter Form -->
+              {% form 'customer', class: 'footer__form' %}
+
+                <input type="hidden" name="contact[tags]" value="newsletter">
+
+                <input type="email" name="contact[email]" placeholder="Email address" required >
+
+                {% if block.settings.text != blank %}
+                  <div class="newsletter__text">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
+
+                <label class="newsletter__checkbox">
+                  <input type="checkbox" name="contact[accepts_marketing]" checked>
+
+                  <span>{{ block.settings.checkbox_text }}</span>
+                </label>
+
+                <button type="submit" class="newsletter__submit">
+                  {{ block.settings.button_text }}
+                </button>
+              {% endform %}
             </div>
 
-            <!-- Newsletter Form -->
-            {% form 'customer', class: 'footer__form' %}
+          <!-- =====================
+              MENU BLOCK
+          ====================== -->
+          {% when 'menu' %}
+            <div class="footer__menu width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
-              <input type="hidden" name="contact[tags]" value="newsletter">
-
-              <input type="email" name="contact[email]" placeholder="Email address" required >
-
-              {% if block.settings.text != blank %}
-                <div class="newsletter__text">
-                  {{ block.settings.text }}
-                </div>
-              {% endif %}
-
-              <label class="newsletter__checkbox">
-                <input type="checkbox" name="contact[accepts_marketing]" checked>
-
-                <span>{{ block.settings.checkbox_text }}</span>
-              </label>
-
-              <button type="submit" class="newsletter__submit">
-                {{ block.settings.button_text }}
+              <button class="footer__menu-title js-footer-toggle">
+                {{ block.settings.title }}
               </button>
-            {% endform %}
-          </div>
 
-        <!-- =====================
-             MENU BLOCK
-        ====================== -->
-        {% when 'menu' %}
-          <div class="footer__menu width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
+              <nav class="footer__menu-links toggle-content">
+                {% for link in block.settings.menu.links %}
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endfor %}
+              </nav>
 
-            <button class="footer__menu-title js-footer-toggle">
-              {{ block.settings.title }}
-            </button>
+            </div>
+          
+          {% when 'empty_space' %}
+            <div class="empty-space width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}></div>
+        {% endcase %}
+      {% endfor %}
 
-            <nav class="footer__menu-links toggle-content">
-              {% for link in block.settings.menu.links %}
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              {% endfor %}
-            </nav>
-
-          </div>
-        
-        {% when 'empty_space' %}
-          <div class="empty-space width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}></div>
-      {% endcase %}
-    {% endfor %}
-
+    </div>
   </div>
 </footer>
 <script src="{{ 'footer.js' | asset_url }}" defer></script>
