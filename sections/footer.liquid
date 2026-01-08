@@ -1,56 +1,214 @@
-<footer class="container-fluid">
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
+<footer class="footer container-fluid">
+  <div class="footer__inner">
 
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
+    {% for block in section.blocks %}
+      {% case block.type %}
+
+        <!-- =====================
+             NEWSLETTER BLOCK
+        ====================== -->
+        {% when 'newsletter' %}
+          <div class="footer__newsletter" {{ block.shopify_attributes }}>
+
+            <!-- Logo -->
+            <div class="footer__logo">
+              {% if block.settings.logo != blank %}
+                {{ block.settings.logo | image_url: width: 300 | image_tag }}
+              {% else %}
+                {% render 'logo' %}
+              {% endif %}
+            </div>
+
+            <!-- Newsletter Form -->
+            <form method="post"
+                  action="/contact#footer-newsletter"
+                  accept-charset="UTF-8"
+                  class="footer__form">
+
+              <input type="hidden" name="form_type" value="customer">
+              <input type="hidden" name="contact[tags]" value="newsletter">
+
+              <input
+                type="email"
+                name="contact[email]"
+                placeholder="Email address"
+                required
+              >
+
+              {% if block.settings.text != blank %}
+                <div class="footer__text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+              <label class="footer__checkbox">
+                <input type="checkbox" checked>
+                <span>{{ block.settings.checkbox_text }}</span>
+              </label>
+
+              <button type="submit" class="footer__submit">
+                {{ block.settings.button_text }}
+              </button>
+
+            </form>
+          </div>
+
+        <!-- =====================
+             MENU BLOCK
+        ====================== -->
+        {% when 'menu' %}
+          <div class="footer__menu" {{ block.shopify_attributes }}>
+
+            <button class="footer__menu-title js-footer-toggle">
+              {{ block.settings.title }}
+            </button>
+
+            <nav class="footer__menu-links">
+              {% for link in block.settings.menu.links %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              {% endfor %}
+            </nav>
+
+          </div>
+
+      {% endcase %}
     {% endfor %}
-  </div>
 
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
-    {% endif %}
   </div>
 </footer>
-
 {% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
+.footer {
+  margin-top: 4rem;
+}
 
+.footer__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem;
+}
+
+/* Newsletter */
+.footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer__form input[type="email"] {
+  padding: 0.75rem;
+}
+
+.footer__checkbox {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.footer__submit {
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+/* Menu */
+.footer__menu-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.footer__menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* =====================
+   MOBILE ACCORDION
+===================== */
+@media (max-width: 991px) {
+  .footer__menu-title {
+    cursor: pointer;
+  }
+
+  .footer__menu-links {
+    display: none;
+  }
+
+  .footer__menu.is-open .footer__menu-links {
+    display: flex;
+  }
+}
+{% endstylesheet %}
+{% javascript %}
+document.addEventListener('click', (e) => {
+  const toggle = e.target.closest('.js-footer-toggle');
+  if (!toggle || window.innerWidth > 991) return;
+
+  const block = toggle.closest('.footer__menu');
+  block.classList.toggle('is-open');
+});
+{% endjavascript %}
 {% schema %}
 {
-  "name": "t:general.footer",
-  "settings": [
+  "name": "Footer",
+  "max_blocks": 6,
+  "blocks": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "checkbox_text",
+          "label": "Checkbox text",
+          "default": "Yes, send me your newsletter"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Subscribe"
+        }
+      ]
     },
     {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Menu title",
+          "default": "Footer menu"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "newsletter" },
+        { "type": "menu" }
+      ]
     }
   ]
 }
