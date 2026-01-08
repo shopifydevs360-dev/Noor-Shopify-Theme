@@ -17,6 +17,7 @@
         "newsletter_CFVLR3": {
           "type": "newsletter",
           "settings": {
+            "block_width": "50",
             "text": "<p>By registering, I agree to receive emails from Halla Hijab and other trusted P&G brands and programs. I agree that P&G may provide you with personalized advertising via email and other online channels. Click to read P&G Terms and conditions and Privacy.</p>",
             "checkbox_text": "Yes, send me your newsletter",
             "button_text": "Subscribe"
@@ -25,6 +26,7 @@
         "menu_im6XPD": {
           "type": "menu",
           "settings": {
+            "block_width": "25",
             "title": "Footer menu",
             "menu": "footer"
           }
@@ -32,6 +34,7 @@
         "menu_VQ7rpJ": {
           "type": "menu",
           "settings": {
+            "block_width": "20",
             "title": "Footer menu",
             "menu": "main-menu"
           }
