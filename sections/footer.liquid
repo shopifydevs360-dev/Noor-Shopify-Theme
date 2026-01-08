@@ -45,17 +45,17 @@
               >
 
               {% if block.settings.text != blank %}
-                <div class="footer__text">
+                <div class="newsletter__text">
                   {{ block.settings.text }}
                 </div>
               {% endif %}
 
-              <label class="footer__checkbox">
+              <label class="newsletter__checkbox">
                 <input type="checkbox" checked>
                 <span>{{ block.settings.checkbox_text }}</span>
               </label>
 
-              <button type="submit" class="footer__submit">
+              <button type="submit" class="newsletter__submit">
                 {{ block.settings.button_text }}
               </button>
 
