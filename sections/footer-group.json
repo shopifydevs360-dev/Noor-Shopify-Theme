@@ -31,6 +31,7 @@
         },
         "menu_im6XPD": {
           "type": "menu",
+          "disabled": true,
           "settings": {
             "block_width": "20",
             "title": "Footer menu",
@@ -39,6 +40,7 @@
         },
         "menu_gkXTYr": {
           "type": "menu",
+          "disabled": true,
           "settings": {
             "block_width": "20",
             "title": "Footer menu",
