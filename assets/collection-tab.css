@@ -9,6 +9,7 @@
 }
 .product-carousel .swiper-container-filter {
     width: 100%;
+    padding-top: 1.2rem;
     margin-left: 1.2rem;
     margin-right: 1.2rem;
 }
