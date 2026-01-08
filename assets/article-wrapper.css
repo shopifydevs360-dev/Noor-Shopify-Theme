@@ -26,9 +26,6 @@
 }
 @media (min-width: 991px) {
   .featured-posts .article-pin-card .text-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     position: relative;
     width: 60%;
     padding-right: 150px;
