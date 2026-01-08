@@ -4,6 +4,7 @@
   assign f-outer-classes = 'footer container-fluid'
   assign f-outer-classes = f-outer-classes | append: ' section-' | append: section.id | append: '-padding'
   assign f-outer-classes = f-outer-classes | append: ' m-color-' | append: section.settings.footer_color_scheme
+  assign f-outer-classes = f-outer-classes | append: ' ' | append: section.settings.custom_class
   assign f-outer-classes = f-outer-classes | append: ' ' | append: section.settings.color_control
 -%}
 <footer class="{{ f-outer-classes }}">
