@@ -9,7 +9,7 @@
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
 
-<footer class="{{ f_outer_classes }}">
+<footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
   <div class="footer__inner">
 
     {% for block in section.blocks %}
