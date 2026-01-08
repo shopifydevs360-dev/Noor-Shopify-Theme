@@ -63,7 +63,7 @@
       ],
       "settings": {
         "footer_color_scheme": "",
-        "container_width": "full-width",
+        "container_width": "container",
         "padding_top": 60,
         "padding_bottom": 60,
         "custom_class": "",
