@@ -19,7 +19,7 @@
              NEWSLETTER BLOCK
         ====================== -->
         {% when 'newsletter' %}
-          <div class="footer__newsletter" {{ block.shopify_attributes }}>
+          <div class="footer__newsletter width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
             <!-- Logo -->
             <div class="footer__logo">
@@ -59,7 +59,7 @@
              MENU BLOCK
         ====================== -->
         {% when 'menu' %}
-          <div class="footer__menu" {{ block.shopify_attributes }}>
+          <div class="footer__menu width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
             <button class="footer__menu-title js-footer-toggle">
               {{ block.settings.title }}
