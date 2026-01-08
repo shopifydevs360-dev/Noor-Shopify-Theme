@@ -73,6 +73,38 @@
               </nav>
 
             </div>
+          {% when 'get_in_touch' %}
+            <div class="footer__get-in-touch width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
+
+              <button class="get-in-touch-title js-footer-toggle">
+                {{ block.settings.title }}
+              </button>
+
+              <div class="get-in-touch-links toggle-content">
+                <div class="icon-box phone-call">
+                  <div class="ref-icon"></div>
+                  <div>
+                    <div class="text"></div>
+                    <a class="contact-link" href=""></a>
+                  </div>
+                </div>
+                <div class="icon-box whatapp-call">
+                  <div class="ref-icon"></div>
+                  <div>
+                    <div class="text"></div>
+                    <a class="contact-link" href=""></a>
+                  </div>
+                </div>
+                <div class="icon-box email-send">
+                  <div class="ref-icon"></div>
+                  <div>
+                    <div class="text"></div>
+                    <a class="contact-link" href=""></a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           
           {% when 'empty_space' %}
             <div class="empty-space width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}></div>
