@@ -79,18 +79,7 @@
   </div>
 </footer>
 <script src="{{ 'footer.js' | asset_url }}" defer></script>
-{% stylesheet %}
 
-{% endstylesheet %}
-{% javascript %}
-document.addEventListener('click', (e) => {
-  const toggle = e.target.closest('.js-footer-toggle');
-  if (!toggle || window.innerWidth > 991) return;
-
-  const block = toggle.closest('.footer__menu');
-  block.classList.toggle('is-open');
-});
-{% endjavascript %}
 {% schema %}
 {
   "name": "Footer",
