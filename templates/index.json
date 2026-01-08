@@ -190,6 +190,7 @@
         "image_y36x6i",
         "image_aAzyWm"
       ],
+      "disabled": true,
       "name": "Image Overlay Grid",
       "settings": {
         "columns": 2,
