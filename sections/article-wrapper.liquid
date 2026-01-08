@@ -4,7 +4,7 @@
 {%- assign blog_object = blogs[section.settings.blog] -%}
 
 {%- liquid
-  assign classes = 'featured-posts section-x-padding'
+  assign classes = 'featured-posts'
   assign classes = classes | append: ' section-' | append: section.id | append: '-padding'
   assign classes = classes | append: ' ' | append: section.settings.color_control
   assign classes = classes | append: ' m-color-' | append: section.settings.text_color_scheme
