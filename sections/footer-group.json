@@ -48,7 +48,7 @@
         "menu_VQ7rpJ": {
           "type": "menu",
           "settings": {
-            "block_width": "20",
+            "block_width": "15",
             "title": "Footer menu",
             "menu": "main-menu"
           }
