@@ -44,7 +44,7 @@
     content: "";
     background:rgb(var(--color-link));
     position: absolute;
-    height: 1.5px;
+    height: 1px;
     width: 100%;
     bottom: 0;
     left: 0;
