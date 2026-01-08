@@ -22,6 +22,13 @@
             "button_text": "Subscribe"
           }
         },
+        "menu_im6XPD": {
+          "type": "menu",
+          "settings": {
+            "title": "Footer menu",
+            "menu": "footer"
+          }
+        },
         "menu_VQ7rpJ": {
           "type": "menu",
           "settings": {
@@ -32,6 +39,7 @@
       },
       "block_order": [
         "newsletter_CFVLR3",
+        "menu_im6XPD",
         "menu_VQ7rpJ"
       ],
       "settings": {
