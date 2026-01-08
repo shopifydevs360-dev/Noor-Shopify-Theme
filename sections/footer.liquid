@@ -72,7 +72,9 @@
             </nav>
 
           </div>
-
+        
+        {% when 'empty_space' %}
+          <div class="empty-space width-{{ block.settings.block_width }}"></div>
       {% endcase %}
     {% endfor %}
 
