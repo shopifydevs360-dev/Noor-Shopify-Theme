@@ -53,8 +53,8 @@
 /* Large screens */
 @media (min-width: 1321px) {
   .featured-posts .article-pin-card .text-wrap {
-    padding-right: 3rem;
-    padding-left: 0;
+    padding-right: 6rem;
+    padding-left: 7rem;
   }
 }
 .featured-posts .article-pin-card h2 {
