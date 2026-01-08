@@ -235,7 +235,7 @@
 
 /* Scrollbar style */
 :root{
-  --swiper-scrollbar-sides-offset: 90%;
+  /* --swiper-scrollbar-sides-offset: 90%; */
 }
 .swiper-scrollbar{
 
