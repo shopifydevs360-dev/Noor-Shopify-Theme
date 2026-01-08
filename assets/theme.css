@@ -10,11 +10,11 @@
   margin: 0;
 }
 
-/* body {
+body {
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-} */
+}
 
 html:has(dialog[scroll-lock][open], details[scroll-lock][open]) {
   overflow: hidden;
