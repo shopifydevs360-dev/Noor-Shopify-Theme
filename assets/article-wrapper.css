@@ -141,6 +141,9 @@
   }
   .featured-posts .end-link {
     margin-top: clamp(2rem,3vh,3.5rem);
-}
+  }
+  .featured-posts .text-wrap {
+    padding-top: 1rem;
+  }
 }
 
