@@ -42,7 +42,7 @@
 }
 .product-carousel .swiper-container-filter .swiper-slide a:after {
     content: "";
-    background:rgb(var(--color-link));
+    background:#757575;
     position: absolute;
     height: 1px;
     width: 100%;
