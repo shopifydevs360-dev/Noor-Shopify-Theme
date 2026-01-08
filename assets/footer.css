@@ -94,8 +94,8 @@
 /* =====================
    Sidebar Spaceing
 ===================== */
-@media (max-width: 991px) {
-  .full-width .sidebar-space{
+@media (min-width: 991px) {
+  .full-width .footer-sidebar-space{
     padding-left: 8rem;
   }
 }
