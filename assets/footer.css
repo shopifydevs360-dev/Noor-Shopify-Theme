@@ -47,7 +47,8 @@
 }
 
 .footer .footer__form input[type="email"]:focus {
-  outline: none;
+  outline: 1px solid #000;
+  border: 
 }
 
 .footer .footer__checkbox {
