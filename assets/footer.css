@@ -71,10 +71,9 @@
     height: 20px;
     width: 20px;
     accent-color: #000; 
+    margin-bottom: 1.5rem
 }
-.footer .newsletter__checkbox input[type="checkbox"]:checked {
-  background: red;
-}
+
 .footer .footer__submit {
   padding: 0.75rem;
   cursor: pointer;
