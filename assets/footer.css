@@ -94,6 +94,7 @@
   .toggle-content {
     overflow: hidden;
     max-height: 0;
+    transform: all 1s;
   }
 
   .toggle-content.content-open {
