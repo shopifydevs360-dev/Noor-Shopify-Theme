@@ -82,12 +82,12 @@
     cursor: pointer;
   }
 
-  .footer__menu-links {
+  .toggle-content {
     display: none;
   }
 
-  .footer__menu.is-open .footer__menu-links {
-    display: flex;
+  .toggle-item .content-open .toggle-content {
+    display: block;
   }
 }
 
