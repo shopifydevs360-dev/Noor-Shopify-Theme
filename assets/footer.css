@@ -86,7 +86,7 @@
     display: none;
   }
 
-  .toggle-item .content-open .toggle-content {
+  .toggle-item .content-open.toggle-content {
     display: block;
   }
 }
