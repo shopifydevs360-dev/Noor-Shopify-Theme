@@ -97,7 +97,7 @@
   }
 
   .toggle-content.content-open {
-    animation: slide-down .5s cubic-bezier(0,0,.002,1) forwards;
+    animation: slide-down 1s cubic-bezier(0,0,.002,1) forwards;
   }
 }
 
