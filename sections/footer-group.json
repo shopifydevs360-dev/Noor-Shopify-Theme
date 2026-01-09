@@ -18,7 +18,7 @@
           "type": "newsletter",
           "settings": {
             "block_width": "40",
-            "logo_width": 80,
+            "logo_width": 18,
             "text": "<p>By registering, I agree to receive emails from Halla Hijab and other trusted P&G brands and programs. </p>",
             "checkbox_text": "Yes, send me your newsletter",
             "button_text": "Subscribe"
