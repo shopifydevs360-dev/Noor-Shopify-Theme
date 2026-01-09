@@ -9,7 +9,9 @@
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
 <style>
-  
+  .footer__logo img{
+    width: 0%;
+  }
 </style>
 {% comment %} test {% endcomment %}
 <footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
