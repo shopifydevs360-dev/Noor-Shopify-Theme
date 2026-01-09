@@ -78,18 +78,29 @@
    MOBILE ACCORDION
 ===================== */
 @media (max-width: 991px) {
-  .footer__menu-title {
+  .footer__menu-title,
+  .get-in-touch-title {
     cursor: pointer;
   }
 
   .toggle-content {
-    display: none;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+      max-height 0.5s cubic-bezier(0,0,.002,1),
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
 
-  .toggle-item .content-open.toggle-content {
-    display: block;
+  .toggle-content.content-open {
+    max-height: 500px; /* large enough for content */
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
 
 /* =====================
    Sidebar Spaceing
