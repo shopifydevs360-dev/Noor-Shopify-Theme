@@ -37,6 +37,9 @@
   }
 }
 /* Newsletter */
+.footer__logo img{
+  margin-bottom: 2rem; 
+}
 .footer .footer__form {
   display: flex;
   flex-direction: column;
