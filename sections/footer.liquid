@@ -8,11 +8,7 @@
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.custom_class
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
-<style>
-  .footer__logo img{
-    width: 0%;
-  }
-</style>
+
 {% comment %} test {% endcomment %}
 <footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
   <div class="footer-sidebar-space">
@@ -60,7 +56,12 @@
                 </button>
               {% endform %}
             </div>
-
+          <style>
+            .footer__logo img{
+              width: {{ block.settings.logo_width }}%;
+              min-width: var(--logo-mobile-width);
+            }
+          </style>
           <!-- =====================
               MENU BLOCK
           ====================== -->
