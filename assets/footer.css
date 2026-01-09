@@ -48,6 +48,7 @@
 
 .footer .footer__form input[type="email"]:focus {
   outline: 1px solid #000;
+  border-radius: 0;
   border: 
 }
 
