@@ -34,8 +34,9 @@ input,
 textarea,
 select {
   font: inherit;
-  border: none;
-  background-color: transparent;
+  border-radius: var(--input_corner_radius, 4px);
+  border: 1px solid var(--color-border, #eee);
+  background-color: var(--color-form-field, #fff);
   color: var(--color-form-field-text, #222);
   padding: 0.6em 0.8em;
 }
