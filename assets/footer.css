@@ -79,14 +79,22 @@
 ===================== */
 @media (max-width: 991px) {
   .toggle-content {
-    height: 0;
     overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height .5s cubic-bezier(0,0,.002,1),
+                opacity .3s ease,
+                transform .3s ease;
   }
 
-  .toggle-item .content-open.toggle-content {
-    height: auto;
+  .toggle-content.content-open {
+    max-height: 1000px; /* large enough to show full content */
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
 
 /* =====================
    Sidebar Spaceing
