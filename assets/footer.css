@@ -52,6 +52,7 @@
 }
 .footer .footer__form input[type="email"]::placeholder {
   color: rgb(187, 187, 187);
+  font-weight: 500;
 }
 
 .footer .footer__checkbox {
