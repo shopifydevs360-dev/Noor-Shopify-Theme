@@ -83,7 +83,7 @@
     max-height: 0;
     opacity: 0;
     transform: translateY(-6px);
-    transition: all .5s cubic-bezier(0,0,.002,1),
+    transition: max-height .5s cubic-bezier(0,0,.002,1),
                 opacity .3s ease,
                 transform .3s ease;
   }
