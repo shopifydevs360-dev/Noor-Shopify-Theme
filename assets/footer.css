@@ -46,7 +46,9 @@
   gap: 1rem;
 }
 
-
+.footer .footer__form input[type="email"]:focus {
+  outline: none;
+}
 
 .footer .footer__checkbox {
   display: flex;
