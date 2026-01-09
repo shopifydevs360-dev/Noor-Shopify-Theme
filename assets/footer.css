@@ -77,31 +77,16 @@
 /* =====================
    MOBILE ACCORDION
 ===================== */
-@keyframes slide-down {
-  from {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 991px) {
   .toggle-content {
+    height: 0;
     overflow: hidden;
-    max-height: 0;
   }
 
-  .toggle-content.content-open {
-    animation: slide-down 1s cubic-bezier(0,0,.002,1) forwards;
+  .toggle-item .content-open.toggle-content {
+    height: auto;
   }
 }
-
-
 
 /* =====================
    Sidebar Spaceing
