@@ -71,6 +71,9 @@
     height: 20px;
     width: 20px;
 }
+.footer .newsletter__checkbox input[type="checkbox"]::checkmark {
+  background: red;
+}
 .footer .footer__submit {
   padding: 0.75rem;
   cursor: pointer;
