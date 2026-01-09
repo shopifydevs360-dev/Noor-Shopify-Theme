@@ -77,29 +77,30 @@
 /* =====================
    MOBILE ACCORDION
 ===================== */
-@media (max-width: 991px) {
-  .footer__menu-title,
-  .get-in-touch-title {
-    cursor: pointer;
-  }
-
-  .toggle-content {
-    overflow: hidden;
+@keyframes slide-down {
+  from {
     max-height: 0;
     opacity: 0;
     transform: translateY(-6px);
-    transition:
-      max-height 0.5s cubic-bezier(0,0,.002,1),
-      opacity 0.3s ease,
-      transform 0.3s ease;
   }
-
-  .toggle-content.content-open {
-    max-height: 500px; /* large enough for content */
+  to {
+    max-height: auto;
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+@media (max-width: 991px) {
+  .toggle-content {
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  .toggle-content.content-open {
+    animation: slide-down .5s cubic-bezier(0,0,.002,1) forwards;
+  }
+}
+
 
 
 /* =====================
