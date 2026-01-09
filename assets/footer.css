@@ -66,12 +66,12 @@
   display: flex;
   gap: 0.5rem;
   font-size: 0.9rem;
+      margin: 1rem 0;
 }
 .footer .newsletter__checkbox input[type="checkbox"] {
     height: 20px;
     width: 20px;
     accent-color: #000; 
-    margin-bottom: 1.5rem
 }
 
 .footer .footer__submit {
