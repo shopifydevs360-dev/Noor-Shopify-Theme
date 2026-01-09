@@ -62,44 +62,48 @@
           {% when 'menu' %}
             <div class="footer__menu width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
-              <button class="footer__menu-title js-footer-toggle">
-                {{ block.settings.title }}
-              </button>
+              <div class="toggle-item">
+                <button class="footer__menu-title js-footer-toggle">
+                  {{ block.settings.title }}
+                </button>
 
-              <nav class="footer__menu-links toggle-content">
-                {% for link in block.settings.menu.links %}
-                  <a href="{{ link.url }}">{{ link.title }}</a>
-                {% endfor %}
-              </nav>
+                <nav class="footer__menu-links toggle-content">
+                  {% for link in block.settings.menu.links %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  {% endfor %}
+                </nav>
+              </div>
 
             </div>
           {% when 'get_in_touch' %}
             <div class="footer__get-in-touch width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
-              <button class="get-in-touch-title js-footer-toggle">
-                {{ block.settings.title }}
-              </button>
+              <div>
+                <button class="get-in-touch-title js-toggle-trigger">
+                  {{ block.settings.title }}
+                </button>
 
-              <div class="get-in-touch-links toggle-content">
-                <div class="icon-box phone-call">
-                  <div class="ref-icon"></div>
-                  <div>
-                    <div class="text"></div>
-                    <a class="contact-link" href=""></a>
+                <div class="get-in-touch-links toggle-content">
+                  <div class="icon-box phone-call">
+                    <div class="ref-icon"></div>
+                    <div>
+                      <div class="text"></div>
+                      <a class="contact-link" href=""></a>
+                    </div>
                   </div>
-                </div>
-                <div class="icon-box whatapp-call">
-                  <div class="ref-icon"></div>
-                  <div>
-                    <div class="text"></div>
-                    <a class="contact-link" href=""></a>
+                  <div class="icon-box whatapp-call">
+                    <div class="ref-icon"></div>
+                    <div>
+                      <div class="text"></div>
+                      <a class="contact-link" href=""></a>
+                    </div>
                   </div>
-                </div>
-                <div class="icon-box email-send">
-                  <div class="ref-icon"></div>
-                  <div>
-                    <div class="text"></div>
-                    <a class="contact-link" href=""></a>
+                  <div class="icon-box email-send">
+                    <div class="ref-icon"></div>
+                    <div>
+                      <div class="text"></div>
+                      <a class="contact-link" href=""></a>
+                    </div>
                   </div>
                 </div>
               </div>
