@@ -62,12 +62,15 @@
   font-weight: 500;
 }
 
-.footer .footer__checkbox {
+.footer .newsletter__checkbox {
   display: flex;
   gap: 0.5rem;
   font-size: 0.9rem;
 }
-
+.footer .newsletter__checkbox input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+}
 .footer .footer__submit {
   padding: 0.75rem;
   cursor: pointer;
