@@ -1,7 +1,14 @@
 document.addEventListener('click', (e) => {
-  const toggle = e.target.closest('.js-footer-toggle');
-  if (!toggle || window.innerWidth > 991) return;
+  const trigger = e.target.closest('.js-toggle-trigger');
+  if (!trigger || window.innerWidth > 991) return;
 
-  const block = toggle.closest('.footer__menu-links');
-  block.classList.toggle('is-open');
+  const wrapper = trigger.parentElement;
+  if (!wrapper) return;
+
+  const content = wrapper.querySelector('.toggle-content');
+  if (!content) return;
+
+  // Toggle classes
+  trigger.classList.toggle('toggle-active');
+  content.classList.toggle('content-open');
 });
