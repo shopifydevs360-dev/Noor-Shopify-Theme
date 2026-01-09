@@ -65,8 +65,8 @@
 .footer .newsletter__checkbox {
   display: flex;
   gap: 0.5rem;
-  font-size: 0.9rem;
-      margin: 1rem 0;
+  font-size: 1.3rem;
+  margin: 1rem 0;
 }
 .footer .newsletter__checkbox input[type="checkbox"] {
     height: 20px;
