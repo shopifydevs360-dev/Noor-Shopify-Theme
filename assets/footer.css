@@ -37,6 +37,9 @@
   }
 }
 /* Newsletter */
+.footer__newsletter {
+    max-width: 664px;
+}
 .footer__logo img{
   margin-bottom: 2rem; 
 }
