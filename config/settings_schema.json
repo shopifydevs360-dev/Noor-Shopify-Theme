@@ -789,6 +789,11 @@
       },
       {
         "type": "text",
+        "id": "social_whatsapp_link",
+        "label": "Whatsapp link"
+      },
+      {
+        "type": "text",
         "id": "social_twitter_link",
         "label": "Twitter link"
       },
@@ -836,11 +841,6 @@
         "type": "text",
         "id": "social_discord_link",
         "label": "Discord link"
-      },
-      {
-        "type": "text",
-        "id": "social_whatsapp_link",
-        "label": "Whatsapp link"
       },
       {
         "type": "text",
