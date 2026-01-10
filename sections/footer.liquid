@@ -100,9 +100,9 @@
                       <div class="ref-icon">{% render 'theme-icon', icon: 'phone' %}</div>
                       <div class="inner-text">
                         {{ block.settings.phone_text }}
-                        {% if block.settings.phone_link != blank %}
-                          <a class="contact-link" href="tel:{{ block.settings.phone_link }}">
-                            {{ block.settings.phone_link }}
+                        {% if settings.contact_phone_number != blank %}
+                          <a class="contact-link" href="tel:{{ settings.contact_phone_number }}">
+                            {{ settings.contact_phone_number }}
                           </a>
                         {% endif %}
                       </div>
