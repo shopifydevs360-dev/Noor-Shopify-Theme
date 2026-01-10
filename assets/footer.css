@@ -148,6 +148,16 @@
 /* =====================
    Sidebar Spaceing
 ===================== */
+.footer__get-in-touch .icon-box{
+  display: flex;
+  gap: 0.4rem;
+}
+.footer__get-in-touch .theme-icon{
+  width: 1.5rem;
+}
+/* =====================
+   Sidebar Spaceing
+===================== */
 @media (min-width: 991px) {
   .full-width .footer-sidebar-space{
     padding-left: 5rem;
