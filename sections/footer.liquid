@@ -77,7 +77,7 @@
 
                 <div class="get-in-touch-links toggle-content">
 
-                  {% if block.settings.phone_text %}
+                  {% if block.settings.phone_text != blank %}
                     <div class="icon-box phone-call">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'phone' %}</div>
                       <div class="inner-text">
@@ -89,7 +89,7 @@
                     </div>
                   {% endif %}
 
-                  {% if block.settings.whatsapp_text != blank and settings.social_whatsapp_link != blank %}
+                  {% if block.settings.whatsapp_text != blank %}
                     <div class="icon-box whatsapp-call">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'whatsapp' %}</div>
                       <div class="inner-text">
@@ -101,7 +101,7 @@
                     </div>
                   {% endif %}
 
-                  {% if block.settings.email_text != blank and settings.contact_email != blank %}
+                  {% if block.settings.email_text != blank %}
                     <div class="icon-box email-send">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'email' %}</div>
                       <div class="inner-text">
