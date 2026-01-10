@@ -11,6 +11,33 @@
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "title_price_YnB7D8": {
+          "type": "title_price",
+          "settings": {}
+        },
+        "buy_form_4PeYPa": {
+          "type": "buy_form",
+          "settings": {}
+        },
+        "description_Th49Tf": {
+          "type": "description",
+          "settings": {}
+        },
+        "accordion_GJhgHM": {
+          "type": "accordion",
+          "settings": {
+            "title": "",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "title_price_YnB7D8",
+        "buy_form_4PeYPa",
+        "description_Th49Tf",
+        "accordion_GJhgHM"
+      ],
       "settings": {}
     }
   },
