@@ -87,7 +87,7 @@
 /* Submit */
 .footer .newsletter__submit {
   background: rgb(var(--color-link));
-  color: rgb(var(--color-background-secondary));
+  color: rgb(var(--color-background));
   border: 2px solid rgb(var(--color-link));
   padding: 1rem;
   font-size: 1.4rem;
