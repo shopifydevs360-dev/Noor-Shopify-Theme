@@ -1,30 +1,48 @@
-.product-media__thumbs {
-    width: 100%;
+/* =====================
+   PRODUCT MEDIA
+===================== */
+.product-media {
+  width: 100%;
 }
 
-.product-media__thumbs img {
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-}
+.product-media__main img,
 .product-media video {
-    width: 100%;
-    height: auto;
-    max-height: 94vh;
-    display: block;
-    object-fit: cover;
-    object-position: center;
+  width: 100%;
+  height: auto;
+  max-height: 94vh;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* VIDEO ROW */
+.product-media__video-row {
+  margin-top: 1rem;
+}
+
+.product-media__video {
+  margin-bottom: 1rem;
 }
 
 /* =====================
-   Swiper Pagination
+   SWIPER
 ===================== */
+.product-media__thumbs {
+  width: 100%;
+  position: relative;
+}
+
+.product-media__thumbs img {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* PAGINATION */
 .product-media__thumbs .swiper-pagination {
   position: absolute;
   bottom: 1.2rem;
   left: 50%;
   transform: translateX(-50%);
-  width: auto;
   display: flex;
   gap: 0.6rem;
   z-index: 5;
@@ -35,16 +53,13 @@
   height: 8px;
   background: rgba(0,0,0,0.3);
   opacity: 1;
-  transition: all 0.3s ease;
 }
 
 .product-media__thumbs .swiper-pagination-bullet-active {
-  background: rgba(0,0,0,0.85);
-  transform: scale(1.2);
+  background: rgba(0,0,0,0.9);
 }
-/* =====================
-   Swiper Navigation
-===================== */
+
+/* NAVIGATION */
 .product-media__thumbs .swiper-button-prev,
 .product-media__thumbs .swiper-button-next {
   position: absolute;
@@ -52,41 +67,25 @@
   left: auto;
   width: 40px;
   height: 40px;
-  margin-top: 0;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   border-radius: 50%;
   color: #000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  transition: all 0.3s ease;
   z-index: 6;
 }
 
-/* Vertical alignment */
 .product-media__thumbs .swiper-button-prev {
   top: 50%;
-  transform: translateY(-110%);
+  transform: translateY(-120%);
 }
 
 .product-media__thumbs .swiper-button-next {
   top: 50%;
-  transform: translateY(10%);
+  transform: translateY(20%);
 }
 
-/* Hover effect */
-.product-media__thumbs .swiper-button-prev:hover,
-.product-media__thumbs .swiper-button-next:hover {
-  background: rgba(255,255,255,1);
-  transform: translateY(-110%) scale(1.05);
-}
-
-/* Fix hover transform for next */
-.product-media__thumbs .swiper-button-next:hover {
-  transform: translateY(10%) scale(1.05);
-}
-
-/* Arrow icons */
-.product-media__thumbs .swiper-button-prev::after,
-.product-media__thumbs .swiper-button-next::after {
-  font-size: 14px;
-  font-weight: bold;
+@media (max-width: 768px) {
+  .product-media__thumbs .swiper-button-prev,
+  .product-media__thumbs .swiper-button-next {
+    display: none;
+  }
 }
