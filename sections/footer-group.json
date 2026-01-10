@@ -49,7 +49,14 @@
           "type": "get_in_touch",
           "settings": {
             "block_width": "33",
-            "title": "Get in Touch"
+            "title": "Get in Touch",
+            "phone_text": "<p>0128</p>",
+            "phone_link": "25458",
+            "whatsapp_text": "<p>24554</p>",
+            "whatsapp_link": "",
+            "whatsapp_number": "",
+            "email_text": "",
+            "email_address": ""
           }
         }
       },
