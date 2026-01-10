@@ -137,7 +137,9 @@
 
       {% if section.settings.show_payment_methods %}
         <div class="footer__payments">
-          {% if section.settings.use_dynamic_payments %}
+          {% if section.settings.payment_image != blank %}
+            {{ section.settings.payment_image | image_url: width: 500 | image_tag }}
+          {% else %}
             <div class="payment-icons">
               {% for type in shop.enabled_payment_types %}
                 <span class="payment-icon">
@@ -145,8 +147,6 @@
                 </span>
               {% endfor %}
             </div>
-          {% elsif section.settings.payment_image != blank %}
-            {{ section.settings.payment_image | image_url: width: 500 | image_tag }}
           {% endif %}
         </div>
       {% endif %}
@@ -164,13 +164,6 @@
           {% endif %}
         </div>
       {% endif %}
-
-      {% if section.settings.show_extra_text and section.settings.extra_text != blank %}
-        <div class="footer__extra-text">
-          {{ section.settings.extra_text }}
-        </div>
-      {% endif %}
-
     </div>
   {% endif %}
 </footer>
@@ -244,18 +237,6 @@
       "label": "Show social icons",
       "default": true
     },
-    {
-      "type": "checkbox",
-      "id": "show_extra_text",
-      "label": "Show extra text",
-      "default": false
-    },
-    {
-      "type": "richtext",
-      "id": "extra_text",
-      "label": "Extra text"
-    },
-
     {
       "type": "header",
       "content": "Section padding"
