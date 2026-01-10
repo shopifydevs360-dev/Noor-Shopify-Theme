@@ -794,18 +794,8 @@
       },
       {
         "type": "text",
-        "id": "social_twitter_label",
-        "label": "Twitter label"
-      },
-      {
-        "type": "text",
         "id": "social_facebook_link",
         "label": "Facebook link"
-      },
-      {
-        "type": "text",
-        "id": "social_facebook_label",
-        "label": "Facebook label"
       },
       {
         "type": "text",
@@ -814,18 +804,8 @@
       },
       {
         "type": "text",
-        "id": "social_pinterest_label",
-        "label": "Pinterest label"
-      },
-      {
-        "type": "text",
         "id": "social_instagram_link",
         "label": "Instagram link"
-      },
-      {
-        "type": "text",
-        "id": "social_instagram_label",
-        "label": "Instagram label"
       },
       {
         "type": "text",
@@ -834,18 +814,8 @@
       },
       {
         "type": "text",
-        "id": "social_snapchat_label",
-        "label": "Snapchat label"
-      },
-      {
-        "type": "text",
         "id": "social_tumblr_link",
         "label": "Tumblr link"
-      },
-      {
-        "type": "text",
-        "id": "social_tumblr_label",
-        "label": "Tumblr label"
       },
       {
         "type": "text",
@@ -854,18 +824,8 @@
       },
       {
         "type": "text",
-        "id": "social_youtube_label",
-        "label": "Youtube label"
-      },
-      {
-        "type": "text",
         "id": "social_vimeo_link",
         "label": "Vimeo link"
-      },
-      {
-        "type": "text",
-        "id": "social_vimeo_label",
-        "label": "Vimeo label"
       },
       {
         "type": "text",
@@ -874,18 +834,8 @@
       },
       {
         "type": "text",
-        "id": "social_tiktok_label",
-        "label": "Tiktok label"
-      },
-      {
-        "type": "text",
         "id": "social_discord_link",
         "label": "Discord link"
-      },
-      {
-        "type": "text",
-        "id": "social_discord_label",
-        "label": "Discord label"
       },
       {
         "type": "text",
@@ -894,18 +844,8 @@
       },
       {
         "type": "text",
-        "id": "social_whatsapp_label",
-        "label": "Whatsapp label"
-      },
-      {
-        "type": "text",
         "id": "social_spotify_link",
         "label": "Spotify link"
-      },
-      {
-        "type": "text",
-        "id": "social_spotify_label",
-        "label": "Spotify label"
       },
       {
         "type": "text",
@@ -914,19 +854,9 @@
       },
       {
         "type": "text",
-        "id": "social_linkedin_label",
-        "label": "Linkedin label"
-      },
-      {
-        "type": "text",
         "id": "social_line_link",
         "label": "Line link"
       },
-      {
-        "type": "text",
-        "id": "social_line_label",
-        "label": "Line label"
-      }
     ]
   },
   {
