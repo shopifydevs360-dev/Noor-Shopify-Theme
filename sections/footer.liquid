@@ -128,9 +128,9 @@
                       <div class="ref-icon">{% render 'theme-icon', icon: 'email' %}</div>
                       <div class="inner-text">
                         {{ block.settings.email_text }}
-                        {% if block.settings.email_address != blank %}
-                          <a class="contact-link" href="mailto:{{ block.settings.email_address }}">
-                            {{ block.settings.email_address }}
+                        {% if settings.contact_email != blank %}
+                          <a class="contact-link" href="mailto:{{ settings.contact_email }}">
+                            {{ settings.contact_email }}
                           </a>
                         {% endif %}
                       </div>
