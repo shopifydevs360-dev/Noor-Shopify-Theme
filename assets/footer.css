@@ -131,9 +131,12 @@
     max-height: 1000px; /* large enough to show full content */
     transform: translateY(0);
   }
+  .footer .footer__menu-title .t-down-icon {
+    transition: all .6s cubic-bezier(.72,0,.28,1);
+  }
   .footer .footer__menu-title.toggle-active .t-down-icon {
-    transform: rotateX(180deg);
-}
+    transform: translateY(-5px) rotateX(180deg);
+  }
   .footer .footer__menu-title {
     width: 100%;
     max-width: 664px;
