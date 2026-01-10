@@ -48,7 +48,7 @@
         "get_in_touch_GMYwnU": {
           "type": "get_in_touch",
           "settings": {
-            "block_width": "33",
+            "block_width": "40",
             "title": "Get in Touch"
           }
         }
