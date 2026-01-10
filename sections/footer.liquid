@@ -2,7 +2,7 @@
 {% render 'section-base-style' %}
 
 {%- liquid
-  assign f_outer_classes = 'footer'
+  assign f_outer_classes = ''
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.container_width
   assign f_outer_classes = f_outer_classes | append: ' section-' | append: section.id | append: '-padding'
   assign f_outer_classes = f_outer_classes | append: ' m-color-' | append: section.settings.footer_color_scheme
@@ -10,7 +10,8 @@
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
 
-<footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
+<footer class="footer" {{ section.shopify_attributes }}>
+ <section class="{{ f_outer_classes }}">
   <div class="footer-sidebar-space">
     <div class="footer__inner {% if section.settings.container_width == 'full-width' %}section-x-padding{% endif %}">
 
@@ -170,6 +171,7 @@
       {% endif %}
     </div>
   {% endif %}
+ </section>
 </footer>
 
 <script src="{{ 'footer.js' | asset_url }}" defer></script>
