@@ -31,30 +31,7 @@
                   {% render 'logo' %}
                 {% endif %}
               </div>
-
-              {% form 'customer', class: 'footer__form js-newsletter-form', novalidate: 'novalidate' %}
-
-                <input type="hidden" name="contact[tags]" value="newsletter">
-
-                <input type="email" name="contact[email]" placeholder="Email address" required>
-
-                {% if block.settings.text != blank %}
-                  <div class="newsletter__text">
-                    {{ block.settings.text }}
-                  </div>
-                {% endif %}
-
-                <label class="newsletter__checkbox">
-                  <input type="checkbox" name="contact[accepts_marketing]" class="js-newsletter-checkbox" checked>
-                  <span>{{ block.settings.checkbox_text }}</span>
-                </label>
-
-                <button type="submit" class="newsletter__submit js-newsletter-submit">
-                  {{ block.settings.button_text }}
-                </button>
-                <!-- SUCCESS / ERROR MESSAGE -->
-                <div class="newsletter__message js-newsletter-message" hidden></div>
-              {% endform %}
+<!-- Newsletter Form --> {% form 'customer', class: 'footer__form' %} <input type="hidden" name="contact[tags]" value="newsletter"> <input type="email" name="contact[email]" placeholder="Email address" required > {% if block.settings.text != blank %} <div class="newsletter__text"> {{ block.settings.text }} </div> {% endif %} <label class="newsletter__checkbox"> <input type="checkbox" name="contact[accepts_marketing]" checked> <span>{{ block.settings.checkbox_text }}</span> </label> <button type="submit" class="newsletter__submit"> {{ block.settings.button_text }} </button> {% endform %}
             </div>
           <!-- =====================
               MENU BLOCK
