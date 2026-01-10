@@ -175,7 +175,7 @@
   padding-bottom: 2px;
 }
 
-.footer .footer__get-in-touch .theme-icon {
+.footer .footer__get-in-touch .icon-box .theme-icon {
   width: 1.2rem;
   color: rgb(var(--color-link));
 }
