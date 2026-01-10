@@ -20,6 +20,7 @@
 
           {% when 'newsletter' %}
             <div class="footer__newsletter width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
+              <!-- Logo -->
               <div class="footer__logo">
                 {% if block.settings.logo != blank %}
                   {{ block.settings.logo | image_url: width: 300 | image_tag }}
