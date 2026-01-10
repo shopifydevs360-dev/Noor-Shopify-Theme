@@ -114,9 +114,9 @@
                       <div class="ref-icon">{% render 'theme-icon', icon: 'whatsapp' %}</div>
                       <div class="inner-text">
                         {{ block.settings.whatsapp_text }}
-                        {% if block.settings.whatsapp_link != blank %}
-                          <a class="contact-link" href="{{ block.settings.whatsapp_link }}" target="_blank">
-                            {{ block.settings.whatsapp_number }}
+                        {% if settings.whatsapp_number != blank %}
+                          <a class="contact-link" href="{{ settings.social_whatsapp_link }}" target="_blank">
+                            {{ settings.whatsapp_number }}
                           </a>
                         {% endif %}
                       </div>
