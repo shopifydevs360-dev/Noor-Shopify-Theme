@@ -115,6 +115,9 @@
    MOBILE ACCORDION
 ===================== */
 @media (max-width: 771px) {
+  .footer__newsletter {
+    width: 100%;
+}
  .footer .toggle-content {
     overflow: hidden;
     max-height: 0;
