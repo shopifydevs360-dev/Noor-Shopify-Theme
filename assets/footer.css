@@ -100,12 +100,7 @@
     border: none;
     padding: 0;
     text-transform: uppercase;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin: 0.5rem;
-    border-bottom: 2px solid #222222;
 }
 
 .footer .footer__menu-links {
@@ -130,6 +125,13 @@
     max-height: 1000px; /* large enough to show full content */
     transform: translateY(0);
   }
+  .footer .footer__menu-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #222222;
+}
 }
 
 
