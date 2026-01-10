@@ -66,10 +66,14 @@
       "settings": {
         "footer_color_scheme": "",
         "container_width": "container",
+        "show_footer_bottom": true,
+        "copyright_text": "<p>Your Store. All rights reserved.</p>",
+        "show_payment_methods": true,
+        "show_social_icons": true,
         "padding_top": 60,
         "padding_bottom": 60,
         "custom_class": "",
-        "color_control": "section-light"
+        "color_control": "section-dark"
       }
     }
   },
