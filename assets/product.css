@@ -1,0 +1,44 @@
+.product-page {
+  width: 100%;
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 992px) {
+  .product-layout {
+    grid-template-columns: 55% 45%;
+  }
+}
+
+.product-media__main img {
+  width: 100%;
+  cursor: zoom-in;
+}
+
+.product-media__thumbs img {
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.variant-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.variant-btn input {
+  display: none;
+}
+
+.variant-btn span {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.variant-btn input:checked + span {
+  border-color: #000;
+}
