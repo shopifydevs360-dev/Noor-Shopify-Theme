@@ -1,4 +1,5 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
+{{ 'product-media.css' | asset_url | stylesheet_tag }}
 <section class="product-page full-width">
 
   <div class="product-layout">
@@ -110,6 +111,7 @@
 
 </section>
 <script src="{{ 'main-product.js' | asset_url }}" defer></script>
+<script src="{{ 'product-media.js' | asset_url }}" defer></script>
 {% schema %}
 {
   "name": "Main product",
