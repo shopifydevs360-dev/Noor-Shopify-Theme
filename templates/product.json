@@ -27,8 +27,8 @@
         "accordion_GJhgHM": {
           "type": "accordion",
           "settings": {
-            "title": "",
-            "content": ""
+            "title": "Accordion",
+            "content": "<p>Content</p>"
           }
         }
       },
