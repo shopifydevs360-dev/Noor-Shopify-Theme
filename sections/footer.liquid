@@ -1,5 +1,6 @@
 {{ 'footer.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
+
 {%- liquid
   assign f_outer_classes = 'footer'
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.container_width
@@ -9,21 +10,19 @@
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
 
-{% comment %} test {% endcomment %}
 <footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
   <div class="footer-sidebar-space">
-    <div class="footer__inner {% if section.settings.container_width == 'full-width' %} section-x-padding{% endif %}">
+    <div class="footer__inner {% if section.settings.container_width == 'full-width' %}section-x-padding{% endif %}">
 
       {% for block in section.blocks %}
         {% case block.type %}
 
           <!-- =====================
-              NEWSLETTER BLOCK
+              NEWSLETTER
           ====================== -->
           {% when 'newsletter' %}
             <div class="footer__newsletter width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
-              <!-- Logo -->
               <div class="footer__logo">
                 {% if block.settings.logo != blank %}
                   {{ block.settings.logo | image_url: width: 300 | image_tag }}
@@ -32,12 +31,13 @@
                 {% endif %}
               </div>
 
-              <!-- Newsletter Form -->
               {% form 'customer', class: 'footer__form' %}
-
                 <input type="hidden" name="contact[tags]" value="newsletter">
 
-                <input type="email" name="contact[email]" placeholder="Email address" required >
+                <input type="email"
+                       name="contact[email]"
+                       placeholder="Email address"
+                       required>
 
                 {% if block.settings.text != blank %}
                   <div class="newsletter__text">
@@ -47,7 +47,6 @@
 
                 <label class="newsletter__checkbox">
                   <input type="checkbox" name="contact[accepts_marketing]" checked>
-
                   <span>{{ block.settings.checkbox_text }}</span>
                 </label>
 
@@ -56,79 +55,112 @@
                 </button>
               {% endform %}
             </div>
+
           <!-- =====================
-               MENU BLOCK
+              MENU
           ====================== -->
           {% when 'menu' %}
             <div class="footer__menu width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
-
               <div class="toggle-item">
                 <button class="footer__menu-title js-toggle-trigger">
                   <span class="btn-text">{{ block.settings.title }}</span>
-                  <span class="t-down-icon hide-desktop hide-large-screens">{%- render 'theme-icon', icon: 'down-angle' -%}</span>
+                  <span class="t-down-icon hide-desktop hide-large-screens">
+                    {% render 'theme-icon', icon: 'down-angle' %}
+                  </span>
                 </button>
 
                 <nav class="toggle-content">
                   <div class="footer__menu-links">
-                  {% for link in block.settings.menu.links %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                  {% endfor %}
+                    {% for link in block.settings.menu.links %}
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    {% endfor %}
                   </div>
                 </nav>
               </div>
-
             </div>
+
+          <!-- =====================
+              GET IN TOUCH
+          ====================== -->
           {% when 'get_in_touch' %}
             <div class="footer__get-in-touch width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
-
               <div class="toggle-item">
-                <button class="get-in-touch-title footer__menu-title js-toggle-trigger">
+
+                <button class="footer__menu-title js-toggle-trigger">
                   <span class="btn-text">{{ block.settings.title }}</span>
-                  <span class="t-down-icon hide-desktop hide-large-screens">{%- render 'theme-icon', icon: 'down-angle' -%}</span>
+                  <span class="t-down-icon hide-desktop hide-large-screens">
+                    {% render 'theme-icon', icon: 'down-angle' %}
+                  </span>
                 </button>
 
                 <div class="get-in-touch-links toggle-content">
-                  <div class="icon-box phone-call">
-                    <div class="ref-icon">{%- render 'theme-icon', icon: 'phone' -%}</div>
-                    <div class="inner-text">
-                      <div class="text">Call us Mon-Fri 10am-4:30pm</div>
-                      <a class="contact-link" href="#">+440 203 123 214</a>
+
+                  {% if block.settings.phone_text != blank %}
+                    <div class="icon-box phone-call">
+                      <div class="ref-icon">{% render 'theme-icon', icon: 'phone' %}</div>
+                      <div class="inner-text">
+                        {{ block.settings.phone_text }}
+                        {% if block.settings.phone_link != blank %}
+                          <a class="contact-link" href="tel:{{ block.settings.phone_link }}">
+                            {{ block.settings.phone_link }}
+                          </a>
+                        {% endif %}
+                      </div>
                     </div>
-                  </div>
-                  <div class="icon-box whatsapp-call">
-                    <div class="ref-icon">{%- render 'theme-icon', icon: 'whatsapp' -%}</div>
-                    <div class="inner-text">
-                      <div class="text">Talk to us on Whatsapp</div>
-                      <a class="contact-link" href="#">+440 203 123 214</a>
+                  {% endif %}
+
+                  {% if block.settings.whatsapp_text != blank %}
+                    <div class="icon-box whatsapp-call">
+                      <div class="ref-icon">{% render 'theme-icon', icon: 'whatsapp' %}</div>
+                      <div class="inner-text">
+                        {{ block.settings.whatsapp_text }}
+                        {% if block.settings.whatsapp_link != blank %}
+                          <a class="contact-link" href="{{ block.settings.whatsapp_link }}" target="_blank">
+                            {{ block.settings.whatsapp_number }}
+                          </a>
+                        {% endif %}
+                      </div>
                     </div>
-                  </div>
-                  <div class="icon-box email-send">
-                    <div class="ref-icon">{%- render 'theme-icon', icon: 'email' -%}</div>
-                    <div class="inner-text">
-                      <div class="text">Email us</div>
-                      <a class="contact-link" href="#">mailaddress@gmail.com</a>
+                  {% endif %}
+
+                  {% if block.settings.email_text != blank %}
+                    <div class="icon-box email-send">
+                      <div class="ref-icon">{% render 'theme-icon', icon: 'email' %}</div>
+                      <div class="inner-text">
+                        {{ block.settings.email_text }}
+                        {% if block.settings.email_address != blank %}
+                          <a class="contact-link" href="mailto:{{ block.settings.email_address }}">
+                            {{ block.settings.email_address }}
+                          </a>
+                        {% endif %}
+                      </div>
                     </div>
-                  </div>
+                  {% endif %}
+
                 </div>
               </div>
-
             </div>
-          
+
+          <!-- =====================
+              EMPTY SPACE
+          ====================== -->
           {% when 'empty_space' %}
             <div class="empty-space width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}></div>
+
         {% endcase %}
       {% endfor %}
 
     </div>
   </div>
 </footer>
+
 <script src="{{ 'footer.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
   "name": "Footer",
   "limit": 1,
-  "enabled_on": {"groups": ["footer"]},
+  "enabled_on": { "groups": ["footer"] },
   "settings": [
     {
       "type": "color_scheme",
@@ -171,10 +203,6 @@
       "default": 0
     },
     {
-      "type": "header",
-      "content": "Dynamic Option"
-    },
-    {
       "type": "text",
       "id": "custom_class",
       "label": "Custom class"
@@ -190,140 +218,62 @@
       "default": "section-light"
     }
   ],
-  "max_blocks": 6,
   "blocks": [
     {
       "type": "newsletter",
       "name": "Newsletter",
       "limit": 1,
       "settings": [
-        {
-          "type": "select",
-          "id": "block_width",
-          "label": "Block width",
-          "options": [
-            { "value": "5", "label": "5%" },
-            { "value": "10", "label": "10%" },
-            { "value": "15", "label": "15%" },
-            { "value": "20", "label": "20%" },
-            { "value": "25", "label": "25%" },
-            { "value": "33", "label": "33%" },
-            { "value": "40", "label": "40%" },
-            { "value": "45", "label": "45%" },
-            { "value": "50", "label": "50%" }
-          ],
-          "default": "33"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo",
-          "label": "Footer Logo",
-          "info": "If you want to show differnt logo then you can add here"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text"
-        },
-        {
-          "type": "text",
-          "id": "checkbox_text",
-          "label": "Checkbox text",
-          "default": "Yes, send me your newsletter"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button text",
-          "default": "Subscribe"
-        }
+        { "type": "select", "id": "block_width", "label": "Block width", "options": [
+          { "value": "25", "label": "25%" },
+          { "value": "33", "label": "33%" },
+          { "value": "50", "label": "50%" }
+        ], "default": "33" },
+        { "type": "image_picker", "id": "logo", "label": "Footer Logo" },
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "text", "id": "checkbox_text", "label": "Checkbox text", "default": "Yes, send me your newsletter" },
+        { "type": "text", "id": "button_text", "label": "Button text", "default": "Subscribe" }
       ]
     },
     {
       "type": "menu",
       "name": "Menu",
       "settings": [
-        {
-          "type": "select",
-          "id": "block_width",
-          "label": "Block width",
-          "options": [
-            { "value": "5", "label": "5%" },
-            { "value": "10", "label": "10%" },
-            { "value": "15", "label": "15%" },
-            { "value": "20", "label": "20%" },
-            { "value": "25", "label": "25%" },
-            { "value": "33", "label": "33%" },
-            { "value": "40", "label": "40%" },
-            { "value": "45", "label": "45%" },
-            { "value": "50", "label": "50%" }
-          ],
-          "default": "33"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Menu title",
-          "default": "Footer menu"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Menu"
-        }
+        { "type": "select", "id": "block_width", "label": "Block width", "options": [
+          { "value": "25", "label": "25%" },
+          { "value": "33", "label": "33%" }
+        ], "default": "33" },
+        { "type": "text", "id": "title", "label": "Menu title", "default": "Footer menu" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
       ]
     },
     {
       "type": "get_in_touch",
       "name": "Get in Touch",
       "settings": [
-        {
-          "type": "select",
-          "id": "block_width",
-          "label": "Block width",
-          "options": [
-            { "value": "5", "label": "5%" },
-            { "value": "10", "label": "10%" },
-            { "value": "15", "label": "15%" },
-            { "value": "20", "label": "20%" },
-            { "value": "25", "label": "25%" },
-            { "value": "33", "label": "33%" },
-            { "value": "40", "label": "40%" },
-            { "value": "45", "label": "45%" },
-            { "value": "50", "label": "50%" }
-          ],
-          "default": "33"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Get in Touch"
-        }
+        { "type": "select", "id": "block_width", "label": "Block width", "options": [
+          { "value": "25", "label": "25%" },
+          { "value": "33", "label": "33%" }
+        ], "default": "33" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Get in Touch" },
+        { "type": "richtext", "id": "phone_text", "label": "Phone text" },
+        { "type": "text", "id": "phone_link", "label": "Phone number" },
+        { "type": "richtext", "id": "whatsapp_text", "label": "WhatsApp text" },
+        { "type": "url", "id": "whatsapp_link", "label": "WhatsApp link" },
+        { "type": "text", "id": "whatsapp_number", "label": "WhatsApp number" },
+        { "type": "richtext", "id": "email_text", "label": "Email text" },
+        { "type": "text", "id": "email_address", "label": "Email address" }
       ]
     },
     {
       "type": "empty_space",
-      "name": "empty space",
+      "name": "Empty space",
       "limit": 2,
       "settings": [
-        {
-          "type": "select",
-          "id": "block_width",
-          "label": "Block width",
-          "options": [
-            { "value": "5", "label": "5%" },
-            { "value": "10", "label": "10%" },
-            { "value": "15", "label": "15%" },
-            { "value": "20", "label": "20%" },
-            { "value": "25", "label": "25%" },
-            { "value": "33", "label": "33%" },
-            { "value": "40", "label": "40%" },
-            { "value": "45", "label": "45%" },
-            { "value": "50", "label": "50%" }
-          ],
-          "default": "33"
-        },
+        { "type": "select", "id": "block_width", "label": "Block width", "options": [
+          { "value": "10", "label": "10%" },
+          { "value": "20", "label": "20%" }
+        ], "default": "20" }
       ]
     }
   ],
@@ -332,7 +282,8 @@
       "name": "Footer",
       "blocks": [
         { "type": "newsletter" },
-        { "type": "menu" }
+        { "type": "menu" },
+        { "type": "get_in_touch" }
       ]
     }
   ]
