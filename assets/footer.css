@@ -2,7 +2,7 @@
    FOOTER BASE
 ===================== */
 .footer {
-  
+  background: rgb(var(--color-background));
   color: rgb(var(--color-text));
 }
 
