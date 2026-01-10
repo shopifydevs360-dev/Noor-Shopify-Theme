@@ -1,12 +1,14 @@
 .product-media__thumbs {
-  width: 100%;
+    width: 100%;
 }
 
 .product-media__thumbs img {
-  width: 100%;
-  height: auto;
-  max-height: 94vh;
-  cursor: pointer;
+    width: 100%;
+    height: auto;
+    max-height: 94vh;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
 }
 .product-media video {
     width: 100%;
