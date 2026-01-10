@@ -10,8 +10,8 @@
   assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
 
-<footer class="footer" {{ section.shopify_attributes }}>
- <section class="{{ f_outer_classes }}">
+<footer class="{{ f_outer_classes }}" {{ section.shopify_attributes }}>
+ <section class="footer">
   <div class="footer-sidebar-space">
     <div class="footer__inner {% if section.settings.container_width == 'full-width' %}section-x-padding{% endif %}">
 
