@@ -102,6 +102,9 @@
     text-transform: uppercase;
     width: 100%;
     margin: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .footer .footer__menu-links {
@@ -115,9 +118,6 @@
    MOBILE ACCORDION
 ===================== */
 @media (max-width: 771px) {
-  .footer__newsletter {
-    width: 100%;
-}
  .footer .toggle-content {
     overflow: hidden;
     max-height: 0;
@@ -130,9 +130,6 @@
     transform: translateY(0);
   }
   .footer .footer__menu-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     border-bottom: 2px solid #222222;
 }
 }
