@@ -17,7 +17,7 @@
         "newsletter_CFVLR3": {
           "type": "newsletter",
           "settings": {
-            "block_width": "40",
+            "block_width": "33",
             "text": "<p>By registering, I agree to receive emails from Halla Hijab and other trusted P&G brands and programs. </p>",
             "checkbox_text": "Yes, send me your newsletter",
             "button_text": "Subscribe"
@@ -32,7 +32,7 @@
         "menu_im6XPD": {
           "type": "menu",
           "settings": {
-            "block_width": "20",
+            "block_width": "15",
             "title": "Contact",
             "menu": "contact"
           }
@@ -48,7 +48,7 @@
         "get_in_touch_GMYwnU": {
           "type": "get_in_touch",
           "settings": {
-            "block_width": "40",
+            "block_width": "33",
             "title": "Get in Touch"
           }
         }
