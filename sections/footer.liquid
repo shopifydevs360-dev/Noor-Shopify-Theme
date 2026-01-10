@@ -99,7 +99,7 @@
                     <div class="icon-box phone-call">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'phone' %}</div>
                       <div class="inner-text">
-                        {{ block.settings.phone_text }}
+                        <span class="text">{{ block.settings.phone_text }}</span>
                         {% if settings.contact_phone_number != blank %}
                           <a class="contact-link" href="tel:{{ settings.contact_phone_number }}">
                             {{ settings.contact_phone_number }}
@@ -113,7 +113,7 @@
                     <div class="icon-box whatsapp-call">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'whatsapp' %}</div>
                       <div class="inner-text">
-                        {{ block.settings.whatsapp_text }}
+                        <span class="text">{{ block.settings.whatsapp_text }}</span>
                         {% if settings.whatsapp_number != blank %}
                           <a class="contact-link" href="{{ settings.social_whatsapp_link }}" target="_blank">
                             {{ settings.whatsapp_number }}
@@ -127,7 +127,7 @@
                     <div class="icon-box email-send">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'email' %}</div>
                       <div class="inner-text">
-                        {{ block.settings.email_text }}
+                        <span class="text">{{ block.settings.email_text }}</span>
                         {% if settings.contact_email != blank %}
                           <a class="contact-link" href="mailto:{{ settings.contact_email }}">
                             {{ settings.contact_email }}
