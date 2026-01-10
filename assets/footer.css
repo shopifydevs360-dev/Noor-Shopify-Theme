@@ -3,7 +3,7 @@
 }
 
 
-@media (min-width: 991px){
+@media (min-width: 771px){
   .footer .footer__inner {
     display: flex;
     gap: 2rem;
