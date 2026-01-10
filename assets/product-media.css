@@ -5,6 +5,7 @@
 .product-media__thumbs img {
   width: 100%;
   height: auto;
+  max-height: 94vh;
   cursor: pointer;
 }
 .product-media video {
