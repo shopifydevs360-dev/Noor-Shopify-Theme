@@ -41,8 +41,8 @@
           "type": "menu",
           "settings": {
             "block_width": "20",
-            "title": "Footer menu",
-            "menu": "footer"
+            "title": "Customer Care",
+            "menu": "customer-care"
           }
         },
         "menu_VQ7rpJ": {
