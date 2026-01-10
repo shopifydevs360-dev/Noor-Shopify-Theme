@@ -1,5 +1,9 @@
+/* =========================================================
+   PRODUCT MEDIA — IMAGE / VIDEO / SLIDER / LIGHTBOX
+========================================================= */
+
 /* =====================
-   PRODUCT MEDIA
+   BASE MEDIA
 ===================== */
 .product-media img,
 .product-media video {
@@ -11,23 +15,84 @@
 .product-media video {
   max-height: 94vh;
   object-fit: cover;
+  object-position: center;
 }
 
 /* =====================
-   SWIPER
+   INLINE PRODUCT SLIDER
 ===================== */
 .product-media__thumbs {
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
-/* Pagination */
+/* Pagination — bottom center */
 .product-media__thumbs .swiper-pagination {
+  position: absolute;
   bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.6rem;
+  z-index: 5;
+}
+
+.product-media__thumbs .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.product-media__thumbs .swiper-pagination-bullet-active {
+  background: rgba(0, 0, 0, 0.85);
+  transform: scale(1.2);
+}
+
+/* Navigation — right middle */
+.product-media__thumbs .swiper-button-prev,
+.product-media__thumbs .swiper-button-next {
+  position: absolute;
+  right: 1rem;
+  left: auto;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  color: #000;
+  z-index: 6;
+  transition: all 0.3s ease;
+}
+
+.product-media__thumbs .swiper-button-prev {
+  top: 50%;
+  transform: translateY(-120%);
+}
+
+.product-media__thumbs .swiper-button-next {
+  top: 50%;
+  transform: translateY(20%);
+}
+
+.product-media__thumbs .swiper-button-prev:hover,
+.product-media__thumbs .swiper-button-next:hover {
+  transform: scale(1.05) translateY(-120%);
+}
+
+.product-media__thumbs .swiper-button-next:hover {
+  transform: scale(1.05) translateY(20%);
+}
+
+.product-media__thumbs .swiper-button-prev::after,
+.product-media__thumbs .swiper-button-next::after {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 /* =====================
-   LIGHTBOX
+   LIGHTBOX OVERLAY
 ===================== */
 .media-lightbox {
   position: fixed;
@@ -43,9 +108,12 @@
 .media-lightbox__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0, 0, 0, 0.88);
 }
 
+/* =====================
+   LIGHTBOX CONTENT
+===================== */
 .media-lightbox__content {
   position: relative;
   width: 100%;
@@ -69,29 +137,92 @@
   object-fit: contain;
 }
 
-/* Close button */
-.media-lightbox__close {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  z-index: 10;
-  font-size: 3rem;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* Lightbox controls */
+/* =====================
+   LIGHTBOX NAVIGATION
+===================== */
 .media-lightbox .swiper-button-prev,
 .media-lightbox .swiper-button-next {
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(6px);
   color: #fff;
+  transition: all 0.3s ease;
+}
+
+.media-lightbox .swiper-button-prev:hover,
+.media-lightbox .swiper-button-next:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.media-lightbox .swiper-button-prev::after,
+.media-lightbox .swiper-button-next::after {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =====================
+   LIGHTBOX PAGINATION
+===================== */
+.media-lightbox .swiper-pagination {
+  bottom: 1.5rem;
 }
 
 .media-lightbox .swiper-pagination-bullet {
-  background: rgba(255,255,255,0.5);
+  width: 9px;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  transition: all 0.3s ease;
 }
 
 .media-lightbox .swiper-pagination-bullet-active {
   background: #fff;
+  transform: scale(1.25);
+}
+
+/* =====================
+   LIGHTBOX CLOSE BUTTON
+===================== */
+.media-lightbox__close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.media-lightbox__close:hover {
+  opacity: 1;
+}
+
+/* =====================
+   MOBILE OPTIMIZATION
+===================== */
+@media (max-width: 768px) {
+  .product-media__thumbs .swiper-button-prev,
+  .product-media__thumbs .swiper-button-next {
+    display: none;
+  }
+
+  .media-lightbox .swiper-button-prev,
+  .media-lightbox .swiper-button-next {
+    width: 44px;
+    height: 44px;
+  }
+
+  .media-lightbox__close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.4rem;
+  }
 }
