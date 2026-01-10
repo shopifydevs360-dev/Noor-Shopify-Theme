@@ -14,15 +14,7 @@
   }
 }
 
-.product-media__main img {
-  width: 100%;
-  cursor: zoom-in;
-}
 
-.product-media__thumbs img {
-  cursor: pointer;
-  border: 1px solid #ddd;
-}
 
 .variant-buttons {
   display: flex;
