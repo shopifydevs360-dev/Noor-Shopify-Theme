@@ -146,7 +146,7 @@
 }
 
 /* =====================
-   Sidebar Spaceing
+   Get in touch
 ===================== */
 .footer__get-in-touch .icon-box{
   display: flex;
@@ -159,7 +159,7 @@
 .footer__get-in-touch .icon-box a{
   border-bottom: 1px solid #222222;
 }
-.footer__get-in-touch .theme-icon {
+.footer__get-in-touch .icon-box .theme-icon {
     width: 1.2rem;
     padding-top: 0.3rem;
 }
