@@ -17,12 +17,8 @@
       {% for block in section.blocks %}
         {% case block.type %}
 
-          <!-- =====================
-              NEWSLETTER
-          ====================== -->
           {% when 'newsletter' %}
             <div class="footer__newsletter width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
-
               <div class="footer__logo">
                 {% if block.settings.logo != blank %}
                   {{ block.settings.logo | image_url: width: 300 | image_tag }}
@@ -33,16 +29,10 @@
 
               {% form 'customer', class: 'footer__form' %}
                 <input type="hidden" name="contact[tags]" value="newsletter">
-
-                <input type="email"
-                       name="contact[email]"
-                       placeholder="Email address"
-                       required>
+                <input type="email" name="contact[email]" placeholder="Email address" required>
 
                 {% if block.settings.text != blank %}
-                  <div class="newsletter__text">
-                    {{ block.settings.text }}
-                  </div>
+                  <div class="newsletter__text">{{ block.settings.text }}</div>
                 {% endif %}
 
                 <label class="newsletter__checkbox">
@@ -56,9 +46,6 @@
               {% endform %}
             </div>
 
-          <!-- =====================
-              MENU
-          ====================== -->
           {% when 'menu' %}
             <div class="footer__menu width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
               <div class="toggle-item">
@@ -68,7 +55,6 @@
                     {% render 'theme-icon', icon: 'down-angle' %}
                   </span>
                 </button>
-
                 <nav class="toggle-content">
                   <div class="footer__menu-links">
                     {% for link in block.settings.menu.links %}
@@ -79,58 +65,50 @@
               </div>
             </div>
 
-          <!-- =====================
-              GET IN TOUCH
-          ====================== -->
           {% when 'get_in_touch' %}
             <div class="footer__get-in-touch width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
               <div class="toggle-item">
-
                 <button class="footer__menu-title js-toggle-trigger">
                   <span class="btn-text">{{ block.settings.title }}</span>
                   <span class="t-down-icon hide-desktop hide-large-screens">
                     {% render 'theme-icon', icon: 'down-angle' %}
                   </span>
                 </button>
+
                 <div class="get-in-touch-links toggle-content">
-                  {% if block.settings.phone_text != blank %}
+
+                  {% if block.settings.phone_text != blank and settings.contact_phone_number != blank %}
                     <div class="icon-box phone-call">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'phone' %}</div>
                       <div class="inner-text">
                         <span class="text">{{ block.settings.phone_text }}</span>
-                        {% if settings.contact_phone_number != blank %}
-                          <a class="contact-link" href="tel:{{ settings.contact_phone_number }}">
-                            {{ settings.contact_phone_number }}
-                          </a>
-                        {% endif %}
+                        <a class="contact-link" href="tel:{{ settings.contact_phone_number }}">
+                          {{ settings.contact_phone_number }}
+                        </a>
                       </div>
                     </div>
                   {% endif %}
 
-                  {% if block.settings.whatsapp_text != blank %}
+                  {% if block.settings.whatsapp_text != blank and settings.social_whatsapp_link != blank %}
                     <div class="icon-box whatsapp-call">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'whatsapp' %}</div>
                       <div class="inner-text">
                         <span class="text">{{ block.settings.whatsapp_text }}</span>
-                        {% if settings.whatsapp_number != blank %}
-                          <a class="contact-link" href="{{ settings.social_whatsapp_link }}" target="_blank">
-                            {{ settings.whatsapp_number }}
-                          </a>
-                        {% endif %}
+                        <a class="contact-link" href="{{ settings.social_whatsapp_link }}" target="_blank">
+                          {{ settings.social_whatsapp_label | default: 'WhatsApp' }}
+                        </a>
                       </div>
                     </div>
                   {% endif %}
 
-                  {% if block.settings.email_text != blank %}
+                  {% if block.settings.email_text != blank and settings.contact_email != blank %}
                     <div class="icon-box email-send">
                       <div class="ref-icon">{% render 'theme-icon', icon: 'email' %}</div>
                       <div class="inner-text">
                         <span class="text">{{ block.settings.email_text }}</span>
-                        {% if settings.contact_email != blank %}
-                          <a class="contact-link" href="mailto:{{ settings.contact_email }}">
-                            {{ settings.contact_email }}
-                          </a>
-                        {% endif %}
+                        <a class="contact-link" href="mailto:{{ settings.contact_email }}">
+                          {{ settings.contact_email }}
+                        </a>
                       </div>
                     </div>
                   {% endif %}
@@ -139,9 +117,6 @@
               </div>
             </div>
 
-          <!-- =====================
-              EMPTY SPACE
-          ====================== -->
           {% when 'empty_space' %}
             <div class="empty-space width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}></div>
 
@@ -150,6 +125,54 @@
 
     </div>
   </div>
+
+  {% if section.settings.show_footer_bottom %}
+    <div class="footer__bottom">
+
+      {% if section.settings.show_copyright %}
+        <div class="footer__copyright">
+          {{ section.settings.copyright_text }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_payment_methods %}
+        <div class="footer__payments">
+          {% if section.settings.use_dynamic_payments %}
+            <div class="payment-icons">
+              {% for type in shop.enabled_payment_types %}
+                <span class="payment-icon">
+                  {{ type | payment_type_svg_tag }}
+                </span>
+              {% endfor %}
+            </div>
+          {% elsif section.settings.payment_image != blank %}
+            {{ section.settings.payment_image | image_url: width: 500 | image_tag }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_social_icons %}
+        <div class="footer__socials">
+          {% if settings.social_facebook_link != blank %}
+            <a href="{{ settings.social_facebook_link }}" target="_blank">{% render 'theme-icon', icon: 'facebook' %}</a>
+          {% endif %}
+          {% if settings.social_instagram_link != blank %}
+            <a href="{{ settings.social_instagram_link }}" target="_blank">{% render 'theme-icon', icon: 'instagram' %}</a>
+          {% endif %}
+          {% if settings.social_twitter_link != blank %}
+            <a href="{{ settings.social_twitter_link }}" target="_blank">{% render 'theme-icon', icon: 'twitter' %}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_extra_text and section.settings.extra_text != blank %}
+        <div class="footer__extra-text">
+          {{ section.settings.extra_text }}
+        </div>
+      {% endif %}
+
+    </div>
+  {% endif %}
 </footer>
 
 <script src="{{ 'footer.js' | asset_url }}" defer></script>
