@@ -196,6 +196,7 @@
 .footer__copyright {
   font-size: 1.2rem;
   color: rgb(var(--color-subtext));
+  display: inline-flex;
 }
 
 /* Payments */
