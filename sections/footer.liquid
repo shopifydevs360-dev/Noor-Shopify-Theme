@@ -129,9 +129,9 @@
   {% if section.settings.show_footer_bottom %}
     <div class="footer__bottom">
 
-      {% if section.settings.show_copyright %}
+      {% if section.settings.copyright_text %}
         <div class="footer__copyright">
-          {{ section.settings.copyright_text }}
+          <span class="copyright-text">© {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text }}</span>
         </div>
       {% endif %}
 
@@ -200,12 +200,6 @@
       "type": "checkbox",
       "id": "show_footer_bottom",
       "label": "Enable footer bottom",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_copyright",
-      "label": "Show copyright",
       "default": true
     },
     {
