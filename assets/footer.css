@@ -21,7 +21,7 @@
 @media (min-width: 991px) {
   .footer .footer__inner {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .footer .width-5 { width: 5%; }
