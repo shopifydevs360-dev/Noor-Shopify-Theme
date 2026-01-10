@@ -81,7 +81,7 @@
           {% when 'get_in_touch' %}
             <div class="footer__get-in-touch width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}>
 
-              <div>
+              <div class="toggle-item">
                 <button class="get-in-touch-title footer__menu-title js-toggle-trigger">
                   <span class="btn-text">{{ block.settings.title }}</span>
                   <span class="t-down-icon hide-desktop hide-large-screens">{%- render 'theme-icon', icon: 'down-angle' -%}</span>
@@ -89,21 +89,21 @@
 
                 <div class="get-in-touch-links toggle-content">
                   <div class="icon-box phone-call">
-                    <div class="ref-icon"></div>
+                    <div class="ref-icon">{%- render 'theme-icon', icon: 'phone' -%}</div>
                     <div>
                       <div class="text"></div>
                       <a class="contact-link" href=""></a>
                     </div>
                   </div>
                   <div class="icon-box whatapp-call">
-                    <div class="ref-icon"></div>
+                    <div class="ref-icon">{%- render 'theme-icon', icon: 'down-angle' -%}</div>
                     <div>
                       <div class="text"></div>
                       <a class="contact-link" href=""></a>
                     </div>
                   </div>
                   <div class="icon-box email-send">
-                    <div class="ref-icon"></div>
+                    <div class="ref-icon">{%- render 'theme-icon', icon: 'down-angle' -%}</div>
                     <div>
                       <div class="text"></div>
                       <a class="contact-link" href=""></a>
