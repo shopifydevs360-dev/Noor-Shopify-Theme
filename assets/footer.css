@@ -100,6 +100,7 @@
     border: none;
     padding: 0;
     text-transform: uppercase;
+    width: 100%;
     margin: 0.5rem;
 }
 
@@ -126,7 +127,6 @@
     transform: translateY(0);
   }
   .footer .footer__menu-title {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
