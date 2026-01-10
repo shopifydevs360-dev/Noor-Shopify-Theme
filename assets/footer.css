@@ -124,7 +124,7 @@
     overflow: hidden;
     max-height: 0;
     transform: translateY(-6px);
-    transition: max-height .5s cubic-bezier(0,0,.002,1), opacity .3s ease, transform .3s ease;
+    transition: all .6s cubic-bezier(.72,0,.28,1);
   }
 
  .footer .toggle-content.content-open {
