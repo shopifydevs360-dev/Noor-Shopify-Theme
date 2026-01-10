@@ -126,6 +126,27 @@
           "additional_color_1": "#ff0000",
           "additional_color_2": "#00ff00"
         }
+      },
+      "scheme-463aa170-38a9-48ec-ba18-a79d8cec742f": {
+        "settings": {
+          "background": "#f3f3f4",
+          "background_secondary": "#222222",
+          "background_gradient": "",
+          "text": "#222222",
+          "subtext": "#222222",
+          "heading_text": "#222222",
+          "link_color": "#222222",
+          "link_hover_color": "#666666",
+          "price_sale": "#e02b2b",
+          "price_regular": "#666666",
+          "form_field": "#ffffff",
+          "form_field_label": "#222222",
+          "tooltip": "#222222",
+          "tooltip_label": "#ffffff",
+          "border": "#eeeeee",
+          "additional_color_1": "#ff0000",
+          "additional_color_2": "#00ff00"
+        }
       }
     }
   }
