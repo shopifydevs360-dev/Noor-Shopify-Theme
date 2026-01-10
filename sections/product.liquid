@@ -1,52 +1,187 @@
-{% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
+<section class="product-page full-width">
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
-{% endcomment %}
+  <div class="product-layout">
 
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
+    <!-- =====================
+         LEFT: PRODUCT MEDIA
+    ====================== -->
+    <div class="product-media">
 
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
+      {% assign featured_media = product.featured_media %}
+      {% assign media_count = product.media.size %}
 
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+      <!-- MAIN IMAGE / VIDEO -->
+      <div class="product-media__main">
+        {% if featured_media.media_type == 'video' %}
+          {{ featured_media | video_tag: controls: true, autoplay: false }}
+        {% else %}
+          <img
+            src="{{ featured_media | image_url: width: 1200 }}"
+            alt="{{ featured_media.alt | escape }}"
+            class="js-zoom-image"
+            loading="eager">
+        {% endif %}
+      </div>
 
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
-          {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
+      <!-- SECOND ROW: VIDEO (IF EXISTS) -->
+      {% assign has_video = false %}
+      {% for media in product.media %}
+        {% if media.media_type == 'video' %}
+          {% assign has_video = true %}
+        {% endif %}
       {% endfor %}
-    </select>
 
-    <input type="text" name="quantity" min="1" value="1">
+      {% if has_video %}
+        <div class="product-media__video-row">
+          {% for media in product.media %}
+            {% if media.media_type == 'video' %}
+              {{ media | video_tag: controls: true }}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
-</div>
+      <!-- THIRD ROW: IMAGE SLIDER -->
+      {% if media_count > 1 %}
+        <div class="product-media__thumbs swiper">
+          <div class="swiper-wrapper">
+
+            {% for media in product.media %}
+              {% if media.media_type == 'image' %}
+                <div class="swiper-slide">
+                  <img
+                    src="{{ media | image_url: width: 400 }}"
+                    alt="{{ media.alt | escape }}"
+                    data-full="{{ media | image_url: width: 1200 }}"
+                    class="js-thumb">
+                </div>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+
+    <!-- =====================
+         RIGHT: PRODUCT INFO
+    ====================== -->
+    <div class="product-info">
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+
+          <!-- TITLE + PRICE -->
+          {% when 'title_price' %}
+            <div class="product-block" {{ block.shopify_attributes }}>
+              <h1>{{ product.title }}</h1>
+              <div class="product-price">
+                {{ product.price | money }}
+              </div>
+            </div>
+
+          <!-- REVIEW COUNT -->
+          {% when 'reviews' %}
+            <div class="product-block" {{ block.shopify_attributes }}>
+              <div class="product-reviews">
+                ⭐⭐⭐⭐⭐ <span>({{ product.metafields.reviews.count | default: 0 }})</span>
+              </div>
+            </div>
+
+          <!-- ADD TO CART FORM -->
+          {% when 'buy_form' %}
+            <div class="product-block" {{ block.shopify_attributes }}>
+              {% form 'product', product %}
+
+                <!-- VARIANTS -->
+                {% unless product.has_only_default_variant %}
+                  {% for option in product.options_with_values %}
+                    <fieldset class="variant-group">
+                      <legend>{{ option.name }}</legend>
+                      <div class="variant-buttons">
+                        {% for value in option.values %}
+                          <label class="variant-btn">
+                            <input
+                              type="radio"
+                              name="options[{{ option.name }}]"
+                              value="{{ value }}"
+                              {% if option.selected_value == value %}checked{% endif %}>
+                            <span>{{ value }}</span>
+                          </label>
+                        {% endfor %}
+                      </div>
+                    </fieldset>
+                  {% endfor %}
+                {% endunless %}
+
+                <!-- QUANTITY DROPDOWN -->
+                <label>
+                  Quantity
+                  <select name="quantity">
+                    {% for i in (1..10) %}
+                      <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+                <button type="submit" class="btn btn--primary">
+                  Add to cart
+                </button>
+
+              {% endform %}
+            </div>
+
+          <!-- SHORT DESCRIPTION -->
+          {% when 'short_description' %}
+            <div class="product-block" {{ block.shopify_attributes }}>
+              {{ product.metafields.custom.short_description }}
+            </div>
+
+          <!-- FULL DESCRIPTION -->
+          {% when 'description' %}
+            <div class="product-block" {{ block.shopify_attributes }}>
+              {{ product.description }}
+            </div>
+
+          <!-- ACCORDION -->
+          {% when 'accordion' %}
+            <div class="product-block accordion" {{ block.shopify_attributes }}>
+              <details>
+                <summary>{{ block.settings.title }}</summary>
+                <div class="accordion-content">
+                  {{ block.settings.content }}
+                </div>
+              </details>
+            </div>
+
+        {% endcase %}
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section>
 
 {% schema %}
 {
-  "name": "t:general.product",
+  "name": "Main product",
   "settings": [],
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  }
+  "blocks": [
+    { "type": "title_price", "name": "Title & price", "limit": 1 },
+    { "type": "reviews", "name": "Reviews", "limit": 1 },
+    { "type": "buy_form", "name": "Add to cart", "limit": 1 },
+    { "type": "short_description", "name": "Short description" },
+    { "type": "description", "name": "Description" },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "content", "label": "Content" }
+      ]
+    }
+  ]
 }
 {% endschema %}
