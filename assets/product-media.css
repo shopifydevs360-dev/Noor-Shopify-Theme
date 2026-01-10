@@ -8,10 +8,11 @@
   cursor: pointer;
 }
 .product-media video {
-  width: 100%;
-  height: auto;
-  max-height: 95vh;
-  display: block;
-  object-fit: cover;
+    width: 100%;
+    height: auto;
+    max-height: 94vh;
+    display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
