@@ -117,7 +117,7 @@
    MOBILE ACCORDION
 ===================== */
 @media (max-width: 991px) {
-  .footer__newsletter {
+  .footer .footer__newsletter {
     margin-bottom: 3rem;
 }
  .footer .toggle-content {
@@ -148,21 +148,27 @@
 /* =====================
    Get in touch
 ===================== */
-.footer__get-in-touch .icon-box{
+.footer .footer__get-in-touch .icon-box{
   display: flex;
   gap: 0.8rem;
   margin-bottom: 1.8rem;
 }
-.footer__get-in-touch .icon-box .text{
+.footer .footer__get-in-touch .icon-box .text{
   display: block;
   margin-bottom: 0.8rem;
 }
-.footer__get-in-touch .icon-box a{
+.footer .footer__get-in-touch .icon-box a{
   border-bottom: 1px solid #222222;
 }
-.footer__get-in-touch .icon-box .theme-icon {
+.footer .footer__get-in-touch .icon-box .theme-icon {
     width: 1.2rem;
     padding-top: 0.3rem;
+}
+/* =====================
+   Footer Bottom
+===================== */
+.footer .footer__copyright {
+    display: inline-flex;
 }
 /* =====================
    Sidebar Spaceing
