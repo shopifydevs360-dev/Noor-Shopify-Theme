@@ -44,11 +44,17 @@
     {% if has_video %}
       <div class="product-media__video-row">
         {% for media in product.media %}
-          {% if media.media_type contains 'video' %}
+            {% if media.media_type contains 'video' %}
             <div class="product-media__video">
-              {{ media | video_tag: controls: true }}
+                {{ media | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                playsinline: true
+                }}
             </div>
-          {% endif %}
+            {% endif %}
         {% endfor %}
       </div>
     {% endif %}
