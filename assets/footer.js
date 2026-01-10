@@ -1,6 +1,6 @@
 document.addEventListener('click', (e) => {
   const trigger = e.target.closest('.js-toggle-trigger');
-  if (!trigger || window.innerWidth > 991) return;
+  if (!trigger || window.innerWidth > 771) return;
 
   const wrapper = trigger.parentElement;
   if (!wrapper) return;
