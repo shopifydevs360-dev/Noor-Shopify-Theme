@@ -129,9 +129,10 @@
   {% if section.settings.show_footer_bottom %}
     <div class="footer__bottom">
 
-      {% if section.settings.copyright_text %}
+      {% if section.settings.copyright_text != blank %}
         <div class="footer__copyright">
-          <span class="copyright-text">© {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text }}</span>
+          © {{ 'now' | date: '%Y' }}
+          {{ section.settings.copyright_text }}
         </div>
       {% endif %}
 
@@ -154,13 +155,13 @@
       {% if section.settings.show_social_icons %}
         <div class="footer__socials">
           {% if settings.social_facebook_link != blank %}
-            <a href="{{ settings.social_facebook_link }}" target="_blank">{% render 'theme-icon', icon: 'facebook' %}</a>
+            <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'theme-icon', icon: 'facebook' %}</a>
           {% endif %}
           {% if settings.social_instagram_link != blank %}
-            <a href="{{ settings.social_instagram_link }}" target="_blank">{% render 'theme-icon', icon: 'instagram' %}</a>
+            <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">{% render 'theme-icon', icon: 'instagram' %}</a>
           {% endif %}
           {% if settings.social_twitter_link != blank %}
-            <a href="{{ settings.social_twitter_link }}" target="_blank">{% render 'theme-icon', icon: 'twitter' %}</a>
+            <a href="{{ settings.social_twitter_link }}" target="_blank" rel="noopener" aria-label="Twitter">{% render 'theme-icon', icon: 'twitter' %}</a>
           {% endif %}
         </div>
       {% endif %}
