@@ -56,26 +56,45 @@
     <!-- =====================
          IMAGE THUMB SLIDER
     ====================== -->
-    {% if media_count > 1 %}
-      <div class="product-media__thumbs swiper">
-        <div class="swiper-wrapper">
+{% if media_count > 1 %}
+  <div class="product-media__thumbs swiper">
+    <div class="swiper-wrapper">
 
-          {% for media in product.media %}
-            {% if media.media_type == 'image' %}
-              <div class="swiper-slide">
-                <img
-                  src="{{ media | image_url: width: 400 }}"
-                  alt="{{ media.alt | escape }}"
-                  data-full="{{ media | image_url: width: 1200 }}"
-                  class="js-thumb"
-                  loading="lazy">
-              </div>
-            {% endif %}
-          {% endfor %}
+      {%- comment -%} OTHER IMAGES FIRST (EXCEPT FEATURED) {%- endcomment -%}
+      {% for media in product.media %}
+        {% if media.media_type == 'image' and media.id != featured_media.id %}
+          <div class="swiper-slide">
+            <img
+              src="{{ media | image_url: width: 1200 }}"
+              alt="{{ media.alt | escape }}"
+              data-full="{{ media | image_url: width: 1200 }}"
+              class="js-thumb">
+          </div>
+        {% endif %}
+      {% endfor %}
 
+      {%- comment -%} FEATURED IMAGE LAST {%- endcomment -%}
+      {% if featured_media.media_type == 'image' %}
+        <div class="swiper-slide">
+          <img
+            src="{{ featured_media | image_url: width: 1200 }}"
+            alt="{{ featured_media.alt | escape }}"
+            data-full="{{ featured_media | image_url: width: 1200 }}"
+            class="js-thumb is-featured">
         </div>
-      </div>
-    {% endif %}
+      {% endif %}
+
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- PAGINATION -->
+    <div class="swiper-pagination"></div>
+  </div>
+{% endif %}
+
 
   {%- endif -%}
 
