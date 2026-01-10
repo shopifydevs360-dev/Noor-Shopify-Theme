@@ -86,9 +86,8 @@
   max-width: 25rem;
 }
 .footer .newsletter__submit:hover {
-    background: #ffffff;
-    color: #231f20;
-    border-color: #ffffff;
+  background: #ffffff;
+  color: #231f20;
 }
 /* Menu */
 .footer .footer__menu-title {
