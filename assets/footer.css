@@ -116,7 +116,7 @@
 /* =====================
    MOBILE ACCORDION
 ===================== */
-@media (max-width: 9911px) {
+@media (max-width: 991px) {
   .footer__newsletter {
     margin-bottom: 3rem;
 }
