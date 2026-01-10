@@ -45,12 +45,11 @@
             "menu": "customer-care"
           }
         },
-        "menu_VQ7rpJ": {
-          "type": "menu",
+        "get_in_touch_GMYwnU": {
+          "type": "get_in_touch",
           "settings": {
-            "block_width": "15",
-            "title": "Footer menu",
-            "menu": "main-menu"
+            "block_width": "33",
+            "title": "Get in Touch"
           }
         }
       },
@@ -59,7 +58,7 @@
         "empty_space_HXhE9H",
         "menu_im6XPD",
         "menu_gkXTYr",
-        "menu_VQ7rpJ"
+        "get_in_touch_GMYwnU"
       ],
       "settings": {
         "footer_color_scheme": "",
