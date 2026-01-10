@@ -116,7 +116,7 @@
 /* =====================
    MOBILE ACCORDION
 ===================== */
-@media (max-width: 771px) {
+@media (max-width: 9911px) {
  .footer .toggle-content {
     overflow: hidden;
     max-height: 0;
@@ -129,16 +129,12 @@
     transform: translateY(0);
   }
   .footer .footer__menu-title {
+    width: 100%;
+    max-width: 664px;
     border-bottom: 2px solid #222222;
   }
 }
 
-@media (max-width: 991px){
-    .footer .footer__menu-title {
-    width: 100%;
-    max-width: 664px;
-  }
-}
 /* =====================
    Sidebar Spaceing
 ===================== */
