@@ -1,8 +1,6 @@
     <div class="product-media">
-
       {% assign featured_media = product.featured_media %}
       {% assign media_count = product.media.size %}
-
       <!-- MAIN IMAGE / VIDEO -->
       <div class="product-media__main">
         {% if featured_media.media_type == 'video' %}
@@ -15,7 +13,6 @@
             loading="eager">
         {% endif %}
       </div>
-
       <!-- SECOND ROW: VIDEO (IF EXISTS) -->
       {% assign has_video = false %}
       {% for media in product.media %}
@@ -54,5 +51,4 @@
           </div>
         </div>
       {% endif %}
-
     </div>
