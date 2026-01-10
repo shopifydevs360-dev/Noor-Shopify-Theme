@@ -1,4 +1,4 @@
 new Swiper('.product-media__thumbs', {
-  slidesPerView: 4,
+  slidesPerView: 1,
   spaceBetween: 10,
 });
