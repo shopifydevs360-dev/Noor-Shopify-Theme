@@ -48,22 +48,22 @@
           </select>
         </label>
       </div>
-    </div>
 
-    <!-- ADD TO CART -->
-    <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
-      <button
-        type="submit"
-        class="btn btn--primary btn-add-to-cart"
-        data-role="add-to-cart"
-        {% unless current_variant.available %}disabled{% endunless %}
-      >
-        {% if current_variant.available %}
-          Add to cart
-        {% else %}
-          Out of stock
-        {% endif %}
-      </button>
+      <!-- ADD TO CART -->
+      <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
+        <button
+          type="submit"
+          class="btn btn--primary btn-add-to-cart"
+          data-role="add-to-cart"
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          {% if current_variant.available %}
+            Add to cart
+          {% else %}
+            Out of stock
+          {% endif %}
+        </button>
+      </div>
     </div>
 
     <!-- BUY / NOTIFY -->
