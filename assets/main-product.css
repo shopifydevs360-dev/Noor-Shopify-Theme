@@ -66,9 +66,7 @@
   text-decoration: line-through;
   color: rgb(var(--color-subtext));
 }
-.quantity-selector {
-    display: inline;
-}
+
 .variant-selector{
   margin-bottom: 1rem;
 }
