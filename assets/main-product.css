@@ -17,7 +17,12 @@
 /* ============================
    PRODUCT TITLE & PRICE
 ============================ */
-
+.hide-price{
+  display: none;
+}
+.show-price{
+  display: block;
+}
 .product-title-price {
   display: flex;
   flex-direction: column;
