@@ -2,34 +2,51 @@
 
   {% form 'product', product %}
 
-    <!-- REQUIRED -->
+    <!-- REQUIRED: VARIANT ID -->
     <input
       type="hidden"
       name="id"
       value="{{ product.selected_or_first_available_variant.id }}"
     >
 
+    <!-- VARIANTS -->
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
-        <fieldset class="variant-group">
+        <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
           <legend>{{ option.name }}</legend>
 
-          {% for value in option.values %}
-            <label>
-              <input
-                type="radio"
-                name="options[{{ option.name }}]"
-                value="{{ value }}"
-                {% if option.selected_value == value %}checked{% endif %}
-              >
-              {{ value }}
-            </label>
-          {% endfor %}
+          <div class="variant-buttons">
+            {% for value in option.values %}
+              <label class="variant-btn">
+                <input
+                  type="radio"
+                  name="options[{{ option.name }}]"
+                  value="{{ value }}"
+                  {% if option.selected_value == value %}checked{% endif %}
+                >
+                <span>{{ value }}</span>
+              </label>
+            {% endfor %}
+          </div>
         </fieldset>
       {% endfor %}
     {% endunless %}
 
-    <button type="submit">Add to cart</button>
+    <!-- QUANTITY -->
+    <label class="product-quantity">
+      Quantity
+      <select name="quantity">
+        {% for i in (1..10) %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <!-- ADD TO CART -->
+    <button type="submit" class="btn btn--primary">
+      Add to cart
+    </button>
 
   {% endform %}
+
 </div>
