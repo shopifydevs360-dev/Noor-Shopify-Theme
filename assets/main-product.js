@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   initVariantPriceUpdate();
   initMainProductCart();
+  initVariantStockUI(); // ✅ ADDITIVE ONLY
 });
 
 /* =================================
-   VARIANT PRICE UPDATE (YOUR CODE)
+   VARIANT PRICE UPDATE (WORKING)
 ================================= */
 function initVariantPriceUpdate() {
   const root = document.querySelector('.main-product');
@@ -19,7 +20,7 @@ function initVariantPriceUpdate() {
     return;
   }
 
-  // Show initial price
+  // Initial price
   togglePrice(variantInput.value);
 
   form.addEventListener('change', () => {
@@ -36,10 +37,9 @@ function initVariantPriceUpdate() {
 
     if (!variant) return;
 
-    // Update variant ID
+    // 🔑 REQUIRED – DO NOT TOUCH
     variantInput.value = variant.id;
 
-    // Toggle price
     togglePrice(variant.id);
   });
 
@@ -57,7 +57,7 @@ function initVariantPriceUpdate() {
 }
 
 /* =================================
-   MAIN PRODUCT – CART HANDLER
+   MAIN PRODUCT – CART HANDLER (WORKING)
 ================================= */
 function initMainProductCart() {
   const root = document.querySelector('.main-product');
@@ -71,51 +71,109 @@ function initMainProductCart() {
 
   const behavior = actions.dataset.cartBehavior;
 
-  /* -----------------------------
-     ADD TO CART
-  ----------------------------- */
+  /* ADD TO CART */
   form.addEventListener('submit', e => {
+    // 🔑 IMPORTANT: do not block redirect
+    if (behavior === 'redirect') return;
+
     e.preventDefault();
-
-    if (behavior === 'redirect') {
-      form.submit();
-      return;
-    }
-
-    const formData = new FormData(form);
 
     fetch('/cart/add.js', {
       method: 'POST',
-      body: formData
+      body: new FormData(form)
     })
       .then(res => res.json())
       .then(() => {
         updateCartCount();
-
-        if (behavior === 'ajax_drawer') {
-          openBagDrawer();
-        }
+        if (behavior === 'ajax_drawer') openBagDrawer();
       })
       .catch(err => console.error(err));
   });
 
-  /* -----------------------------
-     BUY IT NOW
-  ----------------------------- */
+  /* BUY IT NOW */
   const buyNowBtn = root.querySelector('.btn-buy-now');
   if (buyNowBtn) {
     buyNowBtn.addEventListener('click', () => {
-      const formData = new FormData(form);
-
       fetch('/cart/add.js', {
         method: 'POST',
-        body: formData
+        body: new FormData(form)
       })
         .then(() => {
           window.location.href = '/checkout';
         })
         .catch(err => console.error(err));
     });
+  }
+}
+
+/* =================================
+   VARIANT STOCK UI (SAFE ADD-ON)
+================================= */
+function initVariantStockUI() {
+  const root = document.querySelector('.main-product');
+  if (!root || !window.product) return;
+
+  const form = root.querySelector('.product-form');
+
+  const addBtn = root.querySelector('[data-role="add-to-cart"]');
+  const buyBtn = root.querySelector('[data-role="buy-now"]');
+  const notifyBtn = root.querySelector('[data-role="notify"]');
+
+  if (!form || !addBtn || !buyBtn || !notifyBtn) return;
+
+  // Initial UI
+  updateUI(getCurrentVariant());
+
+  // On variant change
+  form.addEventListener('change', () => {
+    const variant = getCurrentVariant();
+    if (!variant) return;
+
+    // ⚠️ DO NOT TOUCH variantInput here
+    updateUI(variant);
+  });
+
+  function getCurrentVariant() {
+    const selectedOptions = [];
+
+    form.querySelectorAll('.variant-group').forEach(group => {
+      const checked = group.querySelector('input[type="radio"]:checked');
+      if (checked) selectedOptions.push(checked.value);
+    });
+
+    return window.product.variants.find(v =>
+      v.options.every((opt, i) => opt === selectedOptions[i])
+    );
+  }
+
+  function updateUI(variant) {
+    if (!variant) return;
+
+    const isOut = variant.inventory_quantity <= 0;
+    const canPreorder = variant.inventory_policy === 'continue';
+
+    // RESET (NO cart logic here)
+    addBtn.disabled = false;
+    addBtn.textContent = 'Add to cart';
+    buyBtn.textContent = 'Buy it now';
+    buyBtn.classList.remove('hide');
+    notifyBtn.classList.add('hide');
+
+    // PRE-ORDER
+    if (isOut && canPreorder) {
+      addBtn.textContent = 'Pre-order';
+      buyBtn.textContent = 'Pre-order';
+      return;
+    }
+
+    // OUT OF STOCK (DENY)
+    if (isOut && !canPreorder) {
+      addBtn.textContent = 'Out of stock';
+      addBtn.disabled = true;
+
+      buyBtn.classList.add('hide');
+      notifyBtn.classList.remove('hide');
+    }
   }
 }
 
@@ -133,14 +191,9 @@ function updateCartCount() {
 }
 
 /* =================================
-   OPEN BAG DRAWER (EXISTING SYSTEM)
+   OPEN BAG DRAWER
 ================================= */
 function openBagDrawer() {
-  const trigger = document.querySelector(
-    '[data-trigger-section="bag-drawer"]'
-  );
-
-  if (trigger) {
-    trigger.click();
-  }
+  const trigger = document.querySelector('[data-trigger-section="bag-drawer"]');
+  if (trigger) trigger.click();
 }
