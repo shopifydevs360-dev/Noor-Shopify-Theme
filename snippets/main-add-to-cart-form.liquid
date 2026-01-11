@@ -24,6 +24,7 @@
                   type="radio"
                   name="options[{{ option.name }}]"
                   value="{{ value }}"
+                  {% if option.selected_value == value %}checked{% endif %}
                 >
                 <span>{{ value }}</span>
               </label>
