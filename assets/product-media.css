@@ -5,14 +5,14 @@
 /* =====================
    BASE MEDIA
 ===================== */
-.product-media__main .product-media img,
-.product-media__main .product-media video {
+.product-media img,
+.product-media video {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.product-media__main .product-media video {
+.product-media video {
   max-height: 94vh;
   object-fit: cover;
   object-position: center;
@@ -21,13 +21,13 @@
 /* =====================
    INLINE PRODUCT SLIDER
 ===================== */
-.product-media__main .product-media__thumbs {
+.product-media__thumbs {
   position: relative;
   width: 100%;
 }
 
 /* Pagination — bottom center */
-.product-media__main .product-media__thumbs .swiper-pagination {
+.product-media__thumbs .swiper-pagination {
   position: absolute;
   bottom: 1rem;
   left: 50%;
@@ -37,7 +37,7 @@
   z-index: 5;
 }
 
-.product-media__main .product-media__thumbs .swiper-pagination-bullet {
+.product-media__thumbs .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   background: rgba(0, 0, 0, 0.35);
@@ -45,14 +45,14 @@
   transition: all 0.3s ease;
 }
 
-.product-media__main .product-media__thumbs .swiper-pagination-bullet-active {
+.product-media__thumbs .swiper-pagination-bullet-active {
   background: rgba(0, 0, 0, 0.85);
   transform: scale(1.2);
 }
 
 /* Navigation — right middle */
-.product-media__main .product-media__thumbs .swiper-button-prev,
-.product-media__main .product-media__thumbs .swiper-button-next {
+.product-media__thumbs .swiper-button-prev,
+.product-media__thumbs .swiper-button-next {
   position: absolute;
   right: 1rem;
   left: auto;
@@ -66,25 +66,25 @@
   transition: all 0.3s ease;
 }
 
-.product-media__main .product-media__thumbs .swiper-button-prev {
+.product-media__thumbs .swiper-button-prev {
   top: 50%;
   transform: translateY(-120%);
 }
 
-.product-media__main .product-media__thumbs .swiper-button-next {
+.product-media__thumbs .swiper-button-next {
   top: 50%;
   transform: translateY(20%);
 }
 
-.product-media__main .product-media__thumbs .swiper-button-prev:hover {
+.product-media__thumbs .swiper-button-prev:hover {
   transform: scale(1.05) translateY(-120%);
 }
 
-.product-media__main .product-media__thumbs .swiper-button-next:hover {
+.product-media__thumbs .swiper-button-next:hover {
   transform: scale(1.05) translateY(20%);
 }
 
-.product-media__main .product-media__thumbs .swiper-button-prev::after,
+.product-media__thumbs .swiper-button-prev::after,
 .product-media__thumbs .swiper-button-next::after {
   font-size: 14px;
   font-weight: bold;
