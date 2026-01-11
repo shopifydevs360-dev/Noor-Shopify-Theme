@@ -1,6 +1,15 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
 {{ 'product-media.css' | asset_url | stylesheet_tag }}
-<section class="product-page full-width">
+{%- liquid
+  assign f_outer_classes = 'main-product'
+  assign f_outer_classes = f_outer_classes | append: ' section-' | append: section.id | append: '-padding'
+  assign f_outer_classes = f_outer_classes | append: ' m-color-' | append: section.settings.footer_color_scheme
+  assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.custom_class
+  assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
+  assign f_inner_classes = ''
+  assign f_inner_classes = f_inner_classes | append: ' ' | append: section.settings.container_width
+-%}
+<section class="main-product">
 
   <div class="product-layout">
 
