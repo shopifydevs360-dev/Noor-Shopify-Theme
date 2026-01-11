@@ -3,29 +3,27 @@
     {{ product.title }}
   </h1>
 
-  <div class="product-price js-variant-price-update">
+  <div class="product-price js-variant-price">
 
-    {% if product.compare_at_price > product.price %}
-      <!-- SALE PRICE -->
-      <span
-        class="price price--sale"
-        data-price-type="sale">
-        {{ product.price | money }}
-      </span>
-      <span
-        class="price price--compare"
-        data-price-type="compare">
-        {{ product.compare_at_price | money }}
-      </span>
-
-    {% else %}
-      <!-- REGULAR PRICE -->
-      <span
-        class="price price--regular"
-        data-price-type="regular">
-        {{ product.price | money }}
-      </span>
-    {% endif %}
+    {% for variant in product.variants %}
+      <div
+        class="variant-price-item hide-price"
+        data-variant-id="{{ variant.id }}"
+      >
+        {% if variant.compare_at_price > variant.price %}
+          <span class="price price--sale">
+            {{ variant.price | money }}
+          </span>
+          <span class="price price--compare">
+            {{ variant.compare_at_price | money }}
+          </span>
+        {% else %}
+          <span class="price price--regular">
+            {{ variant.price | money }}
+          </span>
+        {% endif %}
+      </div>
+    {% endfor %}
 
   </div>
 </div>
