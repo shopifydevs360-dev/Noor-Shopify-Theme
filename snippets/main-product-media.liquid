@@ -6,6 +6,13 @@
 
   assign featured_media = product.featured_media
   assign media_count = product.media.size
+
+  assign loading = 'lazy'
+  assign fetchpriority = 'low'
+  if index == 1 and section_index < 2 or enable_preload_image
+    assign loading = 'eager'
+    assign fetchpriority = 'high'
+  endif
 -%}
 
 <div class="product-media">
@@ -40,7 +47,7 @@
         src="{{ featured_media | image_url: width: 360 }}"
         sizes="(min-width: 1024px) 50vw, 100vw"
         alt="{{ featured_media.alt | escape }}"
-        loading="eager"
+        loading="lazy"
         fetchpriority="high"
         class="js-open-lightbox"
         width="{{ featured_media.width }}"
