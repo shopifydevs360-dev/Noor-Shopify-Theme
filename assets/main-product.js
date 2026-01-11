@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =================================
-   VARIANT PRICE + STOCK
+   VARIANT PRICE UPDATE (YOUR CODE)
 ================================= */
 function initVariantPriceUpdate() {
   const root = document.querySelector('.main-product');
@@ -14,13 +14,13 @@ function initVariantPriceUpdate() {
   const priceItems = root.querySelectorAll('.variant-price-item');
   const variantInput = form?.querySelector('input[name="id"]');
 
-  const addToCartBtn = root.querySelector('[data-role="add-to-cart"]');
-  const buyNowBtn = root.querySelector('[data-role="buy-now"]');
-  const notifyBtn = root.querySelector('[data-role="notify"]');
+  if (!form || !priceItems.length || !window.product || !variantInput) {
+    console.warn('Variant price update: missing elements');
+    return;
+  }
 
-  if (!form || !window.product || !variantInput || !addToCartBtn) return;
-
-  updateUI(variantInput.value);
+  // Show initial price
+  togglePrice(variantInput.value);
 
   form.addEventListener('change', () => {
     const selectedOptions = [];
@@ -36,49 +36,23 @@ function initVariantPriceUpdate() {
 
     if (!variant) return;
 
+    // Update variant ID
     variantInput.value = variant.id;
-    updateUI(variant.id);
+
+    // Toggle price
+    togglePrice(variant.id);
   });
 
-  function updateUI(variantId) {
-    const variant = window.product.variants.find(v => v.id == variantId);
-    if (!variant) return;
-
-    // PRICE
+  function togglePrice(variantId) {
     priceItems.forEach(item => {
       if (item.dataset.variantId === String(variantId)) {
-        item.classList.add('show-price');
         item.classList.remove('hide-price');
+        item.classList.add('show-price');
       } else {
-        item.classList.remove('show-price');
         item.classList.add('hide-price');
+        item.classList.remove('show-price');
       }
     });
-
-    // ADD TO CART
-    if (variant.inventory_quantity > 0) {
-      addToCartBtn.textContent = 'Add to cart';
-      addToCartBtn.disabled = false;
-    } else {
-      addToCartBtn.textContent = 'Out of stock';
-      addToCartBtn.disabled = true;
-    }
-
-    // BUY NOW / PREORDER / NOTIFY
-    if (variant.inventory_quantity > 0) {
-      buyNowBtn.textContent = 'Buy it now';
-      buyNowBtn.classList.remove('hide');
-      notifyBtn.classList.add('hide');
-
-    } else if (variant.inventory_policy === 'continue') {
-      buyNowBtn.textContent = 'Pre-order';
-      buyNowBtn.classList.remove('hide');
-      notifyBtn.classList.add('hide');
-
-    } else {
-      buyNowBtn.classList.add('hide');
-      notifyBtn.classList.remove('hide');
-    }
   }
 }
 
@@ -97,10 +71,11 @@ function initMainProductCart() {
 
   const behavior = actions.dataset.cartBehavior;
 
+  /* -----------------------------
+     ADD TO CART
+  ----------------------------- */
   form.addEventListener('submit', e => {
     e.preventDefault();
-
-    if (form.querySelector('[data-role="add-to-cart"]').disabled) return;
 
     if (behavior === 'redirect') {
       form.submit();
@@ -109,29 +84,43 @@ function initMainProductCart() {
 
     const formData = new FormData(form);
 
-    fetch('/cart/add.js', { method: 'POST', body: formData })
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
+    })
       .then(res => res.json())
       .then(() => {
         updateCartCount();
-        if (behavior === 'ajax_drawer') openBagDrawer();
-      });
+
+        if (behavior === 'ajax_drawer') {
+          openBagDrawer();
+        }
+      })
+      .catch(err => console.error(err));
   });
 
-  const buyNowBtn = root.querySelector('[data-role="buy-now"]');
+  /* -----------------------------
+     BUY IT NOW
+  ----------------------------- */
+  const buyNowBtn = root.querySelector('.btn-buy-now');
   if (buyNowBtn) {
     buyNowBtn.addEventListener('click', () => {
-      if (buyNowBtn.classList.contains('hide')) return;
-
       const formData = new FormData(form);
 
-      fetch('/cart/add.js', { method: 'POST', body: formData })
-        .then(() => window.location.href = '/checkout');
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+        .then(() => {
+          window.location.href = '/checkout';
+        })
+        .catch(err => console.error(err));
     });
   }
 }
 
 /* =================================
-   CART COUNT
+   CART COUNT UPDATE
 ================================= */
 function updateCartCount() {
   fetch('/cart.js')
@@ -144,9 +133,14 @@ function updateCartCount() {
 }
 
 /* =================================
-   BAG DRAWER
+   OPEN BAG DRAWER (EXISTING SYSTEM)
 ================================= */
 function openBagDrawer() {
-  const trigger = document.querySelector('[data-trigger-section="bag-drawer"]');
-  if (trigger) trigger.click();
+  const trigger = document.querySelector(
+    '[data-trigger-section="bag-drawer"]'
+  );
+
+  if (trigger) {
+    trigger.click();
+  }
 }
