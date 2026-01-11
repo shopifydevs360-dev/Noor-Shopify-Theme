@@ -6,25 +6,19 @@
   <div class="product-price">
 
     {% if product.compare_at_price > product.price %}
-      <!-- SALE PRICE -->
-      <span
-        class="price price--sale variant-price-update"
-        data-price-type="sale">
+      <span class="price price--sale variant-price-update">
         {{ product.price | money }}
       </span>
 
-      <span
-        class="price price--compare variant-compare-update"
-        data-price-type="compare">
+      <span class="price price--compare variant-compare-update">
         {{ product.compare_at_price | money }}
       </span>
-
     {% else %}
-      <!-- REGULAR PRICE -->
-      <span
-        class="price price--regular variant-price-update"
-        data-price-type="regular">
+      <span class="price price--regular variant-price-update">
         {{ product.price | money }}
+      </span>
+
+      <span class="price price--compare variant-compare-update" style="display:none;">
       </span>
     {% endif %}
 
