@@ -1,1 +1,26 @@
-product-title-price
+<div class="product-block product-title-price" {{ block.shopify_attributes }}>
+  <h1 class="product-title">
+    {{ product.title }}
+  </h1>
+
+  <div class="product-price">
+
+    {% if product.compare_at_price > product.price %}
+      <!-- SALE PRICE -->
+      <span class="price price--sale">
+        {{ product.price | money }}
+      </span>
+
+      <span class="price price--compare">
+        {{ product.compare_at_price | money }}
+      </span>
+
+    {% else %}
+      <!-- REGULAR PRICE -->
+      <span class="price price--regular">
+        {{ product.price | money }}
+      </span>
+    {% endif %}
+
+  </div>
+</div>
