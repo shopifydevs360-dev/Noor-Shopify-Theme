@@ -151,6 +151,15 @@ function updateButtonsByVariant(variant) {
     notifyBtn.classList.remove('hide');
     return;
   }
+  // Out of stock (no continue selling)
+  addBtn.textContent = 'Out of stock';
+  addBtn.disabled = true;
+  addBtn.classList.add('btn--disabled');
+
+  buyBtn.classList.add('hide');
+  notifyBtn.classList.remove('hide');
+}
+
 /* ---------------------------------
    CART COUNT UPDATE
 ---------------------------------- */
