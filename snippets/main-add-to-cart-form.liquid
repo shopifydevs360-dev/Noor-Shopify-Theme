@@ -1,8 +1,8 @@
-<div class="product-block" {{ block.shopify_attributes }}>
+<div class="product-block product-form-wrapper" {{ block.shopify_attributes }}>
 
-  {% form 'product', product %}
+  {% form 'product', product, class: 'product-form' %}
 
-    <!-- REQUIRED: VARIANT ID -->
+    <!-- REQUIRED VARIANT ID -->
     <input
       type="hidden"
       name="id"
@@ -42,10 +42,27 @@
       </select>
     </label>
 
-    <!-- ADD TO CART -->
-    <button type="submit" class="btn btn--primary">
-      Add to cart
-    </button>
+    <!-- ACTION BUTTONS -->
+    <div
+      class="product-actions"
+      data-cart-behavior="{{ block.settings.cart_behavior }}"
+    >
+      <button
+        type="submit"
+        class="btn btn--primary btn-add-to-cart"
+        data-action="add-to-cart"
+      >
+        Add to cart
+      </button>
+
+      <button
+        type="button"
+        class="btn btn--secondary btn-buy-now"
+        data-action="buy-now"
+      >
+        Buy it now
+      </button>
+    </div>
 
   {% endform %}
 
