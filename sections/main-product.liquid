@@ -2,7 +2,7 @@
 {{ 'product-media.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign p_outer_classes = 'main-product'
-  assign p_outer_classes = p_outer_classes | append: ' m-color-' | append: section.settings.main_product_color_scheme
+  assign p_outer_classes = p_outer_classes | append: ' m-color-' | append: section.settings.main_product_color
   assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.custom_class
   assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
@@ -72,7 +72,7 @@
   "settings": [
     {
       "type": "color_scheme",
-      "id": "footer_color_scheme",
+      "id": "main_product_color",
       "label": "Color scheme"
     },
     {
