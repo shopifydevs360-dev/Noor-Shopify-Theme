@@ -158,17 +158,25 @@
 /* =====================
    LIGHTBOX NAVIGATION
 ===================== */
-.media-lightbox .swiper-button-prev,
-.media-lightbox .swiper-button-next {
-  width: 52px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  backdrop-filter: blur(6px);
-  color: #fff;
-  transition: all 0.3s ease;
+.product-media__thumbs .swiper-button-prev, 
+.product-media__thumbs .swiper-button-next {
+    position: absolute;
+    right: 1rem;
+    left: auto;
+    width: 40px;
+    height: 40px;
+    background: #ffffffe6;
+    border-radius: 50%;
+    box-shadow: 0 6px 16px #00000026;
+    color: #000;
+    z-index: 6;
+    transition: all .3s ease;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
-
 .media-lightbox .swiper-button-prev:hover,
 .media-lightbox .swiper-button-next:hover {
   background: rgba(255, 255, 255, 0.25);
