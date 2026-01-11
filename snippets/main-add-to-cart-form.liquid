@@ -1,12 +1,11 @@
 <div class="product-block" {{ block.shopify_attributes }}>
+
   {% form 'product', product %}
 
-    <!-- =====================
-         VARIANTS
-    ====================== -->
+    <!-- VARIANTS -->
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
-        <fieldset class="variant-group">
+        <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
           <legend>{{ option.name }}</legend>
 
           <div class="variant-buttons">
@@ -26,9 +25,7 @@
       {% endfor %}
     {% endunless %}
 
-    <!-- =====================
-         QUANTITY
-    ====================== -->
+    <!-- QUANTITY -->
     <label class="product-quantity">
       Quantity
       <select name="quantity">
@@ -38,12 +35,11 @@
       </select>
     </label>
 
-    <!-- =====================
-         ADD TO CART
-    ====================== -->
+    <!-- ADD TO CART -->
     <button type="submit" class="btn btn--primary">
       Add to cart
     </button>
 
   {% endform %}
+
 </div>
