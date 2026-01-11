@@ -1,21 +1,12 @@
-<div class="product-block product-title-price" {{ block.shopify_attributes }}>
+<div class="product-block product-title-price">
 
-  <h1 class="product-title">
-    {{ product.title }}
-  </h1>
+  <h1>{{ product.title }}</h1>
 
   <div class="product-price">
-
-    {% if product.compare_at_price > product.price %}
-      <span class="price price--compare variant-compare-update">
-        {{ product.compare_at_price | money }}
-      </span>
-    {% endif %}
-
-    <span class="price variant-price-update">
+    <span class="variant-compare-update" style="display:none"></span>
+    <span class="variant-price-update">
       {{ product.price | money }}
     </span>
-
   </div>
 
 </div>
