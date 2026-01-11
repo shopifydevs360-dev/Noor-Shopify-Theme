@@ -644,6 +644,9 @@ button:disabled,
 .hide {
   display: none !important;
 }
+.show {
+  display: block !important;
+}
 /* Mobile */
 @media (max-width: 440px) {
   .hide-mobile {
