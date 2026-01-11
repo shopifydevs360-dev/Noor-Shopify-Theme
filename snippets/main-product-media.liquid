@@ -90,25 +90,21 @@
 <!-- =====================
      LIGHTBOX
 ====================== -->
-
-<!-- LIGHTBOX (STATIC IN DOM) -->
-<div id="mediaLightbox" class="media-lightbox">
+<div class="media-lightbox" id="mediaLightbox">
   <div class="media-lightbox__overlay"></div>
 
   <div class="media-lightbox__content">
-    <button class="media-lightbox__close">&times;</button>
+    <button class="media-lightbox__close" aria-label="Close">×</button>
 
-    <div class="media-lightbox__slider swiper">
+    <div class="swiper media-lightbox__slider">
       <div class="swiper-wrapper">
-
-        {% for image in images %}
-          <div class="swiper-slide">
-            <img
-              src="{{ image | image_url: width: 2000 }}"
-              alt="{{ image.alt | escape }}">
-          </div>
+        {% for media in product.media %}
+          {% if media.media_type == 'image' %}
+            <div class="swiper-slide">
+              <img class="js-open-lightbox" src="{{ media | image_url: width: 2000 }}" alt="">
+            </div>
+          {% endif %}
         {% endfor %}
-
       </div>
 
       <div class="swiper-button-prev"></div>
