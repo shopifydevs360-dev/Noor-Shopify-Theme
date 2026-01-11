@@ -19,7 +19,7 @@
         "add_to_cart_form_8aMLxd": {
           "type": "add_to_cart_form",
           "settings": {
-            "cart_behavior": "ajax"
+            "cart_behavior": "ajax_drawer"
           }
         },
         "description_Th49Tf": {
