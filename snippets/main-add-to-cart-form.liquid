@@ -46,13 +46,16 @@
 
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign is_available = current_variant.available %}
+{% assign can_preorder = false %}
 
+{% if current_variant.inventory_policy == 'continue' %}
+  {% assign can_preorder = true %}
+{% endif %}
 
 <!-- ACTION BUTTONS -->
 <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
 
   {% if is_available %}
-    <!-- IN STOCK -->
     <button
       type="submit"
       class="btn btn--primary btn-add-to-cart"
@@ -62,7 +65,6 @@
     </button>
 
   {% elsif can_preorder %}
-    <!-- PRE ORDER -->
     <button
       type="submit"
       class="btn btn--primary btn-add-to-cart btn--preorder"
@@ -72,7 +74,6 @@
     </button>
 
   {% else %}
-    <!-- OUT OF STOCK -->
     <button
       type="button"
       class="btn btn--primary btn--disabled"
@@ -85,11 +86,10 @@
 
 </div>
 
-<!-- QUICK CHECKOUT / BUY IT NOW -->
+<!-- QUICK CHECKOUT -->
 <div class="quick-checkout">
 
   {% if is_available or can_preorder %}
-    <!-- BUY IT NOW (NORMAL) -->
     <button
       type="button"
       class="btn btn--secondary btn-buy-now"
@@ -97,9 +97,7 @@
     >
       Buy it now
     </button>
-
   {% else %}
-    <!-- NOTIFY ME -->
     <button
       type="button"
       class="btn btn--secondary btn-notify"
