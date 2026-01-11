@@ -12,12 +12,16 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "reviews_3GkmJy": {
+          "type": "reviews",
+          "settings": {}
+        },
         "title_price_YnB7D8": {
           "type": "title_price",
           "settings": {}
         },
-        "buy_form_4PeYPa": {
-          "type": "buy_form",
+        "add_to_cart_form_8aMLxd": {
+          "type": "add_to_cart_form",
           "settings": {}
         },
         "description_Th49Tf": {
@@ -33,8 +37,9 @@
         }
       },
       "block_order": [
+        "reviews_3GkmJy",
         "title_price_YnB7D8",
-        "buy_form_4PeYPa",
+        "add_to_cart_form_8aMLxd",
         "description_Th49Tf",
         "accordion_GJhgHM"
       ],
