@@ -101,7 +101,7 @@
         {% for media in product.media %}
           {% if media.media_type == 'image' %}
             <div class="swiper-slide">
-              <img src="{{ media | image_url: width: 2000 }}" alt="">
+              <img data-lightbox-index="{{ forloop.index0 }}" src="{{ media | image_url: width: 2000 }}" alt="">
             </div>
           {% endif %}
         {% endfor %}
