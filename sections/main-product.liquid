@@ -102,7 +102,33 @@
   "blocks": [
     { "type": "title_price", "name": "Title & price", "limit": 1 },
     { "type": "review-count", "name": "Reviews count", "limit": 1 },
-    { "type": "add_to_cart_form", "name": "Add to cart", "limit": 1 },
+    { 
+      "type": "add_to_cart_form", 
+      "name": "Add to cart", 
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "cart_behavior",
+          "label": "Action",
+          "options": [
+            {
+              "value": "redirect",
+              "label": "Redirect to Cart Page"
+            },
+            {
+              "value": "ajax",
+              "label": "Ajax - No Redirect"
+            },
+            {
+              "value": "ajax_drawer",
+              "label": "Ajax + Open Cart Drawer"
+            }
+          ],
+          "default": "redirect"
+        },
+      ]
+    },
     { "type": "short_description", "name": "Short description" },
     { "type": "description", "name": "Description" },
     {
