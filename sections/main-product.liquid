@@ -30,8 +30,10 @@
 
           <!-- REVIEW COUNT -->
           {% when 'reviews' %}
-            {% render 'review-count' %}
-
+            {% if product.metafields.reviews.count > 0 %}
+              {% render 'review-count', product: product, block: block %}
+            {% endif %}
+            
           <!-- ADD TO CART FORM -->
           {% when 'add_to_cart_form' %}
             {% render 'main-add-to-cart-form', product: product, block: block %}
