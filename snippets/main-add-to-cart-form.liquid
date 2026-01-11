@@ -12,27 +12,29 @@
     >
 
     <!-- VARIANTS -->
-    {% unless product.has_only_default_variant %}
-      {% for option in product.options_with_values %}
-        <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
-          <legend>{{ option.name }}</legend>
+    <div class="variant-selector">
+      {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+          <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
+            <legend>{{ option.name }}</legend>
 
-          <div class="variant-buttons">
-            {% for value in option.values %}
-              <label class="variant-btn">
-                <input
-                  type="radio"
-                  name="options[{{ option.name }}]"
-                  value="{{ value }}"
-                  {% if option.selected_value == value %}checked{% endif %}
-                >
-                <span>{{ value }}</span>
-              </label>
-            {% endfor %}
-          </div>
-        </fieldset>
-      {% endfor %}
-    {% endunless %}
+            <div class="variant-buttons">
+              {% for value in option.values %}
+                <label class="variant-btn">
+                  <input
+                    type="radio"
+                    name="options[{{ option.name }}]"
+                    value="{{ value }}"
+                    {% if option.selected_value == value %}checked{% endif %}
+                  >
+                  <span>{{ value }}</span>
+                </label>
+              {% endfor %}
+            </div>
+          </fieldset>
+        {% endfor %}
+      {% endunless %}
+    </div>
 
     <!-- QUANTITY -->
     <div class="quantity-selector">
