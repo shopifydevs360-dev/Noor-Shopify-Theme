@@ -140,29 +140,7 @@
    LIGHTBOX IMAGE ZOOM FIX
 ================================================= */
 
-/* Allow image to receive pointer events */
-.media-lightbox img {
-  pointer-events: auto;
-  cursor: zoom-in;
-}
-
-/* When zoomed, prevent Swiper from interfering */
-.media-lightbox img[data-zoom-level="1"],
-.media-lightbox img[data-zoom-level="2"] {
-  cursor: grab;
-}
-
-/* Disable swiper dragging when zoomed */
-.media-lightbox img[data-zoom-level="1"] ~ *,
-.media-lightbox img[data-zoom-level="2"] ~ * {
-  pointer-events: none;
-}
-
-/* Prevent accidental text selection */
-.media-lightbox img {
-  user-select: none;
-  -webkit-user-drag: none;
-}
+/*  */
 /* ======================================
    LIGHTBOX ZOOM + PAN
 ====================================== */
