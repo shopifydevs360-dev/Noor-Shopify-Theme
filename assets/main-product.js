@@ -3,27 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initVariantPriceUpdate() {
-  const priceEl = document.querySelector('.variant-price-update');
-  const compareEl = document.querySelector('.variant-compare-update');
-  const form = document.querySelector('.product-block form[action*="/cart/add"]');
+  const form = document.querySelector('form[action*="/cart/add"]');
+  const priceItems = document.querySelectorAll('.variant-price-item');
+  const variantInput = form?.querySelector('input[name="id"]');
 
-  if (!form || !priceEl || !window.product) {
-    console.warn('Variant price update: missing elements or product JSON');
+  if (!form || !priceItems.length || !window.product || !variantInput) {
+    console.warn('Variant price system: missing elements');
     return;
   }
 
-  const optionGroups = form.querySelectorAll('.variant-group');
-  if (!optionGroups.length) return;
+  // Initial state (first selected variant)
+  updatePriceByVariantId(variantInput.value);
 
-  optionGroups.forEach(group => {
-    group.addEventListener('change', updatePrice);
-  });
-
-  function updatePrice() {
+  form.addEventListener('change', () => {
     const selectedOptions = [];
 
-    optionGroups.forEach(group => {
-      const checked = group.querySelector('input[type="radio"]:checked');
+    form.querySelectorAll('.variant-group').forEach(group => {
+      const checked = group.querySelector('input:checked');
       if (checked) selectedOptions.push(checked.value);
     });
 
@@ -33,25 +29,22 @@ function initVariantPriceUpdate() {
 
     if (!variant) return;
 
-    // Update main price
-    priceEl.textContent = Shopify.formatMoney(
-      variant.price,
-      Shopify.money_format
-    );
+    // Update hidden variant ID
+    variantInput.value = variant.id;
 
-    // Update compare price
-    if (compareEl) {
-      if (variant.compare_at_price && variant.compare_at_price > variant.price) {
-        compareEl.textContent = Shopify.formatMoney(
-          variant.compare_at_price,
-          Shopify.money_format
-        );
-        compareEl.style.display = '';
-        priceEl.classList.add('price--sale');
+    // Update visible price
+    updatePriceByVariantId(variant.id);
+  });
+
+  function updatePriceByVariantId(variantId) {
+    priceItems.forEach(item => {
+      if (item.dataset.variantId === String(variantId)) {
+        item.classList.remove('hide-price');
+        item.classList.add('show-price');
       } else {
-        compareEl.style.display = 'none';
-        priceEl.classList.remove('price--sale');
+        item.classList.add('hide-price');
+        item.classList.remove('show-price');
       }
-    }
+    });
   }
 }
