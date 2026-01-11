@@ -8,108 +8,110 @@
   assign media_count = product.media.size
 -%}
 
-<div class="product-media">
+<div class="media-warpper">
+  <div class="product-media">
 
-  <!-- =====================
-       MAIN MEDIA
-  ====================== -->
-  <div class="product-media__main js-open-lightbox">
+    <!-- =====================
+        MAIN MEDIA
+    ====================== -->
+    <div class="product-media__main js-open-lightbox">
 
-    {% if featured_media.media_type contains 'video' %}
-      {{ featured_media | video_tag:
-        autoplay: true,
-        loop: true,
-        muted: true,
-        controls: false,
-        playsinline: true
-      }}
-    {% elsif featured_media.media_type == 'image' %}
-      <img class="js-open-lightbox"
-        src="{{ featured_media | image_url: width: 1600 }}"
-        alt="{{ featured_media.alt | escape }}"
-        loading="eager">
+      {% if featured_media.media_type contains 'video' %}
+        {{ featured_media | video_tag:
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          playsinline: true
+        }}
+      {% elsif featured_media.media_type == 'image' %}
+        <img class="js-open-lightbox"
+          src="{{ featured_media | image_url: width: 1600 }}"
+          alt="{{ featured_media.alt | escape }}"
+          loading="eager">
+      {% endif %}
+
+    </div>
+
+    <!-- =====================
+        VIDEO ROW (IF EXISTS)
+    ====================== -->
+    {% assign has_video = false %}
+    {% for media in product.media %}
+      {% if media.media_type contains 'video' %}
+        {% assign has_video = true %}
+      {% endif %}
+    {% endfor %}
+
+    {% if has_video %}
+      <div class="product-media__video-row">
+        {% for media in product.media %}
+          {% if media.media_type contains 'video' %}
+            <div class="product-media__video js-open-lightbox">
+              {{ media | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                playsinline: true
+              }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- =====================
+        IMAGE SLIDER
+    ====================== -->
+    {% if media_count > 1 %}
+      <div class="product-media__thumbs swiper">
+        <div class="swiper-wrapper">
+
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <div class="swiper-slide js-open-lightbox">
+                <img class="js-open-lightbox"
+                  src="{{ media | image_url: width: 1600 }}"
+                  alt="{{ media.alt | escape }}">
+              </div>
+            {% endif %}
+          {% endfor %}
+
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
     {% endif %}
 
   </div>
 
   <!-- =====================
-       VIDEO ROW (IF EXISTS)
+      LIGHTBOX
   ====================== -->
-  {% assign has_video = false %}
-  {% for media in product.media %}
-    {% if media.media_type contains 'video' %}
-      {% assign has_video = true %}
-    {% endif %}
-  {% endfor %}
+  <div class="media-lightbox" id="mediaLightbox">
+    <div class="media-lightbox__overlay"></div>
 
-  {% if has_video %}
-    <div class="product-media__video-row">
-      {% for media in product.media %}
-        {% if media.media_type contains 'video' %}
-          <div class="product-media__video js-open-lightbox">
-            {{ media | video_tag:
-              autoplay: true,
-              loop: true,
-              muted: true,
-              controls: false,
-              playsinline: true
-            }}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% endif %}
+    <div class="media-lightbox__content">
+      <button class="media-lightbox__close" aria-label="Close">×</button>
 
-  <!-- =====================
-       IMAGE SLIDER
-  ====================== -->
-  {% if media_count > 1 %}
-    <div class="product-media__thumbs swiper">
-      <div class="swiper-wrapper">
+      <div class="swiper media-lightbox__slider">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <div class="swiper-slide">
+                <img data-lightbox-index="{{ forloop.index0 }}" src="{{ media | image_url: width: 2000 }}" alt="">
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
 
-        {% for media in product.media %}
-          {% if media.media_type == 'image' %}
-            <div class="swiper-slide js-open-lightbox">
-              <img class="js-open-lightbox"
-                src="{{ media | image_url: width: 1600 }}"
-                alt="{{ media.alt | escape }}">
-            </div>
-          {% endif %}
-        {% endfor %}
-
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
       </div>
-
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-pagination"></div>
-    </div>
-  {% endif %}
-
-</div>
-
-<!-- =====================
-     LIGHTBOX
-====================== -->
-<div class="media-lightbox" id="mediaLightbox">
-  <div class="media-lightbox__overlay"></div>
-
-  <div class="media-lightbox__content">
-    <button class="media-lightbox__close" aria-label="Close">×</button>
-
-    <div class="swiper media-lightbox__slider">
-      <div class="swiper-wrapper">
-        {% for media in product.media %}
-          {% if media.media_type == 'image' %}
-            <div class="swiper-slide">
-              <img data-lightbox-index="{{ forloop.index0 }}" src="{{ media | image_url: width: 2000 }}" alt="">
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-pagination"></div>
     </div>
   </div>
 </div>
