@@ -227,18 +227,18 @@
    MOBILE OPTIMIZATION
 ===================== */
 @media (max-width: 768px) {
- .product-media__main  .product-media__thumbs .swiper-button-prev,
- .product-media__main  .product-media__thumbs .swiper-button-next {
+ .product-media__main .product-media__thumbs .swiper-button-prev,
+ .product-media__main .product-media__thumbs .swiper-button-next {
     display: none;
   }
 
- .product-media__main  .media-lightbox .swiper-button-prev,
- .product-media__main  .media-lightbox .swiper-button-next {
+ .product-media__main .media-lightbox .swiper-button-prev,
+ .product-media__main .media-lightbox .swiper-button-next {
     width: 44px;
     height: 44px;
   }
 
- .product-media__main  .media-lightbox__close {
+ .product-media__main .media-lightbox__close {
     top: 1rem;
     right: 1rem;
     font-size: 2.4rem;
