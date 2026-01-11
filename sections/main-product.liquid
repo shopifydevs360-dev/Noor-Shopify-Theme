@@ -100,7 +100,37 @@
     }
   ],
   "blocks": [
-    { "type": "title_price", "name": "Title & price", "limit": 1 },
+    { 
+      "type": "title_price", 
+      "name": "Title & price", 
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "title_font_size",
+          "label": "Title font size",
+          "options": [
+            { "value": "h1", "label": "h1" },
+            { "value": "h2", "label": "h2" },
+            { "value": "h3", "label": "h3" },
+            { "value": "h4", "label": "h4" },
+          ],
+          "default": "h2"
+        },
+        {
+          "type": "select",
+          "id": "price_font_size",
+          "label": "Price font size",
+          "options": [
+            { "value": "h1", "label": "h1" },
+            { "value": "h2", "label": "h2" },
+            { "value": "h3", "label": "h3" },
+            { "value": "h4", "label": "h4" },
+          ],
+          "default": "h2"
+        },
+      ]
+    },
     { "type": "review-count", "name": "Reviews count", "limit": 1 },
     { 
       "type": "add_to_cart_form", 
