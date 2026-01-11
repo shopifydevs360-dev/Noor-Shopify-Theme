@@ -160,7 +160,7 @@
 ===================== */
 .swiper-slide:first-child {
   /* Your styles for the first slide go here */
-  display: none;
+  order: 2;
   /* Example from search results */
   /* margin-left: 200px; */
 }
