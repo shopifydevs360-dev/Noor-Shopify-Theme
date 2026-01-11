@@ -11,32 +11,32 @@
       value="{{ product.selected_or_first_available_variant.id }}"
     >
 
-    <div class="variant-cart-btn-wrap">
-      <!-- VARIANTS -->
-      <div class="variant-selector">
-        {% unless product.has_only_default_variant %}
-          {% for option in product.options_with_values %}
-            <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
-              <legend>{{ option.name }}</legend>
+    
+    <!-- VARIANTS -->
+    <div class="variant-selector">
+      {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+          <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
+            <legend>{{ option.name }}</legend>
 
-              <div class="variant-buttons">
-                {% for value in option.values %}
-                  <label class="variant-btn">
-                    <input
-                      type="radio"
-                      name="options[{{ option.name }}]"
-                      value="{{ value }}"
-                      {% if option.selected_value == value %}checked{% endif %}
-                    >
-                    <span>{{ value }}</span>
-                  </label>
-                {% endfor %}
-              </div>
-            </fieldset>
-          {% endfor %}
-        {% endunless %}
-      </div>
-
+            <div class="variant-buttons">
+              {% for value in option.values %}
+                <label class="variant-btn">
+                  <input
+                    type="radio"
+                    name="options[{{ option.name }}]"
+                    value="{{ value }}"
+                    {% if option.selected_value == value %}checked{% endif %}
+                  >
+                  <span>{{ value }}</span>
+                </label>
+              {% endfor %}
+            </div>
+          </fieldset>
+        {% endfor %}
+      {% endunless %}
+    </div>
+    <div class="qty-cart-btn-wrap">
       <!-- QUANTITY -->
       <div class="quantity-selector">
         <label class="product-quantity">
