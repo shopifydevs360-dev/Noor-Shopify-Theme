@@ -33,7 +33,7 @@
             {% render 'review-count' %}
 
           <!-- ADD TO CART FORM -->
-          {% when 'buy_form' %}
+          {% when 'add_to_cart_form' %}
             <div class="product-block" {{ block.shopify_attributes }}>
               {% form 'product', product %}
 
@@ -115,7 +115,7 @@
   "blocks": [
     { "type": "title_price", "name": "Title & price", "limit": 1 },
     { "type": "reviews", "name": "Reviews", "limit": 1 },
-    { "type": "buy_form", "name": "Add to cart", "limit": 1 },
+    { "type": "add_to_cart_form", "name": "Add to cart", "limit": 1 },
     { "type": "short_description", "name": "Short description" },
     { "type": "description", "name": "Description" },
     {
