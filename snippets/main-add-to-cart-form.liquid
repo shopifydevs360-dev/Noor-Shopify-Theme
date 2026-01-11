@@ -1,13 +1,14 @@
 <div class="product-block product-form-wrapper" {{ block.shopify_attributes }}>
 
   {% form 'product', product, class: 'product-form' %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+        {% assign current_variant = product.selected_or_first_available_variant %}
+
 
     <!-- REQUIRED VARIANT ID (CRITICAL) -->
     <input
       type="hidden"
       name="id"
-      value="{{ current_variant.id }}"
+      value="{{ product.selected_or_first_available_variant.id }}"
     >
 
     <!-- VARIANTS -->
@@ -45,15 +46,15 @@
       </label>
     </div>
 
-    <!-- ADD TO CART (REAL STOCK ONLY) -->
+    <!-- ADD TO CART -->
     <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
       <button
         type="submit"
         class="btn btn--primary btn-add-to-cart"
         data-role="add-to-cart"
-        {% if current_variant.inventory_quantity <= 0 %}disabled{% endif %}
+        {% unless current_variant.available %}disabled{% endunless %}
       >
-        {% if current_variant.inventory_quantity > 0 %}
+        {% if current_variant.available %}
           Add to cart
         {% else %}
           Out of stock
@@ -61,59 +62,23 @@
       </button>
     </div>
 
-    <!-- BUY / PREORDER / NOTIFY -->
+    <!-- BUY / NOTIFY -->
     <div class="quick-checkout">
-      {% if current_variant.inventory_quantity > 0 %}
-        <button
-          type="button"
-          class="btn btn--secondary btn-buy-now"
-          data-role="buy-now"
-        >
-          Buy it now
-        </button>
+      <button
+        type="button"
+        class="btn btn--secondary btn-buy-now {% unless current_variant.available %}hide{% endunless %}"
+        data-role="buy-now"
+      >
+        Buy it now
+      </button>
 
-        <button
-          type="button"
-          class="btn btn--secondary btn-notify hide"
-          data-role="notify"
-        >
-          Notify me when available
-        </button>
-
-      {% elsif current_variant.inventory_policy == 'continue' %}
-        <button
-          type="button"
-          class="btn btn--secondary btn-buy-now"
-          data-role="buy-now"
-        >
-          Pre-order
-        </button>
-
-        <button
-          type="button"
-          class="btn btn--secondary btn-notify hide"
-          data-role="notify"
-        >
-          Notify me when available
-        </button>
-
-      {% else %}
-        <button
-          type="button"
-          class="btn btn--secondary btn-buy-now hide"
-          data-role="buy-now"
-        >
-          Buy it now
-        </button>
-
-        <button
-          type="button"
-          class="btn btn--secondary btn-notify"
-          data-role="notify"
-        >
-          Notify me when available
-        </button>
-      {% endif %}
+      <button
+        type="button"
+        class="btn btn--secondary btn-notify {% if current_variant.available %}hide{% endif %}"
+        data-role="notify"
+      >
+        Notify me when available
+      </button>
     </div>
 
   {% endform %}

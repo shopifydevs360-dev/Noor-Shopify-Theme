@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =================================
-   VARIANT PRICE UPDATE (EXTENDED)
+   VARIANT PRICE UPDATE (YOUR CODE)
 ================================= */
 function initVariantPriceUpdate() {
   const root = document.querySelector('.main-product');
@@ -14,17 +14,13 @@ function initVariantPriceUpdate() {
   const priceItems = root.querySelectorAll('.variant-price-item');
   const variantInput = form?.querySelector('input[name="id"]');
 
-  const addToCartBtn = root.querySelector('[data-role="add-to-cart"]');
-  const buyNowBtn = root.querySelector('[data-role="buy-now"]');
-  const notifyBtn = root.querySelector('[data-role="notify"]');
-
-  if (!form || !priceItems.length || !window.product || !variantInput || !addToCartBtn) {
+  if (!form || !priceItems.length || !window.product || !variantInput) {
     console.warn('Variant price update: missing elements');
     return;
   }
 
+  // Show initial price
   togglePrice(variantInput.value);
-  toggleStockUI(variantInput.value);
 
   form.addEventListener('change', () => {
     const selectedOptions = [];
@@ -40,9 +36,11 @@ function initVariantPriceUpdate() {
 
     if (!variant) return;
 
+    // Update variant ID
     variantInput.value = variant.id;
+
+    // Toggle price
     togglePrice(variant.id);
-    toggleStockUI(variant.id);
   });
 
   function togglePrice(variantId) {
@@ -55,35 +53,6 @@ function initVariantPriceUpdate() {
         item.classList.remove('show-price');
       }
     });
-  }
-
-  function toggleStockUI(variantId) {
-    const variant = window.product.variants.find(v => v.id == variantId);
-    if (!variant) return;
-
-    const inStock = variant.inventory_quantity > 0;
-    const backorder = !inStock && variant.inventory_policy === 'continue';
-
-    if (inStock) {
-      addToCartBtn.textContent = 'Add to cart';
-      addToCartBtn.disabled = false;
-    } else {
-      addToCartBtn.textContent = 'Out of stock';
-      addToCartBtn.disabled = true;
-    }
-
-    if (inStock) {
-      buyNowBtn.textContent = 'Buy it now';
-      buyNowBtn.classList.remove('hide');
-      notifyBtn.classList.add('hide');
-    } else if (backorder) {
-      buyNowBtn.textContent = 'Pre-order';
-      buyNowBtn.classList.remove('hide');
-      notifyBtn.classList.add('hide');
-    } else {
-      buyNowBtn.classList.add('hide');
-      notifyBtn.classList.remove('hide');
-    }
   }
 }
 
@@ -102,6 +71,9 @@ function initMainProductCart() {
 
   const behavior = actions.dataset.cartBehavior;
 
+  /* -----------------------------
+     ADD TO CART
+  ----------------------------- */
   form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -109,8 +81,6 @@ function initMainProductCart() {
       form.submit();
       return;
     }
-
-    if (form.querySelector('[data-role="add-to-cart"]').disabled) return;
 
     const formData = new FormData(form);
 
@@ -121,23 +91,30 @@ function initMainProductCart() {
       .then(res => res.json())
       .then(() => {
         updateCartCount();
-        if (behavior === 'ajax_drawer') openBagDrawer();
-      });
+
+        if (behavior === 'ajax_drawer') {
+          openBagDrawer();
+        }
+      })
+      .catch(err => console.error(err));
   });
 
+  /* -----------------------------
+     BUY IT NOW
+  ----------------------------- */
   const buyNowBtn = root.querySelector('.btn-buy-now');
   if (buyNowBtn) {
     buyNowBtn.addEventListener('click', () => {
-      if (buyNowBtn.classList.contains('hide')) return;
-
       const formData = new FormData(form);
 
       fetch('/cart/add.js', {
         method: 'POST',
         body: formData
-      }).then(() => {
-        window.location.href = '/checkout';
-      });
+      })
+        .then(() => {
+          window.location.href = '/checkout';
+        })
+        .catch(err => console.error(err));
     });
   }
 }
@@ -156,9 +133,14 @@ function updateCartCount() {
 }
 
 /* =================================
-   OPEN BAG DRAWER
+   OPEN BAG DRAWER (EXISTING SYSTEM)
 ================================= */
 function openBagDrawer() {
-  const trigger = document.querySelector('[data-trigger-section="bag-drawer"]');
-  if (trigger) trigger.click();
+  const trigger = document.querySelector(
+    '[data-trigger-section="bag-drawer"]'
+  );
+
+  if (trigger) {
+    trigger.click();
+  }
 }
