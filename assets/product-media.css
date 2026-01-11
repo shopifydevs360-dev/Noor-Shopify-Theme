@@ -111,13 +111,42 @@
   background: rgba(0, 0, 0, 0.88);
 }
 
-/* =====================
-   LIGHTBOX CONTENT
-===================== */
+/* ===============================
+   LIGHTBOX
+================================ */
+.media-lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.media-lightbox.is-open {
+  display: block;
+}
+
+.media-lightbox__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+}
+
 .media-lightbox__content {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.media-lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  background: none;
+  border: none;
+  color: white;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .media-lightbox .swiper {
@@ -131,39 +160,22 @@
   justify-content: center;
 }
 
+/* ===============================
+   ZOOM IMAGE
+================================ */
 .media-lightbox img {
   max-width: 95vw;
   max-height: 95vh;
   object-fit: contain;
-}
-/* =================================================
-   LIGHTBOX IMAGE ZOOM FIX
-================================================= */
-
-/* Allow image to receive pointer events */
-.media-lightbox img {
-  pointer-events: auto;
+  transition: transform 0.25s ease;
+  user-select: none;
+  -webkit-user-drag: none;
   cursor: zoom-in;
 }
 
-/* When zoomed, prevent Swiper from interfering */
-.media-lightbox img[data-zoom-level="1"],
-.media-lightbox img[data-zoom-level="2"] {
+.media-lightbox img.is-zoomed {
   cursor: grab;
 }
-
-/* Disable swiper dragging when zoomed */
-.media-lightbox img[data-zoom-level="1"] ~ *,
-.media-lightbox img[data-zoom-level="2"] ~ * {
-  pointer-events: none;
-}
-
-/* Prevent accidental text selection */
-.media-lightbox img {
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
 /* =====================
    LIGHTBOX NAVIGATION
 ===================== */
