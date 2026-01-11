@@ -7,7 +7,10 @@ function initVariantPriceUpdate() {
   const compareEl = document.querySelector('.variant-compare-update');
   const form = document.querySelector('form[action*="/cart/add"]');
 
-  if (!form || !priceEl || !window.product) return;
+  if (!form || !priceEl || !window.product) {
+    console.warn('Variant price update: missing elements or product JSON');
+    return;
+  }
 
   const optionGroups = form.querySelectorAll('.variant-group');
 
@@ -23,26 +26,21 @@ function initVariantPriceUpdate() {
       if (checked) selectedOptions.push(checked.value);
     });
 
-    const matchedVariant = window.product.variants.find(variant =>
-      variant.options.every((opt, i) => opt === selectedOptions[i])
+    const variant = window.product.variants.find(v =>
+      v.options.every((opt, i) => opt === selectedOptions[i])
     );
 
-    if (!matchedVariant) return;
+    if (!variant) return;
 
-    // Update main price
     priceEl.textContent = Shopify.formatMoney(
-      matchedVariant.price,
+      variant.price,
       Shopify.money_format
     );
 
-    // Handle compare price
     if (compareEl) {
-      if (
-        matchedVariant.compare_at_price &&
-        matchedVariant.compare_at_price > matchedVariant.price
-      ) {
+      if (variant.compare_at_price && variant.compare_at_price > variant.price) {
         compareEl.textContent = Shopify.formatMoney(
-          matchedVariant.compare_at_price,
+          variant.compare_at_price,
           Shopify.money_format
         );
         compareEl.style.display = '';
