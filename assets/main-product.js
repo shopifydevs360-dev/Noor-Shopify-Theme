@@ -1,83 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-  initMainProductVariantAndCart();
+  initVariantPriceUpdate();
+  initMainProductCart();
 });
 
 /* =================================
-   MAIN PRODUCT – VARIANT + CART
+   VARIANT PRICE UPDATE (YOUR CODE)
 ================================= */
-function initMainProductVariantAndCart() {
+function initVariantPriceUpdate() {
   const root = document.querySelector('.main-product');
-  if (!root || !window.product) return;
+  if (!root) return;
 
-  const form = root.querySelector('.product-form');
+  const form = root.querySelector('form[action*="/cart/add"]');
+  const priceItems = root.querySelectorAll('.variant-price-item');
   const variantInput = form?.querySelector('input[name="id"]');
 
-  const actions = root.querySelector('.product-actions');
-  const behavior = actions?.dataset.cartBehavior || 'redirect';
+  if (!form || !priceItems.length || !window.product || !variantInput) {
+    console.warn('Variant price update: missing elements');
+    return;
+  }
 
-  const addBtn = root.querySelector('[data-role="add-to-cart"]');
-  const buyBtn = root.querySelector('[data-role="buy-now"]');
-  const notifyBtn = root.querySelector('[data-role="notify"]');
+  // Show initial price
+  togglePrice(variantInput.value);
 
-  if (!form || !variantInput || !addBtn || !buyBtn || !notifyBtn) return;
-
-  /* -----------------------------
-     INITIAL STATE
-  ----------------------------- */
-  updateUI(getCurrentVariant());
-
-  /* -----------------------------
-     VARIANT CHANGE
-  ----------------------------- */
   form.addEventListener('change', () => {
-    const variant = getCurrentVariant();
-    if (!variant) return;
-
-    // 🔑 ALWAYS UPDATE VARIANT ID
-    variantInput.value = variant.id;
-
-    updateUI(variant);
-  });
-
-  /* -----------------------------
-     ADD TO CART
-  ----------------------------- */
-  form.addEventListener('submit', e => {
-    // Allow Shopify redirect normally
-    if (behavior === 'redirect') return;
-
-    e.preventDefault();
-
-    fetch('/cart/add.js', {
-      method: 'POST',
-      body: new FormData(form)
-    })
-      .then(res => res.json())
-      .then(() => {
-        updateCartCount();
-        if (behavior === 'ajax_drawer') openBagDrawer();
-      })
-      .catch(console.error);
-  });
-
-  /* -----------------------------
-     BUY IT NOW
-  ----------------------------- */
-  buyBtn.addEventListener('click', () => {
-    fetch('/cart/add.js', {
-      method: 'POST',
-      body: new FormData(form)
-    })
-      .then(() => {
-        window.location.href = '/checkout';
-      })
-      .catch(console.error);
-  });
-
-  /* -----------------------------
-     GET CURRENT VARIANT
-  ----------------------------- */
-  function getCurrentVariant() {
     const selectedOptions = [];
 
     form.querySelectorAll('.variant-group').forEach(group => {
@@ -85,42 +30,92 @@ function initMainProductVariantAndCart() {
       if (checked) selectedOptions.push(checked.value);
     });
 
-    return window.product.variants.find(v =>
+    const variant = window.product.variants.find(v =>
       v.options.every((opt, i) => opt === selectedOptions[i])
     );
-  }
 
-  /* -----------------------------
-     BUTTON + STOCK UI
-  ----------------------------- */
-  function updateUI(variant) {
     if (!variant) return;
 
-    const isOut = variant.inventory_quantity <= 0;
-    const canPreorder = variant.inventory_policy === 'continue';
+    // Update variant ID
+    variantInput.value = variant.id;
 
-    // RESET
-    addBtn.disabled = false;
-    addBtn.textContent = 'Add to cart';
-    buyBtn.textContent = 'Buy it now';
-    buyBtn.classList.remove('hide');
-    notifyBtn.classList.add('hide');
+    // Toggle price
+    togglePrice(variant.id);
+  });
 
-    /* PRE-ORDER */
-    if (isOut && canPreorder) {
-      addBtn.textContent = 'Pre-order';
-      buyBtn.textContent = 'Pre-order';
+  function togglePrice(variantId) {
+    priceItems.forEach(item => {
+      if (item.dataset.variantId === String(variantId)) {
+        item.classList.remove('hide-price');
+        item.classList.add('show-price');
+      } else {
+        item.classList.add('hide-price');
+        item.classList.remove('show-price');
+      }
+    });
+  }
+}
+
+/* =================================
+   MAIN PRODUCT – CART HANDLER
+================================= */
+function initMainProductCart() {
+  const root = document.querySelector('.main-product');
+  if (!root) return;
+
+  const form = root.querySelector('.product-form');
+  const actions = root.querySelector('.product-actions');
+  const variantInput = form?.querySelector('input[name="id"]');
+
+  if (!form || !actions || !variantInput) return;
+
+  const behavior = actions.dataset.cartBehavior;
+
+  /* -----------------------------
+     ADD TO CART
+  ----------------------------- */
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (behavior === 'redirect') {
+      form.submit();
       return;
     }
 
-    /* OUT OF STOCK */
-    if (isOut && !canPreorder) {
-      addBtn.textContent = 'Out of stock';
-      addBtn.disabled = true;
+    const formData = new FormData(form);
 
-      buyBtn.classList.add('hide');
-      notifyBtn.classList.remove('hide');
-    }
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(() => {
+        updateCartCount();
+
+        if (behavior === 'ajax_drawer') {
+          openBagDrawer();
+        }
+      })
+      .catch(err => console.error(err));
+  });
+
+  /* -----------------------------
+     BUY IT NOW
+  ----------------------------- */
+  const buyNowBtn = root.querySelector('.btn-buy-now');
+  if (buyNowBtn) {
+    buyNowBtn.addEventListener('click', () => {
+      const formData = new FormData(form);
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+        .then(() => {
+          window.location.href = '/checkout';
+        })
+        .catch(err => console.error(err));
+    });
   }
 }
 
@@ -138,9 +133,14 @@ function updateCartCount() {
 }
 
 /* =================================
-   OPEN BAG DRAWER
+   OPEN BAG DRAWER (EXISTING SYSTEM)
 ================================= */
 function openBagDrawer() {
-  const trigger = document.querySelector('[data-trigger-section="bag-drawer"]');
-  if (trigger) trigger.click();
+  const trigger = document.querySelector(
+    '[data-trigger-section="bag-drawer"]'
+  );
+
+  if (trigger) {
+    trigger.click();
+  }
 }
