@@ -86,19 +86,31 @@ function initProductMedia() {
   });
 
   /* =========================
-     ZOOM + PAN (FIXED)
+     ZOOM + PAN (FIXED CLEANLY)
   ========================== */
   let zoomLevel = 0;
   let activeImg = null;
+
+  let isDragging = false;
+  let hasMoved = false;
+
   let startX = 0;
   let startY = 0;
   let currentX = 0;
   let currentY = 0;
-  let dragging = false;
 
+  const MOVE_THRESHOLD = 5; // px
+
+  /* ---------- CLICK → ZOOM ---------- */
   sliderEl.addEventListener('click', e => {
     const img = e.target.closest('img');
     if (!img) return;
+
+    /* IMPORTANT: block zoom if drag happened */
+    if (hasMoved) {
+      hasMoved = false;
+      return;
+    }
 
     zoomLevel = (zoomLevel + 1) % 3;
 
@@ -116,31 +128,45 @@ function initProductMedia() {
     sliderEl.swiper.allowTouchMove = false;
   });
 
+  /* ---------- START DRAG ---------- */
   sliderEl.addEventListener('mousedown', e => {
     if (!activeImg || zoomLevel === 0) return;
 
-    dragging = true;
-    activeImg.classList.add('is-dragging');
+    isDragging = true;
+    hasMoved = false;
+
     startX = e.clientX - currentX;
     startY = e.clientY - currentY;
+
+    activeImg.classList.add('is-dragging');
   });
 
+  /* ---------- DRAG MOVE ---------- */
   window.addEventListener('mousemove', e => {
-    if (!dragging || !activeImg) return;
+    if (!isDragging || !activeImg) return;
 
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    if (Math.abs(dx - currentX) > MOVE_THRESHOLD || Math.abs(dy - currentY) > MOVE_THRESHOLD) {
+      hasMoved = true;
+    }
+
+    currentX = dx;
+    currentY = dy;
 
     const scale = zoomLevel === 1 ? 1.6 : 2.6;
     activeImg.style.transform =
       `scale(${scale}) translate(${currentX}px, ${currentY}px)`;
   });
 
+  /* ---------- END DRAG ---------- */
   window.addEventListener('mouseup', () => {
-    dragging = false;
+    isDragging = false;
     if (activeImg) activeImg.classList.remove('is-dragging');
   });
 
+  /* ---------- RESET ---------- */
   function resetZoom() {
     sliderEl.querySelectorAll('img').forEach(img => {
       img.style.transform = 'scale(1) translate(0,0)';
@@ -151,6 +177,8 @@ function initProductMedia() {
     currentX = 0;
     currentY = 0;
     activeImg = null;
+    hasMoved = false;
+    isDragging = false;
 
     sliderEl.swiper.allowTouchMove = true;
   }
