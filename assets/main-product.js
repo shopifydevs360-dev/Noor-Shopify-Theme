@@ -116,41 +116,27 @@ function updateButtonsByVariant(variant) {
 
   if (!addBtn || !buyBtn || !notifyBtn) return;
 
-  // Shopify-correct stock logic
-  const isOutOfStock = variant.inventory_quantity <= 0;
+  const isAvailable = variant.available;
   const canPreorder = variant.inventory_policy === 'continue';
 
-  /* -----------------------------
-     RESET STATE
-  ----------------------------- */
+  // RESET
   addBtn.disabled = false;
   addBtn.textContent = 'Add to cart';
   addBtn.classList.remove('btn--disabled', 'btn--preorder');
   buyBtn.classList.remove('hide');
   notifyBtn.classList.add('hide');
 
-  /* -----------------------------
-     PRE-ORDER
-     (out of stock + continue selling)
-  ----------------------------- */
-  if (isOutOfStock && canPreorder) {
+  if (isAvailable) {
+    // Normal state
+    return;
+  }
+
+  if (canPreorder) {
     addBtn.textContent = 'Pre-order';
     addBtn.classList.add('btn--preorder');
     return;
   }
 
-  /* -----------------------------
-     OUT OF STOCK (DENY)
-  ----------------------------- */
-  if (isOutOfStock && !canPreorder) {
-    addBtn.textContent = 'Out of stock';
-    addBtn.disabled = true;
-    addBtn.classList.add('btn--disabled');
-
-    buyBtn.classList.add('hide');
-    notifyBtn.classList.remove('hide');
-    return;
-  }
   // Out of stock (no continue selling)
   addBtn.textContent = 'Out of stock';
   addBtn.disabled = true;
