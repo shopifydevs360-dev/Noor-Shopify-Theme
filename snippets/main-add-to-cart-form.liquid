@@ -44,13 +44,73 @@
     </div>
 
 
-    <!-- ACTION BUTTONS -->
-    <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
-      <button type="submit" class="btn btn--primary btn-add-to-cart" data-action="add-to-cart">Add to cart</button>
-    </div>
-    <div class="quick-checkout" data-cart-behavior="{{ block.settings.cart_behavior }}">
-      <button type="button" class="btn btn--secondary btn-buy-now" data-action="buy-now">Buy it now</button>
-    </div>
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign is_available = current_variant.available %}
+{% assign can_preorder = current_variant.inventory_policy == 'continue' %}
+
+<!-- ACTION BUTTONS -->
+<div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
+
+  {% if is_available %}
+    <!-- IN STOCK -->
+    <button
+      type="submit"
+      class="btn btn--primary btn-add-to-cart"
+      data-action="add-to-cart"
+    >
+      Add to cart
+    </button>
+
+  {% elsif can_preorder %}
+    <!-- PRE ORDER -->
+    <button
+      type="submit"
+      class="btn btn--primary btn-add-to-cart btn--preorder"
+      data-action="add-to-cart"
+    >
+      Pre-order
+    </button>
+
+  {% else %}
+    <!-- OUT OF STOCK -->
+    <button
+      type="button"
+      class="btn btn--primary btn--disabled"
+      disabled
+      aria-disabled="true"
+    >
+      Out of stock
+    </button>
+  {% endif %}
+
+</div>
+
+<!-- QUICK CHECKOUT / BUY IT NOW -->
+<div class="quick-checkout">
+
+  {% if is_available or can_preorder %}
+    <!-- BUY IT NOW (NORMAL) -->
+    <button
+      type="button"
+      class="btn btn--secondary btn-buy-now"
+      data-action="buy-now"
+    >
+      Buy it now
+    </button>
+
+  {% else %}
+    <!-- NOTIFY ME -->
+    <button
+      type="button"
+      class="btn btn--secondary btn-notify"
+      data-action="notify"
+    >
+      Notify me when available
+    </button>
+  {% endif %}
+
+</div>
+
 
   {% endform %}
 
