@@ -76,8 +76,7 @@
   transform: translateY(20%);
 }
 
-.product-media__thumbs .swiper-button-prev:hover,
-.product-media__thumbs .swiper-button-next:hover {
+.product-media__thumbs .swiper-button-prev:hover {
   transform: scale(1.05) translateY(-120%);
 }
 
@@ -131,24 +130,23 @@
   justify-content: center;
 }
 
+/* =====================
+   LIGHTBOX IMAGE
+===================== */
 .media-lightbox img {
   max-width: 95vw;
   max-height: 95vh;
   object-fit: contain;
-}
-/* =================================================
-   LIGHTBOX IMAGE ZOOM FIX
-================================================= */
 
+  user-select: none;
+  -webkit-user-drag: none;
 
-/* ======================================
-   LIGHTBOX ZOOM + PAN
-====================================== */
-.media-lightbox img {
   cursor: zoom-in;
   transition: transform 0.25s ease;
+  pointer-events: auto;
 }
 
+/* Zoom states (used by JS) */
 .media-lightbox img.is-zoomed {
   cursor: grab;
 }
