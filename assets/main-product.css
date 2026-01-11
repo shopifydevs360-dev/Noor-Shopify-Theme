@@ -50,8 +50,6 @@
 
 /* Regular price */
 .price--regular {
-  font-size: 1.6rem;
-  font-weight: 500;
   color: rgb(var(--color-price-regular));
 }
 
@@ -62,7 +60,7 @@
 
 /* Compare-at price */
 .price--compare {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: 400;
   text-decoration: line-through;
   color: rgb(var(--color-subtext));
