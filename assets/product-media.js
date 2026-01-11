@@ -122,6 +122,9 @@ function setZoom(img, scale, level) {
   img.style.transform = `scale(${scale}) translate(0px, 0px)`;
   img.dataset.x = 0;
   img.dataset.y = 0;
+
+  const swiper = img.closest('.swiper')?.swiper;
+  if (swiper) swiper.allowTouchMove = false;
 }
 
 function resetZoom(img) {
@@ -131,7 +134,11 @@ function resetZoom(img) {
   img.style.transform = 'scale(1) translate(0px, 0px)';
   img.dataset.x = 0;
   img.dataset.y = 0;
+
+  const swiper = img.closest('.swiper')?.swiper;
+  if (swiper) swiper.allowTouchMove = true;
 }
+
 
 /* =================================================
    RESET ALL ZOOM (on close / slide change)
