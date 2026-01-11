@@ -67,7 +67,9 @@
   color: rgb(var(--color-subtext));
 }
 
-
+.variant-selector{
+  margin-bottom: 1rem;
+}
 
 .variant-buttons {
     display: flex;
