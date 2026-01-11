@@ -2,11 +2,13 @@
 
   {% form 'product', product, class: 'product-form' %}
 
-    <!-- REQUIRED VARIANT ID (CRITICAL) -->
+    {% assign current_variant = product.selected_or_first_available_variant %}
+
+    <!-- REQUIRED VARIANT ID -->
     <input
       type="hidden"
       name="id"
-      value="{{ product.selected_or_first_available_variant.id }}"
+      value="{{ current_variant.id }}"
     >
 
     <!-- VARIANTS -->
@@ -36,9 +38,8 @@
     <div class="quantity-selector">
       <label class="product-quantity">
         <select name="quantity">
-          {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
-          {% for qty in quantities %}
-            <option value="{{ qty }}">Qty {{ qty }}</option>
+          {% for i in (1..12) %}
+            <option value="{{ i }}">Qty {{ i }}</option>
           {% endfor %}
         </select>
       </label>
@@ -50,8 +51,13 @@
         type="submit"
         class="btn btn--primary btn-add-to-cart"
         data-role="add-to-cart"
+        {% unless current_variant.available %}disabled{% endunless %}
       >
-        Add to cart
+        {% if current_variant.available %}
+          Add to cart
+        {% else %}
+          Out of stock
+        {% endif %}
       </button>
     </div>
 
@@ -59,7 +65,7 @@
     <div class="quick-checkout">
       <button
         type="button"
-        class="btn btn--secondary btn-buy-now"
+        class="btn btn--secondary btn-buy-now {% unless current_variant.available %}hide{% endunless %}"
         data-role="buy-now"
       >
         Buy it now
@@ -67,7 +73,7 @@
 
       <button
         type="button"
-        class="btn btn--secondary btn-notify hide"
+        class="btn btn--secondary btn-notify {% if current_variant.available %}hide{% endif %}"
         data-role="notify"
       >
         Notify me when available
