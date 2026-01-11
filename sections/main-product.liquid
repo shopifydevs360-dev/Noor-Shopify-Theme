@@ -29,7 +29,7 @@
             </div>
 
           <!-- REVIEW COUNT -->
-          {% when 'reviews' %}
+          {% when 'review-count' %}
             {% if product.metafields.reviews.count > 0 %}
               {% render 'review-count', product: product, block: block %}
             {% endif %}
@@ -41,9 +41,12 @@
 
           <!-- SHORT DESCRIPTION -->
           {% when 'short_description' %}
-            <div class="product-block" {{ block.shopify_attributes }}>
-              {{ product.metafields.custom.short_description }}
-            </div>
+            {% if product.metafields.custom.short_description != blank %}
+              <div class="product-block" {{ block.shopify_attributes }}>
+                {{ product.metafields.custom.short_description }}
+              </div>
+            {% endif %}
+
 
           <!-- FULL DESCRIPTION -->
           {% when 'description' %}
@@ -70,7 +73,7 @@
   "settings": [],
   "blocks": [
     { "type": "title_price", "name": "Title & price", "limit": 1 },
-    { "type": "reviews", "name": "Reviews", "limit": 1 },
+    { "type": "review-count", "name": "Reviews count", "limit": 1 },
     { "type": "add_to_cart_form", "name": "Add to cart", "limit": 1 },
     { "type": "short_description", "name": "Short description" },
     { "type": "description", "name": "Description" },
