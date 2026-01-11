@@ -43,7 +43,7 @@
 .price--regular {
   font-size: 1.6rem;
   font-weight: 500;
-  color: rgb(var(--color-text));
+  color: rgb(var(--color-price-regular));
 }
 
 /* Sale price */
