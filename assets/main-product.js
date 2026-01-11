@@ -1,32 +1,54 @@
-<div class="product-block product-title-price" {{ block.shopify_attributes }}>
-  <h1 class="product-title">
-    {{ product.title }}
-  </h1>
+document.addEventListener('DOMContentLoaded', () => {
+  initVariantPriceUpdate();
+});
 
-  <div class="product-price">
+function initVariantPriceUpdate() {
+  const priceEl = document.querySelector('.variant-price-update');
+  const compareEl = document.querySelector('.variant-compare-update');
+  const form = document.querySelector('form[action*="/cart/add"]');
 
-    {% if product.compare_at_price > product.price %}
-      <!-- SALE PRICE -->
-      <span
-        class="price price--sale variant-price-update"
-        data-price-type="sale">
-        {{ product.price | money }}
-      </span>
+  if (!priceEl || !form || !window.product) return;
 
-      <span
-        class="price price--compare variant-compare-update"
-        data-price-type="compare">
-        {{ product.compare_at_price | money }}
-      </span>
+  form.addEventListener('change', () => {
+    const selectedOptions = [];
 
-    {% else %}
-      <!-- REGULAR PRICE -->
-      <span
-        class="price price--regular variant-price-update"
-        data-price-type="regular">
-        {{ product.price | money }}
-      </span>
-    {% endif %}
+    form.querySelectorAll('input[type="radio"]:checked, select').forEach(el => {
+      selectedOptions.push(el.value);
+    });
 
-  </div>
-</div>
+    const variant = window.product.variants.find(v =>
+      v.options.every((opt, i) => opt === selectedOptions[i])
+    );
+
+    if (!variant) return;
+
+    // Update price
+    priceEl.textContent = Shopify.formatMoney(
+      variant.price,
+      Shopify.money_format
+    );
+
+    // Handle compare price
+    if (compareEl) {
+      if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+        compareEl.textContent = Shopify.formatMoney(
+          variant.compare_at_price,
+          Shopify.money_format
+        );
+        compareEl.style.display = '';
+      } else {
+        compareEl.style.display = 'none';
+      }
+    }
+
+    // Update price style
+    priceEl.classList.toggle(
+      'price--sale',
+      variant.compare_at_price > variant.price
+    );
+    priceEl.classList.toggle(
+      'price--regular',
+      !(variant.compare_at_price > variant.price)
+    );
+  });
+}
