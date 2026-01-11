@@ -14,7 +14,10 @@
       "blocks": {
         "title_price_YnB7D8": {
           "type": "title_price",
-          "settings": {}
+          "settings": {
+            "title_font_size": "h3",
+            "price_font_size": "h5"
+          }
         },
         "add_to_cart_form_8aMLxd": {
           "type": "add_to_cart_form",
