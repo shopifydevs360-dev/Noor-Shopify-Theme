@@ -8,18 +8,18 @@ function initVariantPriceUpdate() {
   const variantInput = form?.querySelector('input[name="id"]');
 
   if (!form || !priceItems.length || !window.product || !variantInput) {
-    console.warn('Variant price system: missing elements');
+    console.warn('Variant price update: missing elements');
     return;
   }
 
-  // Initial state (first selected variant)
-  updatePriceByVariantId(variantInput.value);
+  // Show initial price
+  togglePrice(variantInput.value);
 
   form.addEventListener('change', () => {
     const selectedOptions = [];
 
     form.querySelectorAll('.variant-group').forEach(group => {
-      const checked = group.querySelector('input:checked');
+      const checked = group.querySelector('input[type="radio"]:checked');
       if (checked) selectedOptions.push(checked.value);
     });
 
@@ -29,14 +29,14 @@ function initVariantPriceUpdate() {
 
     if (!variant) return;
 
-    // Update hidden variant ID
+    // Update variant ID
     variantInput.value = variant.id;
 
-    // Update visible price
-    updatePriceByVariantId(variant.id);
+    // Toggle price
+    togglePrice(variant.id);
   });
 
-  function updatePriceByVariantId(variantId) {
+  function togglePrice(variantId) {
     priceItems.forEach(item => {
       if (item.dataset.variantId === String(variantId)) {
         item.classList.remove('hide-price');
