@@ -158,8 +158,8 @@
 /* =====================
    LIGHTBOX NAVIGATION
 ===================== */
-.product-media__main .media-lightbox .swiper-button-prev,
-.product-media__main .media-lightbox .swiper-button-next {
+.media-lightbox .swiper-button-prev,
+.media-lightbox .swiper-button-next {
   width: 52px;
   height: 52px;
   background: rgba(255, 255, 255, 0.15);
@@ -169,14 +169,14 @@
   transition: all 0.3s ease;
 }
 
-.product-media__main .media-lightbox .swiper-button-prev:hover,
-.product-media__main .media-lightbox .swiper-button-next:hover {
+.media-lightbox .swiper-button-prev:hover,
+.media-lightbox .swiper-button-next:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.05);
 }
 
-.product-media__main .media-lightbox .swiper-button-prev::after,
-.product-media__main .media-lightbox .swiper-button-next::after {
+.media-lightbox .swiper-button-prev::after,
+.media-lightbox .swiper-button-next::after {
   font-size: 18px;
   font-weight: 600;
 }
@@ -184,11 +184,11 @@
 /* =====================
    LIGHTBOX PAGINATION
 ===================== */
-.product-media__main .media-lightbox .swiper-pagination {
+.media-lightbox .swiper-pagination {
   bottom: 1.5rem;
 }
 
-.product-media__main .media-lightbox .swiper-pagination-bullet {
+.media-lightbox .swiper-pagination-bullet {
   width: 9px;
   height: 9px;
   background: rgba(255, 255, 255, 0.4);
@@ -196,7 +196,7 @@
   transition: all 0.3s ease;
 }
 
-.product-media__main .media-lightbox .swiper-pagination-bullet-active {
+.media-lightbox .swiper-pagination-bullet-active {
   background: #fff;
   transform: scale(1.25);
 }
@@ -204,7 +204,7 @@
 /* =====================
    LIGHTBOX CLOSE BUTTON
 ===================== */
-.product-media__main .media-lightbox__close {
+.media-lightbox__close {
   position: absolute;
   top: 2rem;
   right: 2rem;
@@ -219,7 +219,7 @@
   transition: opacity 0.2s ease;
 }
 
-.product-media__main .media-lightbox__close:hover {
+.media-lightbox__close:hover {
   opacity: 1;
 }
 
