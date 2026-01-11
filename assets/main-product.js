@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =================================
-   VARIANT PRICE UPDATE (YOUR CODE)
+   VARIANT PRICE UPDATE (UNCHANGED)
 ================================= */
 function initVariantPriceUpdate() {
   const root = document.querySelector('.main-product');
@@ -19,7 +19,7 @@ function initVariantPriceUpdate() {
     return;
   }
 
-  // Show initial price
+  // Initial price
   togglePrice(variantInput.value);
 
   form.addEventListener('change', () => {
@@ -36,10 +36,7 @@ function initVariantPriceUpdate() {
 
     if (!variant) return;
 
-    // Update variant ID
     variantInput.value = variant.id;
-
-    // Toggle price
     togglePrice(variant.id);
   });
 
@@ -57,7 +54,7 @@ function initVariantPriceUpdate() {
 }
 
 /* =================================
-   MAIN PRODUCT – CART HANDLER
+   MAIN PRODUCT – CART HANDLER (FIXED)
 ================================= */
 function initMainProductCart() {
   const root = document.querySelector('.main-product');
@@ -75,23 +72,21 @@ function initMainProductCart() {
      ADD TO CART
   ----------------------------- */
   form.addEventListener('submit', e => {
-    e.preventDefault();
-
+    // ✅ Let Shopify handle normal redirect
     if (behavior === 'redirect') {
-      form.submit();
       return;
     }
 
-    const formData = new FormData(form);
+    // ✅ Ajax modes only
+    e.preventDefault();
 
     fetch('/cart/add.js', {
       method: 'POST',
-      body: formData
+      body: new FormData(form)
     })
       .then(res => res.json())
       .then(() => {
         updateCartCount();
-
         if (behavior === 'ajax_drawer') {
           openBagDrawer();
         }
@@ -105,11 +100,9 @@ function initMainProductCart() {
   const buyNowBtn = root.querySelector('.btn-buy-now');
   if (buyNowBtn) {
     buyNowBtn.addEventListener('click', () => {
-      const formData = new FormData(form);
-
       fetch('/cart/add.js', {
         method: 'POST',
-        body: formData
+        body: new FormData(form)
       })
         .then(() => {
           window.location.href = '/checkout';
@@ -133,14 +126,9 @@ function updateCartCount() {
 }
 
 /* =================================
-   OPEN BAG DRAWER (EXISTING SYSTEM)
+   OPEN BAG DRAWER
 ================================= */
 function openBagDrawer() {
-  const trigger = document.querySelector(
-    '[data-trigger-section="bag-drawer"]'
-  );
-
-  if (trigger) {
-    trigger.click();
-  }
+  const trigger = document.querySelector('[data-trigger-section="bag-drawer"]');
+  if (trigger) trigger.click();
 }
