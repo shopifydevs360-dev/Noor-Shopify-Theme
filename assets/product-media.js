@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initProductMedia() {
-  /* -------------------------
-     Thumbnail Slider
-  -------------------------- */
+  /* =================================================
+     INLINE PRODUCT MEDIA SLIDER
+  ================================================= */
   const thumbs = document.querySelector('.product-media__thumbs');
 
   if (thumbs) {
@@ -25,9 +25,9 @@ function initProductMedia() {
     });
   }
 
-  /* -------------------------
-     Lightbox
-  -------------------------- */
+  /* =================================================
+     LIGHTBOX SETUP
+  ================================================= */
   const lightbox = document.getElementById('mediaLightbox');
   if (!lightbox) return;
 
@@ -49,12 +49,12 @@ function initProductMedia() {
     },
   });
 
-  /* -------------------------
-     Open Lightbox (IMAGES ONLY)
-  -------------------------- */
+  /* =================================================
+     OPEN LIGHTBOX — IMAGES ONLY
+  ================================================= */
   document.querySelectorAll('.js-open-lightbox').forEach((el, index) => {
     el.addEventListener('click', (e) => {
-      if (el.tagName !== 'IMG') return;
+      if (el.tagName !== 'IMG') return; // 🔒 videos ignored
 
       e.preventDefault();
       e.stopPropagation();
@@ -68,9 +68,9 @@ function initProductMedia() {
     });
   });
 
-  /* -------------------------
-     Close Lightbox
-  -------------------------- */
+  /* =================================================
+     CLOSE LIGHTBOX
+  ================================================= */
   function closeLightbox() {
     lightbox.classList.remove('is-open');
     document.documentElement.style.overflow = '';
@@ -85,9 +85,9 @@ function initProductMedia() {
     if (e.key === 'Escape') closeLightbox();
   });
 
-  /* -------------------------
-     ZOOM SYSTEM (3 STEPS)
-  -------------------------- */
+  /* =================================================
+     ZOOM SYSTEM (3-STEP)
+  ================================================= */
   lightbox.addEventListener('click', (e) => {
     const img = e.target.closest('.swiper-slide img');
     if (!img) return;
@@ -102,13 +102,11 @@ function initProductMedia() {
    ZOOM LOGIC
 ================================================= */
 function toggleZoom(img) {
-  const zoomLevel = img.dataset.zoomLevel
-    ? parseInt(img.dataset.zoomLevel, 10)
-    : 0;
+  const level = parseInt(img.dataset.zoomLevel || '0', 10);
 
-  if (zoomLevel === 0) {
+  if (level === 0) {
     setZoom(img, 1.6, 1);
-  } else if (zoomLevel === 1) {
+  } else if (level === 1) {
     setZoom(img, 2.5, 2);
   } else {
     resetZoom(img);
@@ -117,31 +115,32 @@ function toggleZoom(img) {
 
 function setZoom(img, scale, level) {
   img.dataset.zoomLevel = level;
-  img.style.cursor = 'grab';
-  img.style.transition = 'transform 0.25s ease';
-  img.style.transform = `scale(${scale}) translate(0px, 0px)`;
   img.dataset.x = 0;
   img.dataset.y = 0;
 
+  img.style.cursor = 'grab';
+  img.style.transition = 'transform 0.25s ease';
+  img.style.transform = `scale(${scale}) translate(0px, 0px)`;
+
   const swiper = img.closest('.swiper')?.swiper;
-  if (swiper) swiper.allowTouchMove = false;
+  if (swiper) swiper.allowTouchMove = false; // 🚫 disable Swiper drag
 }
 
 function resetZoom(img) {
   img.dataset.zoomLevel = 0;
-  img.style.cursor = 'zoom-in';
-  img.style.transition = 'transform 0.25s ease';
-  img.style.transform = 'scale(1) translate(0px, 0px)';
   img.dataset.x = 0;
   img.dataset.y = 0;
 
+  img.style.cursor = 'zoom-in';
+  img.style.transition = 'transform 0.25s ease';
+  img.style.transform = 'scale(1) translate(0px, 0px)';
+
   const swiper = img.closest('.swiper')?.swiper;
-  if (swiper) swiper.allowTouchMove = true;
+  if (swiper) swiper.allowTouchMove = true; // ✅ re-enable Swiper
 }
 
-
 /* =================================================
-   RESET ALL ZOOM (on close / slide change)
+   RESET ALL ZOOM (ON CLOSE / SLIDE CHANGE)
 ================================================= */
 function resetAllZoom(container) {
   container.querySelectorAll('img').forEach(img => {
@@ -150,7 +149,7 @@ function resetAllZoom(container) {
 }
 
 /* =================================================
-   DRAG / PAN LOGIC (MOUSE + TOUCH)
+   DRAG / PAN (MOUSE + TOUCH)
 ================================================= */
 function enableDrag(lightbox) {
   let isDragging = false;
@@ -180,7 +179,6 @@ function enableDrag(lightbox) {
 
   function moveDrag(e) {
     if (!isDragging || !currentImg) return;
-
     e.preventDefault();
 
     const point = e.touches ? e.touches[0] : e;
@@ -201,8 +199,8 @@ function enableDrag(lightbox) {
 
   function endDrag() {
     if (!currentImg) return;
-    isDragging = false;
     currentImg.style.cursor = 'grab';
+    isDragging = false;
     currentImg = null;
   }
 }
