@@ -5,14 +5,14 @@
 /* =====================
    BASE MEDIA
 ===================== */
-.product-media img,
-.product-media video {
+.product-media__main .product-media img,
+.product-media__main .product-media video {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.product-media video {
+.product-media__main .product-media video {
   max-height: 94vh;
   object-fit: cover;
   object-position: center;
@@ -21,13 +21,13 @@
 /* =====================
    INLINE PRODUCT SLIDER
 ===================== */
-.product-media__thumbs {
+.product-media__main .product-media__thumbs {
   position: relative;
   width: 100%;
 }
 
 /* Pagination — bottom center */
-.product-media__thumbs .swiper-pagination {
+.product-media__main .product-media__thumbs .swiper-pagination {
   position: absolute;
   bottom: 1rem;
   left: 50%;
@@ -37,7 +37,7 @@
   z-index: 5;
 }
 
-.product-media__thumbs .swiper-pagination-bullet {
+.product-media__main .product-media__thumbs .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   background: rgba(0, 0, 0, 0.35);
@@ -45,14 +45,14 @@
   transition: all 0.3s ease;
 }
 
-.product-media__thumbs .swiper-pagination-bullet-active {
+.product-media__main .product-media__thumbs .swiper-pagination-bullet-active {
   background: rgba(0, 0, 0, 0.85);
   transform: scale(1.2);
 }
 
 /* Navigation — right middle */
-.product-media__thumbs .swiper-button-prev,
-.product-media__thumbs .swiper-button-next {
+.product-media__main .product-media__thumbs .swiper-button-prev,
+.product-media__main .product-media__thumbs .swiper-button-next {
   position: absolute;
   right: 1rem;
   left: auto;
@@ -66,26 +66,26 @@
   transition: all 0.3s ease;
 }
 
-.product-media__thumbs .swiper-button-prev {
+.product-media__main .product-media__thumbs .swiper-button-prev {
   top: 50%;
   transform: translateY(-120%);
 }
 
-.product-media__thumbs .swiper-button-next {
+.product-media__main .product-media__thumbs .swiper-button-next {
   top: 50%;
   transform: translateY(20%);
 }
 
-.product-media__thumbs .swiper-button-prev:hover {
+.product-media__main .product-media__thumbs .swiper-button-prev:hover {
   transform: scale(1.05) translateY(-120%);
 }
 
-.product-media__thumbs .swiper-button-next:hover {
+.product-media__main .product-media__thumbs .swiper-button-next:hover {
   transform: scale(1.05) translateY(20%);
 }
 
-.product-media__thumbs .swiper-button-prev::after,
-.product-media__thumbs .swiper-button-next::after {
+.product-media__main .product-media__thumbs .swiper-button-prev::after,
+.product-media__main .product-media__thumbs .swiper-button-next::after {
   font-size: 14px;
   font-weight: bold;
 }
@@ -93,18 +93,18 @@
 /* =====================
    LIGHTBOX OVERLAY
 ===================== */
-.media-lightbox {
+.product-media__main .media-lightbox {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: none;
 }
 
-.media-lightbox.is-open {
+.product-media__main .media-lightbox.is-open {
   display: block;
 }
 
-.media-lightbox__overlay {
+.product-media__main .media-lightbox__overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.88);
@@ -113,18 +113,18 @@
 /* =====================
    LIGHTBOX CONTENT
 ===================== */
-.media-lightbox__content {
+.product-media__main .media-lightbox__content {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.media-lightbox .swiper {
+.product-media__main .media-lightbox .swiper {
   width: 100%;
   height: 100%;
 }
 
-.media-lightbox .swiper-slide {
+.product-media__main .media-lightbox .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +133,7 @@
 /* =====================
    LIGHTBOX IMAGE
 ===================== */
-.media-lightbox img {
+.product-media__main .media-lightbox img {
   max-width: 95vw;
   max-height: 95vh;
   object-fit: contain;
@@ -147,19 +147,19 @@
 }
 
 /* Zoom states (used by JS) */
-.media-lightbox img.is-zoomed {
+.product-media__main .media-lightbox img.is-zoomed {
   cursor: grab;
 }
 
-.media-lightbox img.is-dragging {
+.product-media__main .media-lightbox img.is-dragging {
   cursor: grabbing;
 }
 
 /* =====================
    LIGHTBOX NAVIGATION
 ===================== */
-.media-lightbox .swiper-button-prev,
-.media-lightbox .swiper-button-next {
+.product-media__main .media-lightbox .swiper-button-prev,
+.product-media__main .media-lightbox .swiper-button-next {
   width: 52px;
   height: 52px;
   background: rgba(255, 255, 255, 0.15);
@@ -169,14 +169,14 @@
   transition: all 0.3s ease;
 }
 
-.media-lightbox .swiper-button-prev:hover,
-.media-lightbox .swiper-button-next:hover {
+.product-media__main .media-lightbox .swiper-button-prev:hover,
+.product-media__main .media-lightbox .swiper-button-next:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.05);
 }
 
-.media-lightbox .swiper-button-prev::after,
-.media-lightbox .swiper-button-next::after {
+.product-media__main .media-lightbox .swiper-button-prev::after,
+.product-media__main .media-lightbox .swiper-button-next::after {
   font-size: 18px;
   font-weight: 600;
 }
@@ -184,11 +184,11 @@
 /* =====================
    LIGHTBOX PAGINATION
 ===================== */
-.media-lightbox .swiper-pagination {
+.product-media__main .media-lightbox .swiper-pagination {
   bottom: 1.5rem;
 }
 
-.media-lightbox .swiper-pagination-bullet {
+.product-media__main .media-lightbox .swiper-pagination-bullet {
   width: 9px;
   height: 9px;
   background: rgba(255, 255, 255, 0.4);
@@ -196,7 +196,7 @@
   transition: all 0.3s ease;
 }
 
-.media-lightbox .swiper-pagination-bullet-active {
+.product-media__main .media-lightbox .swiper-pagination-bullet-active {
   background: #fff;
   transform: scale(1.25);
 }
@@ -204,7 +204,7 @@
 /* =====================
    LIGHTBOX CLOSE BUTTON
 ===================== */
-.media-lightbox__close {
+.product-media__main .media-lightbox__close {
   position: absolute;
   top: 2rem;
   right: 2rem;
@@ -219,7 +219,7 @@
   transition: opacity 0.2s ease;
 }
 
-.media-lightbox__close:hover {
+.product-media__main .media-lightbox__close:hover {
   opacity: 1;
 }
 
@@ -227,18 +227,18 @@
    MOBILE OPTIMIZATION
 ===================== */
 @media (max-width: 768px) {
-  .product-media__thumbs .swiper-button-prev,
-  .product-media__thumbs .swiper-button-next {
+ .product-media__main  .product-media__thumbs .swiper-button-prev,
+ .product-media__main  .product-media__thumbs .swiper-button-next {
     display: none;
   }
 
-  .media-lightbox .swiper-button-prev,
-  .media-lightbox .swiper-button-next {
+ .product-media__main  .media-lightbox .swiper-button-prev,
+ .product-media__main  .media-lightbox .swiper-button-next {
     width: 44px;
     height: 44px;
   }
 
-  .media-lightbox__close {
+ .product-media__main  .media-lightbox__close {
     top: 1rem;
     right: 1rem;
     font-size: 2.4rem;
