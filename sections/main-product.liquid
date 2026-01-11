@@ -1,13 +1,13 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
 {{ 'product-media.css' | asset_url | stylesheet_tag }}
 {%- liquid
-  assign f_outer_classes = 'main-product'
-  assign f_outer_classes = f_outer_classes | append: ' section-' | append: section.id | append: '-padding'
-  assign f_outer_classes = f_outer_classes | append: ' m-color-' | append: section.settings.footer_color_scheme
-  assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.custom_class
-  assign f_outer_classes = f_outer_classes | append: ' ' | append: section.settings.color_control
-  assign f_inner_classes = ''
-  assign f_inner_classes = f_inner_classes | append: ' ' | append: section.settings.container_width
+  assign p_outer_classes = 'main-product'
+  assign p_outer_classes = p_outer_classes | append: ' section-' | append: section.id | append: '-padding'
+  assign p_outer_classes = p_outer_classes | append: ' m-color-' | append: section.settings.footer_color_scheme
+  assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.custom_class
+  assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.color_control
+  assign p_inner_classes = ''
+  assign p_inner_classes = p_inner_classes | append: ' ' | append: section.settings.container_width
 -%}
 <section class="main-product">
 
