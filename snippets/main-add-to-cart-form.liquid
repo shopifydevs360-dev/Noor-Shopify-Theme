@@ -2,7 +2,7 @@
 
   {% form 'product', product, class: 'product-form' %}
 
-    <!-- REQUIRED VARIANT ID -->
+    <!-- REQUIRED VARIANT ID (CRITICAL) -->
     <input
       type="hidden"
       name="id"
@@ -32,6 +32,7 @@
       {% endfor %}
     {% endunless %}
 
+    <!-- QUANTITY -->
     <div class="quantity-selector">
       <label class="product-quantity">
         <select name="quantity">
@@ -43,36 +44,35 @@
       </label>
     </div>
 
+    <!-- ADD TO CART -->
+    <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
+      <button
+        type="submit"
+        class="btn btn--primary btn-add-to-cart"
+        data-role="add-to-cart"
+      >
+        Add to cart
+      </button>
+    </div>
 
-<div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
-  <button
-    type="submit"
-    class="btn btn--primary btn-add-to-cart"
-    data-role="add-to-cart"
-  >
-    Add to cart
-  </button>
-</div>
+    <!-- BUY / NOTIFY -->
+    <div class="quick-checkout">
+      <button
+        type="button"
+        class="btn btn--secondary btn-buy-now"
+        data-role="buy-now"
+      >
+        Buy it now
+      </button>
 
-<div class="quick-checkout">
-  <button
-    type="button"
-    class="btn btn--secondary btn-buy-now"
-    data-role="buy-now"
-  >
-    Buy it now
-  </button>
-
-  <button
-    type="button"
-    class="btn btn--secondary btn-notify hide"
-    data-role="notify"
-  >
-    Notify me when available
-  </button>
-</div>
-
-
+      <button
+        type="button"
+        class="btn btn--secondary btn-notify hide"
+        data-role="notify"
+      >
+        Notify me when available
+      </button>
+    </div>
 
   {% endform %}
 
