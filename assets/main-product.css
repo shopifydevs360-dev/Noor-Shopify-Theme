@@ -62,17 +62,6 @@
   color: rgb(var(--color-subtext));
 }
 
-/* Mobile tuning */
-@media (max-width: 768px) {
-  .product-title {
-    font-size: 2rem;
-  }
-
-  .price--sale,
-  .price--regular {
-    font-size: 1.5rem;
-  }
-}
 
 
 .variant-buttons {
