@@ -31,9 +31,6 @@
 
 /* Title */
 .product-title {
-  font-size: clamp(2.2rem, 3vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.15;
   color: rgb(var(--color-heading));
 }
 
