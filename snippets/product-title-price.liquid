@@ -4,10 +4,7 @@
   <div class="product-price js-variant-price">
 
     {% for variant in product.variants %}
-      <div
-        class="variant-price-item hide-price"
-        data-variant-id="{{ variant.id }}"
-      >
+      <div class="variant-price-item hide-price {{ block.settings.price_font_size }}" data-variant-id="{{ variant.id }}">
         {% if variant.compare_at_price > variant.price %}
           <span class="price price--sale">
             {{ variant.price | money }}
