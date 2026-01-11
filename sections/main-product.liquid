@@ -34,46 +34,7 @@
 
           <!-- ADD TO CART FORM -->
           {% when 'add_to_cart_form' %}
-            <div class="product-block" {{ block.shopify_attributes }}>
-              {% form 'product', product %}
-
-                <!-- VARIANTS -->
-                {% unless product.has_only_default_variant %}
-                  {% for option in product.options_with_values %}
-                    <fieldset class="variant-group">
-                      <legend>{{ option.name }}</legend>
-                      <div class="variant-buttons">
-                        {% for value in option.values %}
-                          <label class="variant-btn">
-                            <input
-                              type="radio"
-                              name="options[{{ option.name }}]"
-                              value="{{ value }}"
-                              {% if option.selected_value == value %}checked{% endif %}>
-                            <span>{{ value }}</span>
-                          </label>
-                        {% endfor %}
-                      </div>
-                    </fieldset>
-                  {% endfor %}
-                {% endunless %}
-
-                <!-- QUANTITY DROPDOWN -->
-                <label>
-                  Quantity
-                  <select name="quantity">
-                    {% for i in (1..10) %}
-                      <option value="{{ i }}">{{ i }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
-
-                <button type="submit" class="btn btn--primary">
-                  Add to cart
-                </button>
-
-              {% endform %}
-            </div>
+            {% render 'add-to-cart-form' %}
 
           <!-- SHORT DESCRIPTION -->
           {% when 'short_description' %}
