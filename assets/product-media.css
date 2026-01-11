@@ -170,6 +170,7 @@
   backdrop-filter: blur(6px);
   color: #fff;
   transition: all 0.3s ease;
+  z-index:9;
 }
 
 .product-media__main .media-lightbox .swiper-button-prev:hover,
