@@ -90,21 +90,24 @@
 <!-- =====================
      LIGHTBOX
 ====================== -->
-<div class="media-lightbox" id="mediaLightbox">
+
+<div id="mediaLightbox" class="media-lightbox">
   <div class="media-lightbox__overlay"></div>
 
   <div class="media-lightbox__content">
-    <button class="media-lightbox__close" aria-label="Close">×</button>
+    <button class="media-lightbox__close">&times;</button>
 
-    <div class="swiper media-lightbox__slider">
+    <div class="media-lightbox__slider swiper">
       <div class="swiper-wrapper">
-        {% for media in product.media %}
-          {% if media.media_type == 'image' %}
-            <div class="swiper-slide">
-              <img class="js-open-lightbox" src="{{ media | image_url: width: 2000 }}" alt="">
-            </div>
-          {% endif %}
+
+        {% for image in images %}
+          <div class="swiper-slide">
+            <img
+              src="{{ image | image_url: width: 2000 }}"
+              alt="{{ image.alt | escape }}">
+          </div>
         {% endfor %}
+
       </div>
 
       <div class="swiper-button-prev"></div>
