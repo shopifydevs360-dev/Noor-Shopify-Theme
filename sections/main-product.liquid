@@ -24,12 +24,8 @@
 
           <!-- TITLE + PRICE -->
           {% when 'title_price' %}
-            <div class="product-block" {{ block.shopify_attributes }}>
-              <h1>{{ product.title }}</h1>
-              <div class="product-price">
-                {{ product.price | money }}
-              </div>
-            </div>
+            {% render 'product-title-price', product: product, block: block %}
+
 
           <!-- REVIEW COUNT -->
           {% when 'review-count' %}
