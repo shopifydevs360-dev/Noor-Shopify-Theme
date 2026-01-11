@@ -58,7 +58,7 @@
 
 /* Compare-at price */
 .price--compare {
-  font-size: calc(inherit * 0.1);
+  font-size: 0.1em;
   font-weight: 400;
   text-decoration: line-through;
   color: rgb(var(--color-subtext));
