@@ -85,7 +85,7 @@
 }
 
 .product-media__main .product-media__thumbs .swiper-button-prev::after,
-.product-media__main .product-media__thumbs .swiper-button-next::after {
+.product-media__thumbs .swiper-button-next::after {
   font-size: 14px;
   font-weight: bold;
 }
@@ -93,18 +93,18 @@
 /* =====================
    LIGHTBOX OVERLAY
 ===================== */
-.product-media__main .media-lightbox {
+.media-lightbox {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: none;
 }
 
-.product-media__main .media-lightbox.is-open {
+.media-lightbox.is-open {
   display: block;
 }
 
-.product-media__main .media-lightbox__overlay {
+.media-lightbox__overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.88);
@@ -113,18 +113,18 @@
 /* =====================
    LIGHTBOX CONTENT
 ===================== */
-.product-media__main .media-lightbox__content {
+.media-lightbox__content {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.product-media__main .media-lightbox .swiper {
+.media-lightbox .swiper {
   width: 100%;
   height: 100%;
 }
 
-.product-media__main .media-lightbox .swiper-slide {
+.media-lightbox .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +133,7 @@
 /* =====================
    LIGHTBOX IMAGE
 ===================== */
-.product-media__main .media-lightbox img {
+.media-lightbox img {
   max-width: 95vw;
   max-height: 95vh;
   object-fit: contain;
@@ -147,11 +147,11 @@
 }
 
 /* Zoom states (used by JS) */
-.product-media__main .media-lightbox img.is-zoomed {
+.media-lightbox img.is-zoomed {
   cursor: grab;
 }
 
-.product-media__main .media-lightbox img.is-dragging {
+.media-lightbox img.is-dragging {
   cursor: grabbing;
 }
 
