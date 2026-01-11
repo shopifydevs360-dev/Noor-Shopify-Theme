@@ -3,18 +3,17 @@
     {{ product.title }}
   </h1>
 
-  <div class="product-price">
+  <div class="product-price js-variant-price-update">
 
     {% if product.compare_at_price > product.price %}
       <!-- SALE PRICE -->
       <span
-        class="price price--sale variant-price-update"
+        class="price price--sale"
         data-price-type="sale">
         {{ product.price | money }}
       </span>
-
       <span
-        class="price price--compare variant-compare-update"
+        class="price price--compare"
         data-price-type="compare">
         {{ product.compare_at_price | money }}
       </span>
@@ -22,7 +21,7 @@
     {% else %}
       <!-- REGULAR PRICE -->
       <span
-        class="price price--regular variant-price-update"
+        class="price price--regular"
         data-price-type="regular">
         {{ product.price | money }}
       </span>
