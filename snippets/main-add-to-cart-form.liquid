@@ -19,7 +19,7 @@
 
           <div class="variant-buttons">
             {% for value in option.values %}
-              <label class="variant-btn {% unless current_variant.available %}disabled{% endunless %}">
+              <label class="variant-btn">
                 <input
                   type="radio"
                   name="options[{{ option.name }}]"
