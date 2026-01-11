@@ -26,15 +26,16 @@ function initProductMedia() {
   }
 
   /* -------------------------
-     Lightbox (CLASS-BASED, IMAGES ONLY)
+     Lightbox
   -------------------------- */
   const lightbox = document.getElementById('mediaLightbox');
   if (!lightbox) return;
 
   const closeBtn = lightbox.querySelector('.media-lightbox__close');
   const overlay = lightbox.querySelector('.media-lightbox__overlay');
+  const sliderEl = lightbox.querySelector('.media-lightbox__slider');
 
-  const lightboxSwiper = new Swiper('.media-lightbox__slider', {
+  const lightboxSwiper = new Swiper(sliderEl, {
     loop: true,
 
     navigation: {
@@ -48,13 +49,11 @@ function initProductMedia() {
     },
   });
 
-  /* =========================
-     OPEN LIGHTBOX — IMAGES ONLY
-  ========================== */
+  /* -------------------------
+     Open Lightbox (IMAGES ONLY)
+  -------------------------- */
   document.querySelectorAll('.js-open-lightbox').forEach((el, index) => {
     el.addEventListener('click', (e) => {
-
-      /* HARD GUARD: only IMG opens lightbox */
       if (el.tagName !== 'IMG') return;
 
       e.preventDefault();
@@ -65,16 +64,18 @@ function initProductMedia() {
       document.body.style.overflow = 'hidden';
 
       lightboxSwiper.slideToLoop(index, 0);
+      resetAllZoom(lightbox);
     });
   });
 
-  /* =========================
-     CLOSE LIGHTBOX
-  ========================== */
+  /* -------------------------
+     Close Lightbox
+  -------------------------- */
   function closeLightbox() {
     lightbox.classList.remove('is-open');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
+    resetAllZoom(lightbox);
   }
 
   closeBtn.addEventListener('click', closeLightbox);
@@ -83,4 +84,118 @@ function initProductMedia() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
   });
+
+  /* -------------------------
+     ZOOM SYSTEM (3 STEPS)
+  -------------------------- */
+  lightbox.addEventListener('click', (e) => {
+    const img = e.target.closest('.swiper-slide img');
+    if (!img) return;
+
+    toggleZoom(img);
+  });
+
+  enableDrag(lightbox);
+}
+
+/* =================================================
+   ZOOM LOGIC
+================================================= */
+function toggleZoom(img) {
+  const zoomLevel = img.dataset.zoomLevel
+    ? parseInt(img.dataset.zoomLevel, 10)
+    : 0;
+
+  if (zoomLevel === 0) {
+    setZoom(img, 1.6, 1);
+  } else if (zoomLevel === 1) {
+    setZoom(img, 2.5, 2);
+  } else {
+    resetZoom(img);
+  }
+}
+
+function setZoom(img, scale, level) {
+  img.dataset.zoomLevel = level;
+  img.style.cursor = 'grab';
+  img.style.transition = 'transform 0.25s ease';
+  img.style.transform = `scale(${scale}) translate(0px, 0px)`;
+  img.dataset.x = 0;
+  img.dataset.y = 0;
+}
+
+function resetZoom(img) {
+  img.dataset.zoomLevel = 0;
+  img.style.cursor = 'zoom-in';
+  img.style.transition = 'transform 0.25s ease';
+  img.style.transform = 'scale(1) translate(0px, 0px)';
+  img.dataset.x = 0;
+  img.dataset.y = 0;
+}
+
+/* =================================================
+   RESET ALL ZOOM (on close / slide change)
+================================================= */
+function resetAllZoom(container) {
+  container.querySelectorAll('img').forEach(img => {
+    resetZoom(img);
+  });
+}
+
+/* =================================================
+   DRAG / PAN LOGIC (MOUSE + TOUCH)
+================================================= */
+function enableDrag(lightbox) {
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let currentImg = null;
+
+  lightbox.addEventListener('mousedown', startDrag);
+  lightbox.addEventListener('touchstart', startDrag, { passive: false });
+
+  function startDrag(e) {
+    const img = e.target.closest('.swiper-slide img');
+    if (!img || img.dataset.zoomLevel === '0') return;
+
+    isDragging = true;
+    currentImg = img;
+
+    const point = e.touches ? e.touches[0] : e;
+    startX = point.clientX - (parseFloat(img.dataset.x) || 0);
+    startY = point.clientY - (parseFloat(img.dataset.y) || 0);
+
+    img.style.cursor = 'grabbing';
+  }
+
+  document.addEventListener('mousemove', moveDrag);
+  document.addEventListener('touchmove', moveDrag, { passive: false });
+
+  function moveDrag(e) {
+    if (!isDragging || !currentImg) return;
+
+    e.preventDefault();
+
+    const point = e.touches ? e.touches[0] : e;
+    const x = point.clientX - startX;
+    const y = point.clientY - startY;
+
+    currentImg.dataset.x = x;
+    currentImg.dataset.y = y;
+
+    const scale =
+      currentImg.dataset.zoomLevel === '2' ? 2.5 : 1.6;
+
+    currentImg.style.transform = `scale(${scale}) translate(${x}px, ${y}px)`;
+  }
+
+  document.addEventListener('mouseup', endDrag);
+  document.addEventListener('touchend', endDrag);
+
+  function endDrag() {
+    if (!currentImg) return;
+    isDragging = false;
+    currentImg.style.cursor = 'grab';
+    currentImg = null;
+  }
 }
