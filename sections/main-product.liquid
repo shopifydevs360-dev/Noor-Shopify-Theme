@@ -34,7 +34,8 @@
 
           <!-- ADD TO CART FORM -->
           {% when 'add_to_cart_form' %}
-            {% render 'add-to-cart-form' %}
+            {% render 'add-to-cart-form', product: product, block: block %}
+
 
           <!-- SHORT DESCRIPTION -->
           {% when 'short_description' %}
