@@ -16,7 +16,7 @@
 }
 .product-info {
   position: sticky;
-  top: 18%;
+  top: 0;
   padding: 18%;
 }
 /* ============================
