@@ -1,40 +1,49 @@
-            <div class="product-block" {{ block.shopify_attributes }}>
-              {% form 'product', product %}
+<div class="product-block" {{ block.shopify_attributes }}>
+  {% form 'product', product %}
 
-                <!-- VARIANTS -->
-                {% unless product.has_only_default_variant %}
-                  {% for option in product.options_with_values %}
-                    <fieldset class="variant-group">
-                      <legend>{{ option.name }}</legend>
-                      <div class="variant-buttons">
-                        {% for value in option.values %}
-                          <label class="variant-btn">
-                            <input
-                              type="radio"
-                              name="options[{{ option.name }}]"
-                              value="{{ value }}"
-                              {% if option.selected_value == value %}checked{% endif %}>
-                            <span>{{ value }}</span>
-                          </label>
-                        {% endfor %}
-                      </div>
-                    </fieldset>
-                  {% endfor %}
-                {% endunless %}
+    <!-- =====================
+         VARIANTS
+    ====================== -->
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+        <fieldset class="variant-group">
+          <legend>{{ option.name }}</legend>
 
-                <!-- QUANTITY DROPDOWN -->
-                <label>
-                  Quantity
-                  <select name="quantity">
-                    {% for i in (1..10) %}
-                      <option value="{{ i }}">{{ i }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+          <div class="variant-buttons">
+            {% for value in option.values %}
+              <label class="variant-btn">
+                <input
+                  type="radio"
+                  name="options[{{ option.name }}]"
+                  value="{{ value }}"
+                  {% if option.selected_value == value %}checked{% endif %}
+                >
+                <span>{{ value }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </fieldset>
+      {% endfor %}
+    {% endunless %}
 
-                <button type="submit" class="btn btn--primary">
-                  Add to cart
-                </button>
+    <!-- =====================
+         QUANTITY
+    ====================== -->
+    <label class="product-quantity">
+      Quantity
+      <select name="quantity">
+        {% for i in (1..10) %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+    </label>
 
-              {% endform %}
-            </div>
+    <!-- =====================
+         ADD TO CART
+    ====================== -->
+    <button type="submit" class="btn btn--primary">
+      Add to cart
+    </button>
+
+  {% endform %}
+</div>
