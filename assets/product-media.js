@@ -3,21 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initProductMedia() {
-  /* -------------------------
-     Thumbnail Slider
-  -------------------------- */
+
+  /* =========================
+     INLINE SLIDER
+  ========================== */
   const thumbs = document.querySelector('.product-media__thumbs');
 
   if (thumbs) {
     new Swiper(thumbs, {
       slidesPerView: 1,
       loop: true,
-
       navigation: {
         nextEl: '.product-media__thumbs .swiper-button-next',
         prevEl: '.product-media__thumbs .swiper-button-prev',
       },
-
       pagination: {
         el: '.product-media__thumbs .swiper-pagination',
         clickable: true,
@@ -25,23 +24,22 @@ function initProductMedia() {
     });
   }
 
-  /* -------------------------
-     Lightbox (CLASS-BASED, IMAGES ONLY)
-  -------------------------- */
+  /* =========================
+     LIGHTBOX
+  ========================== */
   const lightbox = document.getElementById('mediaLightbox');
   if (!lightbox) return;
 
   const closeBtn = lightbox.querySelector('.media-lightbox__close');
   const overlay = lightbox.querySelector('.media-lightbox__overlay');
+  const sliderEl = lightbox.querySelector('.media-lightbox__slider');
 
-  const lightboxSwiper = new Swiper('.media-lightbox__slider', {
+  const lightboxSwiper = new Swiper(sliderEl, {
     loop: true,
-
     navigation: {
       nextEl: '.media-lightbox .swiper-button-next',
       prevEl: '.media-lightbox .swiper-button-prev',
     },
-
     pagination: {
       el: '.media-lightbox .swiper-pagination',
       clickable: true,
@@ -49,21 +47,23 @@ function initProductMedia() {
   });
 
   /* =========================
-     OPEN LIGHTBOX — IMAGES ONLY
+     OPEN LIGHTBOX (IMAGES ONLY)
   ========================== */
-  document.querySelectorAll('.js-open-lightbox').forEach((el, index) => {
-    el.addEventListener('click', (e) => {
+  document.querySelectorAll('.js-open-lightbox').forEach(el => {
+    el.addEventListener('click', e => {
 
-      /* HARD GUARD: only IMG opens lightbox */
       if (el.tagName !== 'IMG') return;
 
       e.preventDefault();
       e.stopPropagation();
 
+      const index = Number(el.dataset.lightboxIndex) || 0;
+
       lightbox.classList.add('is-open');
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
 
+      resetZoom();
       lightboxSwiper.slideToLoop(index, 0);
     });
   });
@@ -75,12 +75,83 @@ function initProductMedia() {
     lightbox.classList.remove('is-open');
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
+    resetZoom();
   }
 
   closeBtn.addEventListener('click', closeLightbox);
   overlay.addEventListener('click', closeLightbox);
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeLightbox();
   });
+
+  /* =========================
+     ZOOM + PAN (FIXED)
+  ========================== */
+  let zoomLevel = 0;
+  let activeImg = null;
+  let startX = 0;
+  let startY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let dragging = false;
+
+  sliderEl.addEventListener('click', e => {
+    const img = e.target.closest('img');
+    if (!img) return;
+
+    zoomLevel = (zoomLevel + 1) % 3;
+
+    if (zoomLevel === 0) {
+      resetZoom();
+      return;
+    }
+
+    activeImg = img;
+    const scale = zoomLevel === 1 ? 1.6 : 2.6;
+
+    img.classList.add('is-zoomed');
+    img.style.transform = `scale(${scale}) translate(0px, 0px)`;
+
+    sliderEl.swiper.allowTouchMove = false;
+  });
+
+  sliderEl.addEventListener('mousedown', e => {
+    if (!activeImg || zoomLevel === 0) return;
+
+    dragging = true;
+    activeImg.classList.add('is-dragging');
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!dragging || !activeImg) return;
+
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+
+    const scale = zoomLevel === 1 ? 1.6 : 2.6;
+    activeImg.style.transform =
+      `scale(${scale}) translate(${currentX}px, ${currentY}px)`;
+  });
+
+  window.addEventListener('mouseup', () => {
+    dragging = false;
+    if (activeImg) activeImg.classList.remove('is-dragging');
+  });
+
+  function resetZoom() {
+    sliderEl.querySelectorAll('img').forEach(img => {
+      img.style.transform = 'scale(1) translate(0,0)';
+      img.classList.remove('is-zoomed', 'is-dragging');
+    });
+
+    zoomLevel = 0;
+    currentX = 0;
+    currentY = 0;
+    activeImg = null;
+
+    sliderEl.swiper.allowTouchMove = true;
+  }
 }
