@@ -6,7 +6,7 @@
   assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.custom_class
   assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
-<section class="main-product">
+<section class="{{ p_outer_classes }}">
 
   <div class="product-layout">
 
