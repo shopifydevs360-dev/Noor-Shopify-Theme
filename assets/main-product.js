@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =================================
-   VARIANT PRICE UPDATE (YOUR CODE)
+   VARIANT PRICE UPDATE (EXTENDED)
 ================================= */
 function initVariantPriceUpdate() {
   const root = document.querySelector('.main-product');
@@ -14,13 +14,19 @@ function initVariantPriceUpdate() {
   const priceItems = root.querySelectorAll('.variant-price-item');
   const variantInput = form?.querySelector('input[name="id"]');
 
-  if (!form || !priceItems.length || !window.product || !variantInput) {
+  // NEW – buttons
+  const addToCartBtn = root.querySelector('[data-role="add-to-cart"]');
+  const buyNowBtn = root.querySelector('[data-role="buy-now"]');
+  const notifyBtn = root.querySelector('[data-role="notify"]');
+
+  if (!form || !priceItems.length || !window.product || !variantInput || !addToCartBtn) {
     console.warn('Variant price update: missing elements');
     return;
   }
 
-  // Show initial price
+  // Initial load
   togglePrice(variantInput.value);
+  toggleStockUI(variantInput.value);
 
   form.addEventListener('change', () => {
     const selectedOptions = [];
@@ -39,8 +45,11 @@ function initVariantPriceUpdate() {
     // Update variant ID
     variantInput.value = variant.id;
 
-    // Toggle price
+    // Existing price logic
     togglePrice(variant.id);
+
+    // NEW stock logic
+    toggleStockUI(variant.id);
   });
 
   function togglePrice(variantId) {
@@ -54,10 +63,29 @@ function initVariantPriceUpdate() {
       }
     });
   }
+
+  // NEW – stock control
+  function toggleStockUI(variantId) {
+    const variant = window.product.variants.find(v => v.id == variantId);
+    if (!variant) return;
+
+    if (variant.available) {
+      addToCartBtn.textContent = 'Add to cart';
+      addToCartBtn.disabled = false;
+      buyNowBtn?.classList.remove('hide');
+      notifyBtn?.classList.add('hide');
+    } else {
+      addToCartBtn.textContent = 'Out of stock';
+      addToCartBtn.disabled = true;
+      buyNowBtn?.classList.add('hide');
+      notifyBtn?.classList.remove('hide');
+    }
+  }
 }
 
 /* =================================
    MAIN PRODUCT – CART HANDLER
+   (UNCHANGED)
 ================================= */
 function initMainProductCart() {
   const root = document.querySelector('.main-product');
@@ -79,6 +107,11 @@ function initMainProductCart() {
 
     if (behavior === 'redirect') {
       form.submit();
+      return;
+    }
+
+    // Block sold out add
+    if (form.querySelector('[data-role="add-to-cart"]').disabled) {
       return;
     }
 
@@ -105,6 +138,9 @@ function initMainProductCart() {
   const buyNowBtn = root.querySelector('.btn-buy-now');
   if (buyNowBtn) {
     buyNowBtn.addEventListener('click', () => {
+      // Block sold out
+      if (buyNowBtn.classList.contains('hide')) return;
+
       const formData = new FormData(form);
 
       fetch('/cart/add.js', {
@@ -133,7 +169,7 @@ function updateCartCount() {
 }
 
 /* =================================
-   OPEN BAG DRAWER (EXISTING SYSTEM)
+   OPEN BAG DRAWER
 ================================= */
 function openBagDrawer() {
   const trigger = document.querySelector(
