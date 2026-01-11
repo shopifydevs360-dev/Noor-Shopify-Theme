@@ -73,7 +73,13 @@
 {% schema %}
 {
   "name": "Main product",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "footer_color_scheme",
+      "label": "Color scheme"
+    },
+  ],
   "blocks": [
     { "type": "title_price", "name": "Title & price", "limit": 1 },
     { "type": "review-count", "name": "Reviews count", "limit": 1 },
