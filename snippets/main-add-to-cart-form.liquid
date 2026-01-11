@@ -32,36 +32,24 @@
       {% endfor %}
     {% endunless %}
 
-    <label class="product-quantity">
-      <select name="quantity">
-        {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
-        {% for qty in quantities %}
-          <option value="{{ qty }}">Qty {{ qty }}</option>
-        {% endfor %}
-      </select>
-    </label>
+    <div class="quantity-selector">
+      <label class="product-quantity">
+        <select name="quantity">
+          {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
+          {% for qty in quantities %}
+            <option value="{{ qty }}">Qty {{ qty }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
 
 
     <!-- ACTION BUTTONS -->
-    <div
-      class="product-actions"
-      data-cart-behavior="{{ block.settings.cart_behavior }}"
-    >
-      <button
-        type="submit"
-        class="btn btn--primary btn-add-to-cart"
-        data-action="add-to-cart"
-      >
-        Add to cart
-      </button>
-
-      <button
-        type="button"
-        class="btn btn--secondary btn-buy-now"
-        data-action="buy-now"
-      >
-        Buy it now
-      </button>
+    <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
+      <button type="submit" class="btn btn--primary btn-add-to-cart" data-action="add-to-cart">Add to cart</button>
+    </div>
+    <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
+      <button type="button" class="btn btn--secondary btn-buy-now" data-action="buy-now">Buy it now</button>
     </div>
 
   {% endform %}
