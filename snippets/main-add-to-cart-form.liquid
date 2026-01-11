@@ -11,41 +11,43 @@
       value="{{ product.selected_or_first_available_variant.id }}"
     >
 
-    <!-- VARIANTS -->
-    <div class="variant-selector">
-      {% unless product.has_only_default_variant %}
-        {% for option in product.options_with_values %}
-          <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
-            <legend>{{ option.name }}</legend>
+    <div class="variant-cart-btn-wrap">
+      <!-- VARIANTS -->
+      <div class="variant-selector">
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <fieldset class="variant-group" data-option-index="{{ forloop.index0 }}">
+              <legend>{{ option.name }}</legend>
 
-            <div class="variant-buttons">
-              {% for value in option.values %}
-                <label class="variant-btn">
-                  <input
-                    type="radio"
-                    name="options[{{ option.name }}]"
-                    value="{{ value }}"
-                    {% if option.selected_value == value %}checked{% endif %}
-                  >
-                  <span>{{ value }}</span>
-                </label>
-              {% endfor %}
-            </div>
-          </fieldset>
-        {% endfor %}
-      {% endunless %}
-    </div>
-
-    <!-- QUANTITY -->
-    <div class="quantity-selector">
-      <label class="product-quantity">
-        <select name="quantity">
-          {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
-          {% for qty in quantities %}
-            <option value="{{ qty }}">Qty {{ qty }}</option>
+              <div class="variant-buttons">
+                {% for value in option.values %}
+                  <label class="variant-btn">
+                    <input
+                      type="radio"
+                      name="options[{{ option.name }}]"
+                      value="{{ value }}"
+                      {% if option.selected_value == value %}checked{% endif %}
+                    >
+                    <span>{{ value }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </fieldset>
           {% endfor %}
-        </select>
-      </label>
+        {% endunless %}
+      </div>
+
+      <!-- QUANTITY -->
+      <div class="quantity-selector">
+        <label class="product-quantity">
+          <select name="quantity">
+            {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
+            {% for qty in quantities %}
+              <option value="{{ qty }}">Qty {{ qty }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </div>
     </div>
 
     <!-- ADD TO CART -->
