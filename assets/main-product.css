@@ -1,5 +1,6 @@
 .main-product {
   width: 100%;
+  position: relative;
 }
 
 .product-layout {
@@ -13,7 +14,9 @@
   }
 }
 .product-info {
-    padding: 18%;
+  position: sticky;
+  top: 18%;
+  padding: 18%;
 }
 /* ============================
    PRODUCT TITLE & PRICE
