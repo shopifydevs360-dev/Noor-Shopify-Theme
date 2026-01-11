@@ -14,6 +14,64 @@
   }
 }
 
+/* ============================
+   PRODUCT TITLE & PRICE
+============================ */
+
+.product-title-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Title */
+.product-title {
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: rgb(var(--color-heading));
+}
+
+/* Price wrapper */
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Regular price */
+.price--regular {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: rgb(var(--color-text));
+}
+
+/* Sale price */
+.price--sale {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: rgb(var(--color-price-sale));
+}
+
+/* Compare-at price */
+.price--compare {
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-decoration: line-through;
+  color: rgb(var(--color-subtext));
+}
+
+/* Mobile tuning */
+@media (max-width: 768px) {
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .price--sale,
+  .price--regular {
+    font-size: 1.5rem;
+  }
+}
 
 
 .variant-buttons {
