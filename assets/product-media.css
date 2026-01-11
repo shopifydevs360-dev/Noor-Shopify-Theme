@@ -158,6 +158,12 @@
 /* =====================
    LIGHTBOX NAVIGATION
 ===================== */
+.swiper-slide:first-child {
+  /* Your styles for the first slide go here */
+  display: none;
+  /* Example from search results */
+  /* margin-left: 200px; */
+}
 .product-media__thumbs .swiper-button-prev, 
 .product-media__thumbs .swiper-button-next {
     position: absolute;
