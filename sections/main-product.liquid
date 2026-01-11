@@ -1,21 +1,22 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
 {{ 'product-media.css' | asset_url | stylesheet_tag }}
-
 {%- liquid
   assign p_outer_classes = 'main-product'
   assign p_outer_classes = p_outer_classes | append: ' m-color-' | append: section.settings.main_product_color
   assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.custom_class
   assign p_outer_classes = p_outer_classes | append: ' ' | append: section.settings.color_control
 -%}
-
 <section class="{{ p_outer_classes }}">
 
   <div class="product-layout">
 
-    <!-- LEFT: PRODUCT MEDIA -->
-    {% render 'main-product-media', product: product %}
-
-    <!-- RIGHT: PRODUCT INFO -->
+    <!-- =====================
+         LEFT: PRODUCT MEDIA
+    ====================== -->
+{% render 'main-product-media', product: product %}
+    <!-- =====================
+         RIGHT: PRODUCT INFO
+    ====================== -->
     <div class="product-info">
 
       {% for block in section.blocks %}
@@ -25,15 +26,17 @@
           {% when 'title_price' %}
             {% render 'product-title-price', product: product, block: block %}
 
+
           <!-- REVIEW COUNT -->
           {% when 'review-count' %}
             {% if product.metafields.reviews.count > 0 %}
               {% render 'review-count', product: product, block: block %}
             {% endif %}
 
-          <!-- ADD TO CART -->
+          <!-- ADD TO CART FORM -->
           {% when 'add_to_cart_form' %}
             {% render 'main-add-to-cart-form', product: product, block: block %}
+
 
           <!-- SHORT DESCRIPTION -->
           {% when 'short_description' %}
@@ -42,6 +45,7 @@
                 {{ product.metafields.custom.short_description }}
               </div>
             {% endif %}
+
 
           <!-- FULL DESCRIPTION -->
           {% when 'description' %}
@@ -52,22 +56,19 @@
           <!-- ACCORDION -->
           {% when 'accordion' %}
             {% render 'product-accordion', block: block %}
-
         {% endcase %}
       {% endfor %}
 
     </div>
-  </div>
-</section>
 
-<!-- PRODUCT JSON FOR JS -->
+  </div>
+
+</section>
+<script src="{{ 'main-product.js' | asset_url }}" defer></script>
+<script src="{{ 'product-media.js' | asset_url }}" defer></script>
 <script>
   window.product = {{ product | json }};
 </script>
-
-<script src="{{ 'main-product.js' | asset_url }}" defer></script>
-<script src="{{ 'product-media.js' | asset_url }}" defer></script>
-
 
 {% schema %}
 {
