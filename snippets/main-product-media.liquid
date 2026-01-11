@@ -24,7 +24,7 @@
         playsinline: true
       }}
     {% elsif featured_media.media_type == 'image' %}
-      <img
+      <img class="js-open-lightbox"
         src="{{ featured_media | image_url: width: 1600 }}"
         alt="{{ featured_media.alt | escape }}"
         loading="eager">
@@ -70,7 +70,7 @@
         {% for media in product.media %}
           {% if media.media_type == 'image' %}
             <div class="swiper-slide js-open-lightbox">
-              <img
+              <img class="js-open-lightbox"
                 src="{{ media | image_url: width: 1600 }}"
                 alt="{{ media.alt | escape }}">
             </div>
@@ -101,7 +101,7 @@
         {% for media in product.media %}
           {% if media.media_type == 'image' %}
             <div class="swiper-slide">
-              <img src="{{ media | image_url: width: 2000 }}" alt="">
+              <img class="js-open-lightbox" src="{{ media | image_url: width: 2000 }}" alt="">
             </div>
           {% endif %}
         {% endfor %}
