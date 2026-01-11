@@ -66,6 +66,10 @@
 </section>
 <script src="{{ 'main-product.js' | asset_url }}" defer></script>
 <script src="{{ 'product-media.js' | asset_url }}" defer></script>
+<script>
+  window.product = {{ product | json }};
+</script>
+
 {% schema %}
 {
   "name": "Main product",
