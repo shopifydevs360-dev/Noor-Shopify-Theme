@@ -13,12 +13,13 @@
   .product-layout {
     grid-template-columns: 55% 45%;
   }
-}
-.product-info {
+  .product-info {
   position: sticky;
   top: 0;
   padding: 18%;
 }
+}
+
 /* ============================
    PRODUCT TITLE & PRICE
 ============================ */
