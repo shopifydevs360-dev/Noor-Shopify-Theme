@@ -1,9 +1,14 @@
 <div class="product-block product-form-wrapper" {{ block.shopify_attributes }}>
-  {% form 'product', product, class: 'product-form' %}
-    {% assign v = product.selected_or_first_available_variant %}
 
-    <!-- REQUIRED VARIANT ID -->
-    <input type="hidden" name="id" value="{{ v.id }}">
+  {% form 'product', product, class: 'product-form' %}
+    {% assign current_variant = product.selected_or_first_available_variant %}
+
+    <!-- REQUIRED VARIANT ID (CRITICAL) -->
+    <input
+      type="hidden"
+      name="id"
+      value="{{ current_variant.id }}"
+    >
 
     <!-- VARIANTS -->
     {% unless product.has_only_default_variant %}
@@ -39,15 +44,15 @@
       </label>
     </div>
 
-    <!-- ADD TO CART (ONLY REAL STOCK) -->
+    <!-- ADD TO CART (REAL STOCK ONLY) -->
     <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
       <button
         type="submit"
         class="btn btn--primary btn-add-to-cart"
         data-role="add-to-cart"
-        {% if v.inventory_quantity <= 0 %}disabled{% endif %}
+        {% if current_variant.inventory_quantity <= 0 %}disabled{% endif %}
       >
-        {% if v.inventory_quantity > 0 %}
+        {% if current_variant.inventory_quantity > 0 %}
           Add to cart
         {% else %}
           Out of stock
@@ -57,7 +62,7 @@
 
     <!-- BUY / PREORDER / NOTIFY -->
     <div class="quick-checkout">
-      {% if v.inventory_quantity > 0 %}
+      {% if current_variant.inventory_quantity > 0 %}
         <button type="button" class="btn btn--secondary btn-buy-now" data-role="buy-now">
           Buy it now
         </button>
@@ -65,7 +70,7 @@
           Notify me when available
         </button>
 
-      {% elsif v.inventory_policy == 'continue' %}
+      {% elsif current_variant.inventory_policy == 'continue' %}
         <button type="button" class="btn btn--secondary btn-buy-now" data-role="buy-now">
           Pre-order
         </button>
@@ -84,4 +89,5 @@
     </div>
 
   {% endform %}
+
 </div>
