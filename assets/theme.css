@@ -46,7 +46,7 @@ select {
     appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg class="theme-icon icon-down-angle" viewBox="0 0 48 48" fill="none" data-name="down angle" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M37 18L25 30L13 18" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
