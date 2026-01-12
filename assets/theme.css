@@ -46,7 +46,9 @@ select {
   background-color: var(--color-body-background);
   color: currentcolor;
 }
-
+select:focus-visible {
+    outline: 0;
+}
 dialog {
   background-color: var(--color-body-background);
   color: var(--color-body-text);
