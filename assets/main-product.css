@@ -95,6 +95,11 @@
     letter-spacing: 0.5px;
     margin-bottom: 1.8rem;
 }
+.product-form-wrapper .quantity-selector select {
+    border: 1px solid #cbcbcb;
+    padding: 0.7rem;
+    border-radius: 0;
+}
 .variant-selector{
   margin-bottom: 1rem;
 }
