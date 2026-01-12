@@ -53,7 +53,7 @@
       <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
         <button
           type="submit"
-          class="btn btn--primary btn-add-to-cart"
+          class="btn-add-to-cart"
           data-role="add-to-cart"
           {% unless current_variant.available %}disabled{% endunless %}
         >
@@ -70,7 +70,7 @@
     <div class="quick-checkout">
       <button
         type="button"
-        class="btn btn--secondary btn-buy-now {% unless current_variant.available %}hide{% endunless %}"
+        class="btn-buy-now {% unless current_variant.available %}hide{% endunless %}"
         data-role="buy-now"
       >
         Buy it now
@@ -78,7 +78,7 @@
 
       <button
         type="button"
-        class="btn btn--secondary btn-notify {% if current_variant.available %}hide{% endif %}"
+        class="btn-notify {% if current_variant.available %}hide{% endif %}"
         data-role="notify"
       >
         Notify me when available
