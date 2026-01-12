@@ -73,6 +73,27 @@
     margin-bottom: .8rem;
     grid-template-columns: auto 1fr;
 }
+.product-form-wrapper .btn-add-to-cart {
+    width: 100%;
+    background: #222;
+    border: 2px solid #222;
+    padding: 0.7rem;
+    color: #fff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.product-form-wrapper .btn-buy-now,
+.product-form-wrapper .btn-notify {
+    width: 100%;
+    background: #fff;
+    border: 2px solid #222;
+    padding: 0.7rem;
+    color: #222;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 .variant-selector{
   margin-bottom: 1rem;
 }
