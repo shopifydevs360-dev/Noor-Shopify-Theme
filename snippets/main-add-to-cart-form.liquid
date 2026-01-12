@@ -38,16 +38,27 @@
     </div>
     <div class="qty-cart-btn-wrap">
       <!-- QUANTITY -->
-      <div class="quantity-selector">
-        <label class="product-quantity">
-          <select name="quantity">
-            {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
-            {% for qty in quantities %}
-              <option value="{{ qty }}">Qty {{ qty }}</option>
-            {% endfor %}
-          </select>
-        </label>
+      <div class="quantity-dropdown" data-qty-dropdown>
+        <button type="button" class="qty-toggle" data-qty-toggle>
+          Qty 1
+        </button>
+
+        <ul class="qty-list">
+          {% assign quantities = "1,2,3,4,5,6,7,8,9,10,11,12" | split: "," %}
+          {% for qty in quantities %}
+            <li
+              class="qty-item {% if forloop.first %}is-selected{% endif %}"
+              data-qty="{{ qty }}"
+            >
+              Qty {{ qty }}
+            </li>
+          {% endfor %}
+        </ul>
+
+        <!-- Hidden input for Shopify -->
+        <input type="hidden" name="quantity" value="1">
       </div>
+
 
       <!-- ADD TO CART -->
       <div class="product-actions" data-cart-behavior="{{ block.settings.cart_behavior }}">
