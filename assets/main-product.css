@@ -100,9 +100,45 @@
     padding: 0.7rem;
     border-radius: 0;
 }
-select {
-
+.quantity-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
+
+.quantity-btn {
+  position: relative;
+}
+
+.quantity-btn input {
+  position: absolute;
+  opacity: 0;
+}
+
+.quantity-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  min-width: 64px;
+  padding: 0 12px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-weight: 500;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.quantity-btn input:checked + span {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.quantity-btn span:hover {
+  border-color: #000;
+}
+
 
 .variant-selector{
   margin-bottom: 1rem;
