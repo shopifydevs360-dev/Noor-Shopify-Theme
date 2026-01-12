@@ -86,7 +86,7 @@
 .product-form-wrapper .btn-buy-now,
 .product-form-wrapper .btn-notify {
     width: 100%;
-    background: #fff;
+    background: transparent;
     border: 2px solid #222;
     padding: 0.7rem;
     color: #222;
