@@ -134,7 +134,7 @@
 
 .qty-item:hover,
 .qty-item.is-selected {
-  background: #000;
+  background: #222;
   color: #fff;
 }
 
