@@ -15,7 +15,7 @@
 {% if related_collection %}
 
 <div class="product-related-carousel js-related-carousel-{{ section.id }} {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}">
-  <div class="product-carousel section-{{ section.id }}-padding">
+  <div class="product-carousel section-{{ section.id }}-padding" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
 
     <!-- ================= SECTION TITLE ================= -->
     {% if section.settings.title != blank %}
