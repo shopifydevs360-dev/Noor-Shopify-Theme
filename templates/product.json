@@ -12,6 +12,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "breadcrumb_6V9nX7": {
+          "type": "breadcrumb",
+          "settings": {}
+        },
         "title_price_YnB7D8": {
           "type": "title_price",
           "settings": {
@@ -45,6 +49,7 @@
         }
       },
       "block_order": [
+        "breadcrumb_6V9nX7",
         "title_price_YnB7D8",
         "add_to_cart_form_8aMLxd",
         "description_Th49Tf",
