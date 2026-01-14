@@ -272,9 +272,12 @@
 ============================ */
 .main-product .product-collection {
   position: relative;
-  left: -200px;
+  left: -64rem;
+  font-size: 4em;
   color: rgb(var(--color-subtext));
   margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+  line-height: 1.5;
 }
 .main-product .product-collection .collection-label {
   font-weight: 600;
