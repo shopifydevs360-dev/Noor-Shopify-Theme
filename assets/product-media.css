@@ -61,14 +61,6 @@
     width: max-content;
 }
 
-@media (max-width: 991px) {
-.product-media__thumbs .swiper-nav-wrapper {
-    right: 50%;
-    transform: translateX(50%);
-    bottom: auto;
-    top: 9rem;
-  }
-}
 
 .product-media__thumbs .swiper-nav-wrapper button {
   background: none;
