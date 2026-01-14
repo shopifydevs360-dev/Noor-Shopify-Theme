@@ -241,8 +241,8 @@
 /* ============================
     Breadcrumbs
 ============================ */
-.main-product .breadcrumb {
-  font-size: 0.9rem;
+.main-product .product-breadcrumb {
+  font-size: 1em;
   margin-bottom: 1rem;
 }
 /* ============================
@@ -255,7 +255,7 @@
    Product metadata
 ============================ */
 .main-product .product-metadata {
-  font-size: 0.9rem;
+  font-size: 1em;
   color: rgb(var(--color-subtext));
   margin-bottom: 2rem;
 }
