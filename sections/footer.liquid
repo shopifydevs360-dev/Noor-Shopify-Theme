@@ -120,7 +120,7 @@
             </div>
 
           {% when 'empty_space' %}
-            <div class="empty-space width-{{ block.settings.block_width }}" {{ block.shopify_attributes }}></div>
+            <div class="empty-space" style="width: {{ block.settings.block_width }}px" {{ block.shopify_attributes }}></div>
         {% endcase %}
       {% endfor %}
     </div>
@@ -339,14 +339,12 @@
       "name": "Empty space",
       "limit": 2,
       "settings": [
-        { "type": "select", "id": "block_width", "label": "Block width", "options": [
-          { "value": "5", "label": "5%" },
-          { "value": "10", "label": "10%" },
-          { "value": "15", "label": "15%" },
-          { "value": "20", "label": "20%" },
-          { "value": "25", "label": "25%" },
-          { "value": "33", "label": "33%" },
-        ], "default": "20" }
+        {
+          "type": "number",
+          "id": "block_width",
+          "label": "Block width (px)",
+          "default": 50
+        }
       ]
     }
   ],
