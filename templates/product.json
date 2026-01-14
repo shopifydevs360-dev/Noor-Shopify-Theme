@@ -56,6 +56,15 @@
             "title": "FULL INGREDIENTS",
             "content": "<p>Water / Aqua / Eau, Sodium C14-16 Olefin Sulfonate, Cocamidopropyl Betaine, Sodium Methyl Cocoyl Taurate, Peg-200 Hydrogenated Glyceryl Palmate, Cocamide Mipa, Fragrance / Parfum, , Panthenol, Cocoglucosides</p>"
           }
+        },
+        "product_meta_iat8W8": {
+          "type": "product_meta",
+          "settings": {
+            "show_sku": true,
+            "show_vendor": true,
+            "show_type": true,
+            "show_availability": true
+          }
         }
       },
       "block_order": [
@@ -66,7 +75,8 @@
         "add_to_cart_form_8aMLxd",
         "description_Th49Tf",
         "accordion_GJhgHM",
-        "accordion_EA3PW7"
+        "accordion_EA3PW7",
+        "product_meta_iat8W8"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
