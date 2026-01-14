@@ -1,15 +1,20 @@
-{% if product.related_products.size > 0 %}
+{% if product %}
 
-<h3>Recommended by Shopify</h3>
+<h3>Related products (same type)</h3>
+
+{% assign related_by_type = collections.all.products
+  | where: "type", product.type
+  | where: "available", true %}
 
 <ul>
-  {% for p in product.related_products limit: 6 %}
-    <li>{{ p.title }}</li>
+  {% for p in related_by_type limit: 6 %}
+    {% if p.id != product.id %}
+      <li>{{ p.title }}</li>
+    {% endif %}
   {% endfor %}
 </ul>
 
 {% endif %}
-
 
 {% schema %}
 {
