@@ -25,9 +25,10 @@
 }
 /* Desktop / Laptop */
 @media (min-width: 992px) and (max-width: 1320px) {
-  .hide-desktop {
-    display: none !important;
-  }
+  .product-info {
+  padding: 2rem 7rem 0 2rem;
+
+}
 }
 
 /* ============================
