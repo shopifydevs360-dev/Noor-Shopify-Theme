@@ -53,7 +53,7 @@
 /* =====================================
    NAVIGATION
 ===================================== */
-.hero-slideshow .swiper-nav-wrapper {
+.product-media__thumbs .swiper-nav-wrapper {
   position: absolute;
   right: 60px;
   bottom: 60px;
@@ -62,7 +62,7 @@
 }
 
 @media (max-width: 991px) {
-.hero-slideshow .swiper-nav-wrapper {
+.product-media__thumbs .swiper-nav-wrapper {
     right: 50%;
     transform: translateX(50%);
     bottom: auto;
@@ -70,7 +70,7 @@
   }
 }
 
-.hero-slideshow .swiper-nav-wrapper button {
+.product-media__thumbs .swiper-nav-wrapper button {
   background: none;
   border: 0;
   padding: 0;
@@ -81,21 +81,21 @@
   text-transform: uppercase;
 }
 
-.hero-slideshow .swiper-nav-wrapper .inner-text {
+.product-media__thumbs .swiper-nav-wrapper .inner-text {
   display: inline-block;
   transition: transform 0.6s cubic-bezier(0, 0, 0.002, 1);
 }
 
-.hero-slideshow .swiper-button-prev:hover .inner-text {
+.product-media__thumbs .swiper-button-prev:hover .inner-text {
   transform: translateX(-4px);
 }
 
-.hero-slideshow .swiper-button-next {
+.product-media__thumbs .swiper-button-next {
     margin-left: 72px;
     padding-left: 34px !important;
     position: relative;
 }
-.hero-slideshow .swiper-button-next .line {
+.product-media__thumbs .swiper-button-next .line {
     position: absolute;
     left: 0;
     top: 50%;
@@ -106,7 +106,7 @@
     display: block;
 }
 
-.hero-slideshow .swiper-button-next:hover .inner-text {
+.product-media__thumbs .swiper-button-next:hover .inner-text {
   transform: translateX(4px);
 }
 
@@ -181,7 +181,7 @@
 /* =====================================
    NAVIGATION
 ===================================== */
-.hero-slideshow .swiper-nav-wrapper {
+.product-media__thumbs .swiper-nav-wrapper {
   position: absolute;
   right: 60px;
   bottom: 60px;
@@ -190,7 +190,7 @@
 }
 
 @media (max-width: 991px) {
-.hero-slideshow .swiper-nav-wrapper {
+.product-media__thumbs .swiper-nav-wrapper {
     right: 50%;
     transform: translateX(50%);
     bottom: auto;
@@ -198,7 +198,7 @@
   }
 }
 
-.hero-slideshow .swiper-nav-wrapper button {
+.product-media__thumbs .swiper-nav-wrapper button {
   background: none;
   border: 0;
   padding: 0;
@@ -209,7 +209,7 @@
   text-transform: uppercase;
 }
 
-.hero-slideshow .swiper-nav-wrapper .inner-text {
+.product-media__thumbs .swiper-nav-wrapper .inner-text {
   display: inline-block;
   transition: transform 0.6s cubic-bezier(0, 0, 0.002, 1);
 }
