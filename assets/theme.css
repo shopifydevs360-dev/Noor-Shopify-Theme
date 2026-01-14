@@ -725,6 +725,7 @@ button:disabled,
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all .6s cubic-bezier(.72,0,.28,1);
 }
 
 .accordion-trigger:first-child{
