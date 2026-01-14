@@ -89,6 +89,15 @@
 }
 
 /* ============================
+  Product reviews counter
+============================ */
+.main-product .product-reviews {
+  font-size: 0.9rem;
+  color: rgb(var(--color-subtext));
+  margin-bottom: 1.2rem;
+}
+
+/* ============================
    ADD TO CART / BUY BUTTONS
 ============================ */
 .main-product .qty-cart-btn-wrap {
@@ -220,4 +229,44 @@
   font-size: var(--font-size-body);
   line-height: 1.5;
 }
+
+/* ============================
+   PRODUCT Short DESCRIPTION
+============================ */
+  .main-product .short-description {
+    margin-bottom: 2rem;
+    font-size: var(--font-size-body);
+    line-height: 1.5;
+  }
+/* ============================
+    Breadcrumbs
+============================ */
+.main-product .breadcrumb {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+/* ============================
+   Rich Text Content
+============================ */
+.main-product .rich-text-content {
+  margin-bottom: 2rem;
+}
+/* ============================
+   Product metadata
+============================ */
+.main-product .product-metadata {
+  font-size: 0.9rem;
+  color: rgb(var(--color-subtext));
+  margin-bottom: 2rem;
+}
+.main-product .product-metadata ul {
+  list-style: none;
+  padding: 0;
+}
+.main-product .product-metadata ul li {
+  margin-bottom: 0.4rem;
+}
+
+
+
 
