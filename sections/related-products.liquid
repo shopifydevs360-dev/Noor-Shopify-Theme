@@ -7,7 +7,7 @@
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
   >
 
-    {% if recommendations.performed and recommendations.products_count > 0 %}
+
 
       <div class="product-carousel section-{{ section.id }}-padding">
 
@@ -58,7 +58,7 @@
         });
       </script>
 
-    {% endif %}
+
   </product-recommendations>
 </section>
 
