@@ -3,7 +3,7 @@
     {% if block.settings.show_vendor %}
     <li><strong>Vendor:</strong> {{ product.vendor }}</li>
     {% endif %}
-    {% if block.settings.show_type %}
+    {% if block.settings.show_type and product.type != blank %}
     <li><strong>Type:</strong> {{ product.type }}</li>
     {% endif %}
     {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
