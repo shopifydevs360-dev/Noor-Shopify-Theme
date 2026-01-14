@@ -715,15 +715,14 @@ button:disabled,
 /* ============================
    Accordion Style
 ============================ */
-  .accordion-item {
-    margin-bottom: 1rem;
-  }
-
-  .accordion-trigger {
+.accordion-item {
+  margin-bottom: 1rem;
+}
+.accordion-trigger {
     padding: 1rem 0;
-    font-weight: bold;
     cursor: pointer;
-  }
+    letter-spacing: 0.5px;
+}
 .accordion-trigger:first-child{
     border-top: 1px solid rgb(var(--color-border, #4d4d4d));
   }
