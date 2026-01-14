@@ -2,6 +2,18 @@
 
 {% assign related_products = product.related_products %}
 
+{%- comment -%}
+Fallback: collection → same type → same tag
+{%- endcomment -%}
+
+{% if related_products.size == 0 %}
+
+  {% if product.collections.size > 0 %}
+    {% assign related_products = product.collections.first.products %}
+  {% endif %}
+
+{% endif %}
+
 {% if related_products.size > 0 %}
 
 <div class="product-related-carousel js-related-carousel-{{ section.id }} {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}">
@@ -18,12 +30,16 @@
     <div class="swiper swiper-container-product">
       <div class="swiper-wrapper">
 
+        {% assign shown = 0 %}
+
         {% for related_product in related_products %}
-            {% if related_product.id != product.id %}
-          <div class="swiper-slide product-slide">
-            {% render 'product-card', product: related_product %}
-          </div>
+          {% if related_product.id != product.id %}
+            <div class="swiper-slide product-slide">
+              {% render 'product-card', product: related_product %}
+            </div>
+            {% assign shown = shown | plus: 1 %}
           {% endif %}
+          {% if shown == 8 %}{% break %}{% endif %}
         {% endfor %}
 
       </div>
@@ -42,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
   new Swiper(section.querySelector('.swiper-container-product'), {
     slidesPerView: 1.2,
     spaceBetween: 24,
+    observer: true,
+    observeParents: true,
     scrollbar: {
       el: section.querySelector('.swiper-scrollbar'),
       draggable: true
@@ -57,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 {% endif %}
 {% endif %}
-
 
 
 {% schema %}
