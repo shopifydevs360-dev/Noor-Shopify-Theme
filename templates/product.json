@@ -32,15 +32,15 @@
         "accordion_GJhgHM": {
           "type": "accordion",
           "settings": {
-            "title": "Accordion",
-            "content": "<p>Content</p>"
+            "title": "TELL ME MORE",
+            "content": "<p>This color-safe shampoo breathes life into fine, flat hair with strengthening keratin, biotin, and nourishing chia seed oil. Hair is left clean, bouncy, and full of volume, so you can finally be fine with being fine. Follow with Fine Conditioner for best results.</p>"
           }
         },
         "accordion_EA3PW7": {
           "type": "accordion",
           "settings": {
-            "title": "Accordion",
-            "content": "<p>Content</p>"
+            "title": "FULL INGREDIENTS",
+            "content": "<p>Water / Aqua / Eau, Sodium C14-16 Olefin Sulfonate, Cocamidopropyl Betaine, Sodium Methyl Cocoyl Taurate, Peg-200 Hydrogenated Glyceryl Palmate, Cocamide Mipa, Fragrance / Parfum, , Panthenol, Cocoglucosides</p>"
           }
         }
       },
