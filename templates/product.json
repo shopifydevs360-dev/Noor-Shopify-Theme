@@ -58,13 +58,16 @@
       }
     },
     "related_products": {
-    "type": "related-products",
-    "settings": {
-      "title": "You may also like",
-      "custom_class": "",
-      "color_control": "section-light"
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "",
+        "title": "You may also like",
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "custom_class": "",
+        "color_control": "section-light"
+      }
     }
-}
   },
   "order": [
     "main",
