@@ -90,12 +90,12 @@
   transform: translateX(-4px);
 }
 
-.hero-slideshow .swiper-next-text {
+.hero-slideshow .swiper-button-next {
     margin-left: 72px;
     padding-left: 34px !important;
     position: relative;
 }
-.hero-slideshow .swiper-next-text .line {
+.hero-slideshow .swiper-button-next .line {
     position: absolute;
     left: 0;
     top: 50%;
@@ -106,7 +106,7 @@
     display: block;
 }
 
-.hero-slideshow .swiper-next-text:hover .inner-text {
+.hero-slideshow .swiper-button-next:hover .inner-text {
   transform: translateX(4px);
 }
 
