@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
 }
-@media (max-width: 991){
+@media (max-width: 991px){
   .main-product{
     padding-top: 4.2rem;
   }
