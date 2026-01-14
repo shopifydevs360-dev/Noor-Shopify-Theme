@@ -79,7 +79,7 @@
           {% when 'product_collection' %}
             {% if product.collections.first %}
               <div class="product-collection" {{ block.shopify_attributes }}>
-                <strong>Collection:</strong>
+                <span class="collection-label">{{ block.settings.label }}</span>
                 {{ product.collections.first.title }}
               </div>
             {% endif %}
@@ -258,7 +258,14 @@
     {
       "type": "product_collection",
       "name": "Product collection",
-      "settings": []
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Collection:"
+        }
+      ]
     },
     {
       "type": "custom_liquid",
