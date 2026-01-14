@@ -226,7 +226,6 @@
 ============================ */
  .main-product .main-description {
   margin-bottom: 2rem;
-  font-size: var(--font-size-body);
   line-height: 1.5;
 }
 
@@ -235,7 +234,6 @@
 ============================ */
   .main-product .short-description {
     margin-bottom: 2rem;
-    font-size: var(--font-size-body);
     line-height: 1.5;
   }
 /* ============================
