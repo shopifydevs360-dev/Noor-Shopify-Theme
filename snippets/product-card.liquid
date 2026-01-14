@@ -1,4 +1,5 @@
 {% if product %}
+{% assign cart_behavior = settings.cart_behavior | default: 'ajax' %}
 <div class="product-card" data-product-id="{{ product.id }}">
   <!-- ================= IMAGE WRAP ================= -->
   <div class="image-wrap">
