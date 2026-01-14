@@ -4,6 +4,8 @@
 .main-product {
   width: 100%;
   position: relative;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-text));
 }
 
 @media (max-width: 991px) {
@@ -15,18 +17,22 @@
 /* ============================
    PRODUCT LAYOUT & INFO
 ============================ */
+.main-product .product-layout {
+  width: 100%;
+}
+
 .main-product .product-info {
   padding: 1.2rem;
 }
 
 @media (min-width: 992px) {
- .main-product .product-layout {
+  .main-product .product-layout {
     display: grid;
     grid-template-columns: 55% 45%;
     align-items: start;
   }
 
- .main-product .product-info {
+  .main-product .product-info {
     position: sticky;
     top: 0;
     padding: 5rem 7rem 0 5rem;
@@ -36,7 +42,7 @@
 
 /* Desktop / Laptop */
 @media (min-width: 992px) and (max-width: 1320px) {
- .main-product .product-info {
+  .main-product .product-info {
     padding: 7rem 2rem 0 2rem;
   }
 }
@@ -58,13 +64,11 @@
   gap: 0.6rem;
 }
 
-/* Title */
 .main-product .product-title {
   line-height: 1;
   color: rgb(var(--color-heading));
 }
 
-/* Price wrapper */
 .main-product .product-price {
   display: flex;
   align-items: center;
@@ -72,7 +76,6 @@
   margin-bottom: 1rem;
 }
 
-/* Prices */
 .main-product .price--regular {
   color: rgb(var(--color-price-regular));
 }
@@ -89,7 +92,7 @@
 }
 
 /* ============================
-  Product reviews counter
+   PRODUCT REVIEWS
 ============================ */
 .main-product .product-reviews {
   font-size: 0.9rem;
@@ -111,34 +114,38 @@
 .main-product .product-form-wrapper .btn-add-to-cart {
   width: 100%;
   padding: 0.7rem;
-  background: #222;
-  border: 2px solid #222;
-  color: #fff;
+  background: rgb(var(--color-heading));
+  border: 2px solid rgb(var(--color-heading));
+  color: rgb(var(--color-background));
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 .main-product .product-form-wrapper .btn-add-to-cart:hover {
   background: transparent;
-  color: #222;
+  color: rgb(var(--color-heading));
 }
+
 .main-product .product-form-wrapper .btn-buy-now,
 .main-product .product-form-wrapper .btn-notify {
   width: 100%;
   padding: 0.7rem;
   background: transparent;
-  border: 2px solid #222;
-  color: #222;
+  border: 2px solid rgb(var(--color-heading));
+  color: rgb(var(--color-heading));
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 1.8rem;
 }
+
 .main-product .product-form-wrapper .btn-buy-now:hover,
 .main-product .product-form-wrapper .btn-notify:hover {
-  background: #222;
-  color: #fff;
+  background: rgb(var(--color-heading));
+  color: rgb(var(--color-background));
 }
+
 /* ============================
    QUANTITY DROPDOWN
 ============================ */
@@ -151,11 +158,11 @@
   width: 100%;
   height: 100%;
   padding: 0 14px;
-  border: 1px solid rgb(175 175 175);
+  border: 1px solid rgb(var(--color-border));
   background: rgb(var(--color-background));
+  color: rgb(var(--color-text));
   cursor: pointer;
   text-align: left;
-  font-size: inherit;
 }
 
 .main-product .qty-list {
@@ -164,7 +171,7 @@
   left: 0;
   width: 100%;
   background: rgb(var(--color-background));
-  border: 1px solid #ddd;
+  border: 1px solid rgb(var(--color-border));
   padding: 4px 0;
   list-style: none;
   display: none;
@@ -181,20 +188,20 @@
 }
 
 .main-product .qty-item:hover {
-  background: #222;
-  color: #fff;
+  background: rgb(var(--color-heading));
+  color: rgb(var(--color-background));
 }
 
 .main-product .qty-item.is-selected {
-  background: #353535;
-  color: #fff;
+  background: rgb(var(--color-heading));
+  color: rgb(var(--color-background));
 }
 
 /* ============================
    VARIANT SELECTOR
 ============================ */
 .main-product fieldset.variant-group {
-  border-color: rgb(211 211 211 / 60%);
+  border-color: rgb(var(--color-border));
 }
 
 .main-product .variant-selector {
@@ -213,79 +220,94 @@
 
 .main-product .variant-btn span {
   padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(var(--color-border));
   cursor: pointer;
+  color: rgb(var(--color-text));
 }
 
 .main-product .variant-btn input:checked + span {
-  border-color: #000;
+  border-color: rgb(var(--color-heading));
 }
 
 /* ============================
    PRODUCT DESCRIPTION
 ============================ */
- .main-product .main-description {
+.main-product .main-description {
   margin-bottom: 2rem;
   line-height: 1.5;
+  color: rgb(var(--color-text));
 }
 
 /* ============================
-   PRODUCT Short DESCRIPTION
+   PRODUCT SHORT DESCRIPTION
 ============================ */
-  .main-product .short-description {
-    margin-bottom: 2rem;
-    line-height: 1.5;
-  }
+.main-product .short-description {
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: rgb(var(--color-text));
+}
+
 /* ============================
-    Breadcrumbs
+   BREADCRUMB
 ============================ */
 .main-product .product-breadcrumb {
   font-size: 0.7em;
   margin-bottom: 1rem;
+  color: rgb(var(--color-subtext));
 }
+
+.main-product .product-breadcrumb a {
+  color: rgb(var(--color-link));
+}
+
+.main-product .product-breadcrumb a:hover {
+  color: rgb(var(--color-link-hover));
+}
+
 /* ============================
-   Rich Text Content
+   RICH TEXT CONTENT
 ============================ */
 .main-product .richtext {
   margin-bottom: 1.2rem;
+  color: rgb(var(--color-text));
 }
+
 /* ============================
-   Product metadata
+   PRODUCT METADATA
 ============================ */
 .main-product .product-metadata {
   font-size: 1em;
   color: rgb(var(--color-subtext));
   margin-bottom: 2rem;
 }
+
 .main-product .product-metadata ul {
   list-style: none;
   padding: 0;
 }
+
 .main-product .product-metadata ul li {
   margin-bottom: 0.7rem;
 }
 
 /* ============================
-  Collection label
+   COLLECTION LABEL
 ============================ */
 .main-product .product-collection {
-    position: relative;
-    left: -10rem;
-    font-weight: 600;
-    font-size: 1.5em;
-    color: rgb(var(--color-subtext));
-    margin-bottom: 1.2rem;
-    letter-spacing: 8px;
-    line-height: 1.5;
-    text-transform: uppercase;
-    padding-right: 2rem;
-}
-.main-product .product-collection .collection-label {
+  position: relative;
+  left: -10rem;
   font-weight: 600;
-  margin-bottom: 0.2rem;
+  font-size: 1.5em;
+  color: rgb(var(--color-subtext));
+  margin-bottom: 1.2rem;
+  letter-spacing: 8px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  padding-right: 2rem;
 }
+
 @media (max-width: 992px) {
-  .main-product .product-collection{
+  .main-product .product-collection {
     left: 0;
     font-size: 1em;
     letter-spacing: 4px;
@@ -293,9 +315,8 @@
   }
 }
 
-
 /* ============================
-  empty space styles
+   EMPTY SPACE / DIVIDER
 ============================ */
 .empty-space {
   width: 100%;
@@ -307,6 +328,5 @@
 .empty-space .divider {
   width: 100%;
   height: 1px;
-  background-color: rgb(var(--border-color));
+  background-color: rgb(var(--color-border));
 }
-
