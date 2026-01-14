@@ -35,13 +35,21 @@
             "title": "Accordion",
             "content": "<p>Content</p>"
           }
+        },
+        "accordion_EA3PW7": {
+          "type": "accordion",
+          "settings": {
+            "title": "Accordion",
+            "content": "<p>Content</p>"
+          }
         }
       },
       "block_order": [
         "title_price_YnB7D8",
         "add_to_cart_form_8aMLxd",
         "description_Th49Tf",
-        "accordion_GJhgHM"
+        "accordion_GJhgHM",
+        "accordion_EA3PW7"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
