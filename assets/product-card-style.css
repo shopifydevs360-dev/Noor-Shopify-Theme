@@ -82,7 +82,7 @@
     height: auto;
 }
 
-.product-card .variant-btn {
+.product-card .card-variant-btn {
     width: 100%;
     background: transparent;
     height: auto;
@@ -91,13 +91,13 @@
     justify-content: space-between;
     font-size: 18px;
 }
-.product-card .variant-btn:first-of-type {
+.product-card .card-variant-btn:first-of-type {
     margin-top: 10px;
 }
-.product-card .variant-btn:last-of-type {
+.product-card .card-variant-btn:last-of-type {
     margin-bottom: 10px;
 }
-.product-card .variant-btn:hover {
+.product-card .card-variant-btn:hover {
 text-decoration: underline;
 }
 /* Product Information */
