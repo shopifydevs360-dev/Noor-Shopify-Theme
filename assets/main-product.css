@@ -267,6 +267,13 @@
   margin-bottom: 0.7rem;
 }
 
-
+/* ============================
+  Collection label
+============================ */
+.main-product .product-collection .collection-label {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  display: block;
+}
 
 
