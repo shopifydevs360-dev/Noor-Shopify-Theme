@@ -181,7 +181,7 @@
 /* =====================================
    NAVIGATION
 ===================================== */
-.product-media__thumbs .swiper-nav-wrapper {
+.media-lightbox  .product-media__thumbs .swiper-nav-wrapper {
   position: absolute;
   right: 60px;
   bottom: 60px;
@@ -190,7 +190,7 @@
 }
 
 @media (max-width: 991px) {
-.product-media__thumbs .swiper-nav-wrapper {
+.media-lightbox  .product-media__thumbs .swiper-nav-wrapper {
     right: 50%;
     transform: translateX(50%);
     bottom: auto;
@@ -198,7 +198,7 @@
   }
 }
 
-.product-media__thumbs .swiper-nav-wrapper button {
+.media-lightbox  .product-media__thumbs .swiper-nav-wrapper button {
   background: none;
   border: 0;
   padding: 0;
@@ -209,7 +209,7 @@
   text-transform: uppercase;
 }
 
-.product-media__thumbs .swiper-nav-wrapper .inner-text {
+.media-lightbox  .product-media__thumbs .swiper-nav-wrapper .inner-text {
   display: inline-block;
   transition: transform 0.6s cubic-bezier(0, 0, 0.002, 1);
 }
