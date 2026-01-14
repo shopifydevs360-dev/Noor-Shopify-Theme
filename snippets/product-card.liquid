@@ -62,7 +62,7 @@
     <div class="cart-button-wrapper swiper-no-swiping btn-action--{{ cart_behavior }}">
       {% if product.variants.size > 1 %}
         <div class="variants-outer-wrapper">
-          <div class="variants-wrapper">
+          <div class="card-variants-wrapper">
             {% for variant in product.variants %}
               <button
                 type="button"
@@ -104,7 +104,7 @@
   </div>
 
   <!-- ================= PRODUCT INFO ================= -->
-  <div class="product-info">
+  <div class="product-card-info">
     <div class="split-aligner">
 
       <span class="title h5">
