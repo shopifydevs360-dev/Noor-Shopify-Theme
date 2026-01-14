@@ -100,6 +100,9 @@
             <div class="product-block richtext" {{ block.shopify_attributes }}>
               {{ block.settings.text }}
             </div>
+          {% when 'empty_space' %}
+            <!-- Empty block for spacing -->
+            <div class="empty-space" style="height: {{ block.settings.height }}px" {{ block.shopify_attributes }}></div>
         {% endcase %}
       {% endfor %}
 
@@ -320,6 +323,18 @@
           "type": "liquid",
           "id": "custom_liquid",
           "label": "Liquid"
+        }
+      ]
+    },
+    {
+      "type": "empty_space",
+      "name": "Empty space",
+      "settings": [
+        {
+          "type": "number",
+          "id": "height",
+          "label": "Height (px)",
+          "default": 20
         }
       ]
     },
