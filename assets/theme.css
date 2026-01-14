@@ -721,8 +721,12 @@ button:disabled,
 .accordion-trigger {
     padding: 1rem 0;
     cursor: pointer;
-    letter-spacing: 0.5px;
+    letter-spacing: .5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 .accordion-trigger:first-child{
     border-top: 1px solid rgb(var(--color-border, #4d4d4d));
   }
