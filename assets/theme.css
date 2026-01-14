@@ -710,3 +710,32 @@ button:disabled,
     padding-right: 4rem;
   }
 }
+
+
+/* ============================
+   Accordion Style
+============================ */
+  .accordion-item {
+    margin-bottom: 1rem;
+  }
+
+  .accordion-trigger {
+    padding: 1rem 0;
+    font-weight: bold;
+    cursor: pointer;
+  }
+.accordion-trigger:first-child{
+    border-top: 1px solid rgb(var(--color-border, #4d4d4d));
+  }
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .8s cubic-bezier(0,0,.002,1);
+    border-bottom: 1px solid rgb(var(--color-border, #4d4d4d));
+  }
+
+  .accordion-item.active .accordion-content {
+    max-height: 500px; /* Adjust as needed */
+    padding: 1rem 0;
+    transition: all .8s cubic-bezier(0,0,.002,1);
+  }  
