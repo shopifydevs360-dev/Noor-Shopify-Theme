@@ -54,11 +54,11 @@
    NAVIGATION
 ===================================== */
 .product-media__thumbs .swiper-nav-wrapper {
-  position: absolute;
-  right: 60px;
-  bottom: 60px;
-  z-index: 5;
-  width: max-content;
+    position: absolute;
+    right: 3rem;
+    top: 3rem;
+    z-index: 5;
+    width: max-content;
 }
 
 @media (max-width: 991px) {
