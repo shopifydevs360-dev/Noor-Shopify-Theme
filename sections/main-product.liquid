@@ -102,7 +102,11 @@
             </div>
           {% when 'empty_space' %}
             <!-- Empty block for spacing -->
-            <div class="empty-space" style="height: {{ block.settings.height }}px" {{ block.shopify_attributes }}></div>
+            <div class="empty-space" style="height: {{ block.settings.height }}px" {{ block.shopify_attributes }}>
+              {% if block.settings.show_divider %}
+                
+              {% endif %}
+            </div>
         {% endcase %}
       {% endfor %}
 
@@ -338,7 +342,7 @@
         },
         {
           "type": "checkbox",
-          "id": "show-divider",
+          "id": "show_divider",
           "label": "Show Divider"
         }
       ]
