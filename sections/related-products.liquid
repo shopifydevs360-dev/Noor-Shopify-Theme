@@ -1,15 +1,13 @@
-{% if product %}
-  <h2>Related test</h2>
+{% if product.related_products.size > 0 %}
 
-  <p>Product title: {{ product.title }}</p>
+<h3>Recommended by Shopify</h3>
 
-  {% for p in product.collections.first.products limit: 4 %}
-    {% if p.id != product.id %}
-      <p>{{ p.title }}</p>
-    {% endif %}
+<ul>
+  {% for p in product.related_products limit: 6 %}
+    <li>{{ p.title }}</li>
   {% endfor %}
-{% else %}
-  <p style="color:red">NO PRODUCT CONTEXT</p>
+</ul>
+
 {% endif %}
 
 
