@@ -1,9 +1,9 @@
-<div class="product-block accordion" {{ block.shopify_attributes }}>
-  <details>
-    <summary>{{ block.settings.title }}</summary>
+<div class="accordion-item" {{ block.shopify_attributes }}>
+  <div class="accordion-trigger">
+    {{ block.settings.title }}
+  </div>
 
-    <div class="accordion-content">
-      {{ block.settings.content }}
-    </div>
-  </details>
+  <div class="accordion-content">
+    {{ block.settings.content }}
+  </div>
 </div>
