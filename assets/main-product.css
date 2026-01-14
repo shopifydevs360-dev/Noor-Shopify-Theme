@@ -109,7 +109,10 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
+.main-product .product-form-wrapper .btn-add-to-cart:hover {
+  background: transparent;
+  color: #222;
+}
 .main-product .product-form-wrapper .btn-buy-now,
 .main-product .product-form-wrapper .btn-notify {
   width: 100%;
@@ -122,7 +125,11 @@
   letter-spacing: 0.5px;
   margin-bottom: 1.8rem;
 }
-
+.main-product .product-form-wrapper .btn-buy-now:hover,
+.main-product .product-form-wrapper .btn-notify:hover {
+  background: #222;
+  color: #fff;
+}
 /* ============================
    QUANTITY DROPDOWN
 ============================ */
