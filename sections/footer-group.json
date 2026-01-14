@@ -11,18 +11,6 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
-    "recently_viewed_products_gHAriK": {
-      "type": "recently-viewed-products",
-      "name": "Recently Viewed Products",
-      "settings": {
-        "color_scheme": "",
-        "title": "Recently viewed",
-        "limit": 8,
-        "padding_top": 40,
-        "padding_bottom": 52,
-        "custom_class": ""
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -39,7 +27,7 @@
         "empty_space_HXhE9H": {
           "type": "empty_space",
           "settings": {
-            "block_width": "5"
+            "block_width": 20
           }
         },
         "menu_im6XPD": {
@@ -91,7 +79,6 @@
     }
   },
   "order": [
-    "recently_viewed_products_gHAriK",
     "footer"
   ]
 }
