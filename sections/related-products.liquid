@@ -22,12 +22,10 @@
     <div class="swiper swiper-container-product">
       <div class="swiper-wrapper">
 
-        {% for related_product in related_collection.products %}
-          {% if related_product.id != product.id %}
+        {%- for product in recommendations.products -%}
             <div class="swiper-slide product-slide">
-              {% render 'product-card', product: related_product %}
+              {% render 'product-card', product: recommendations %}
             </div>
-          {% endif %}
         {% endfor %}
 
       </div>
