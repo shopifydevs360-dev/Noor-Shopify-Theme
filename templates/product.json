@@ -56,9 +56,18 @@
         "custom_class": "",
         "color_control": "section-light"
       }
+    },
+    "related_products": {
+    "type": "related-products",
+    "settings": {
+      "title": "You may also like",
+      "custom_class": "",
+      "color_control": "section-light"
     }
+}
   },
   "order": [
-    "main"
+    "main",
+    "related_products"
   ]
 }
