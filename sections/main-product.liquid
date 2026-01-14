@@ -61,7 +61,7 @@
           {% when 'product_meta' %}
             {% render 'product-meta', block: block %}
           <!-- breadcrumb -->  
-          {% when 'accordion' %}
+          {% when 'breadcrumb' %}
             <nav class="product-breadcrumb" {{ block.shopify_attributes }}>
               <a href="{{ routes.root_url }}">Home</a>
               {% if product.collections.first %}
@@ -264,6 +264,11 @@
           "label": "Liquid"
         }
       ]
+    },
+    {
+      "type": "breadcrumb",
+      "name": "Breadcrumb",
+      "settings": []
     }
   ]
 }
