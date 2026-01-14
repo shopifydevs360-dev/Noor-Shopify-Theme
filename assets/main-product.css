@@ -1,49 +1,57 @@
+/* ============================
+   MAIN PRODUCT LAYOUT
+============================ */
 .main-product {
   width: 100%;
   position: relative;
 }
-@media (max-width: 991px){
-  .main-product{
+
+@media (max-width: 991px) {
+  .main-product {
     padding-top: 5.2rem;
   }
 }
-  .product-info {
+
+/* ============================
+   PRODUCT LAYOUT & INFO
+============================ */
+.product-info {
   padding: 1.2rem;
 }
 
 @media (min-width: 992px) {
   .product-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-}
-  .product-layout {
+    display: grid;
     grid-template-columns: 55% 45%;
+    align-items: start;
   }
+
   .product-info {
-  position: sticky;
-  top: 0;
-  padding: 5rem 7rem 0 5rem;
-  max-width: 42rem;
+    position: sticky;
+    top: 0;
+    padding: 5rem 7rem 0 5rem;
+    max-width: 42rem;
+  }
 }
-}
+
 /* Desktop / Laptop */
 @media (min-width: 992px) and (max-width: 1320px) {
   .product-info {
-  padding: 7rem 2rem 0 2rem;
-
-}
+    padding: 7rem 2rem 0 2rem;
+  }
 }
 
 /* ============================
    PRODUCT TITLE & PRICE
 ============================ */
-.hide-price{
+.hide-price {
   display: none;
 }
-.show-price{
+
+.show-price {
   display: block;
 }
+
 .product-title-price {
   display: flex;
   flex-direction: column;
@@ -64,52 +72,60 @@
   margin-bottom: 1rem;
 }
 
-/* Regular price */
+/* Prices */
 .price--regular {
   color: rgb(var(--color-price-regular));
 }
 
-/* Sale price */
 .price--sale {
   color: rgb(var(--color-price-sale));
 }
 
-/* Compare-at price */
 .price--compare {
   font-size: 0.7em;
   font-weight: 400;
   text-decoration: line-through;
   color: rgb(var(--color-subtext));
 }
+
+/* ============================
+   ADD TO CART / BUY BUTTONS
+============================ */
 .qty-cart-btn-wrap {
-    display: grid;
-    gap: .8rem;
-    width: 100%;
-    margin-bottom: .8rem;
-    grid-template-columns: auto 1fr;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  width: 100%;
+  margin-bottom: 0.8rem;
 }
+
 .product-form-wrapper .btn-add-to-cart {
-    width: 100%;
-    background: #222;
-    border: 2px solid #222;
-    padding: 0.7rem;
-    color: #fff;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  width: 100%;
+  padding: 0.7rem;
+  background: #222;
+  border: 2px solid #222;
+  color: #fff;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .product-form-wrapper .btn-buy-now,
 .product-form-wrapper .btn-notify {
-    width: 100%;
-    background: transparent;
-    border: 2px solid #222;
-    padding: 0.7rem;
-    color: #222;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1.8rem;
+  width: 100%;
+  padding: 0.7rem;
+  background: transparent;
+  border: 2px solid #222;
+  color: #222;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.8rem;
 }
+
+/* ============================
+   QUANTITY DROPDOWN
+============================ */
 .quantity-dropdown {
   position: relative;
   width: 6rem;
@@ -148,7 +164,7 @@
   cursor: pointer;
 }
 
-.qty-item:hover{
+.qty-item:hover {
   background: #222;
   color: #fff;
 }
@@ -157,21 +173,24 @@
   background: #353535;
   color: #fff;
 }
+
 /* ============================
-   variant selector
+   VARIANT SELECTOR
 ============================ */
 fieldset.variant-group {
-    border-color: rgb(211 211 211 / 60%);
+  border-color: rgb(211 211 211 / 60%);
 }
-.variant-selector{
+
+.variant-selector {
   margin-bottom: 1rem;
 }
 
 .variant-buttons {
-    display: flex;
-    gap: .5rem;
-    padding: 0.6rem 0;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
 }
+
 .variant-btn input {
   display: none;
 }
@@ -187,9 +206,9 @@ fieldset.variant-group {
 }
 
 /* ============================
-   Product main description
+   PRODUCT DESCRIPTION
 ============================ */
-.main-description{
+.main-description {
   margin-bottom: 2rem;
   font-size: var(--font-size-body);
   line-height: 1.5;
