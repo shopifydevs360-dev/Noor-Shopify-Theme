@@ -44,7 +44,7 @@
           {% when 'short_description' %}
             {% if product.metafields.custom.short_description != blank %}
               <div class="product-block short-description" {{ block.shopify_attributes }}>
-                <h3 class="label">{{ block.settings.heading }}</h3>
+                <h3 class="label {{ block.settings.text_size }}">{{ block.settings.heading }}</h3>
                 {{ product.metafields.custom.short_description }}
               </div>
             {% endif %}
@@ -53,7 +53,7 @@
           <!-- FULL DESCRIPTION -->
           {% when 'description' %}
             <div class="product-block main-description" {{ block.shopify_attributes }}>
-              <h3 class="label">{{ block.settings.heading }}</h3>
+              <h3 class="label {{ block.settings.text_size }}">{{ block.settings.heading }}</h3>
               {{ product.description }}
             </div>
 
@@ -215,6 +215,20 @@
           "id": "heading",
           "label": "Heading",
           "default": "Short Description"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text size",
+          "options": [
+            { "value": "h1", "label": "h1" },
+            { "value": "h2", "label": "h2" },
+            { "value": "h3", "label": "h3" },
+            { "value": "h4", "label": "h4" },
+            { "value": "h5", "label": "h5" },
+            { "value": "h6", "label": "h6" },
+          ],
+          "default": "h4"
         }
       ]
     },
@@ -227,6 +241,20 @@
           "id": "heading",
           "label": "Heading",
           "default": "Description"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text size",
+          "options": [
+            { "value": "h1", "label": "h1" },
+            { "value": "h2", "label": "h2" },
+            { "value": "h3", "label": "h3" },
+            { "value": "h4", "label": "h4" },
+            { "value": "h5", "label": "h5" },
+            { "value": "h6", "label": "h6" }
+          ],
+          "default": "h4"
         }
       ]
     },
