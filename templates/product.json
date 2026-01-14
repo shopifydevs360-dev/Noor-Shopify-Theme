@@ -12,6 +12,16 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "richtext_mbrbH6": {
+          "type": "richtext",
+          "settings": {
+            "text": "<p>Rich text</p>"
+          }
+        },
+        "product_collection_3QwKdn": {
+          "type": "product_collection",
+          "settings": {}
+        },
         "breadcrumb_6V9nX7": {
           "type": "breadcrumb",
           "settings": {}
@@ -49,6 +59,8 @@
         }
       },
       "block_order": [
+        "richtext_mbrbH6",
+        "product_collection_3QwKdn",
         "breadcrumb_6V9nX7",
         "title_price_YnB7D8",
         "add_to_cart_form_8aMLxd",
