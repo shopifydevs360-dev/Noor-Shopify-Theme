@@ -86,7 +86,7 @@
   transition: transform 0.6s cubic-bezier(0, 0, 0.002, 1);
 }
 
-.hero-slideshow .swiper-prev-text:hover .inner-text {
+.hero-slideshow .swiper-button-prev:hover .inner-text {
   transform: translateX(-4px);
 }
 
