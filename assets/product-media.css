@@ -84,11 +84,6 @@
   transform: scale(1.05) translateY(20%);
 }
 
-.product-media__thumbs .swiper-button-prev::after,
-.product-media__thumbs .swiper-button-next::after {
-  font-size: 14px;
-  font-weight: bold;
-}
 
 /* =====================
    LIGHTBOX OVERLAY
