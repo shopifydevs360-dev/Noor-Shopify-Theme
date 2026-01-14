@@ -225,6 +225,46 @@
         }
       ]
     },
+    {
+      "type": "product_meta",
+      "name": "Product meta",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_sku",
+          "label": "Show SKU",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "Show Vendor",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_type",
+          "label": "Show Product Type",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "product_collection",
+      "name": "Product collection",
+      "settings": []
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Liquid"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
