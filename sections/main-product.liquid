@@ -43,7 +43,7 @@
           <!-- SHORT DESCRIPTION -->
           {% when 'short_description' %}
             {% if product.metafields.custom.short_description != blank %}
-              <div class="product-block" {{ block.shopify_attributes }}>
+              <div class="product-block short-description" {{ block.shopify_attributes }}>
                 {{ product.metafields.custom.short_description }}
               </div>
             {% endif %}
@@ -51,7 +51,7 @@
 
           <!-- FULL DESCRIPTION -->
           {% when 'description' %}
-            <div class="product-block" {{ block.shopify_attributes }}>
+            <div class="product-block main-description" {{ block.shopify_attributes }}>
               {{ product.description }}
             </div>
 
