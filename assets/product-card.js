@@ -36,8 +36,8 @@ function initAjaxAddToCart() {
 ---------------------------------- */
 function initVariantAjaxAddToCart() {
   document.querySelectorAll(
-    '.cart-button-wrapper.btn-action--ajax .variant-btn,' +
-    '.cart-button-wrapper.btn-action--ajax_drawer .variant-btn'
+    '.cart-button-wrapper.btn-action--ajax .card-variant-btn,' +
+    '.cart-button-wrapper.btn-action--ajax_drawer .card-variant-btn'
   ).forEach(button => {
     button.addEventListener('click', function () {
       if (this.disabled) return;
