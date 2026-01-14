@@ -738,8 +738,6 @@ button:disabled,
   }
 
   .accordion-item.active .accordion-content {
-    max-height: 1000px; /* Adjust as needed */
-    .footer .toggle-content.content-open {
     max-height: 1000px;
     transform: translateY(0);
     padding: 1rem 0;
