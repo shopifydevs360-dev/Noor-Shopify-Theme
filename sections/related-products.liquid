@@ -33,24 +33,23 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const section = document.querySelector('.js-related-carousel-{{ section.id }}');
-  if (!section) return;
-
-  new Swiper(section.querySelector('.swiper-container-product'), {
-    slidesPerView: 1.2,
-    spaceBetween: 24,
-    scrollbar: {
-      el: section.querySelector('.swiper-scrollbar'),
-      draggable: true
-    },
-    breakpoints: {
-      580: { slidesPerView: 2.5 },
-      991: { slidesPerView: 3 },
-      1321: { slidesPerView: 3.5 }
-    }
-  });
+new Swiper(section.querySelector('.swiper-container-product'), {
+  slidesPerView: 1.2,
+  spaceBetween: 24,
+  observer: true,
+  observeParents: true,
+  watchSlidesProgress: true,
+  scrollbar: {
+    el: section.querySelector('.swiper-scrollbar'),
+    draggable: true
+  },
+  breakpoints: {
+    580: { slidesPerView: 2.5 },
+    991: { slidesPerView: 3 },
+    1321: { slidesPerView: 3.5 }
+  }
 });
+
 </script>
 
 {% endif %}
