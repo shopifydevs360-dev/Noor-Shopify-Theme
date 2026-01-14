@@ -11,6 +11,18 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
+    "recently_viewed_products_gHAriK": {
+      "type": "recently-viewed-products",
+      "name": "Recently Viewed Products",
+      "settings": {
+        "color_scheme": "",
+        "title": "Recently viewed",
+        "limit": 8,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "custom_class": ""
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -79,6 +91,7 @@
     }
   },
   "order": [
+    "recently_viewed_products_gHAriK",
     "footer"
   ]
 }
