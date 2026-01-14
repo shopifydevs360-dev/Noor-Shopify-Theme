@@ -73,6 +73,32 @@
               <span>/</span>
               <span>{{ product.title }}</span>
             </nav>
+          <!-- =====================
+               COLLECTION NAME ONLY
+          ====================== -->
+          {% when 'product_collection' %}
+            {% if product.collections.first %}
+              <div class="product-collection" {{ block.shopify_attributes }}>
+                <strong>Collection:</strong>
+                {{ product.collections.first.title }}
+              </div>
+            {% endif %}
+
+          <!-- =====================
+               CUSTOM LIQUID
+          ====================== -->
+          {% when 'custom_liquid' %}
+            <div class="product-block custom-liquid" {{ block.shopify_attributes }}>
+              {{ block.settings.custom_liquid }}
+            </div>
+
+          <!-- =====================
+               RICHTEXT
+          ====================== -->
+          {% when 'richtext' %}
+            <div class="product-block richtext" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
         {% endcase %}
       {% endfor %}
 
