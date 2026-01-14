@@ -1,29 +1,21 @@
 {{ 'collection-tab.css' | asset_url | stylesheet_tag }}
 {% render 'section-base-style' %}
 
-{% if product %}
 
-{% assign related_collection = nil %}
 
-{%- for col in product.collections -%}
-  {%- if col.products_count > 1 -%}
-    {% assign related_collection = col %}
-    {% break %}
-  {%- endif -%}
-{%- endfor -%}
-
-{% if related_collection %}
-
+{%- if recommendations.performed? and recommendations.products_count > 0 -%}
 <div class="product-related-carousel js-related-carousel-{{ section.id }} {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}">
   <div class="product-carousel section-{{ section.id }}-padding" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related">
 
     <!-- ================= SECTION TITLE ================= -->
+    {% if recommendations.intent == 'related' %}
     {% if section.settings.title != blank %}
       <h2 class="container">
         <div data-reveal="lines-masked" class="info-title">
           {{ section.settings.title }}
         </div>
       </h2>
+    {% endif %}
     {% endif %}
 
     <!-- ================= PRODUCTS CAROUSEL ================= -->
@@ -46,7 +38,7 @@
   </div>
 </div>
 {% endif %}
-{% endif %}
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const section = document.querySelector('.js-related-carousel-{{ section.id }}');
