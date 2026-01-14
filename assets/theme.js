@@ -4,6 +4,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   initBodyScrollState();
   initPromoBarState();
+  initAccordion();
 });
 
 document.addEventListener("shopify:section:load", () => {
@@ -33,5 +34,20 @@ function initPromoBarState() {
   const promoBar = document.getElementById("announcement-bar");
 
   body.classList.toggle("has-promo-bar", !!promoBar);
+}
+
+/* ===============================
+   ACCORDION FUNCTIONALITY
+================================ */
+function initAccordion() {
+  document.addEventListener("click", function (e) {
+    const trigger = e.target.closest(".accordion-trigger");
+    if (!trigger) return;
+
+    const item = trigger.closest(".accordion-item");
+    if (!item) return;
+
+    item.classList.toggle("active");
+  });
 }
 
