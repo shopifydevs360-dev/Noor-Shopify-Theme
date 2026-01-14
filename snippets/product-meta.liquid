@@ -11,7 +11,11 @@
     {% if block.settings.show_availability %}
     <li>
         <strong>Availability:</strong>
-        {{ product.available | default: false | if: 'In stock', 'Out of stock' }}
+        {% if product.available %}
+            In Stock
+        {% else %}
+            Out of Stock
+        {% endif %}
     </li>
     {% endif %}
 </ul>
