@@ -57,7 +57,8 @@
         "empty_space_aFn8aR": {
           "type": "empty_space",
           "settings": {
-            "height": 10
+            "height": 10,
+            "show_divider": true
           }
         },
         "product_meta_iat8W8": {
