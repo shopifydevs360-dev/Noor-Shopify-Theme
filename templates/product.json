@@ -14,9 +14,7 @@
       "blocks": {
         "product_collection_3QwKdn": {
           "type": "product_collection",
-          "settings": {
-            "label": ""
-          }
+          "settings": {}
         },
         "breadcrumb_6V9nX7": {
           "type": "breadcrumb",
@@ -37,7 +35,10 @@
         },
         "description_Th49Tf": {
           "type": "description",
-          "settings": {}
+          "settings": {
+            "heading": "Description",
+            "text_size": "h3"
+          }
         },
         "accordion_GJhgHM": {
           "type": "accordion",
