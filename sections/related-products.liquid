@@ -18,10 +18,12 @@
     <div class="swiper swiper-container-product">
       <div class="swiper-wrapper">
 
-        {% for related_product in related_products limit: 8 %}
+        {% for related_product in related_products %}
+            {% if related_product.id != product.id %}
           <div class="swiper-slide product-slide">
             {% render 'product-card', product: related_product %}
           </div>
+          {% endif %}
         {% endfor %}
 
       </div>
