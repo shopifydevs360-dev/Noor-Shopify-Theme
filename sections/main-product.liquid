@@ -58,6 +58,19 @@
           <!-- ACCORDION -->
           {% when 'accordion' %}
             {% render 'product-accordion', block: block %}
+          <!-- breadcrumb -->  
+          {% when 'accordion' %}
+            <nav class="product-breadcrumb" {{ block.shopify_attributes }}>
+              <a href="{{ routes.root_url }}">Home</a>
+              {% if product.collections.first %}
+                <span>/</span>
+                <a href="{{ product.collections.first.url }}">
+                  {{ product.collections.first.title }}
+                </a>
+              {% endif %}
+              <span>/</span>
+              <span>{{ product.title }}</span>
+            </nav>
         {% endcase %}
       {% endfor %}
 
