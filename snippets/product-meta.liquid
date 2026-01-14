@@ -1,4 +1,5 @@
-<ul class="product-meta" {{ block.shopify_attributes }}>
+<div class="product-metadata">
+    <ul class="product-meta" {{ block.shopify_attributes }}>
     {% if block.settings.show_vendor %}
     <li><strong>Vendor:</strong> {{ product.vendor }}</li>
     {% endif %}
@@ -19,3 +20,4 @@
     </li>
     {% endif %}
 </ul>
+</div>
