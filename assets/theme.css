@@ -740,5 +740,5 @@ button:disabled,
   .accordion-item.active .accordion-content {
     max-height: 1000px;
     transform: translateY(0);
-    padding:  0;
+    padding-bottom: 1rem;
   }  
