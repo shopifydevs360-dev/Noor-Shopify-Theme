@@ -1,62 +1,62 @@
-{% if product %}
-
-{% assign related_products = product.related_products %}
-
-{% if related_products.size > 0 %}
-
-<div class="product-related-carousel js-related-carousel-{{ section.id }} {{ section.settings.color_control }} {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}">
-  <div class="product-carousel section-{{ section.id }}-padding">
-
-    {% if section.settings.title != blank %}
-      <h2 class="container">
-        <div class="info-title">
-          {{ section.settings.title }}
-        </div>
-      </h2>
+<div
+  className="product-recommendations"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
+>
+  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    {% if recommendations.intent == 'related' %}
+      <h2>You may also like</h2>
+    {% elsif recommendations.intent == 'complementary' %}
+      <h2>Pair it with</h2>
     {% endif %}
 
-    <div class="swiper swiper-container-product">
-      <div class="swiper-wrapper">
+    <ul>
+      {%- for product in recommendations.products -%}
+        <li className="product">
+          <a href="{{ product.url }}">
+            <img
+              className="product__img"
+              src="/content-v2/assets/images/{{ product.featured_image | image_url: width: 300, height: 300 }}"
+              alt="{{ product.featured_image.alt }}"
+            />
 
-        {% for related_product in related_products %}
-            {% if related_product.id != product.id %}
-          <div class="swiper-slide product-slide">
-            {% render 'product-card', product: related_product %}
-          </div>
-          {% endif %}
-        {% endfor %}
-
-      </div>
-
-      <div class="swiper-scrollbar hide-desktop hide-large-screens"></div>
-    </div>
-
-  </div>
+            <p className="product__title">{{ product.title }}</p>
+            <p className="product__price">{{ product.price | money}}</p>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const section = document.querySelector('.js-related-carousel-{{ section.id }}');
-  if (!section) return;
+{% javascript %}
+  const handleIntersection = (entries, observer) => {
+    if (!entries[0].isIntersecting) return;
 
-  new Swiper(section.querySelector('.swiper-container-product'), {
-    slidesPerView: 1.2,
-    spaceBetween: 24,
-    scrollbar: {
-      el: section.querySelector('.swiper-scrollbar'),
-      draggable: true
-    },
-    breakpoints: {
-      580: { slidesPerView: 2.5 },
-      991: { slidesPerView: 3 },
-      1321: { slidesPerView: 3.5 }
-    }
-  });
-});
-</script>
+    observer.unobserve(productRecommendationsSection);
 
-{% endif %}
-{% endif %}
+    const url = productRecommendationsSection.dataset.url;
+
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const recommendations = html.querySelector('.product-recommendations');
+
+        if (recommendations && recommendations.innerHTML.trim().length) {
+          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+        }
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  };
+
+  const productRecommendationsSection = document.querySelector('.product-recommendations');
+  const observer = new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'});
+
+  observer.observe(productRecommendationsSection);
+{% endjavascript %}
 
 
 
