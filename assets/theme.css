@@ -725,16 +725,14 @@ button:disabled,
     cursor: pointer;
   }
 .accordion-trigger:first-child{
-    border-top: 1px solid red;
-    /* border-top: 1px solid rgb(var(--color-border, #4d4d4d)); */
+    border-top: 1px solid rgb(var(--color-border, #4d4d4d));
   }
   .accordion-content {
     max-height: 0;
     overflow: hidden;
     transform: translateY(0px);
     transition: all .6s cubic-bezier(.72,0,.28,1);
-    border-bottom: 1px solid red;
-    /* border-bottom: 1px solid rgb(var(--color-border, #4d4d4d)); */
+    border-bottom: 1px solid rgb(var(--color-border, #4d4d4d));
   }
 
   .accordion-item.active .accordion-content {
