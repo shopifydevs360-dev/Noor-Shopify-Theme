@@ -252,6 +252,10 @@
    MOBILE OPTIMIZATION
 ===================== */
 @media (max-width: 768px) {
+  .product-media__thumbs .swiper-nav-wrapper {
+    right: 1.2rem;
+    top: 1.2rem;
+}
 
   .media-lightbox .swiper-button-prev,
   .media-lightbox .swiper-button-next {
