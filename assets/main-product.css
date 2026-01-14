@@ -280,10 +280,19 @@
     letter-spacing: 8px;
     line-height: 1.5;
     text-transform: uppercase;
+    padding-right: 2rem;
 }
 .main-product .product-collection .collection-label {
   font-weight: 600;
   margin-bottom: 0.2rem;
+}
+@media (max-width: 992px) {
+  .main-product .product-collection{
+    left: 0;
+    font-size: 1em;
+    letter-spacing: 4px;
+    padding-right: 0;
+  }
 }
 
 
