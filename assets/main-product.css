@@ -294,3 +294,11 @@
 }
 
 
+/* ============================
+  empty space styles
+============================ */
+.main-product .divider {
+  height: 1px;
+  background: rgb(240, 240, 240);
+  margin: auto;
+}
