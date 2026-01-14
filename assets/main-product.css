@@ -3,13 +3,30 @@
   position: relative;
 }
 
-.product-layout {
+
+
+@media (min-width: 992px) {
+  .product-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: start;
 }
-
+  .product-layout {
+    grid-template-columns: 55% 45%;
+  }
+  .product-info {
+  position: sticky;
+  top: 0;
+  padding: 7rem 10rem 0 7rem;
+  max-width: 46rem;
+}
+}
 @media (min-width: 992px) {
+  .product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
   .product-layout {
     grid-template-columns: 55% 45%;
   }
