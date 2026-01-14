@@ -730,7 +730,8 @@ button:disabled,
   .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height .8s cubic-bezier(0,0,.002,1);
+    transform: translateY(-6px);
+    transition: all .6s cubic-bezier(.72,0,.28,1);
     border-bottom: 1px solid rgb(var(--color-border, #4d4d4d));
   }
 
