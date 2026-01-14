@@ -13,7 +13,7 @@
   <!-- =====================
        MAIN MEDIA
   ====================== -->
-  <div class="product-media__main">
+  <div class="product-media__main hide-tablet hide-mobile hide-tablet-landscape">
 
     {% if featured_media.media_type contains 'video' %}
       {{ featured_media | video_tag:
@@ -61,7 +61,7 @@
   {% endfor %}
 
   {% if has_video %}
-    <div class="product-media__video-row">
+    <div class="product-media__video-row hide-tablet hide-mobile hide-tablet-landscape">
       {% for media in product.media %}
         {% if media.media_type contains 'video' %}
           <div class="product-media__video js-open-lightbox">
