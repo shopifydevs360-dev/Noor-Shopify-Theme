@@ -58,6 +58,8 @@
           <!-- ACCORDION -->
           {% when 'accordion' %}
             {% render 'product-accordion', block: block %}
+          {% when 'product_meta' %}
+            {% render 'product-meta', block: block %}
           <!-- breadcrumb -->  
           {% when 'accordion' %}
             <nav class="product-breadcrumb" {{ block.shopify_attributes }}>
