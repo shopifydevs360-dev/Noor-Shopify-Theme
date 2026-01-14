@@ -271,18 +271,18 @@
   Collection label
 ============================ */
 .main-product .product-collection {
-  position: relative;
-  left: -64rem;
-  font-size: 4em;
-  color: rgb(var(--color-subtext));
-  margin-bottom: 1.2rem;
-  letter-spacing: 2px;
-  line-height: 1.5;
+    position: relative;
+    left: -10rem;
+    font-size: 2em;
+    color: rgb(var(--color-subtext));
+    margin-bottom: 1.2rem;
+    letter-spacing: 5px;
+    line-height: 1.2;
+    text-transform: uppercase;
 }
 .main-product .product-collection .collection-label {
   font-weight: 600;
   margin-bottom: 0.2rem;
-  display: block;
 }
 
 
