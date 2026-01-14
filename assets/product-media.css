@@ -252,10 +252,6 @@
    MOBILE OPTIMIZATION
 ===================== */
 @media (max-width: 768px) {
-  .product-media__thumbs .swiper-button-prev,
-  .product-media__thumbs .swiper-button-next {
-    display: none;
-  }
 
   .media-lightbox .swiper-button-prev,
   .media-lightbox .swiper-button-next {
