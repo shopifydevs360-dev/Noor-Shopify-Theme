@@ -15,18 +15,18 @@
 /* ============================
    PRODUCT LAYOUT & INFO
 ============================ */
-.product-info {
+.main-product .product-info {
   padding: 1.2rem;
 }
 
 @media (min-width: 992px) {
-  .product-layout {
+ .main-product .product-layout {
     display: grid;
     grid-template-columns: 55% 45%;
     align-items: start;
   }
 
-  .product-info {
+ .main-product .product-info {
     position: sticky;
     top: 0;
     padding: 5rem 7rem 0 5rem;
@@ -36,7 +36,7 @@
 
 /* Desktop / Laptop */
 @media (min-width: 992px) and (max-width: 1320px) {
-  .product-info {
+ .main-product .product-info {
     padding: 7rem 2rem 0 2rem;
   }
 }
@@ -44,28 +44,28 @@
 /* ============================
    PRODUCT TITLE & PRICE
 ============================ */
-.hide-price {
+.main-product .hide-price {
   display: none;
 }
 
-.show-price {
+.main-product .show-price {
   display: block;
 }
 
-.product-title-price {
+.main-product .product-title-price {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
 /* Title */
-.product-title {
+.main-product .product-title {
   line-height: 1;
   color: rgb(var(--color-heading));
 }
 
 /* Price wrapper */
-.product-price {
+.main-product .product-price {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -73,15 +73,15 @@
 }
 
 /* Prices */
-.price--regular {
+.main-product .price--regular {
   color: rgb(var(--color-price-regular));
 }
 
-.price--sale {
+.main-product .price--sale {
   color: rgb(var(--color-price-sale));
 }
 
-.price--compare {
+.main-product .price--compare {
   font-size: 0.7em;
   font-weight: 400;
   text-decoration: line-through;
@@ -91,7 +91,7 @@
 /* ============================
    ADD TO CART / BUY BUTTONS
 ============================ */
-.qty-cart-btn-wrap {
+.main-product .qty-cart-btn-wrap {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.8rem;
@@ -99,7 +99,7 @@
   margin-bottom: 0.8rem;
 }
 
-.product-form-wrapper .btn-add-to-cart {
+.main-product .product-form-wrapper .btn-add-to-cart {
   width: 100%;
   padding: 0.7rem;
   background: #222;
@@ -110,8 +110,8 @@
   letter-spacing: 0.5px;
 }
 
-.product-form-wrapper .btn-buy-now,
-.product-form-wrapper .btn-notify {
+.main-product .product-form-wrapper .btn-buy-now,
+.main-product .product-form-wrapper .btn-notify {
   width: 100%;
   padding: 0.7rem;
   background: transparent;
@@ -126,12 +126,12 @@
 /* ============================
    QUANTITY DROPDOWN
 ============================ */
-.quantity-dropdown {
+.main-product .quantity-dropdown {
   position: relative;
   width: 6rem;
 }
 
-.qty-toggle {
+.main-product .qty-toggle {
   width: 100%;
   height: 100%;
   padding: 0 14px;
@@ -142,7 +142,7 @@
   font-size: inherit;
 }
 
-.qty-list {
+.main-product .qty-list {
   position: absolute;
   top: 100%;
   left: 0;
@@ -155,21 +155,21 @@
   z-index: 10;
 }
 
-.quantity-dropdown.is-open .qty-list {
+.main-product .quantity-dropdown.is-open .qty-list {
   display: block;
 }
 
-.qty-item {
+.main-product .qty-item {
   padding: 10px 14px;
   cursor: pointer;
 }
 
-.qty-item:hover {
+.main-product .qty-item:hover {
   background: #222;
   color: #fff;
 }
 
-.qty-item.is-selected {
+.main-product .qty-item.is-selected {
   background: #353535;
   color: #fff;
 }
@@ -177,38 +177,38 @@
 /* ============================
    VARIANT SELECTOR
 ============================ */
-fieldset.variant-group {
+.main-product fieldset.variant-group {
   border-color: rgb(211 211 211 / 60%);
 }
 
-.variant-selector {
+.main-product .variant-selector {
   margin-bottom: 1rem;
 }
 
-.variant-buttons {
+.main-product .variant-buttons {
   display: flex;
   gap: 0.5rem;
   padding: 0.6rem 0;
 }
 
-.variant-btn input {
+.main-product .variant-btn input {
   display: none;
 }
 
-.variant-btn span {
+.main-product .variant-btn span {
   padding: 0.6rem 1rem;
   border: 1px solid #ccc;
   cursor: pointer;
 }
 
-.variant-btn input:checked + span {
+.main-product .variant-btn input:checked + span {
   border-color: #000;
 }
 
 /* ============================
    PRODUCT DESCRIPTION
 ============================ */
-.main-description {
+ .main-product .main-description {
   margin-bottom: 2rem;
   font-size: var(--font-size-body);
   line-height: 1.5;
