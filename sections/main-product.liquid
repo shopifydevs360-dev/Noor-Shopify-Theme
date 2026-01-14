@@ -44,6 +44,7 @@
           {% when 'short_description' %}
             {% if product.metafields.custom.short_description != blank %}
               <div class="product-block short-description" {{ block.shopify_attributes }}>
+                <h3 class="label">{{ block.settings.heading }}</h3>
                 {{ product.metafields.custom.short_description }}
               </div>
             {% endif %}
@@ -52,6 +53,7 @@
           <!-- FULL DESCRIPTION -->
           {% when 'description' %}
             <div class="product-block main-description" {{ block.shopify_attributes }}>
+              <h3 class="label">{{ block.settings.heading }}</h3>
               {{ product.description }}
             </div>
 
@@ -203,8 +205,31 @@
         },
       ]
     },
-    { "type": "short_description", "name": "Short description" },
-    { "type": "description", "name": "Description" },
+    { 
+      "type": "short_description",
+      "name": "Short description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Short Description"
+        }
+      ]
+    },
+    { "type": "description", 
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Description"
+        }
+      ]
+    },
     {
       "type": "accordion",
       "name": "Accordion",
