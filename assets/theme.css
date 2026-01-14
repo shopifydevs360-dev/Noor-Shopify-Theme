@@ -749,7 +749,8 @@ button:disabled,
     transform: translateY(0);
     padding-bottom: 1rem;
   }  
-.toggle-icon .icon-minus{
+.toggle-icon .icon-minus,
+.accordion-item.active .toggle-icon .icon-plus{
   display: none;
 }
 .accordion-item.active .toggle-icon .icon-minus{
