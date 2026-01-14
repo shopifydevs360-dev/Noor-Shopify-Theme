@@ -12,7 +12,7 @@
     {% if block.settings.show_availability %}
     <li>
         <b>Availability:</b>
-        {% if selected_or_first_available_variant product.available %}
+        {% if product.available %}
             In Stock
         {% else %}
             Out of Stock
