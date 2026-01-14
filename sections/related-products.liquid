@@ -45,7 +45,8 @@
 
   </div>
 </div>
-
+{% endif %}
+{% endif %}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const section = document.querySelector('.js-related-carousel-{{ section.id }}');
@@ -67,8 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-{% endif %}
-{% endif %}
+
 
 {% schema %}
 {
