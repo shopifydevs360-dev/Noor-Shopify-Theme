@@ -1,87 +1,69 @@
-{% if product %}
+{% if request.page_type == 'product' %}
 
 <section
-  id="recently-viewed-products-{{ section.id }}"
-  class="product-related-carousel {{ section.settings.custom_class }} m-color-{{ section.settings.color_scheme }}"
-  data-current-product="{{ product.handle }}"
+  id="recently-viewed-{{ section.id }}"
+  class="recently-viewed-section {{ section.settings.custom_class }}"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-products-to-show="{{ section.settings.limit }}"
+  data-search-url="{{ routes.search_url }}?section_id={{ section.id }}&type=product&q="
 >
-  <div class="product-carousel section-{{ section.id }}-padding">
+  <div class="container section-{{ section.id }}-padding">
 
     {% if section.settings.title != blank %}
-      <h2 class="container">
-        <div class="info-title">
-          {{ section.settings.title }}
-        </div>
-      </h2>
+      <h2>{{ section.settings.title }}</h2>
     {% endif %}
 
-    <div class="swiper swiper-container-product">
-      <div class="swiper-wrapper js-recently-viewed-wrapper">
-        <!-- Products injected by JS -->
-      </div>
-
-      <div class="swiper-scrollbar hide-desktop hide-large-screens"></div>
-    </div>
+    <ul class="recently-viewed-list" data-products-container>
+      <!-- products injected here -->
+    </ul>
 
   </div>
 </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const section = document.querySelector('#recently-viewed-products-{{ section.id }}');
+  const section = document.querySelector('#recently-viewed-{{ section.id }}');
   if (!section) return;
 
-  const currentHandle = section.dataset.currentProduct;
-  const storageKey = 'recently_viewed_products';
-  const limit = {{ section.settings.limit | default: 8 }};
+  const currentId = section.dataset.productId;
+  const limit = parseInt(section.dataset.productsToShow, 10);
+  const searchUrl = section.dataset.searchUrl;
+  const storageKey = 'recently_viewed_ids';
 
-  let items = JSON.parse(localStorage.getItem(storageKey)) || [];
+  /* ---------- STORE PRODUCT ID ---------- */
+  let ids = JSON.parse(localStorage.getItem(storageKey)) || [];
+  ids = ids.filter(id => id !== currentId);
+  ids.unshift(currentId);
+  ids = ids.slice(0, limit);
+  localStorage.setItem(storageKey, JSON.stringify(ids));
 
-  /* ---------------- SAVE CURRENT PRODUCT ---------------- */
-  items = items.filter(handle => handle !== currentHandle);
-  items.unshift(currentHandle);
-  items = items.slice(0, limit);
+  /* ---------- BUILD SEARCH QUERY ---------- */
+  const query = ids
+    .filter(id => id !== currentId)
+    .map(id => `id:${id}`)
+    .join(' OR ');
 
-  localStorage.setItem(storageKey, JSON.stringify(items));
+  if (!query) return;
 
-  /* ---------------- RENDER RECENTLY VIEWED ---------------- */
-  const wrapper = section.querySelector('.js-recently-viewed-wrapper');
+  fetch(searchUrl + encodeURIComponent(query))
+    .then(res => res.text())
+    .then(html => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const products = doc.querySelectorAll('[data-recent-product]');
 
-  items.forEach(handle => {
-    if (handle === currentHandle) return;
+      const container = section.querySelector('[data-products-container]');
+      products.forEach(p => container.appendChild(p));
 
-    fetch(`/products/${handle}?view=card`)
-      .then(res => res.text())
-      .then(html => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide product-slide';
-        slide.innerHTML = html;
-        wrapper.appendChild(slide);
-      })
-      .then(() => {
-        if (wrapper.children.length === 1) initSwiper();
-      });
-  });
-
-  function initSwiper() {
-    new Swiper(section.querySelector('.swiper-container-product'), {
-      slidesPerView: 1.2,
-      spaceBetween: 24,
-      observer: true,
-      observeParents: true,
-      scrollbar: {
-        el: section.querySelector('.swiper-scrollbar'),
-        draggable: true
-      },
-      breakpoints: {
-        580: { slidesPerView: 2.5 },
-        991: { slidesPerView: 3 },
-        1321: { slidesPerView: 3.5 }
+      if (products.length === 0) {
+        section.style.display = 'none';
       }
     });
-  }
 });
 </script>
+
+
+
 
 {% endif %}
 {% schema %}
