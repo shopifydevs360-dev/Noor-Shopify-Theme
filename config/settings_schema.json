@@ -886,8 +886,20 @@
     "name": "Additional pages",
     "settings": [
       {
-        "type": "header",
-        "content": "Product inventory"
+        "type": "url",
+        "id": "wishlist_page_url",
+        "label": "Wish List"
+      
+      },
+      {
+        "type": "url",
+        "id": "compare_page_url",
+        "label": "Compare"
+      },
+      {
+        "type": "url",
+        "id": "track_order_page_url",
+        "label": "Track Order"
       }
     ]
   },
