@@ -1,6 +1,5 @@
 <div class="product-block icon-list-item"></div>
   <ul class="icon-list-item__list" {{ block.shopify_attributes }}>
-    {% for item in block.settings.icon_list_items %}
       <li class="icon-list-item__item">
         <div class="icon-list-item__icon">
             {% if block.settings.custom_icon %}
@@ -16,5 +15,4 @@
           {{ block.settings.text }}
         </div>
       </li>
-    {% endfor %}
   </ul>
