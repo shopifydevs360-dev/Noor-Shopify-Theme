@@ -67,41 +67,63 @@ function initVariantPriceUpdate() {
       }
     });
   }
+
+  // NEW – stock control
+  function toggleStockUI(variantId) {
+    const variant = window.product.variants.find(v => v.id == variantId);
+    if (!variant) return;
+
+    if (variant.available) {
+      addToCartBtn.textContent = 'Add to cart';
+      addToCartBtn.disabled = false;
+      buyNowBtn?.classList.remove('hide');
+      notifyBtn?.classList.add('hide');
+    } else {
+      addToCartBtn.textContent = 'Out of stock';
+      addToCartBtn.disabled = true;
+      buyNowBtn?.classList.add('hide');
+      notifyBtn?.classList.remove('hide');
+    }
+  }
+}
+
 /* =================================
-   VARIANT stock out control
+   VARIANT BUTTON UI STATE
 ================================= */
 function initVariantButtonState() {
   const productData = window.product;
   if (!productData || !productData.variants) return;
 
   const variantGroups = document.querySelectorAll('.variant-group');
+  if (!variantGroups.length) return;
+
+  function getSelectedOptions() {
+    const options = [];
+    variantGroups.forEach(group => {
+      const checked = group.querySelector('input[type="radio"]:checked');
+      if (checked) options.push(checked.value);
+    });
+    return options;
+  }
 
   function updateCheckedState() {
     document.querySelectorAll('.variant-btn').forEach(btn => {
-      btn.classList.remove('checked');
       const input = btn.querySelector('input[type="radio"]');
-      if (input && input.checked) {
-        btn.classList.add('checked');
-      }
+      btn.classList.toggle('checked', input && input.checked);
     });
   }
 
   function updateStockState() {
+    const selectedOptions = getSelectedOptions();
+
     variantGroups.forEach(group => {
       const optionIndex = parseInt(group.dataset.optionIndex, 10);
-      const selectedOptions = [];
-
-      // Collect currently selected options
-      document.querySelectorAll('.variant-group').forEach(g => {
-        const checked = g.querySelector('input:checked');
-        if (checked) selectedOptions.push(checked.value);
-      });
 
       group.querySelectorAll('.variant-btn').forEach(btn => {
-        btn.classList.remove('stock-out');
-
-        const input = btn.querySelector('input');
+        const input = btn.querySelector('input[type="radio"]');
         if (!input) return;
+
+        btn.classList.remove('stock-out');
 
         const testOptions = [...selectedOptions];
         testOptions[optionIndex] = input.value;
@@ -121,32 +143,13 @@ function initVariantButtonState() {
   updateCheckedState();
   updateStockState();
 
-  // On change
+  // On variant change
   document.addEventListener('change', e => {
     if (e.target.matches('.variant-btn input')) {
       updateCheckedState();
       updateStockState();
     }
   });
-}
-
-  // NEW – stock control
-  function toggleStockUI(variantId) {
-    const variant = window.product.variants.find(v => v.id == variantId);
-    if (!variant) return;
-
-    if (variant.available) {
-      addToCartBtn.textContent = 'Add to cart';
-      addToCartBtn.disabled = false;
-      buyNowBtn?.classList.remove('hide');
-      notifyBtn?.classList.add('hide');
-    } else {
-      addToCartBtn.textContent = 'Out of stock';
-      addToCartBtn.disabled = true;
-      buyNowBtn?.classList.add('hide');
-      notifyBtn?.classList.remove('hide');
-    }
-  }
 }
 
 /* =================================
