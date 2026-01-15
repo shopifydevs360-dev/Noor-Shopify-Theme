@@ -37,6 +37,7 @@
     top: 0;
     padding: 5rem 7rem 0 5rem;
     max-width: 42rem;
+    z-index: 1;
   }
 }
 
