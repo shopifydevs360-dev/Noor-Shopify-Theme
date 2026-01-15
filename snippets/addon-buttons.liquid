@@ -32,19 +32,19 @@
         </a>
     </li>
     {% endif %}
-    {% if block.settings.show_social_share %}
-    <li class="addon-item">
-      <a href="#social-share" class="addon-link btn-social-share">
-        <span class="addon-icon">{% render 'theme-icon', icon: 'social-share' %}</span>
-        <span class="addon-text">Share</span>
-      </a>
-    </li>
-    {% endif %}
     {% if block.settings.show_track_order %}
     <li class="addon-item">
       <a href="{{ settings.track_order_page_url }}" class="addon-link btn-track-order">
         <span class="addon-icon">{% render 'theme-icon', icon: 'map' %}</span>
         <span class="addon-text">Track Order</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if block.settings.show_social_share %}
+    <li class="addon-item">
+      <a href="#social-share" class="addon-link btn-social-share">
+        <span class="addon-icon">{% render 'theme-icon', icon: 'social-share' %}</span>
+        <span class="addon-text">Share</span>
       </a>
     </li>
     {% endif %}
