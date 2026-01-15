@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initVariantPriceUpdate();
   initMainProductCart();
+  initQuantityDropdown();
 });
 
 /* =================================
