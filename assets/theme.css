@@ -9,7 +9,10 @@
   box-sizing: border-box;
   margin: 0;
 }
-
+::selection{
+  background: #AF6B3E;
+  color: #ffffff;
+}
 body {
   display: flex;
   flex-direction: column;
