@@ -13,7 +13,7 @@
         </div>
         <div class="icon-list-item__content">
           {% if block.settings.link %}
-            <a href="{{ block.settings.link }}" class="active-underline"><span class="btn--animation hover-underline">{{ block.settings.text }}</span></a>
+            <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
           {% else %}
             {{ block.settings.text }}
           {% endif %}
