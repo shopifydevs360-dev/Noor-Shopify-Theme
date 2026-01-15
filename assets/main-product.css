@@ -201,7 +201,7 @@
    VARIANT SELECTOR
 ============================ */
 .main-product fieldset.variant-group {
-  border-color: rgb(var(--color-border));
+  border-color: 1px solid rgb(var(--color-border));
 }
 
 .main-product .variant-selector {
