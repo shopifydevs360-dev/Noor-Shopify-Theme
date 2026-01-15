@@ -86,6 +86,11 @@
             {% endif %}
 
           <!-- =====================
+               icon list item
+          ====================== -->
+          {% when 'icon_list_item' %}
+            {% render 'icon-list-item', block: block %}
+          <!-- =====================
                CUSTOM LIQUID
           ====================== -->
           {% when 'custom_liquid' %}
