@@ -376,9 +376,11 @@
    addon buttons style
 ============================ */
 .main-product .addon-buttons {
+  margin-bottom: 1.2rem;
+}
+.main-product .addon-buttons ul{
   display: flex;
   gap: 0.8rem;
-  margin-bottom: 1.8rem;
 }
 .main-product .addon-buttons .addon-item {
   flex: 1;
