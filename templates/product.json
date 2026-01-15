@@ -117,9 +117,9 @@
         "addon_buttons_HDrn66": {
           "type": "addon_buttons",
           "settings": {
-            "show_compare": false,
-            "show_wishlist": false,
-            "show_ask_question": false,
+            "show_compare": true,
+            "show_wishlist": true,
+            "show_ask_question": true,
             "show_size_guide": true,
             "show_social_share": true,
             "show_track_order": true
