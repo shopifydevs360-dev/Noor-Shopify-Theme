@@ -59,9 +59,11 @@
 }
 
 .main-product .product-title-price {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+    display: flex;
+    flex-direction: row;
+    gap: .6rem;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 .main-product .product-title {
