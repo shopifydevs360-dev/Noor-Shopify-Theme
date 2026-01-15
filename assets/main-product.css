@@ -64,6 +64,7 @@
     gap: .6rem;
     align-items: flex-end;
     justify-content: space-between;
+    margin-bottom: 1.2rem;
 }
 
 .main-product .product-title {
