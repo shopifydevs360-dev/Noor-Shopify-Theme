@@ -1,7 +1,8 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
   initVariantPriceUpdate();
   initMainProductCart();
-  initQuintitySelector();
 });
 
 /* =================================
@@ -156,38 +157,6 @@ function initMainProductCart() {
   }
 }
 
-/* =================================
-   QUANTITY SELECTOR
-================================= */
-function initQuintitySelector() {
-  const dropdown = e.target.closest("[data-qty-dropdown]");
-  const toggle = e.target.closest("[data-qty-toggle]");
-  const item = e.target.closest(".qty-item");
-
-  // Close all
-  document.querySelectorAll(".quantity-dropdown").forEach(d => {
-    if (d !== dropdown) d.classList.remove("is-open");
-  });
-
-  if (toggle) {
-    dropdown.classList.toggle("is-open");
-  }
-
-  if (item) {
-    const value = item.dataset.qty;
-    const container = item.closest(".quantity-dropdown");
-
-    container.querySelector("input[name='quantity']").value = value;
-    container.querySelector(".qty-toggle").textContent = item.textContent;
-
-    container.querySelectorAll(".qty-item").forEach(i =>
-      i.classList.remove("is-selected")
-    );
-
-    item.classList.add("is-selected");
-    container.classList.remove("is-open");
-  }
-}
 /* =================================
    CART COUNT UPDATE
 ================================= */
