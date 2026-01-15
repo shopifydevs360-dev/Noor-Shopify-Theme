@@ -401,3 +401,8 @@
 {
   width: 1.2rem;
 }
+.main-product .btn-track-order .addon-icon{
+    width: 2rem;
+    height: auto;
+    margin-top: -5px;
+}
