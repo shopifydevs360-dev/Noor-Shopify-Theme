@@ -334,11 +334,22 @@
 /* ============================
    icon-list-item
 ============================ */
-.icon-list-item .icon-list-item__item {
+.icon-list-item {
+  margin-bottom: 1.2rem;
+}
+.icon-list-item ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.icon-list-item ul li {
+  list-style: none;
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 1rem;
 }
 .icon-list-item svg {
   width: 0.95em;
