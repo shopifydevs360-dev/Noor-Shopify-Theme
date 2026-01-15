@@ -726,6 +726,7 @@ button:disabled,
     align-items: center;
     justify-content: space-between;
     transition: all .6s cubic-bezier(.72,0,.28,1);
+    letter-spacing: 1px;
 }
 
 .accordion-trigger:first-child{
