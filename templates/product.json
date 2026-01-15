@@ -67,14 +67,16 @@
           "type": "icon_list_item",
           "settings": {
             "theme_icon": "fast-shipping",
-            "text": "Free delivery on all orders over £120.00"
+            "text": "Free delivery on all orders over £120.00",
+            "link": ""
           }
         },
         "icon_list_item_BEYnrm": {
           "type": "icon_list_item",
           "settings": {
             "theme_icon": "percel",
-            "text": "Free Exchanges & Quick and Easy Returns"
+            "text": "Free Exchanges & Quick and Easy Returns",
+            "link": ""
           }
         },
         "icon_list_item_CMNkGX": {
@@ -82,14 +84,16 @@
           "settings": {
             "theme_icon": "phone",
             "custom_icon": "shopify://shop_images/telephone.png",
-            "text": "Contact our customer care team"
+            "text": "Contact our customer care team",
+            "link": "shopify://products/abstract-ink-premium-modal-hijab"
           }
         },
         "icon_list_item_c4jLwi": {
           "type": "icon_list_item",
           "settings": {
             "theme_icon": "tag",
-            "text": "Dsicover more about the brand"
+            "text": "Dsicover more about the brand",
+            "link": ""
           }
         },
         "empty_space_PLg87X": {
