@@ -3,9 +3,6 @@
   position: relative;
   overflow: hidden;
 }
-  .featured-posts .image-wrap img {
-    border-radius: 100% 100% 0 0;
-  }
 .featured-posts .article-track {
   position: relative;
   height: clamp(30rem,50vh,66rem);
@@ -29,6 +26,9 @@
   color: rgb(var(--color-heading));
 }
 @media (min-width: 992px) {
+    .featured-posts .image-wrap img {
+    border-radius: 100% 100% 0 0;
+  }
   .featured-posts .article-pin-card .text-wrap {
     position: relative;
     width: 60%;
