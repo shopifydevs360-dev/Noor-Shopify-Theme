@@ -234,7 +234,6 @@
 .main-product .variant-btn input:checked + span {
   border-color: rgb(var(--color-heading));
 }
-/* Checked variant */
 .main-product .variant-btn.checked span {
   border-color: rgb(var(--color-heading));
   background-color: rgba(var(--color-heading), 0.08);
@@ -242,9 +241,8 @@
   font-weight: 600;
 }
 
-/* Out of stock variant */
 .main-product .variant-btn.stock-out {
-
+  /* pointer-events: none; */
 }
 
 .main-product .variant-btn.stock-out span {
@@ -254,7 +252,6 @@
   text-decoration: line-through;
 }
 
-/* Out of stock + checked (edge case safety) */
 .main-product .variant-btn.stock-out.checked span {
   background: transparent;
   color: rgb(var(--color-subtext));
@@ -265,7 +262,6 @@
   border-color: rgb(var(--color-heading));
 }
 
-/* Optional: smoother UX */
 .main-product .variant-btn span {
   transition: all 0.2s ease;
 }
