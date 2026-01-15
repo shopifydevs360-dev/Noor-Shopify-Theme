@@ -2,9 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initVariantPriceUpdate();
-    initVariantButtonState();
   initMainProductCart();
   initQuantityDropdown();
+  initVariantButtonState();
 });
 
 /* =================================
