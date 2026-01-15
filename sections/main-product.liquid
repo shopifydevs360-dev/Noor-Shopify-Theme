@@ -325,6 +325,43 @@
       "settings": []
     },
     {
+      "type": "icon_list_item",
+      "name": "Icon list item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "theme_icon",
+          "label": "Select theme icon",
+          "options": [
+            { "value": "fast-shipping", "label": "Fast Shipping" },
+            { "value": "percel", "label": "Percel" },
+            { "value": "tag", "label": "Tag" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "twitter", "label": "Twitter" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "pinterest", "label": "Pinterest" },
+            { "value": "email", "label": "Email" },
+            { "value": "wishlist", "label": "Wishlist" }
+          ],
+          "default": "fast-shipping"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Or upload custom icon",
+          "info": "Recommended size: 64x64px"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free delivery on all orders over £120.00"
+        }
+      ]
+    },
+    {
       "type": "custom_liquid",
       "name": "Custom liquid",
       "settings": [
