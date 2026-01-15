@@ -238,7 +238,6 @@
   border-color: rgb(var(--color-heading));
   background-color: rgb(var(--color-heading));
   color: rgb(var(--color-background));
-  font-weight: 600;
 }
 
 .main-product .variant-btn.stock-out {
