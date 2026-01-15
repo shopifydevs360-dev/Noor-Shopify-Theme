@@ -380,7 +380,7 @@
 }
 .main-product .addon-buttons ul {
     display: flex;
-    gap: .5rem;
+    gap: 1rem;
     padding: 0;
     list-style: none;
     flex-wrap: wrap;
@@ -396,6 +396,8 @@
     width: 1.5rem;
     margin-bottom: -5px;
 }
-.main-product .btn-compare .addon-icon{
+.main-product .btn-compare .addon-icon,
+.main-product .btn-compare .btn-social-share
+{
   width: 1rem;
 }
