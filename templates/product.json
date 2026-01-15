@@ -27,17 +27,17 @@
             "price_font_size": "h5"
           }
         },
+        "description_Th49Tf": {
+          "type": "description",
+          "settings": {
+            "heading": "",
+            "text_size": "h4"
+          }
+        },
         "add_to_cart_form_8aMLxd": {
           "type": "add_to_cart_form",
           "settings": {
             "cart_behavior": "ajax_drawer"
-          }
-        },
-        "description_Th49Tf": {
-          "type": "description",
-          "settings": {
-            "heading": "Description:",
-            "text_size": "h4"
           }
         },
         "accordion_GJhgHM": {
@@ -108,8 +108,8 @@
         "product_collection_3QwKdn",
         "breadcrumb_6V9nX7",
         "title_price_YnB7D8",
-        "add_to_cart_form_8aMLxd",
         "description_Th49Tf",
+        "add_to_cart_form_8aMLxd",
         "accordion_GJhgHM",
         "accordion_EA3PW7",
         "product_meta_iat8W8",
