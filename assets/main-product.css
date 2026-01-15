@@ -234,7 +234,41 @@
 .main-product .variant-btn input:checked + span {
   border-color: rgb(var(--color-heading));
 }
+/* Checked variant */
+.main-product .variant-btn.checked span {
+  border-color: rgb(var(--color-heading));
+  background-color: rgba(var(--color-heading), 0.08);
+  color: rgb(var(--color-heading));
+  font-weight: 600;
+}
 
+/* Out of stock variant */
+.main-product .variant-btn.stock-out {
+  pointer-events: none;
+}
+
+.main-product .variant-btn.stock-out span {
+  border-color: rgb(var(--color-border));
+  color: rgb(var(--color-subtext));
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* Out of stock + checked (edge case safety) */
+.main-product .variant-btn.stock-out.checked span {
+  background: transparent;
+  color: rgb(var(--color-subtext));
+}
+
+/* Hover state (only for available variants) */
+.main-product .variant-btn:not(.stock-out):hover span {
+  border-color: rgb(var(--color-heading));
+}
+
+/* Optional: smoother UX */
+.main-product .variant-btn span {
+  transition: all 0.2s ease;
+}
 /* ============================
    PRODUCT DESCRIPTION
 ============================ */
