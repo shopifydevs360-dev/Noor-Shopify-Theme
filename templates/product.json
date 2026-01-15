@@ -91,6 +91,13 @@
             "theme_icon": "tag",
             "text": "Dsicover more about the brand"
           }
+        },
+        "empty_space_PLg87X": {
+          "type": "empty_space",
+          "settings": {
+            "height": 50,
+            "show_divider": false
+          }
         }
       },
       "block_order": [
@@ -105,7 +112,8 @@
         "icon_list_item_z7m9a8",
         "icon_list_item_BEYnrm",
         "icon_list_item_CMNkGX",
-        "icon_list_item_c4jLwi"
+        "icon_list_item_c4jLwi",
+        "empty_space_PLg87X"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
