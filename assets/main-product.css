@@ -387,9 +387,6 @@
     width: 100%;
     justify-content: flex-start;
 }
-.main-product .addon-buttons .addon-item {
-    width: 31%;
-}
 .main-product .addon-buttons .addon-link {
     display: flex;
     align-items: center;
