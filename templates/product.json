@@ -84,6 +84,13 @@
             "custom_icon": "shopify://shop_images/telephone.png",
             "text": "Contact our customer care team"
           }
+        },
+        "icon_list_item_c4jLwi": {
+          "type": "icon_list_item",
+          "settings": {
+            "theme_icon": "tag",
+            "text": "Dsicover more about the brand"
+          }
         }
       },
       "block_order": [
@@ -97,7 +104,8 @@
         "product_meta_iat8W8",
         "icon_list_item_z7m9a8",
         "icon_list_item_BEYnrm",
-        "icon_list_item_CMNkGX"
+        "icon_list_item_CMNkGX",
+        "icon_list_item_c4jLwi"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
