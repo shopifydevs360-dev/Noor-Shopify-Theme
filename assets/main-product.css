@@ -371,3 +371,29 @@
 .main-product .icon-list-item .icon-list-item__content {
   color: rgb(var(--color-text));
 }
+
+/* ============================
+   addon buttons style
+============================ */
+.main-product .addon-buttons {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+.main-product .addon-buttons .addon-item {
+  flex: 1;
+}
+.main-product .addon-buttons .addon-item .btn {
+  width: 100%;
+  padding: 0.7rem;
+  background: transparent;
+  border: 2px solid rgb(var(--color-heading));
+  color: rgb(var(--color-heading));
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.main-product .addon-buttons .addon-item .btn:hover {
+  background: rgb(var(--color-heading));
+  color: rgb(var(--color-background));
+}
