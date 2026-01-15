@@ -163,6 +163,7 @@
   color: rgb(var(--color-text));
   cursor: pointer;
   text-align: left;
+  font-size: 1em;
 }
 
 .main-product .qty-list {
