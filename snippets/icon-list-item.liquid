@@ -12,7 +12,11 @@
             {% endif %}
         </div>
         <div class="icon-list-item__content">
-          {{ block.settings.text }}
+          {% if block.settings.link %}
+            <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+          {% else %}
+            {{ block.settings.text }}
+          {% endif %}
         </div>
       </li>
   </ul>
