@@ -244,7 +244,7 @@
 
 /* Out of stock variant */
 .main-product .variant-btn.stock-out {
-  pointer-events: none;
+
 }
 
 .main-product .variant-btn.stock-out span {
