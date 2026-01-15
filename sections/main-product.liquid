@@ -99,6 +99,12 @@
             </div>
 
           <!-- =====================
+               Addon buttons
+          ====================== -->
+          {% when 'addon_buttons' %}
+            {% render 'addon-buttons', block: block %}
+
+          <!-- =====================
                RICHTEXT
           ====================== -->
           {% when 'richtext' %}
