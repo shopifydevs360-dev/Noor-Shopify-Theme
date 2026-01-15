@@ -23,7 +23,7 @@
         "title_price_YnB7D8": {
           "type": "title_price",
           "settings": {
-            "title_font_size": "h3",
+            "title_font_size": "h4",
             "price_font_size": "h5"
           }
         },
