@@ -69,6 +69,13 @@
             "theme_icon": "fast-shipping",
             "text": "Free delivery on all orders over £120.00"
           }
+        },
+        "icon_list_item_BEYnrm": {
+          "type": "icon_list_item",
+          "settings": {
+            "theme_icon": "fast-shipping",
+            "text": "Free delivery on all orders over £120.00"
+          }
         }
       },
       "block_order": [
@@ -80,7 +87,8 @@
         "accordion_GJhgHM",
         "accordion_EA3PW7",
         "product_meta_iat8W8",
-        "icon_list_item_z7m9a8"
+        "icon_list_item_z7m9a8",
+        "icon_list_item_BEYnrm"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
