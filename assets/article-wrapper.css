@@ -3,7 +3,9 @@
   position: relative;
   overflow: hidden;
 }
-
+  .featured-posts .image-wrap img {
+    border-radius: 100% 100% 0 0;
+  }
 .featured-posts .article-track {
   position: relative;
   height: clamp(30rem,50vh,66rem);
@@ -138,9 +140,6 @@
   }
   .featured-posts .cropped-image--square {
       padding-bottom: 80%;
-  }
-  .featured-posts .image-wrap img {
-    border-radius: 100% 100% 0 0;
   }
   .featured-posts .article-track {
     height: clamp(26rem,45vh,55rem);
