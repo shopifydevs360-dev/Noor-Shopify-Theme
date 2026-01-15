@@ -1,132 +1,160 @@
-{% comment %}
-  Cart template section
-{% endcomment %}
-
 <section class="cart-template">
   <div class="container">
+
     <form action="{{ routes.cart_url }}" method="post" novalidate>
-      <div class="cart-template__inner">
+      <div class="cart-layout">
 
         <!-- =====================
-             LEFT SIDE – CART ITEMS
+             LEFT COLUMN
         ====================== -->
-        <div class="cart-template-left">
+        <div class="cart-left">
 
-          <h2 class="cart-title">Your Bag</h2>
+          <!-- Header -->
+          <header class="cart-header">
+            <h2 class="cart-heading">YOUR BAG</h2>
 
-          {% assign free_shipping_threshold = 10000 %}
-          {% if cart.total_price < free_shipping_threshold %}
-            <p class="cart-free-shipping">
-              You are {{ free_shipping_threshold | minus: cart.total_price | money }}
-              away from free shipping
-            </p>
-          {% else %}
-            <p class="cart-free-shipping success">
-              🎉 You’ve unlocked free shipping!
-            </p>
-          {% endif %}
+            {% assign free_shipping_threshold = 5000 %}
+            {% assign remaining = free_shipping_threshold | minus: cart.total_price %}
 
-          {% if cart.item_count > 0 %}
-            <div class="cart-items">
+            {% if remaining > 0 %}
+              <p class="cart-shipping-text">
+                You are {{ remaining | money }} away from Free Shipping
+              </p>
+            {% else %}
+              <p class="cart-shipping-text success">
+                You’ve unlocked Free Shipping
+              </p>
+            {% endif %}
 
-              {% for item in cart.items %}
-                <div class="cart-item">
-
-                  <!-- Product image -->
-                  <div class="cart-item-image">
-                    <a href="{{ item.url }}">
-                      {{ item.image | image_url: width: 200 | image_tag }}
-                    </a>
-                  </div>
-
-                  <!-- Product info -->
-                  <div class="cart-item-info">
-                    <a href="{{ item.url }}" class="cart-item-title">
-                      {{ item.product.title }}
-                    </a>
-
-                    {% if item.variant.title != 'Default Title' %}
-                      <p class="cart-item-variant">{{ item.variant.title }}</p>
-                    {% endif %}
-
-                    <p class="cart-item-price">
-                      {{ item.final_line_price | money }}
-                    </p>
-
-                    <!-- Quantity selector -->
-                    <div class="cart-item-qty">
-                      <input
-                        type="number"
-                        name="updates[]"
-                        value="{{ item.quantity }}"
-                        min="0"
-                      >
-                    </div>
-
-                    <!-- Remove -->
-                    <a
-                      href="{{ item.url_to_remove }}"
-                      class="cart-item-remove"
-                    >
-                      Remove
-                    </a>
-                  </div>
-
-                </div>
-              {% endfor %}
-
+            <!-- Progress bar -->
+            <div class="shipping-progress">
+              <span
+                class="shipping-progress-bar"
+                style="width: {{ cart.total_price | times: 100 | divided_by: free_shipping_threshold }}%;">
+              </span>
             </div>
-          {% else %}
-            <p>Your cart is empty.</p>
-          {% endif %}
+          </header>
+
+          <!-- Cart items -->
+          <div class="cart-items">
+
+            {% for item in cart.items %}
+              <div class="cart-item">
+
+                <!-- Image -->
+                <div class="cart-item-media">
+                  <img
+                    src="{{ item.image | image_url: width: 120 }}"
+                    alt="{{ item.product.title }}"
+                  >
+                </div>
+
+                <!-- Info -->
+                <div class="cart-item-details">
+                  <p class="cart-item-title">{{ item.product.title }}</p>
+
+                  <!-- Quantity -->
+                  <div class="cart-qty">
+                    <button type="button" class="qty-btn">−</button>
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                    >
+                    <button type="button" class="qty-btn">+</button>
+                  </div>
+                </div>
+
+                <!-- Price & remove -->
+                <div class="cart-item-meta">
+                  <p class="cart-item-price">
+                    {{ item.final_line_price | money }}
+                  </p>
+
+                  <a href="{{ item.url_to_remove }}" class="cart-remove">
+                    REMOVE
+                  </a>
+                </div>
+
+              </div>
+            {% endfor %}
+
+          </div>
         </div>
 
         <!-- =====================
-             RIGHT SIDE – SUMMARY
+             RIGHT COLUMN
         ====================== -->
-        <div class="cart-template-right">
+        <aside class="cart-right">
 
-          <h3>Order Summary</h3>
+          <!-- Summary -->
+          <div class="cart-summary">
+            <h3 class="summary-title">SUMMARY</h3>
 
-          <div class="cart-summary-row">
-            <span>Subtotal</span>
-            <span>{{ cart.items_subtotal_price | money }}</span>
+            <div class="summary-row">
+              <span>SUBTOTAL</span>
+              <span>{{ cart.items_subtotal_price | money }}</span>
+            </div>
+
+            <button
+              type="submit"
+              name="checkout"
+              class="checkout-btn"
+            >
+              CHECKOUT
+            </button>
+
+            <!-- Payment info -->
+            <div class="payment-info">
+              <p>
+                Pay in 4 interest-free installments of
+                <strong>{{ cart.total_price | divided_by: 4 | money }}</strong>
+                with <strong>Shop Pay</strong>
+              </p>
+
+              <p>
+                Buy now, pay with <strong>Klarna</strong>
+              </p>
+            </div>
           </div>
 
-          <div class="cart-summary-row">
-            <span>Shipping</span>
-            <span>
-              {% if cart.total_price >= free_shipping_threshold %}
-                Free
-              {% else %}
-                Calculated at checkout
-              {% endif %}
-            </span>
+          <!-- Free sample -->
+          <div class="cart-sample">
+            <h3 class="sample-title">CHOOSE YOUR FREE SAMPLE</h3>
+
+            <div class="sample-slider">
+              <button class="slider-arrow prev">‹</button>
+
+              <div class="sample-items">
+                <div class="sample-item">
+                  <img src="#" alt="">
+                  <p>Detox Shampoo Packette</p>
+                </div>
+
+                <div class="sample-item">
+                  <img src="#" alt="">
+                  <p>Medium Hair Shampoo & Conditioner Packette</p>
+                </div>
+
+                <div class="sample-item">
+                  <img src="#" alt="">
+                  <p>Thick Hair Shampoo & Conditioner Packette</p>
+                </div>
+              </div>
+
+              <button class="slider-arrow next">›</button>
+            </div>
           </div>
 
-          <div class="cart-summary-row">
-            <span>Taxes</span>
-            <span>Calculated at checkout</span>
-          </div>
+        </aside>
 
-          <div class="cart-summary-row total">
-            <strong>Total</strong>
-            <strong>{{ cart.total_price | money }}</strong>
-          </div>
-
-          <button
-            type="submit"
-            name="checkout"
-            class="cart-checkout-btn"
-          >
-            Checkout
-          </button>
-
-        </div>
       </div>
     </form>
+
   </div>
 </section>
+
 
 {% schema %}
 {
