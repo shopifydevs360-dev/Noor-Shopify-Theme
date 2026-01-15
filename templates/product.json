@@ -40,6 +40,16 @@
             "cart_behavior": "ajax_drawer"
           }
         },
+        "addon_buttons_tBYPVP": {
+          "type": "addon_buttons",
+          "settings": {
+            "show_compare": true,
+            "show_wishlist": true,
+            "show_ask_question": false,
+            "show_size_guide": false,
+            "show_share": true
+          }
+        },
         "accordion_GJhgHM": {
           "type": "accordion",
           "settings": {
@@ -110,6 +120,7 @@
         "title_price_YnB7D8",
         "description_Th49Tf",
         "add_to_cart_form_8aMLxd",
+        "addon_buttons_tBYPVP",
         "accordion_GJhgHM",
         "accordion_EA3PW7",
         "product_meta_iat8W8",
