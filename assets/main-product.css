@@ -331,3 +331,20 @@
   background-color: rgb(var(--color-border));
   margin-bottom: 0.8rem;
 }
+/* ============================
+   icon-list-item
+============================ */
+.icon-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.icon-list-item svg {
+  width: 0.95em;
+  height: 0.95em;
+  fill: rgb(var(--color-heading));
+}
+.icon-list-item span {
+  color: rgb(var(--color-text));
+}
