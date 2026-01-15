@@ -356,6 +356,6 @@
   height: 0.95em;
   fill: rgb(var(--color-heading));
 }
-.main-product .icon-list-item span {
+.main-product .icon-list-item .icon-list-item__content {
   color: rgb(var(--color-text));
 }
