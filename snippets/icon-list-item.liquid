@@ -1,1 +1,20 @@
 <div class="product-block icon-list-item"></div>
+  <ul class="icon-list-item__list" {{ block.shopify_attributes }}>
+    {% for item in block.settings.icon_list_items %}
+      <li class="icon-list-item__item">
+        <div class="icon-list-item__icon">
+            {% if block.settings.custom_icon %}
+              <img src="{{ block.settings.custom_icon | asset_url: 124px }}" 
+                alt="{{ item.text }}" height="auto" 
+                width="{{ block.settings.custom_icon.width }}" 
+                height="{{ block.settings.custom_icon.height }}" />
+            {% else %}
+              {% render 'theme-icon', icon: item.icon %}
+            {% endif %}
+        </div>
+        <div class="icon-list-item__content">
+          {{ item.text }}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
