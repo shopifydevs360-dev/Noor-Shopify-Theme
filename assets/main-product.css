@@ -385,7 +385,7 @@
     list-style: none;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .main-product .addon-buttons .addon-item {
     width: 31%;
