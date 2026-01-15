@@ -54,13 +54,6 @@
             "content": "<p>Water / Aqua / Eau, Sodium C14-16 Olefin Sulfonate, Cocamidopropyl Betaine, Sodium Methyl Cocoyl Taurate, Peg-200 Hydrogenated Glyceryl Palmate, Cocamide Mipa, Fragrance / Parfum, , Panthenol, Cocoglucosides</p>"
           }
         },
-        "empty_space_aFn8aR": {
-          "type": "empty_space",
-          "settings": {
-            "height": 10,
-            "show_divider": true
-          }
-        },
         "product_meta_iat8W8": {
           "type": "product_meta",
           "settings": {
@@ -79,7 +72,6 @@
         "description_Th49Tf",
         "accordion_GJhgHM",
         "accordion_EA3PW7",
-        "empty_space_aFn8aR",
         "product_meta_iat8W8"
       ],
       "settings": {
