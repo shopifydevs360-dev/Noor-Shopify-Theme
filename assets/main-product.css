@@ -348,6 +348,7 @@
   list-style: none;
   display: flex;
   align-items: center;
+  gap: 0.8rem;
 }
 .main-product .icon-list-item svg {
   fill: rgb(var(--color-heading));
