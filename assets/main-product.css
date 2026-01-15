@@ -334,7 +334,7 @@
 /* ============================
    icon-list-item
 ============================ */
-.icon-list-item {
+.icon-list-item .icon-list-item__item {
   display: flex;
   align-items: center;
   gap: 0.8rem;
