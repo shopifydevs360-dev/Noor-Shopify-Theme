@@ -336,6 +336,7 @@
 ============================ */
 .main-product .icon-list-item {
   margin-bottom: 0.6rem;
+  font-size: 0.9em;
 }
 .main-product .icon-list-item ul {
   padding: 0;
@@ -350,9 +351,13 @@
   align-items: center;
   gap: 0.8rem;
 }
+.icon-list-item__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
 .main-product .icon-list-item img {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 100%;
+  height: auto;
 }
 .main-product .icon-list-item svg {
   fill: rgb(var(--color-heading));
