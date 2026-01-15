@@ -112,10 +112,10 @@
           "settings": {
             "show_compare": true,
             "show_wishlist": true,
-            "show_ask_question": false,
-            "show_size_guide": false,
+            "show_ask_question": true,
+            "show_size_guide": true,
             "show_share": true,
-            "show_track_order": false
+            "show_track_order": true
           }
         },
         "empty_space_PLg87X": {
