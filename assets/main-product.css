@@ -212,9 +212,11 @@
 }
 
 .main-product .variant-buttons {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.6rem 0;
+    display: flex;
+    row-gap: 2rem;
+    column-gap: 0.5rem;
+    padding: .6rem 0;
+    flex-wrap: wrap;
 }
 
 .main-product .variant-btn input {
