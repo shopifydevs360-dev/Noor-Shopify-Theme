@@ -68,7 +68,7 @@
 }
 
 .main-product .product-title {
-  line-height: 1;
+  line-height: 1.15;
   color: rgb(var(--color-heading));
 }
 
