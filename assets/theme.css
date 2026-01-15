@@ -172,11 +172,15 @@ body.rtl .container {
 .theme-icon {
     display: inline-block;
     width: 1.7rem;
+    height: auto;
+    max-height: 2rem;
 }
 @media (min-width: 440px) {
-  .theme-icon {
-      width: 2rem;
-  }
+.theme-icon {
+    width: 2rem;
+    height: auto;
+    max-height: 2rem;
+}
 }
 
 /* ------------------------------
