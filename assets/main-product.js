@@ -88,7 +88,6 @@ function initVariantPriceUpdate() {
 
 /* =================================
    MAIN PRODUCT – CART HANDLER
-   (UNCHANGED)
 ================================= */
 function initMainProductCart() {
   const root = document.querySelector('.main-product');
@@ -157,7 +156,47 @@ function initMainProductCart() {
     });
   }
 }
+/* =================================
+   QUANTITY DROPDOWN
+================================= */
+function initQuantityDropdown() {
+  document.addEventListener('click', (e) => {
+    const dropdown = e.target.closest('[data-qty-dropdown]');
+    const toggle = e.target.closest('[data-qty-toggle]');
+    const item = e.target.closest('.qty-item');
 
+    // Close all other dropdowns
+    document.querySelectorAll('.quantity-dropdown').forEach(d => {
+      if (d !== dropdown) d.classList.remove('is-open');
+    });
+
+    // Toggle dropdown
+    if (toggle && dropdown) {
+      dropdown.classList.toggle('is-open');
+    }
+
+    // Select quantity
+    if (item) {
+      const value = item.dataset.qty;
+      const container = item.closest('.quantity-dropdown');
+
+      if (!container) return;
+
+      const input = container.querySelector("input[name='quantity']");
+      const label = container.querySelector('.qty-toggle');
+
+      if (input) input.value = value;
+      if (label) label.textContent = item.textContent;
+
+      container.querySelectorAll('.qty-item').forEach(i =>
+        i.classList.remove('is-selected')
+      );
+
+      item.classList.add('is-selected');
+      container.classList.remove('is-open');
+    }
+  });
+}
 /* =================================
    CART COUNT UPDATE
 ================================= */
