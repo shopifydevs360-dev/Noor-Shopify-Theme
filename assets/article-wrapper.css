@@ -26,9 +26,6 @@
   color: rgb(var(--color-heading));
 }
 @media (min-width: 992px) {
-    .featured-posts .image-wrap img {
-    border-radius: 100% 100% 0 0;
-  }
   .featured-posts .article-pin-card .text-wrap {
     position: relative;
     width: 60%;
