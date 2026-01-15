@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVariantPriceUpdate();
   initMainProductCart();
   initQuantityDropdown();
+  initVariantButtonState();
 });
 
 /* =================================
@@ -66,6 +67,68 @@ function initVariantPriceUpdate() {
       }
     });
   }
+/* =================================
+   VARIANT stock out control
+================================= */
+function initVariantButtonState() {
+  const productData = window.product;
+  if (!productData || !productData.variants) return;
+
+  const variantGroups = document.querySelectorAll('.variant-group');
+
+  function updateCheckedState() {
+    document.querySelectorAll('.variant-btn').forEach(btn => {
+      btn.classList.remove('checked');
+      const input = btn.querySelector('input[type="radio"]');
+      if (input && input.checked) {
+        btn.classList.add('checked');
+      }
+    });
+  }
+
+  function updateStockState() {
+    variantGroups.forEach(group => {
+      const optionIndex = parseInt(group.dataset.optionIndex, 10);
+      const selectedOptions = [];
+
+      // Collect currently selected options
+      document.querySelectorAll('.variant-group').forEach(g => {
+        const checked = g.querySelector('input:checked');
+        if (checked) selectedOptions.push(checked.value);
+      });
+
+      group.querySelectorAll('.variant-btn').forEach(btn => {
+        btn.classList.remove('stock-out');
+
+        const input = btn.querySelector('input');
+        if (!input) return;
+
+        const testOptions = [...selectedOptions];
+        testOptions[optionIndex] = input.value;
+
+        const match = productData.variants.find(v =>
+          v.options.every((opt, i) => opt === testOptions[i])
+        );
+
+        if (!match || !match.available) {
+          btn.classList.add('stock-out');
+        }
+      });
+    });
+  }
+
+  // Initial state
+  updateCheckedState();
+  updateStockState();
+
+  // On change
+  document.addEventListener('change', e => {
+    if (e.target.matches('.variant-btn input')) {
+      updateCheckedState();
+      updateStockState();
+    }
+  });
+}
 
   // NEW – stock control
   function toggleStockUI(variantId) {
