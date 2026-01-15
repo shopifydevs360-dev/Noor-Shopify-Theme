@@ -9,7 +9,7 @@
                 width="{{ block.settings.custom_icon.width }}" 
                 height="{{ block.settings.custom_icon.height }}" />
             {% else %}
-              {% render 'theme-icon', icon: item.icon %}
+              {% render 'theme-icon', icon: {{ block.settings.theme_icon }} %}
             {% endif %}
         </div>
         <div class="icon-list-item__content">
