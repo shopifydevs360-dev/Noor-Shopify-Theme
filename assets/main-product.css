@@ -318,14 +318,14 @@
 /* ============================
    EMPTY SPACE / DIVIDER
 ============================ */
-.empty-space {
+.main-product .empty-space {
   width: 100%;
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.empty-space .divider {
+.main-product .empty-space .divider {
   width: 100%;
   height: 1px;
   background-color: rgb(var(--color-border));
@@ -334,10 +334,10 @@
 /* ============================
    icon-list-item
 ============================ */
-.icon-list-item {
+.main-product .icon-list-item {
   margin-bottom: 1.2rem;
 }
-.icon-list-item ul {
+.main-product .icon-list-item ul {
   padding: 0;
   list-style: none;
   margin: 0;
@@ -345,17 +345,17 @@
   flex-direction: column;
   gap: 0.8rem;
 }
-.icon-list-item ul li {
+.main-product .icon-list-item ul li {
   list-style: none;
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-.icon-list-item svg {
+.main-product .icon-list-item svg {
   width: 0.95em;
   height: 0.95em;
   fill: rgb(var(--color-heading));
 }
-.icon-list-item span {
+.main-product .icon-list-item span {
   color: rgb(var(--color-text));
 }
