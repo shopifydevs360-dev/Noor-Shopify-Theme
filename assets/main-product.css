@@ -335,7 +335,7 @@
    icon-list-item
 ============================ */
 .main-product .icon-list-item {
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 .main-product .icon-list-item ul {
   padding: 0;
@@ -343,13 +343,11 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
 }
 .main-product .icon-list-item ul li {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
 }
 .main-product .icon-list-item svg {
   fill: rgb(var(--color-heading));
