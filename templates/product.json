@@ -40,15 +40,15 @@
             "cart_behavior": "ajax_drawer"
           }
         },
-        "addon_buttons_tBYPVP": {
+        "addon_buttons_HDrn66": {
           "type": "addon_buttons",
           "settings": {
-            "show_compare": true,
-            "show_wishlist": true,
+            "show_compare": false,
+            "show_wishlist": false,
             "show_ask_question": false,
-            "show_size_guide": false,
+            "show_size_guide": true,
             "show_social_share": true,
-            "show_track_order": false
+            "show_track_order": true
           }
         },
         "accordion_GJhgHM": {
@@ -113,17 +113,6 @@
             "height": 50,
             "show_divider": false
           }
-        },
-        "addon_buttons_HDrn66": {
-          "type": "addon_buttons",
-          "settings": {
-            "show_compare": false,
-            "show_wishlist": false,
-            "show_ask_question": false,
-            "show_size_guide": true,
-            "show_social_share": true,
-            "show_track_order": true
-          }
         }
       },
       "block_order": [
@@ -132,7 +121,7 @@
         "title_price_YnB7D8",
         "description_Th49Tf",
         "add_to_cart_form_8aMLxd",
-        "addon_buttons_tBYPVP",
+        "addon_buttons_HDrn66",
         "accordion_GJhgHM",
         "accordion_EA3PW7",
         "product_meta_iat8W8",
@@ -140,8 +129,7 @@
         "icon_list_item_BEYnrm",
         "icon_list_item_CMNkGX",
         "icon_list_item_c4jLwi",
-        "empty_space_PLg87X",
-        "addon_buttons_HDrn66"
+        "empty_space_PLg87X"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
