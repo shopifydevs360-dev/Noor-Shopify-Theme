@@ -47,7 +47,7 @@
             "show_wishlist": true,
             "show_ask_question": false,
             "show_size_guide": false,
-            "show_share": true,
+            "show_social_share": true,
             "show_track_order": false
           }
         },
@@ -107,22 +107,22 @@
             "link": ""
           }
         },
-        "addon_buttons_HDrn66": {
-          "type": "addon_buttons",
-          "settings": {
-            "show_compare": true,
-            "show_wishlist": true,
-            "show_ask_question": true,
-            "show_size_guide": true,
-            "show_share": true,
-            "show_track_order": true
-          }
-        },
         "empty_space_PLg87X": {
           "type": "empty_space",
           "settings": {
             "height": 50,
             "show_divider": false
+          }
+        },
+        "addon_buttons_HDrn66": {
+          "type": "addon_buttons",
+          "settings": {
+            "show_compare": false,
+            "show_wishlist": false,
+            "show_ask_question": false,
+            "show_size_guide": true,
+            "show_social_share": true,
+            "show_track_order": true
           }
         }
       },
@@ -140,8 +140,8 @@
         "icon_list_item_BEYnrm",
         "icon_list_item_CMNkGX",
         "icon_list_item_c4jLwi",
-        "addon_buttons_HDrn66",
-        "empty_space_PLg87X"
+        "empty_space_PLg87X",
+        "addon_buttons_HDrn66"
       ],
       "settings": {
         "main_product_color": "scheme-49da4596-ce95-41b0-af9e-06e9092dbbf6",
